@@ -1,0 +1,37 @@
+[build]
+  command = "npm run build:netlify"
+  functions = "lambda"
+  publish="public"
+
+[dev]
+  command = "npm run serve"
+  port = 4444
+  publish = "public"
+  functionsPort = 9000
+
+[production]
+  command = "npm run build:netlify"
+  publish = "public"
+
+[[redirects]]
+  from = "https://clean-start.netlify.com/*"
+  to = "https://cleanst.art/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://my-start.page/*"
+  to = "https://cleanst.art/:splat"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "form-action https:"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=2592000"
+    Feature-Policy = "geolocation 'self'; midi 'none'; ; sync-xhr 'self'; microphone 'none'; camera 'none'; magnetometer 'none'; gyroscope 'none'; speaker 'none'; fullscreen 'self'; payment 'none'"

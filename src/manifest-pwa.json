@@ -1,0 +1,44 @@
+{
+  "name": "Clean Start",
+  "short_name": "Clean Start",
+  "description": "Open source new tab extension",
+  "author": "Michael Sprague",
+  "icons": [
+    {
+      "src": "/images/new-tab-icon-16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "/images/new-tab-icon-24.png",
+      "type": "image/png",
+      "sizes": "24x24"
+    },
+    {
+      "src": "/images/new-tab-icon-32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/images/new-tab-icon-48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/images/new-tab-icon-64.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "/images/new-tab-icon-128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    }
+  ],
+  "homepage_url": "https://cleanst.art/",
+  "scope": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#121212"
+}

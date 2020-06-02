@@ -1,0 +1,185 @@
+{
+  "name": "clean-start",
+  "version": "0.0.1",
+  "description": "Open source new tab extension",
+  "private": true,
+  "engines": {
+    "node": ">= 12.x",
+    "npm": ">= 6.x"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run webpack && npm run lambda:build",
+    "build:extension": "npm run clean && cross-env BUILD_TYPE=extension npm run webpack && npm run zip",
+    "build:netlify": "npm run webpack && npm run lambda:build",
+    "clean": "rm -rf ./public && rm -rf ./lambda",
+    "dev": "concurrently 'npm run webpack:serve' 'npm run lambda:serve' --names '📦,💻' --prefix '[{name}] ' --kill-others",
+    "lambda:build": "netlify-lambda build ./src/functions",
+    "lambda:serve": "netlify-lambda serve ./src/functions --config ./functions.config.js",
+    "prepublish": "npm run snyk-protect",
+    "snyk-protect": "snyk protect",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "cross-env NODE_ENV=production webpack -p --colors --display minimal",
+    "webpack:dev": "cross-env NODE_ENV=development webpack -d --colors --display minimal",
+    "webpack:serve": "cross-env NODE_ENV=development webpack-dev-server --port 4444 --keep-alive-timeout 0",
+    "zip": "cd public && zip -r extension.zip ./"
+  },
+  "keywords": [],
+  "repository": {
+    "url": "https://github.com/mikesprague/clean-start"
+  },
+  "author": {
+    "name": "Michael Sprague",
+    "email": "mikesprague@gmail.com"
+  },
+  "homepage": "https://cleanst.art",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikesprague/clean-start/issues"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-brands-svg-icons": "^5.13.0",
+    "@fortawesome/pro-duotone-svg-icons": "^5.13.0",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "cheerio": "^1.0.0-rc.3",
+    "cross-env": "^7.0.2",
+    "cssnano": "^4.1.10",
+    "dayjs": "^1.8.28",
+    "dotenv": "^8.2.0",
+    "num-words": "^1.2.0",
+    "register-service-worker": "^1.7.1",
+    "snyk": "^1.334.0",
+    "tippy.js": "^6.2.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.10.1",
+    "@babel/plugin-transform-object-assign": "^7.10.1",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/runtime": "^7.10.2",
+    "@fullhuman/postcss-purgecss": "^2.2.0",
+    "autoprefixer": "^9.8.0",
+    "babel-loader": "^8.1.0",
+    "compression-webpack-plugin": "^4.0.0",
+    "concurrently": "^5.2.0",
+    "copy-webpack-plugin": "^6.0.1",
+    "css-loader": "^3.5.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-compat": "^3.7.0",
+    "eslint-plugin-html": "^6.0.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-markdown": "^1.0.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-security": "^1.4.0",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "netlify-cli": "^2.52.0",
+    "netlify-lambda": "^1.6.3",
+    "node-sass": "^4.14.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^2.0.5",
+    "prettier-eslint": "^10.1.1",
+    "prettier-stylelint": "^0.4.2",
+    "sass-lint": "^1.13.1",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^3.0.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "3.11.0",
+    "workbox-webpack-plugin": "^5.1.3"
+  },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-transform-runtime",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-transform-object-assign",
+      "@babel/plugin-proposal-object-rest-spread"
+    ],
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "browserslist": {
+    "development": [
+      "last 1 version"
+    ],
+    "production": [
+      "> 1%",
+      "last 2 versions",
+      "not ie <= 10"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    },
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ],
+    "plugins": [
+      "compat",
+      "html",
+      "import",
+      "markdown",
+      "prettier",
+      "security"
+    ],
+    "parserOptions": {
+      "parser": "babel-parser",
+      "ecmaVersion": 10,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "impliedStrict": true,
+        "modules": true
+      }
+    },
+    "rules": {
+      "curly": "error",
+      "object-curly-newline": "error",
+      "semi": "error",
+      "prefer-arrow-callback": "warn",
+      "arrow-spacing": "error",
+      "no-param-reassign": "warn",
+      "eqeqeq": "error",
+      "quotes": [
+        "error",
+        "single",
+        {
+          "avoidEscape": true,
+          "allowTemplateLiterals": true
+        }
+      ],
+      "max-len": [
+        "warn",
+        {
+          "code": 120,
+          "tabWidth": 2,
+          "ignoreUrls": true
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always",
+    "semi": true,
+    "tabWidth": 2,
+    "plugins": [
+      "all"
+    ],
+    "printWidth": 120
+  },
+  "snyk": true
+}
