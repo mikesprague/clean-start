@@ -10,6 +10,7 @@ Open source new tab extension
 
 - [About](#about)
 - [Install](#install)
+- [Build](#build)
 - [Demo](#demo)
 - [Screenshots](#screenshots)
 - [Uses](#uses)
@@ -31,7 +32,17 @@ Open source new tab extension
 
 ## Install
 
-- Chrome Store and Firefox coming soon (works, not currently listed)
+- Chrome Store: [https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol](https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol)
+- Firefox Add-ons: coming soon
+
+## Build
+
+- Install dependencies `npm install`
+- Build extension `npm run build:extension`
+  - This will create a `public` folder with the extension files and an `extension.zip` file for submitting
+- Run/develop locally `npm run dev`
+
+NOTE: You will need API keys from Dark Sky, Unsplash, Font Awesome Pro, and Google Maps to build/run this extension without modifications
 
 ## Demo
 
