@@ -6,6 +6,7 @@ import {
   faRedditAlien,
   faChrome,
   faDev,
+  faFirefoxBrowser,
 } from '@fortawesome/free-brands-svg-icons';
 import {
   faImage,
@@ -135,6 +136,7 @@ export function initIcons() {
     faCalendar,
     faSyncAlt,
     faChrome,
+    faFirefoxBrowser,
     faDev,
   );
   dom.watch();
@@ -169,21 +171,27 @@ export function initServiceWorker () {
 };
 
 export function initPwaLinks() {
-  // if (!isExtension()) {
-  //   const appTitleEl = document.querySelector('.pwa-link-tooltip');
-  //   const appTitleTooltip = `
-  //     <a href="https://chrome.google.com/webstore/detail/clean-start/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" target="_blank" rel="noopener">
-  //       View/Install in <i class='fab fa-fw fa-chrome'></i> Chrome Store
-  //     </a>
-  //   `;
-  //   appTitleEl.setAttribute('data-tippy-content', appTitleTooltip);
-  //   appTitleEl.innerHTML = `
-  //     <a href="https://chrome.google.com/webstore/detail/clean-start/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" target="_blank" rel="noopener">
-  //       Clean Start
-  //     </a>
-  //   `;
-  // }
   const authorNameEl = document.querySelector('.author-container');
+  if (!isExtension()) {
+    const appTitleEl = document.querySelector('.pwa-link-tooltip');
+    const appTitleTooltip = `
+      <a href="https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol" target="_blank" rel="noopener">
+        <i class='fab fa-fw fa-chrome'></i> Chrome Store
+      </a>
+      &nbsp;
+      <a href="https://addons.mozilla.org/en-US/firefox/addon/clean-start/" target="_blank" rel="noopener">
+        <i class='fab fa-fw fa-firefox-browser'></i> Firefox Add-ons
+      </a>
+    `;
+    const pwaInstallLinks = `
+      <h2 class="install-links">
+        <a href="https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol" data-tippy-content="Install via Chrome Store" target="_blank" rel="noopener"><i class='fab fa-fw fa-chrome'></i></a>
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/clean-start/" target="_blank" data-tippy-content="Install via Firefox Add-ons" rel="noopener"><i class='fab fa-fw fa-firefox-browser'></i></a>
+      </h2>
+    `;
+    appTitleEl.setAttribute('data-tippy-content', appTitleTooltip);
+    authorNameEl.insertAdjacentHTML('afterend', pwaInstallLinks);
+  }
   const authorNameTooltip = `
     <a href="https://github.com/mikesprague/clean-start" target="_blank" rel="noopener">
       <i class="fad fa-fw fa-code"></i> Source code available on GitHub <i class='fab fa-fw fa-github'></i>
