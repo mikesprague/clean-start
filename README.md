@@ -33,7 +33,7 @@ Open source new tab extension
 ## Install
 
 - Chrome Store: [https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol](https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol)
-- Firefox Add-ons: coming soon
+- Firefox Add-ons: [https://addons.mozilla.org/en-US/firefox/addon/clean-start/](https://addons.mozilla.org/en-US/firefox/addon/clean-start/)
 
 ## Build
 
