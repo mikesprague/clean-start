@@ -13,8 +13,6 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 const mode = process.env.NODE_ENV;
 const buildType = process.env.BUILD_TYPE;
 
-console.log(buildType);
-
 const webpackRules = [
   {
     test: /\.(ttf|eot|woff|woff2)$/,
