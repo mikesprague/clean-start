@@ -10,16 +10,18 @@ exports.handler = async (event, context, callback) => {
     'Access-Control-Allow-Headers': 'Content-Type',
   };
 
-  // [x] 327760 - nature
-  // [x] 219941 - architecture/buildings/spaces
-  // [x] 894 - earth/planets
-  // [ ] 1976082 - city views
-  // [ ] 461370 - city/street
-  // [x] 784236 - city
-  // [ ] 1079798 - street art
-  // [ ] 4332580 - space
-  // [x] 535285 - starry nights/space
-  const unsplashCollections = '327760,219941,894,784236,535285';
+  const unsplashCollectionsArray = [
+    '327760', // nature
+    '219941', // architecture/buildings/spaces
+    '894', // earth/planets
+    // '1976082', // city views
+    // '461370', // city/street
+    '784236', // city
+    // '1079798', // street art
+    // '4332580', // space
+    '535285', // starry nights/space
+  ];
+  const unsplashCollections = unsplashCollectionsArray.join(',');
   // gets a random imagee from a nature collection with over 1200 images in it
   const unsplashApiurl = `https://api.unsplash.com/photos/random/?collections=${unsplashCollections}&orientation=landscape&count=5&client_id=${UNSPLASH_ACCESS_KEY}`;
 
