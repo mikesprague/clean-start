@@ -11,15 +11,15 @@ exports.handler = async (event, context, callback) => {
   };
 
   const unsplashCollectionsArray = [
-    '327760', // nature
-    '219941', // architecture/buildings/spaces
-    '894', // earth/planets
-    // '1976082', // city views
-    // '461370', // city/street
-    '784236', // city
-    // '1079798', // street art
-    // '4332580', // space
-    '535285', // starry nights/space
+    327760, // nature
+    219941, // architecture/buildings/spaces
+    894, // earth/planets
+    // 1976082, // city views
+    // 461370, // city/street
+    784236, // city
+    // 1079798, // street art
+    // 4332580, // space
+    535285, // starry nights/space
   ];
   const unsplashCollections = unsplashCollectionsArray.join(',');
   // gets a random imagee from a nature collection with over 1200 images in it
