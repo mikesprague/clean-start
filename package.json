@@ -42,6 +42,8 @@
     "@fortawesome/pro-duotone-svg-icons": "^5.13.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "bulma": "^0.9.0",
+    "bulma-block-list": "^0.4.0",
     "cheerio": "^1.0.0-rc.3",
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
@@ -49,7 +51,7 @@
     "dotenv": "^8.2.0",
     "num-words": "^1.2.0",
     "register-service-worker": "^1.7.1",
-    "snyk": "^1.336.0",
+    "snyk": "^1.337.0",
     "tippy.js": "^6.2.3"
   },
   "devDependencies": {
