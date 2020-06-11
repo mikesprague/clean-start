@@ -171,7 +171,8 @@ export function initServiceWorker () {
 };
 
 export function initPwaLinks() {
-  const authorNameEl = document.querySelector('.author-container');
+  const sourceCodeLinkEl = document.querySelector('.source-link');
+  const sourceCodeLinkContainerEl = document.querySelector('.source-link-container');
   if (!isExtension()) {
     const appTitleEl = document.querySelector('.pwa-link-tooltip');
     const appTitleTooltip = `
@@ -190,12 +191,12 @@ export function initPwaLinks() {
       </h2>
     `;
     appTitleEl.setAttribute('data-tippy-content', appTitleTooltip);
-    authorNameEl.insertAdjacentHTML('afterend', pwaInstallLinks);
+    sourceCodeLinkContainerEl.insertAdjacentHTML('afterend', pwaInstallLinks);
   }
-  const authorNameTooltip = `
+  const sourceCodeTooltip = `
     <a href="https://github.com/mikesprague/clean-start" target="_blank" rel="noopener">
       <i class="fad fa-fw fa-code"></i> Source code available on GitHub <i class='fab fa-fw fa-github'></i>
     </a>
   `;
-  authorNameEl.setAttribute('data-tippy-content', authorNameTooltip);
+  sourceCodeLinkEl.setAttribute('data-tippy-content', sourceCodeTooltip);
 }
