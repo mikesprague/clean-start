@@ -82,8 +82,7 @@ export async function setImageAndMetaData () {
     }
     return 'No description available';
   };
-  document.body.style.background =
-    `linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('${imageUrl}') no-repeat fixed center center, linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),url('${imageThumbUrl}') no-repeat fixed center center`;
+  document.body.style.background = `linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('${imageUrl}') no-repeat fixed center center, linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),url('${imageThumbUrl}') no-repeat fixed center center`;
   document.body.style.backgroundSize = 'cover, cover';
   // document.body.style.filter = 'brightness(80%)';
   const linkSuffix = '?utm_source=My%20Start%20Page&utm_medium=referral';

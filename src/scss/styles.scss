@@ -129,18 +129,6 @@ a {
   }
 }
 
-.photo-overlay {
-  background-color: $color-black-forty-percent;
-  height: 100%;
-  left: 0;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: -9999;
-}
-
 .posts-container {
   max-height: 85vh;
   overflow-y: auto;
