@@ -43,7 +43,7 @@ import {
 } from './data';
 
 export const appConfig = {
-  bgCacheTtl: 60, // 1 hour
+  bgCacheTtl: 360, // 6 hours
   bgCurrentKey: 'bgCurrent',
   bgDataKey: 'bgData',
   bgLastUpdatedKey: 'bgLastUpdated',
