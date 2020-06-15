@@ -51,7 +51,7 @@
     "dotenv": "^8.2.0",
     "num-words": "^1.2.0",
     "register-service-worker": "^1.7.1",
-    "snyk": "^1.339.3",
+    "snyk": "^1.341.1",
     "tippy.js": "^6.2.3"
   },
   "devDependencies": {
