@@ -19,7 +19,7 @@ export function updateDateTime () {
   const timeContainer = document.querySelector('.time-container');
   const dateContainer = document.querySelector('.date-container');
   const currentDateTime = dayjs();
-  const timeFormatted = dayjs(currentDateTime).format('H:mm');
+  const timeFormatted = dayjs(currentDateTime).format('HH:mm');
   const dateFormatted = dayjs(currentDateTime).format('dddd, MMMM D');
   timeContainer.textContent = timeFormatted;
   dateContainer.textContent = dateFormatted;
