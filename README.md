@@ -42,7 +42,7 @@ Open source new tab extension
   - This will create a `public` folder with the extension files and an `extension.zip` file for submitting
 - Run/develop locally `npm run dev`
 
-NOTE: You will need API keys from Dark Sky, Unsplash, and Google Maps to build/run this extension without modifications
+NOTE: You will need API keys from Dark Sky, Unsplash, and Google Maps to build/run the Netlify functions this extension uses without modification
 
 ## Demo
 
