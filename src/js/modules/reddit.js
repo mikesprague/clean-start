@@ -56,7 +56,7 @@ export async function getRedditPostsMarkup () {
         <small>
           <a href="https://www.reddit.com/r/${post.subreddit}" title="View Subreddit: /r/${post.subreddit}" target="_blank" rel="noopener">/r/${post.subreddit}</a>
           &nbsp;&nbsp;
-          <a href="https://www.reddit.com/user/${post.author}/" title="View Author Page: ${post.author}" target="_blank" rel="noopener"><i class="fad fa-fw fa-user"></i> ${post.author}</a>
+          <a href="https://www.reddit.com/user/${post.author}/" title="View Author Page: ${post.author}" target="_blank" rel="noopener"><i class="fas fa-fw fa-user"></i> ${post.author}</a>
         </small>
       </li>
     `;
@@ -70,7 +70,7 @@ export async function getRedditPostsMarkup () {
         <h5>
           <i class="fab fa-fw fa-reddit-alien"></i> Reddit Popular Posts
           &nbsp;
-          <small><a href="https://www.reddit.com/r/popular" title="View on Reddit" target="_blank" rel="noopener"><i class="fad fa-fw fa-external-link"></i> View on Reddit</a></small>
+          <small><a href="https://www.reddit.com/r/popular" title="View on Reddit" target="_blank" rel="noopener"><i class="fas fa-fw fa-external-link-alt"></i> View on Reddit</a></small>
         </h5>
       </li>
       ${postsMarkup.join('\n')}

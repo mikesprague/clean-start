@@ -73,7 +73,7 @@ export async function getHackerNewsPostsMarkup () {
         </a>
         <br>
         <small>
-          <i class="fad fa-fw fa-calendar"></i> ${post.pubDate}
+          <i class="far fa-fw fa-calendar"></i> ${post.pubDate}
         </small>
       </li>
     `;
@@ -87,7 +87,7 @@ export async function getHackerNewsPostsMarkup () {
         <h5>
           <i class="fab fa-fw fa-hacker-news"></i> Hacker News Top Posts
           &nbsp;
-          <small><a href="https://news.ycombinator.com/" title="View on Hacker News" target="_blank" rel="noopener"><i class="fad fa-fw fa-external-link"></i> View on Hacker News</a></small>
+          <small><a href="https://news.ycombinator.com/" title="View on Hacker News" target="_blank" rel="noopener"><i class="fas fa-fw fa-external-link-alt"></i> View on Hacker News</a></small>
         </h5>
       </li>
       ${postsMarkup.join('\n')}

@@ -26,20 +26,20 @@ export async function getWeatherData (lat, lng) {
 
 export function getWeatherIcon(icon) {
   const iconMap = {
-    'clear-day': 'fad fa-fw fa-sun',
-    'clear-night': 'fad fa-fw fa-moon-stars',
-    rain: 'fad fa-fw fa-cloud-rain',
-    snow: 'fad fa-fw fa-cloud-snow',
-    sleet: 'fad fa-fw fa-cloud-sleet',
-    wind: 'fad fa-fw fa-wind',
-    fog: 'fad fa-fw fa-fog',
-    cloudy: 'fad fa-fw fa-clouds',
-    'partly-cloudy-day': 'fad fa-fw fa-clouds-sun',
-    'partly-cloudy-night': 'fad fa-fw fa-clouds-moon',
-    hail: 'fad fa-fw fa-cloud-hail',
-    hurricane: 'fad fa-fw fa-hurricane',
-    thunderstorm: 'fad fa-fw fa-thunderstorm',
-    tornado: 'fad fa-fw fa-tornado',
+    'clear-day': 'fas fa-fw fa-sun',
+    'clear-night': 'fas fa-fw fa-moon',
+    rain: 'fas fa-fw fa-cloud-rain',
+    snow: 'far fa-fw fa-snowflake',
+    sleet: 'fas fa-fw cloud-cloud-meatball',
+    wind: 'fas fa-fw fa-wind',
+    fog: 'fas fa-fw fa-smog',
+    cloudy: 'fas fa-fw fa-cloud',
+    'partly-cloudy-day': 'fas fa-fw fa-cloud-sun',
+    'partly-cloudy-night': 'fas fa-fw fa-cloud-moon',
+    hail: 'fas fa-fw fa-cloud-meatball',
+    hurricane: 'fas fa-fw fa-wind',
+    thunderstorm: 'fas fa-fw fa-cloud-showers-heavy',
+    tornado: 'fas fa-fw fa-wind',
   };
   return iconMap[icon];
 }
@@ -100,11 +100,11 @@ export function populateWeatherAndLocation(weatherAndLocationData) {
   const weatherIconClass = getWeatherIcon(icon);
   const tooltipString = `
     <div class="text-center mb-2">
-      <i class="fad fa-fw fa-map-marker-alt"></i> ${locationName}
+      <i class="fas fa-fw fa-map-marker-alt"></i> ${locationName}
       <br>
       <i class="${weatherIconClass}"></i> ${summary}
       <br>
-      <i class="fad fa-fw fa-thermometer-half"></i> ${Math.round(temperature)}&deg; (feels like ${Math.round(apparentTemperature)}&deg;)
+      <i class="fas fa-fw fa-thermometer-half"></i> ${Math.round(temperature)}&deg; (feels like ${Math.round(apparentTemperature)}&deg;)
     </div>
     ${hourlyMarkup}
   `;

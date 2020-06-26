@@ -75,9 +75,9 @@ export async function getHackerNewsPostsMarkup () {
         </a>
         <br>
         <small>
-          <i class="fad fa-fw fa-user"></i> ${post.author}
+          <i class="fas fa-fw fa-user"></i> ${post.author}
           <br>
-          <i class="fad fa-fw fa-calendar"></i> ${post.pubDate}
+          <i class="far fa-fw fa-calendar"></i> ${post.pubDate}
         </small>
       </li>
     `;
@@ -91,7 +91,7 @@ export async function getHackerNewsPostsMarkup () {
         <h5>
           <i class="fab fa-fw fa-dev"></i> Dev.to Recent Posts
           &nbsp;
-          <small><a href="https://dev.to/" title="Visit Dev.to" target="_blank" rel="noopener"><i class="fad fa-fw fa-external-link"></i> Visit Dev.to</a></small>
+          <small><a href="https://dev.to/" title="Visit Dev.to" target="_blank" rel="noopener"><i class="fas fa-fw fa-external-link-alt"></i> Visit Dev.to</a></small>
         </h5>
       </li>
       ${postsMarkup.join('\n')}

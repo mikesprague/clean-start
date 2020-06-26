@@ -51,8 +51,8 @@ export async function getGitHubReposMarkup () {
   }
 
   let idx = 0;
-  const starsIcon = '<i class="fad fa-fw fa-star"></i>';
-  const forksIcon = '<i class="fad fa-fw fa-share-alt fa-rotate-270"></i>';
+  const starsIcon = '<i class="fas fa-fw fa-star"></i>';
+  const forksIcon = '<i class="fas fa-fw fa-share-alt fa-rotate-270"></i>';
   const reposMarkup = gitHubData.map(repo => {
     const {
       title,
@@ -101,7 +101,7 @@ export async function getGitHubReposMarkup () {
         <h5>
           <i class="fab fa-fw fa-github"></i> GitHub Trending Repositories
           &nbsp;
-          <small><a href="https://github.com/trending?spoken_language_code=en" title="View on GitHub" target="_blank" rel="noopener"><i class="fad fa-fw fa-external-link"></i> View on GitHub</a></small>
+          <small><a href="https://github.com/trending?spoken_language_code=en" title="View on GitHub" target="_blank" rel="noopener"><i class="fas fa-fw fa-external-link-alt"></i> View on GitHub</a></small>
         </h5>
       </li>
       ${reposMarkup.join('\n')}

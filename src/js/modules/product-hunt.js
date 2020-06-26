@@ -75,7 +75,7 @@ export async function getProductHuntPostsMarkup () {
         </a>
         <br>
         <small>
-          <i class="fad fa-fw fa-calendar"></i> ${post.published}
+          <i class="far fa-fw fa-calendar"></i> ${post.published}
         </small>
       </li>
     `;
@@ -89,7 +89,7 @@ export async function getProductHuntPostsMarkup () {
         <h5>
           <i class="fab fa-fw fa-product-hunt"></i> Product Hunt Top Posts
           &nbsp;
-          <small><a href="https://producthunt.com/" title="View on Product Hunt" target="_blank" rel="noopener"><i class="fad fa-fw fa-external-link"></i> View on Product Hunt</a></small>
+          <small><a href="https://producthunt.com/" title="View on Product Hunt" target="_blank" rel="noopener"><i class="fas fa-fw fa-external-link-alt"></i> View on Product Hunt</a></small>
         </h5>
       </li>
       ${postsMarkup.join('\n')}
