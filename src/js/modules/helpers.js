@@ -9,12 +9,8 @@ import {
   faRedditAlien,
 } from '@fortawesome/free-brands-svg-icons';
 import {
-  faCalendar,
-  faImage,
-  faSnowflake,
-} from '@fortawesome/free-regular-svg-icons';
-import {
   faBolt,
+  faCalendar,
   faCloud,
   faCloudMeatball,
   faCloudMoon,
@@ -24,10 +20,12 @@ import {
   faCode,
   faExternalLinkAlt,
   faHourglassHalf,
+  faImage,
   faMapMarkerAlt,
   faMoon,
   faShareAlt,
   faSmog,
+  faSnowflake,
   faStar,
   faSun,
   faSync,
