@@ -76,7 +76,7 @@ export async function getProductHuntPostsMarkup () {
         </a>
         <br>
         <small>
-          <i class="far fa-fw fa-calendar"></i> ${post.published}
+          <i class="fas fa-fw fa-calendar"></i> ${post.published}
         </small>
       </li>
     `;

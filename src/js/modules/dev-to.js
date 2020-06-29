@@ -78,7 +78,7 @@ export async function getHackerNewsPostsMarkup () {
         <small>
           <i class="fas fa-fw fa-user"></i> ${post.author}
           <br>
-          <i class="far fa-fw fa-calendar"></i> ${post.pubDate}
+          <i class="fas fa-fw fa-calendar"></i> ${post.pubDate}
         </small>
       </li>
     `;

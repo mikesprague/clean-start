@@ -90,7 +90,7 @@ export async function setImageAndMetaData () {
   const bgMetadataEl = document.querySelector('.bg-metadata');
   bgMetadataEl.innerHTML = dompurify.sanitize(`
     <a href="${imageLink}${linkSuffix}" target="_blank" rel="noopener">
-      <i class="far fa-fw fa-image"></i> ${getImageTitle()}
+      <i class="fas fa-fw fa-image"></i> ${getImageTitle()}
     </a>
     <br>
     <a href="${userLink}${linkSuffix}" target="_blank" rel="noopener">

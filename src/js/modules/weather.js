@@ -30,7 +30,7 @@ export function getWeatherIcon(icon) {
     'clear-day': 'fas fa-fw fa-sun',
     'clear-night': 'fas fa-fw fa-moon',
     rain: 'fas fa-fw fa-cloud-rain',
-    snow: 'far fa-fw fa-snowflake',
+    snow: 'fas fa-fw fa-snowflake',
     sleet: 'fas fa-fw cloud-cloud-meatball',
     wind: 'fas fa-fw fa-wind',
     fog: 'fas fa-fw fa-smog',
