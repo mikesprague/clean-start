@@ -1,5 +1,6 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
+import dompurify from 'dompurify';
 import tippy from 'tippy.js';
 import {
   clearData,
@@ -109,7 +110,9 @@ export async function initDevToPopup() {
     maxWidth: 'none',
     trigger: 'click',
     onShow(instance) {
-      instance.setContent(devToContent);
+      instance.setContent(
+        dompurify.sanitize(devToContent)
+      );
     },
   });
 }
