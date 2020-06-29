@@ -1,5 +1,6 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
+import dompurify from 'dompurify';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {
   clearData,
@@ -109,7 +110,7 @@ export function populateWeatherAndLocation(weatherAndLocationData) {
     ${hourlyMarkup}
   `;
 
-  weatherTempEl.innerHTML = `${Math.round(temperature)}&deg;`;
+  weatherTempEl.innerHTML = dompurify.sanitize(`${Math.round(temperature)}&deg;`);
   tooltipEl.setAttribute('data-tippy-content', tooltipString);
   initTooltips();
   weatherIcon.removeAttribute('class');

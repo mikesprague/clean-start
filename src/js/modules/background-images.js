@@ -1,5 +1,6 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
+import dompurify from 'dompurify';
 import {
   clearData,
   getData,
@@ -87,7 +88,7 @@ export async function setImageAndMetaData () {
   // document.body.style.filter = 'brightness(80%)';
   const linkSuffix = '?utm_source=My%20Start%20Page&utm_medium=referral';
   const bgMetadataEl = document.querySelector('.bg-metadata');
-  bgMetadataEl.innerHTML = `
+  bgMetadataEl.innerHTML = dompurify.sanitize(`
     <a href="${imageLink}${linkSuffix}" target="_blank" rel="noopener">
       <i class="far fa-fw fa-image"></i> ${getImageTitle()}
     </a>
@@ -96,7 +97,7 @@ export async function setImageAndMetaData () {
       <i class="fas fa-fw fa-user"></i> ${userName}
     </a>
     via <a href="https://unsplash.com/${linkSuffix}" target="_blank" rel="noopener">Unsplash</a>
-  `;
+  `);
 }
 
 export async function rotateBgImage () {

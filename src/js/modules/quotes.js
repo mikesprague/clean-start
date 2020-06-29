@@ -1,5 +1,6 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
+import dompurify from 'dompurify';
 import {
   clearData,
   getData,
@@ -58,5 +59,5 @@ export async function initDesignQuote() {
     <p class="quote-author">&mdash; ${designQuote.quoteAuthor}</p>
   `;
   const quoteElement = document.querySelector('.quote-container');
-  quoteElement.innerHTML = designQuoteHtml;
+  quoteElement.innerHTML = dompurify.sanitize(designQuoteHtml);
 }
