@@ -52,7 +52,7 @@
     "dotenv": "^8.2.0",
     "num-words": "^1.2.0",
     "register-service-worker": "^1.7.1",
-    "snyk": "^1.351.0",
+    "snyk": "^1.355.0",
     "tippy.js": "^6.2.3"
   },
   "devDependencies": {
