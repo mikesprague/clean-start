@@ -47,13 +47,13 @@
     "cheerio": "^1.0.0-rc.3",
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
-    "dayjs": "^1.8.28",
+    "dayjs": "^1.8.29",
     "dompurify": "^2.0.12",
     "dotenv": "^8.2.0",
     "num-words": "^1.2.0",
     "register-service-worker": "^1.7.1",
-    "snyk": "^1.358.0",
-    "tippy.js": "^6.2.3"
+    "snyk": "^1.360.0",
+    "tippy.js": "^6.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
