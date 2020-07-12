@@ -2,6 +2,7 @@ import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import {
   faChrome,
   faDev,
+  faEdge,
   faFirefoxBrowser,
   faGithub,
   faHackerNews,
@@ -134,8 +135,9 @@ export function initIcons() {
     faSyncAlt,
     faSync,
     faChrome,
-    faFirefoxBrowser,
     faDev,
+    faEdge,
+    faFirefoxBrowser,
   );
   dom.watch();
 }
@@ -186,6 +188,7 @@ export function initPwaLinks() {
       <h2 class="install-links">
         <a href="https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol" data-tippy-content="Install via Chrome Store" target="_blank" rel="noopener"><i class='fab fa-fw fa-chrome'></i></a>
         <a href="https://addons.mozilla.org/en-US/firefox/addon/clean-start/" target="_blank" data-tippy-content="Install via Firefox Add-ons" rel="noopener"><i class='fab fa-fw fa-firefox-browser'></i></a>
+        <a href="https://microsoftedge.microsoft.com/addons/detail/clean-start/aifahnhgmoaeckhcdnhdnoamjnkeppjf" target="_blank" data-tippy-content="Install via Edge Add-ons" rel="noopener"><i class='fab fa-fw fa-edge'></i></a>
       </h2>
     `;
     appTitleEl.setAttribute('data-tippy-content', appTitleTooltip);
