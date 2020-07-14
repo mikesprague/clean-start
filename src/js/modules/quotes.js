@@ -55,8 +55,12 @@ export async function initDesignQuote() {
   const randomQuoteNumber = Math.floor(Math.random() * (designQuoteData.length - 1));
   const designQuote = designQuoteData[randomQuoteNumber];
   const designQuoteHtml = `
-    <a href="${designQuote.quoteLink}" target="_blank" rel="noopener">${designQuote.quoteExcerpt}</a>
-    <p class="quote-author">&mdash; ${designQuote.quoteAuthor}</p>
+    <a href="${designQuote.quoteLink}" target="_blank" rel="noopener">
+      ${designQuote.quoteExcerpt}
+      <p class="quote-author">
+      &mdash; ${designQuote.quoteAuthor}
+     </p>
+    </a>
   `;
   const quoteElement = document.querySelector('.quote-container');
   quoteElement.innerHTML = dompurify.sanitize(designQuoteHtml);
