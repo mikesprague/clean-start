@@ -58,7 +58,7 @@ export async function initDesignQuote() {
     <a href="${designQuote.quoteLink}" target="_blank" rel="noopener">
       ${designQuote.quoteExcerpt}
       <p class="quote-author">
-      &mdash; ${designQuote.quoteAuthor}
+        &mdash; ${designQuote.quoteAuthor}
      </p>
     </a>
   `;
