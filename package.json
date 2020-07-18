@@ -37,9 +37,9 @@
     "url": "https://github.com/mikesprague/clean-start/issues"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.29",
-    "@fortawesome/free-brands-svg-icons": "^5.13.1",
-    "@fortawesome/free-solid-svg-icons": "^5.13.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "bulma": "^0.9.0",
@@ -52,7 +52,7 @@
     "dotenv": "^8.2.0",
     "num-words": "^1.2.0",
     "register-service-worker": "^1.7.1",
-    "snyk": "^1.361.3",
+    "snyk": "^1.362.1",
     "tippy.js": "^6.2.5"
   },
   "devDependencies": {
