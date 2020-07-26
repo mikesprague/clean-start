@@ -1,17 +1,17 @@
 [build]
-  command = "npm run build:netlify"
+  command = "npm run build"
   functions = "lambda"
-  publish="public"
+  publish="build"
 
 [dev]
-  command = "npm run serve"
+  command = "npm start"
   port = 4444
-  publish = "public"
+  publish = "build"
   functionsPort = 9000
 
 [production]
-  command = "npm run build:netlify"
-  publish = "public"
+  command = "npm run build"
+  publish = "build"
 
 [[redirects]]
   from = "https://clean-start.netlify.com/*"
