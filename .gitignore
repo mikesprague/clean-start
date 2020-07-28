@@ -125,6 +125,7 @@ dist
 *-data-example.json
 lambda
 build
+old
 
 # Local Netlify folder
 .netlify

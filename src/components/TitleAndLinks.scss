@@ -1,0 +1,21 @@
+.app-name {
+  @apply font-normal;
+  @apply m-0;
+}
+
+.source-link-container {
+  @apply text-sm;
+  @apply font-light;
+
+  a {
+    @apply font-thin;
+  }
+}
+
+.install-links {
+  @apply text-3xl;
+
+  a {
+    @apply mr-2;
+  }
+}

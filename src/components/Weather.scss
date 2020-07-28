@@ -1,0 +1,23 @@
+.weather-container {
+  cursor: default;
+
+  .weather-location {
+    font-weight: 300;
+  }
+
+  .weather-icon,
+  .weather-temp {
+    font-weight: 800;
+  }
+
+  .powered-by {
+    font-size: .6rem;
+    font-weight: 200;
+    position: relative;
+    top: -.6rem;
+  }
+
+  .weather-last-updated {
+    font-weight: 200;
+  }
+}

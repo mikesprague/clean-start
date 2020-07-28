@@ -1,0 +1,26 @@
+// purgecss start ignore
+@tailwind base;
+@tailwind components;
+// purgecss end ignore
+
+@tailwind utilities;
+
+.app-wrapper {
+  @apply mx-auto;
+}
+
+.footer {
+  bottom: 0;
+  // Set the fixed height of the footer here
+  font-size: .8rem;
+  font-weight: 200;
+  height: 60px;
+  line-height: 20px; // Vertically center the text there
+  position: absolute;
+  width: 100%;
+
+  .content-icon {
+    font-size: 2rem;
+    cursor: pointer !important;
+  }
+}

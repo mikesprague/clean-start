@@ -12,9 +12,37 @@ const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const mode = process.env.NODE_ENV;
-const buildType = process.env.BUILD_TYPE;
 
 const cssWhitelistClassArray = [/tippy/];
+
+const postCssPluginsArray = [
+    autoprefixer(),
+    tailwindcss(),
+    cssnano({
+      preset: 'default',
+    }),
+];
+if (mode === 'production') {
+  postCssPluginsArray.push(
+    purgecss({
+      content: [
+        './public/index.html',
+        './src/components//**/*.js',
+        './src/components//**/*.jsx',
+      ],
+      defaultExtractor: (content) => {
+        // Capture as liberally as possible, including things like `h-(screen-1.5)`
+        const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
+        // Capture classes within other delimiters like .block(class="w-1/2") in Pug
+        const innerMatches = content.match(/[^<>"'`\s.()]*[^<>"'`\s.():]/g) || [];
+        return broadMatches.concat(innerMatches);
+      },
+      fontFace: true,
+      whitelistPatterns: cssWhitelistClassArray,
+      whitelistPatternsChildren: cssWhitelistClassArray,
+    })
+  );
+}
 
 const webpackRules = [
   {
@@ -22,12 +50,13 @@ const webpackRules = [
     use: {
       loader: 'file-loader',
       options: {
-        name: './fonts/[name].[ext]',
+        name: 'fonts/[name].[ext]',
       },
     },
   },
   {
     test: /\.(sa|sc|c)ss$/,
+    exclude: [/old/],
     use: [
       MiniCssExtractPlugin.loader,
       {
@@ -41,31 +70,7 @@ const webpackRules = [
         options: {
           sourceMap: true,
           plugins() {
-            return [
-              autoprefixer(),
-              cssnano({
-                preset: 'default',
-              }),
-              purgecss({
-                content: [
-                  './src/*.html',
-                  './src/js/modules/*.js'
-                  // './public/index.html',
-                  // './src/**/*.js',
-                  // './src/**/*.jsx',
-                ],
-                defaultExtractor: (content) => {
-                  // Capture as liberally as possible, including things like `h-(screen-1.5)`
-                  const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
-                  // Capture classes within other delimiters like .block(class="w-1/2") in Pug
-                  const innerMatches = content.match(/[^<>"'`\s.()]*[^<>"'`\s.():]/g) || [];
-                  return broadMatches.concat(innerMatches);
-                },
-                fontFace: true,
-                whitelistPatterns: cssWhitelistClassArray,
-                whitelistPatternsChildren: cssWhitelistClassArray,
-              }),
-            ];
+            return postCssPluginsArray;
           },
         },
       },
@@ -79,7 +84,7 @@ const webpackRules = [
   },
   {
     test: /\.(js|jsx)$/,
-    exclude: [/node_modules/, /lambda/, /service-worker.js/],
+    exclude: [/node_modules/, /lambda/, /sw.js/, /service-worker.js/, /old/],
     use: [{
       loader: 'babel-loader',
     }],
@@ -90,17 +95,6 @@ const webpackPlugins = [
   new MiniCssExtractPlugin({
     filename: './css/styles.css',
     chunkFilename: './css/[id].css',
-  }),
-
-  new CopyWebpackPlugin({
-    patterns: [
-      {
-        from: `./src/manifest${buildType === 'extension' ? '' : '-pwa'}.json`,
-        to: './',
-        flatten: true,
-        force: true,
-      },
-    ],
   }),
   new CopyWebpackPlugin({
     patterns: [
@@ -116,29 +110,19 @@ const webpackPlugins = [
     patterns: [
       {
         from: './public/fonts/*.woff2',
-        to: './fonts',
+        to: './css/fonts',
         flatten: true,
         force: true,
       },
     ],
   }),
-  // new CopyWebpackPlugin({
-  //   patterns: [
-  //     {
-  //       from: './public/*.*',
-  //       to: './',
-  //       flatten: true,
-  //       force: true,
-  //     },
-  //   ],
-  // }),
   new CopyWebpackPlugin({
     patterns: [
       {
-        from: `./src/${buildType === 'extension' ? 'extension' : 'pwa'}.html`,
-        to: './index.html',
-        force: true,
+        from: './public/*.*',
+        to: './',
         flatten: true,
+        force: true,
       },
     ],
   }),
@@ -147,6 +131,7 @@ const webpackPlugins = [
     clientsClaim: true,
     skipWaiting: true,
   }),
+  new webpack.HotModuleReplacementPlugin()
 ];
 
 if (mode === 'production') {
@@ -163,11 +148,14 @@ if (mode === 'production') {
 
 module.exports = {
   entry: [
-    './src/js/app.js',
+    './src/index.js',
   ],
   devtool: 'source-map',
   resolve: {
     extensions: ['*', '.js', '.jsx'],
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
   },
   output: {
     filename: './js/bundle.js',
@@ -178,8 +166,9 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'public/'),
     hotOnly: true,
-    port: 4444,
-    publicPath: 'http://localhost:4444/',
+    open: true,
+    port: 3000,
+    publicPath: 'http://localhost:3000/',
     stats: 'minimal',
   },
   module: {

@@ -1,0 +1,35 @@
+@import '~tippy.js/dist/tippy';
+@import "./scss/variables";
+@import "./scss/font-roboto-slab";
+
+* {
+  -moz-osx-font-smoothing: grayscale !important;
+  -webkit-font-smoothing: subpixel-antialiased !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+html,
+body {
+  background-attachment: fixed !important;
+  background-color: $color-body-bg;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  color: $color-body-text;
+  font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  height: 100% !important;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  background-size: cover;
+}
+
+a {
+  color: $color-light-gray !important;
+}
