@@ -68,7 +68,7 @@ const Weather = (props) => {
       <span className="weather-tooltip">
         <span className="icon-and-temp">
           <FontAwesomeIcon icon={data ? getWeatherIcon(data.weather.currently.icon) : 'hourglass-half' } fixedWidth className="weather-icon" />
-          <strong className="weather-temp"> {data ? Math.round(data.weather.currently.temperature) + '' + String.fromCharCode(730) : ' -- '}</strong>
+          <strong className="weather-temp"> {data ? Math.round(data.weather.currently.temperature) + '' + String.fromCharCode(176) : ' -- '}</strong>
         </span>
         <br />
         <span className="h5 weather-location">{data ? data.location.locationName : ' Waiting for Data '}</span>
