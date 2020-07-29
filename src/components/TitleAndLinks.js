@@ -5,14 +5,6 @@ import { isExtension } from '../modules/helpers';
 import './TitleAndLinks.scss';
 
 const TitleAndLinks = (props) => {
-  const sourceCodeTooltip = (
-    <a href="https://github.com/mikesprague/clean-start" target="_blank" rel="noopener">
-      <FontAwesomeIcon icon="code" fixedWidth />
-      Source code available on GitHub
-      <FontAwesomeIcon icon={["fab", "chrome"]} fixedWidth />
-    </a>
-  );
-
   const installLinks = (
     <h2 className="install-links">
       <a href="https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol" data-tippy-content="Install via Chrome Store" target="_blank" rel="noopener">
@@ -31,10 +23,9 @@ const TitleAndLinks = (props) => {
     <Fragment>
       <h1 className="app-name"><span className="pwa-link-tooltip">Clean Start (React/Tailwind CSS refactor)</span></h1>
       <span className="source-link-container">
-        <a className="source-link" href="https://github.com/mikesprague/clean-start" target="_blank" rel="noopener" data-tippy-content="{sourceCodeTooltip}">Open Source New Tab Extension</a>
+        <a className="source-link" href="https://github.com/mikesprague/clean-start" target="_blank" rel="noopener" data-tippy-content="Source code available on GitHub">Open Source New Tab Extension</a>
       </span>
       {props.isPWA ? installLinks : ''}
-      {console.log(typeof sourceCodeTooltip, sourceCodeTooltip)}
     </Fragment>
   )
 };
