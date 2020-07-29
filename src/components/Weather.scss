@@ -1,14 +1,17 @@
 .weather-container {
   @apply cursor-default;
+  @apply text-right;
+  @apply float-right;
 
   .weather-location {
     @apply text-xl;
-    @apply font-light;
+    @apply font-medium;
+    @apply -mb-2;
   }
 
   .icon-and-temp {
     @apply text-3xl;
-    @apply font-extrabold;
+    @apply font-semibold;
 
     .weather-icon,
     .weather-temp {
@@ -16,11 +19,28 @@
     }
   }
 
+  .weather-summary {
+    @apply font-normal;
+    @apply text-sm;
+    @apply pb-1;
+  }
+
+  .hourly-forecast {
+    @apply list-none;
+    @apply p-0;
+
+    li {
+      @apply text-center;
+      @apply text-xs;
+      @apply ml-4;
+    }
+  }
+
   .powered-by {
+    @apply w-full;
+    @apply mt-1;
     @apply font-thin;
-    @apply relative;
-    font-size: .6rem;
-    top: -.6rem;
+    font-size: .65rem;
   }
 
   .weather-last-updated {
