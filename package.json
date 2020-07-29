@@ -1,7 +1,7 @@
 {
-  "name": "clean-start-react-refactor",
-  "version": "0.1.0",
-  "description": "",
+  "name": "clean-start",
+  "version": "0.3.4",
+  "description": "Open source new tab extension",
   "private": true,
   "engines": {
     "node": ">= 12.x",
@@ -9,15 +9,19 @@
   },
   "scripts": {
     "build": "npm run webpack && npm run lambda:build",
+    "build:extension": "npm run clean && cross-env BUILD_TYPE=extension npm run webpack && npm run zip",
     "build:local": "npm run clean && npm run webpack && npm run lambda:build",
     "clean": "rm -rf ./build && rm -rf ./lambda",
     "lambda:build": "netlify-lambda build ./src/functions",
     "lambda:serve": "netlify-lambda serve ./src/functions --config ./functions.config.js",
+    "prepublish": "npm run snyk-protect",
+    "snyk-protect": "snyk protect",
     "start": "concurrently 'npm run webpack:serve' 'npm run lambda:serve' --names '📦,💻' --prefix '[{name}] ' --kill-others",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "cross-env NODE_ENV=production webpack -p --colors",
     "webpack:dev": "cross-env NODE_ENV=development webpack -d --colors --display minimal",
-    "webpack:serve": "cross-env NODE_ENV=development webpack-dev-server --keep-alive-timeout 0"
+    "webpack:serve": "cross-env NODE_ENV=development webpack-dev-server --keep-alive-timeout 0",
+    "zip": "cd build && zip -r clean-start-extension.zip ./"
   },
   "keywords": [],
   "repository": {
@@ -27,8 +31,11 @@
     "name": "Michael Sprague",
     "email": "mikesprague@gmail.com"
   },
-  "homepage": "",
+  "homepage": "https://cleanst.art",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikesprague/clean-start/issues"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
@@ -137,8 +144,8 @@
       "node": true
     },
     "extends": [
-      "airbnb-base",
-      "reactt-app",
+      "airbnb",
+      "react-app",
       "plugin:react-hooks/recommended"
     ],
     "plugins": [
@@ -153,6 +160,31 @@
     ],
     "parserOptions": {
       "parser": "babel-parser"
+    },
+    "rules": {
+      "curly": "error",
+      "object-curly-newline": "error",
+      "semi": "error",
+      "prefer-arrow-callback": "warn",
+      "arrow-spacing": "error",
+      "no-param-reassign": "warn",
+      "eqeqeq": "error",
+      "quotes": [
+        "error",
+        "single",
+        {
+          "avoidEscape": true,
+          "allowTemplateLiterals": true
+        }
+      ],
+      "max-len": [
+        "warn",
+        {
+          "code": 120,
+          "tabWidth": 2,
+          "ignoreUrls": true
+        }
+      ]
     }
   },
   "prettier": {
