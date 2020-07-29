@@ -1,7 +1,7 @@
 import dompurify from 'dompurify';
-import React, { useState, useEffect }  from 'react';
+import React, { useEffect }  from 'react';
 import { hot } from 'react-hot-loader/root';
-import { isExtension } from '../modules/helpers';
+import { initIcons, initTooltips, isExtension } from '../modules/helpers';
 import BackgroundImage from './BackgroundImage';
 import Clock from './Clock';
 import Quote from './Quote';
@@ -9,7 +9,14 @@ import TitleAndLinks from './TitleAndLinks';
 import Weather from './Weather';
 import './App.scss';
 
+initIcons();
+
 const App = (props) => {
+  useEffect(() => {
+    initTooltips();
+    return () => {};
+  }, []);
+
   return (
     <div className="app-wrapper">
       <div className="flex px-3 py-2">

@@ -1,10 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import { library, dom } from '@fortawesome/fontawesome-svg-core';
-import {
-  faImage,
-  faSyncAlt,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
 import React, { useState, useEffect } from 'react';
 import { apiUrl } from '../modules/helpers';
 import './BackgroundImage.scss';
@@ -74,15 +69,6 @@ const BackgroundImage = (props) => {
       document.body.style.backgroundSize = 'cover';
     }
     updateBg();
-    const initIcons = () => {
-      library.add(
-        faImage,
-        faSyncAlt,
-        faUser,
-      );
-      dom.watch();
-    };
-    initIcons();
   }, [imageUrl]);
 
   const clickHandler = (event) => {
@@ -94,15 +80,15 @@ const BackgroundImage = (props) => {
   return (
     <section>
       <a className={bgImage ? 'rotate-bg visible' : 'rotate-bg invisible'} href="#" onClick={clickHandler} data-tippy-content="Change Background Image">
-        <i className="fas fa-fw fa-sync-alt fa-2x"></i>
+        <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth />
       </a>
       <div className="bg-metadata">
         <a href={`${bgImage && bgImage.imageLink}${bgImage && bgImage.linkSuffix}`} target="_blank" rel="noopener">
-          <i className="fas fa-fw fa-image"></i> {bgImage && bgImage.title}
+          <FontAwesomeIcon icon="image" fixedWidth /> {bgImage && bgImage.title}
         </a>
         <br />
         <a href={`${bgImage && bgImage.userLink}${bgImage && bgImage.linkSuffix}`} target="_blank" rel="noopener">
-          <i className="fas fa-fw fa-user"></i> {bgImage && bgImage.userName}
+          <FontAwesomeIcon icon="user" fixedWidth /> {bgImage && bgImage.userName}
         </a>
         {" via "}
         <a href={`https://unsplash.com/${bgImage && bgImage.linkSuffix}`} target="_blank" rel="noopener">Unsplash</a>

@@ -1,3 +1,41 @@
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faChrome,
+  faDev,
+  faEdge,
+  faFirefoxBrowser,
+  faGithub,
+  faHackerNews,
+  faProductHunt,
+  faRedditAlien,
+} from '@fortawesome/free-brands-svg-icons'
+import {
+  faBolt,
+  faCalendar,
+  faCloud,
+  faCloudMeatball,
+  faCloudMoon,
+  faCloudRain,
+  faCloudShowersHeavy,
+  faCloudSun,
+  faCode,
+  faExternalLinkAlt,
+  faHourglassHalf,
+  faImage,
+  faMapMarkerAlt,
+  faMoon,
+  faShareAlt,
+  faSmog,
+  faSnowflake,
+  faStar,
+  faSun,
+  faSync,
+  faSyncAlt,
+  faThermometerHalf,
+  faTint,
+  faUser,
+  faWind,
+} from '@fortawesome/free-solid-svg-icons'
 import { register } from 'register-service-worker';
 import tippy from 'tippy.js';
 // import { resetData } from './local-storage';
@@ -94,4 +132,62 @@ export function initServiceWorker () {
       console.error('Error during service worker registration:', error);
     },
   });
+};
+
+export const initIcons = () => {
+  library.add(
+    faImage,
+    faUser,
+    faGithub,
+    faHackerNews,
+    faProductHunt,
+    faRedditAlien,
+    faSun,
+    faMoon,
+    faCloudRain,
+    faSnowflake,
+    faWind,
+    faSmog,
+    faBolt,
+    faCloud,
+    faCloudSun,
+    faCloudMoon,
+    faCloudMeatball,
+    faCloudShowersHeavy,
+    faThermometerHalf,
+    faHourglassHalf,
+    faCode,
+    faTint,
+    faMapMarkerAlt,
+    faExternalLinkAlt,
+    faStar,
+    faShareAlt,
+    faCalendar,
+    faSyncAlt,
+    faSync,
+    faChrome,
+    faDev,
+    faEdge,
+    faFirefoxBrowser,
+  );
+};
+
+export const getWeatherIcon = (icon) => {
+  const iconMap = {
+    'clear-day': 'sun',
+    'clear-night': 'moon',
+    rain: 'cloud-rain',
+    snow: 'snowflake',
+    sleet: 'cloud-cloud-meatball',
+    wind: 'wind',
+    fog: 'smog',
+    cloudy: 'cloud',
+    'partly-cloudy-day': 'cloud-sun',
+    'partly-cloudy-night': 'cloud-moon',
+    hail: 'cloud-meatball',
+    hurricane: 'wind',
+    thunderstorm: 'cloud-showers-heavy',
+    tornado: 'wind',
+  };
+  return iconMap[icon];
 };
