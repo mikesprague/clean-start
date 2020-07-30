@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader/root';
 import { initIcons, initTooltips, isExtension } from '../modules/helpers';
 import BackgroundImage from './BackgroundImage';
 import Clock from './Clock';
+import ContentPopup from './ContentPopup';
 import Quote from './Quote';
 import TitleAndLinks from './TitleAndLinks';
 import Weather from './Weather';
@@ -19,7 +20,7 @@ const App = (props) => {
 
   return (
     <div className="app-wrapper">
-      <div className="flex px-3 py-2">
+      <div className="header">
         <div className="w-1/2">
           <TitleAndLinks isPWA={!isExtension()} />
         </div>
@@ -33,12 +34,17 @@ const App = (props) => {
           <Quote />
         </div>
       </div>
-      <div className="flex px-3 py-2 footer">
+      <div className="footer">
         <div className="flex-grow w-1/2">
           <BackgroundImage />
         </div>
-        <div className="w-1/2 px-3 py-2">
-          {/* <Popup type="" /> */}
+        <div className="w-1/2 text-right">
+          {/* dev-to|github|hacker-news|product-hunt|reddit */}
+          <ContentPopup type="github" tooltip="GitHub Trending Repositories" />
+          <ContentPopup type="dev-to" tooltip="Dev.to Recent Posts" />
+          <ContentPopup type="hacker-news" tooltip="Hacker News Recent Posts" />
+          <ContentPopup type="product-hunt" tooltip="Product Hunt Recent Posts" />
+          <ContentPopup type="reddit" tooltip="Reddit Popular Posts" />
         </div>
       </div>
     </div>
