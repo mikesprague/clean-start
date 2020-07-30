@@ -28,7 +28,7 @@ const App = (props) => {
           <Weather />
         </div>
       </div>
-      <div className="flex min-h-full px-3">
+      <div className="flex px-3">
         <div className="flex-auto w-full h-full">
           <Clock />
           <Quote />
