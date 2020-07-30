@@ -1,7 +1,7 @@
 import dompurify from 'dompurify';
 import React, { Fragment, useEffect }  from 'react';
 import { hot } from 'react-hot-loader/root';
-import { initIcons, initTooltips, isExtension } from '../modules/helpers';
+import { initIcons, isExtension } from '../modules/helpers';
 import BackgroundImage from './BackgroundImage';
 import Clock from './Clock';
 import ContentPopup from './ContentPopup';
@@ -13,11 +13,6 @@ import './App.scss';
 initIcons();
 
 const App = (props) => {
-  useEffect(() => {
-    initTooltips();
-    // return () => {};
-  }, []);
-
   return (
     <Fragment>
       <div className="header">
@@ -40,11 +35,11 @@ const App = (props) => {
         </div>
         <div className="w-1/2 text-right">
           {/* dev-to|github|hacker-news|product-hunt|reddit */}
-          <ContentPopup type="github" tooltip="GitHub Trending Repositories" />
-          <ContentPopup type="dev-to" tooltip="Dev.to Recent Posts" />
-          <ContentPopup type="hacker-news" tooltip="Hacker News Recent Posts" />
-          <ContentPopup type="product-hunt" tooltip="Product Hunt Recent Posts" />
-          <ContentPopup type="reddit" tooltip="Reddit Popular Posts" />
+          <ContentPopup type="github" />
+          <ContentPopup type="dev-to" />
+          <ContentPopup type="hacker-news" />
+          <ContentPopup type="product-hunt" />
+          <ContentPopup type="reddit" />
         </div>
       </div>
     </Fragment>

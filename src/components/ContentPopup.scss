@@ -7,6 +7,7 @@
 }
 
 .posts-container {
+  @apply max-w-3xl;
   max-height: 85vh;
   overflow-y: auto;
   // emerging W3C standard, currently Firefox-only
@@ -28,8 +29,17 @@
     background: $color-darker-gray;
   }
 
-  .tippy-content {
-    width: 85vw !important;
+  .list-group {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    border-radius: .25rem;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
   }
 
   .list-group,
@@ -47,8 +57,15 @@
     }
   }
 
+  .list-group-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+  }
+
   .list-group-item-action {
     cursor: default;
+    width: 100%;
 
     &:hover {
       background-color: $color-black-ninety-percent;

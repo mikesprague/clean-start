@@ -77,14 +77,6 @@ export const appConfig = {
   weatherLastUpdatedKey: 'weatherLastUpdated',
 };
 
-export function initTooltips() {
-  tippy('[data-tippy-content]', {
-    allowHTML: true,
-    placement: 'left',
-    interactive: true,
-  });
-}
-
 export function stripHTML(originalString) {
   return originalString.replace(/(<([^>]+)>)/gi, '');
 }
@@ -190,4 +182,45 @@ export const getWeatherIcon = (icon) => {
     tornado: 'wind',
   };
   return iconMap[icon];
+};
+
+export const getContentInfo = (type) => {
+  const resourceMap = {
+    'dev-to': {
+      'endpoint': '/dev-to-posts',
+      'icon': 'dev',
+      'siteName': 'Dev.to',
+      'title': 'Dev.to Recent Posts',
+      'url': 'https://dev.to',
+    },
+    'github': {
+      'endpoint': '/github-trending-repos',
+      'icon': 'github',
+      'siteName': 'GitHub',
+      'title': 'GitHub Trending Repositories',
+      'url': 'https://github.com',
+    },
+    'hacker-news': {
+      'endpoint': '/hacker-news-posts',
+      'icon': 'hacker-news',
+      'siteName': 'Hacker News',
+      'title': 'Hacker News Top Posts',
+      'url': 'https://news.ycombinator.com',
+    },
+    'product-hunt': {
+      'endpoint': '/product-hunt-posts',
+      'icon': 'product-hunt',
+      'siteName': 'Product Hunt',
+      'title': 'Product Hunt Top Posts',
+      'url': 'https://www.producthunt.com',
+    },
+    'reddit': {
+      'endpoint': '/reddit-posts',
+      'icon': 'reddit-alien',
+      'siteName': 'Reddit',
+      'title': 'Reddit Popular Posts',
+      'url': 'https://www.reddit.com',
+    },
+  };
+  return resourceMap[type];
 };
