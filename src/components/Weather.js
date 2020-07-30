@@ -5,7 +5,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import dompurify from 'dompurify';
 import he from 'he';
 import React, { useEffect, useState } from 'react';
-import { apiUrl, getWeatherIcon, initTooltips } from '../modules/helpers';
+import { apiUrl, getWeatherIcon } from '../modules/helpers';
 import './Weather.scss';
 
 const Weather = (props) => {
@@ -28,8 +28,7 @@ const Weather = (props) => {
       navigator.geolocation.getCurrentPosition(getPosition, geolocationError, geolocationOptions);
     }
     doGeolocation();
-
-    return () => {};
+    // return () => {};
   }, []);
 
   const [data, setData] = useState(null);
@@ -47,9 +46,8 @@ const Weather = (props) => {
         // return weatherData;
       };
       getWeatherData(lat, lng);
-  }
-
-    return () => {};
+    }
+    // return () => {};
   }, [coordinates]);
 
   const [hourlyData, setHourlyData] = useState(null);
@@ -63,9 +61,8 @@ const Weather = (props) => {
       });
       setHourlyData(hourly);
     }
+    // return () => {};
   }, [data]);
-
-  initTooltips();
 
   return (
     <div className="weather-container">
@@ -73,16 +70,15 @@ const Weather = (props) => {
       <div className="icon-and-temp">
         <FontAwesomeIcon icon={data ? getWeatherIcon(data.weather.currently.icon) : 'hourglass-half' } fixedWidth className="weather-icon" />
         <strong className="weather-temp"> {data ? Math.round(data.weather.currently.temperature) + '' + String.fromCharCode(176) : ' -- '}</strong>
-      </div>
-      <div className={data ? 'weather-summary' : 'weather-summary hidden'}>
-        {data ? data.weather.currently.summary : ''}
-        {data && Math.round(data.weather.currently.temperature) !== Math.round(data.weather.currently.apparentTemperature) ? ' (feels ' + Math.round(data.weather.currently.apparentTemperature) + '' + String.fromCharCode(176) + ')' : ''}
+        <div className="feels-like-temp">
+          {data && Math.round(data.weather.currently.temperature) !== Math.round(data.weather.currently.apparentTemperature) ? 'Feels ' + Math.round(data.weather.currently.apparentTemperature) + '' + String.fromCharCode(176) : ''}
+        </div>
       </div>
       <ul className="flex hourly-forecast">
       {data && hourlyData && hourlyData.map((hour, index) => (
         <li className="w-1/5" key={hour.time} data-tippy-content={hour ? hour.summary : ''}>
           {dayjs.unix(hour.time).format('ha')}<br />
-          <FontAwesomeIcon icon={getWeatherIcon(hour.icon)} fixedWidth /><br />
+          <FontAwesomeIcon icon={getWeatherIcon(hour.icon)} fixedWidth />
           {Math.round(hour.temperature)}&deg;
         </li>
       ))}
