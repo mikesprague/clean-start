@@ -1,5 +1,5 @@
 import dompurify from 'dompurify';
-import React, { useEffect }  from 'react';
+import React, { Fragment, useEffect }  from 'react';
 import { hot } from 'react-hot-loader/root';
 import { initIcons, initTooltips, isExtension } from '../modules/helpers';
 import BackgroundImage from './BackgroundImage';
@@ -19,7 +19,7 @@ const App = (props) => {
   }, []);
 
   return (
-    <div className="app-wrapper">
+    <Fragment>
       <div className="header">
         <div className="w-1/2">
           <TitleAndLinks isPWA={!isExtension()} />
@@ -47,7 +47,7 @@ const App = (props) => {
           <ContentPopup type="reddit" tooltip="Reddit Popular Posts" />
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 
