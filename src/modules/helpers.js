@@ -99,11 +99,11 @@ export function apiUrl () {
   if (isExtension()) {
     return 'https://cleanst.art/.netlify/functions';
   }
-  // if (isDev()) {
-  //   return 'http://localhost:9000';
-  // }
-  return `https://cleanst.art/.netlify/functions`;
-  // return `https://${window.location.hostname}/.netlify/functions`;
+  if (isDev()) {
+    // return 'http://localhost:9000';
+    return 'https://cleanst.art/.netlify/functions';
+  }
+  return `https://${window.location.hostname}${window.location.port ? ': ${window.location.port}' : ''}/.netlify/functions`;
 }
 
 export function handleError(error) {
@@ -162,65 +162,4 @@ export const initIcons = () => {
     faEdge,
     faFirefoxBrowser,
   );
-};
-
-export const getWeatherIcon = (icon) => {
-  const iconMap = {
-    'clear-day': 'sun',
-    'clear-night': 'moon',
-    rain: 'cloud-rain',
-    snow: 'snowflake',
-    sleet: 'cloud-cloud-meatball',
-    wind: 'wind',
-    fog: 'smog',
-    cloudy: 'cloud',
-    'partly-cloudy-day': 'cloud-sun',
-    'partly-cloudy-night': 'cloud-moon',
-    hail: 'cloud-meatball',
-    hurricane: 'wind',
-    thunderstorm: 'cloud-showers-heavy',
-    tornado: 'wind',
-  };
-  return iconMap[icon];
-};
-
-export const getContentInfo = (type) => {
-  const resourceMap = {
-    'dev-to': {
-      'endpoint': '/dev-to-posts',
-      'icon': 'dev',
-      'siteName': 'Dev.to',
-      'title': 'Dev.to Recent Posts',
-      'url': 'https://dev.to',
-    },
-    'github': {
-      'endpoint': '/github-trending-repos',
-      'icon': 'github',
-      'siteName': 'GitHub',
-      'title': 'GitHub Trending Repositories',
-      'url': 'https://github.com',
-    },
-    'hacker-news': {
-      'endpoint': '/hacker-news-posts',
-      'icon': 'hacker-news',
-      'siteName': 'Hacker News',
-      'title': 'Hacker News Top Posts',
-      'url': 'https://news.ycombinator.com',
-    },
-    'product-hunt': {
-      'endpoint': '/product-hunt-posts',
-      'icon': 'product-hunt',
-      'siteName': 'Product Hunt',
-      'title': 'Product Hunt Top Posts',
-      'url': 'https://www.producthunt.com',
-    },
-    'reddit': {
-      'endpoint': '/reddit-posts',
-      'icon': 'reddit-alien',
-      'siteName': 'Reddit',
-      'title': 'Reddit Popular Posts',
-      'url': 'https://www.reddit.com',
-    },
-  };
-  return resourceMap[type];
 };
