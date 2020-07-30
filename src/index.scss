@@ -1,3 +1,8 @@
+// purgecss start ignore
+@tailwind base;
+@tailwind components;
+// purgecss end ignore
+
 @import '~tippy.js/dist/tippy';
 @import "./scss/variables";
 @import "./scss/font-roboto-slab";
@@ -30,6 +35,13 @@ body {
   background-size: cover;
 }
 
+#root {
+  height: 100%;
+  position: relative;
+}
+
 a {
   color: $color-light-gray !important;
 }
+
+@tailwind utilities;
