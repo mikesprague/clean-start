@@ -54,8 +54,9 @@ const Weather = (props) => {
   useEffect(() => {
     if (data) {
       const hourly = [];
+      const numHoursToShow = 4;
       data.weather.hourly.data.map((hourData, index) => {
-        if (index < 5) {
+        if (index < numHoursToShow) {
           hourly.push(hourData);
         }
       });
@@ -66,20 +67,20 @@ const Weather = (props) => {
 
   return (
     <div className="weather-container">
-      <h4 className="weather-location">{data ? data.location.locationName : ' Waiting for Data '}</h4>
-      <div className="icon-and-temp">
+      <h4 className="weather-location">{data ? data.location.locationName : '... loading weather data ...'}</h4>
+      <div className={data ? 'icon-and-temp' : 'icon-and-temp hidden'}>
         <FontAwesomeIcon icon={data ? getWeatherIcon(data.weather.currently.icon) : 'hourglass-half' } fixedWidth className="weather-icon" />
-        <strong className="weather-temp"> {data ? Math.round(data.weather.currently.temperature) + '' + String.fromCharCode(176) : ' -- '}</strong>
+        <strong className="weather-temp">{data ? Math.round(data.weather.currently.temperature) + '' + String.fromCharCode(176) : ' -- '}</strong>
         <div className="feels-like-temp">
           {data && Math.round(data.weather.currently.temperature) !== Math.round(data.weather.currently.apparentTemperature) ? 'Feels ' + Math.round(data.weather.currently.apparentTemperature) + '' + String.fromCharCode(176) : ''}
         </div>
       </div>
       <ul className="flex hourly-forecast">
       {data && hourlyData && hourlyData.map((hour, index) => (
-        <li className="w-1/5" key={hour.time} data-tippy-content={hour ? hour.summary : ''}>
+        <li className="w-1/4" key={hour.time} data-tippy-content={hour ? hour.summary : ''}>
           {dayjs.unix(hour.time).format('ha')}<br />
           <FontAwesomeIcon icon={getWeatherIcon(hour.icon)} fixedWidth />
-          {Math.round(hour.temperature)}&deg;
+          {' ' + Math.round(hour.temperature)}&deg;
         </li>
       ))}
       </ul>

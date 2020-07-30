@@ -2,16 +2,15 @@
   @apply cursor-default;
   @apply text-right;
   @apply float-right;
-  width: 18rem;
+  @apply w-64;
 
   .weather-location {
     @apply text-xl;
     @apply font-medium;
-    @apply -mb-2;
+    @apply -mb-4;
   }
 
   .icon-and-temp {
-    @apply my-1;
     @apply text-4xl;
     @apply font-semibold;
 
@@ -27,14 +26,14 @@
   }
 
   .hourly-forecast {
-    @apply my-1;
-    @apply -mr-4;
+    @apply mb-1;
+    @apply -mr-3;
     @apply list-none;
     @apply p-0;
 
     li {
       @apply text-center;
-      @apply text-xs;
+      @apply text-sm;
     }
   }
 
