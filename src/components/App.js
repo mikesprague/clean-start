@@ -15,14 +15,14 @@ initIcons();
 const App = (props) => {
   useEffect(() => {
     initTooltips();
-    return () => {};
+    // return () => {};
   }, []);
 
   return (
     <Fragment>
       <div className="header">
         <div className="w-1/2">
-          <TitleAndLinks isPWA={!isExtension()} />
+          <TitleAndLinks isExtension={isExtension()} />
         </div>
         <div className="w-1/2">
           <Weather />

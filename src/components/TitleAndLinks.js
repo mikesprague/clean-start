@@ -25,7 +25,7 @@ const TitleAndLinks = (props) => {
       <span className="source-link-container">
         <a className="source-link" href="https://github.com/mikesprague/clean-start" target="_blank" rel="noopener" data-tippy-content="Source code available on GitHub">Open Source New Tab Extension</a>
       </span>
-      {props.isPWA ? installLinks : ''}
+      {props.isExtension ? '' : installLinks}
     </Fragment>
   )
 };
