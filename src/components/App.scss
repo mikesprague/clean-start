@@ -5,6 +5,11 @@
   @apply py-2;
 }
 
+.content {
+  @apply flex;
+  @apply px-3;
+}
+
 .footer {
   @apply flex;
   @apply content-end;

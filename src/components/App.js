@@ -28,14 +28,14 @@ const App = (props) => {
           <Weather />
         </div>
       </div>
-      <div className="flex px-3">
-        <div className="flex-auto w-full h-full">
+      <div className="content">
+        <div className="flex-auto w-full">
           <Clock />
           <Quote />
         </div>
       </div>
       <div className="footer">
-        <div className="flex-grow w-1/2">
+        <div className="w-1/2">
           <BackgroundImage />
         </div>
         <div className="w-1/2 text-right">
