@@ -43,6 +43,7 @@
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@hot-loader/react-dom": "^16.13.0",
     "@tailwindcss/typography": "^0.2.0",
+    "@tippyjs/react": "^4.1.0",
     "axios": "^0.19.2",
     "cross-env": "^7.0.2",
     "cheerio": "^1.0.0-rc.3",
@@ -55,8 +56,7 @@
     "react-dom": "^16.13.1",
     "register-service-worker": "^1.7.1",
     "snyk": "^1.369.1",
-    "tailwindcss": "^1.6.0",
-    "tippy.js": "^6.2.6"
+    "tailwindcss": "^1.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
