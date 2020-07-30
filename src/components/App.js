@@ -1,13 +1,12 @@
-import dompurify from 'dompurify';
 import React, { Fragment, useEffect }  from 'react';
 import { hot } from 'react-hot-loader/root';
-import { initIcons, isExtension } from '../modules/helpers';
 import BackgroundImage from './BackgroundImage';
 import Clock from './Clock';
 import ContentPopup from './ContentPopup';
 import Quote from './Quote';
 import TitleAndLinks from './TitleAndLinks';
 import Weather from './Weather';
+import { initIcons } from '../modules/helpers';
 import './App.scss';
 
 initIcons();
@@ -17,7 +16,7 @@ const App = (props) => {
     <Fragment>
       <div className="header">
         <div className="w-1/2">
-          <TitleAndLinks isExtension={isExtension()} />
+          <TitleAndLinks />
         </div>
         <div className="w-1/2">
           <Weather />
@@ -34,7 +33,6 @@ const App = (props) => {
           <BackgroundImage />
         </div>
         <div className="w-1/2 text-right">
-          {/* dev-to|github|hacker-news|product-hunt|reddit */}
           <ContentPopup type="github" />
           <ContentPopup type="dev-to" />
           <ContentPopup type="hacker-news" />

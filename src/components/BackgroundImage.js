@@ -1,6 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { Fragment, useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Tippy from '@tippyjs/react';
 import { apiUrl } from '../modules/helpers';
 import './BackgroundImage.scss';
 
@@ -79,19 +80,27 @@ const BackgroundImage = (props) => {
 
   return (
     <Fragment>
-      <a className={bgImage ? 'rotate-bg visible' : 'rotate-bg invisible'} href="#" onClick={clickHandler} data-tippy-content="Change Background Image">
-        <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth />
-      </a>
+      <Tippy content="Change background image" placement="right">
+        <a className={bgImage ? 'rotate-bg visible' : 'rotate-bg invisible'} href="#" onClick={clickHandler}>
+          <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth />
+        </a>
+      </Tippy>
       <div className="bg-metadata">
-        <a href={`${bgImage && bgImage.imageLink}${bgImage && bgImage.linkSuffix}`} target="_blank" rel="noopener">
-          <FontAwesomeIcon icon="image" fixedWidth /> {bgImage && bgImage.title}
-        </a>
+        <Tippy content="View full quality image on Unsplash" placement="right">
+          <a href={`${bgImage && bgImage.imageLink}${bgImage && bgImage.linkSuffix}`} target="_blank" rel="noopener">
+            <FontAwesomeIcon icon="image" fixedWidth /> {bgImage && bgImage.title}
+          </a>
+        </Tippy>
         <br />
-        <a href={`${bgImage && bgImage.userLink}${bgImage && bgImage.linkSuffix}`} target="_blank" rel="noopener">
-          <FontAwesomeIcon icon="user" fixedWidth /> {bgImage && bgImage.userName}
-        </a>
+        <Tippy content="Visit photographer's page on Unsplash" placement="right">
+          <a href={`${bgImage && bgImage.userLink}${bgImage && bgImage.linkSuffix}`} target="_blank" rel="noopener">
+            <FontAwesomeIcon icon="user" fixedWidth /> {bgImage && bgImage.userName}
+          </a>
+        </Tippy>
         {" via "}
-        <a href={`https://unsplash.com/${bgImage && bgImage.linkSuffix}`} target="_blank" rel="noopener">Unsplash</a>
+        <Tippy content="Visit Unsplash" placement="right">
+          <a href={`https://unsplash.com/${bgImage && bgImage.linkSuffix}`} target="_blank" rel="noopener">Unsplash</a>
+        </Tippy>
       </div>
     </Fragment>
   )

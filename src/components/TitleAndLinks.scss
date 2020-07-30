@@ -5,13 +5,10 @@
   @apply -mb-2;
 }
 
-.source-link-container {
+.source-link {
   @apply text-sm;
   @apply font-light;
-
-  a {
-    @apply font-thin;
-  }
+  @apply font-thin;
 }
 
 .install-links {

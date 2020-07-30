@@ -1,11 +1,13 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import dompurify from 'dompurify';
 import he from 'he';
 import React, { useEffect, useState } from 'react';
-import { apiUrl, getWeatherIcon } from '../modules/helpers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Tippy from '@tippyjs/react';
+import { apiUrl } from '../modules/helpers';
+import { getWeatherIcon } from '../modules/weather';
 import './Weather.scss';
 
 const Weather = (props) => {
@@ -67,21 +69,30 @@ const Weather = (props) => {
 
   return (
     <div className="weather-container">
-      <h4 className="weather-location">{data ? data.location.locationName : '... loading weather data ...'}</h4>
+      <h4 className="weather-location">{data ? data.location.locationName : '... Loading weather data ...'}</h4>
       <div className={data ? 'icon-and-temp' : 'icon-and-temp hidden'}>
-        <FontAwesomeIcon icon={data ? getWeatherIcon(data.weather.currently.icon) : 'hourglass-half' } fixedWidth className="weather-icon" />
-        <strong className="weather-temp">{data ? Math.round(data.weather.currently.temperature) + '' + String.fromCharCode(176) : ' -- '}</strong>
+        <Tippy content={data && data.weather ? data.weather.currently.summary : ''} placement="left">
+          <span>
+            <FontAwesomeIcon icon={data ? getWeatherIcon(data.weather.currently.icon) : 'hourglass-half' } fixedWidth className="weather-icon" />
+            <strong className="weather-temp">{data ? Math.round(data.weather.currently.temperature) + '' + String.fromCharCode(176) : ' -- '}</strong>
+          </span>
+        </Tippy>
         <div className="feels-like-temp">
           {data && Math.round(data.weather.currently.temperature) !== Math.round(data.weather.currently.apparentTemperature) ? 'Feels ' + Math.round(data.weather.currently.apparentTemperature) + '' + String.fromCharCode(176) : ''}
         </div>
       </div>
       <ul className="flex hourly-forecast">
       {data && hourlyData && hourlyData.map((hour, index) => (
-        <li className="w-1/4" key={hour.time} data-tippy-content={hour ? hour.summary : ''}>
-          {dayjs.unix(hour.time).format('ha')}<br />
-          <FontAwesomeIcon icon={getWeatherIcon(hour.icon)} fixedWidth />
-          {' ' + Math.round(hour.temperature)}&deg;
-        </li>
+        <Tippy
+          content={hour ? `${hour.summary} (Feels ${Math.round(hour.apparentTemperature)}${String.fromCharCode(176)})` : ''}
+          placement="left"
+        >
+          <li className="w-1/4" key={hour.time}>
+            {dayjs.unix(hour.time).format('ha')}<br />
+            <FontAwesomeIcon icon={getWeatherIcon(hour.icon)} fixedWidth />
+            {' ' + Math.round(hour.temperature)}&deg;
+          </li>
+        </Tippy>
       ))}
       </ul>
       <div className={data && hourlyData ? 'powered-by' : 'powered-by hidden'}>
