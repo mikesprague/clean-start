@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { apiUrl } from '../modules/helpers';
 import './BackgroundImage.scss';
 
@@ -78,7 +78,7 @@ const BackgroundImage = (props) => {
   };
 
   return (
-    <section>
+    <Fragment>
       <a className={bgImage ? 'rotate-bg visible' : 'rotate-bg invisible'} href="#" onClick={clickHandler} data-tippy-content="Change Background Image">
         <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth />
       </a>
@@ -93,7 +93,7 @@ const BackgroundImage = (props) => {
         {" via "}
         <a href={`https://unsplash.com/${bgImage && bgImage.linkSuffix}`} target="_blank" rel="noopener">Unsplash</a>
       </div>
-    </section>
+    </Fragment>
   )
 };
 
