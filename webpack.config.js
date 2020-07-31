@@ -13,7 +13,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const mode = process.env.NODE_ENV;
 
-const cssWhitelistClassArray = [/tippy/];
+const cssWhitelistClassArray = [/tippy/, /odd/];
 
 const postCssPluginsArray = [
     autoprefixer(),
@@ -84,7 +84,7 @@ const webpackRules = [
   },
   {
     test: /\.(js|jsx)$/,
-    exclude: [/node_modules/, /lambda/, /sw.js/, /service-worker.js/, /old/],
+    exclude: [/node_modules/, /lambda/, /sw.js/, /service-worker.js/],
     use: [{
       loader: 'babel-loader',
     }],
