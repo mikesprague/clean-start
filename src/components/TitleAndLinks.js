@@ -32,7 +32,7 @@ const TitleAndLinks = (props) => {
 
   return (
     <Fragment>
-      <h1 className="app-name"><span className="pwa-link-tooltip">Clean Start (React/Tailwind CSS refactor)</span></h1>
+      <h1 className="app-name"><span className="pwa-link-tooltip">Clean Start</span></h1>
       <Tippy content="Source code available on GitHub" placement="left">
         <a className="source-link" href="https://github.com/mikesprague/clean-start" target="_blank" rel="noopener">Open Source New Tab Extension</a>
       </Tippy>
