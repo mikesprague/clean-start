@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import dompurify from 'dompurify';
 import he from 'he';
+import { nanoid } from 'nanoid';
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
@@ -87,7 +88,7 @@ const Weather = (props) => {
           content={hour ? `${hour.summary} (Feels ${Math.round(hour.apparentTemperature)}${String.fromCharCode(176)})` : ''}
           placement="left"
         >
-          <li className="w-1/4" key={hour.time}>
+          <li key={nanoid(8)} className="w-1/4">
             {dayjs.unix(hour.time).format('ha')}<br />
             <FontAwesomeIcon icon={getWeatherIcon(hour.icon)} fixedWidth />
             {' ' + Math.round(hour.temperature)}&deg;
