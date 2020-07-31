@@ -14,7 +14,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 const mode = process.env.NODE_ENV;
 const buildType = process.env.BUILD_TYPE;
 
-const cssWhitelistClassArray = [/tippy/, /odd/];
+const cssWhitelistClassArray = [/tippy/, /odd/, /repo-language-color/, /fa-rotate-270/];
 
 const postCssPluginsArray = [
     autoprefixer(),
@@ -38,7 +38,7 @@ if (mode === 'production') {
         const innerMatches = content.match(/[^<>"'`\s.()]*[^<>"'`\s.():]/g) || [];
         return broadMatches.concat(innerMatches);
       },
-      fontFace: true,
+      fontFace: false,
       whitelistPatterns: cssWhitelistClassArray,
       whitelistPatternsChildren: cssWhitelistClassArray,
     })

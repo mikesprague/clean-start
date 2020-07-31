@@ -79,7 +79,8 @@ const Weather = (props) => {
           </span>
         </Tippy>
         <div className="feels-like-temp">
-          {data && Math.round(data.weather.currently.temperature) !== Math.round(data.weather.currently.apparentTemperature) ? 'Feels ' + Math.round(data.weather.currently.apparentTemperature) + '' + String.fromCharCode(176) : ''}
+          {/* Math.round(data.weather.currently.temperature) !== Math.round(data.weather.currently.apparentTemperature) */}
+          {data ? 'Feels ' + Math.round(data.weather.currently.apparentTemperature) + '' + String.fromCharCode(176) : ''}
         </div>
       </div>
       <ul className="flex hourly-forecast">

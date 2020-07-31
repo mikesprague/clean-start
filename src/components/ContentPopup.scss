@@ -85,13 +85,13 @@
   .odd {
     background-color: $color-black-sixty-percent;
   }
-}
 
-.repo-language-color {
-  border-radius: 50%;
-  display: inline-block;
-  height: .75rem;
-  margin-right: .25rem;
-  vertical-align: middle;
-  width: .75rem;
+  .repo-language-color {
+    border-radius: 50%;
+    display: inline-block;
+    height: .75rem;
+    margin-right: .25rem;
+    vertical-align: middle;
+    width: .75rem;
+  }
 }

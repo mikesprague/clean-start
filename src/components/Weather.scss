@@ -2,12 +2,12 @@
   @apply cursor-default;
   @apply text-right;
   @apply float-right;
-  @apply w-64;
+  @apply w-48;
 
   .weather-location {
     @apply text-xl;
     @apply font-medium;
-    @apply -mb-4;
+    @apply -mb-2;
   }
 
   .icon-and-temp {
@@ -15,7 +15,7 @@
     @apply font-semibold;
 
     .feels-like-temp {
-      @apply -mt-3;
+      @apply -mt-2;
       @apply text-base;
       @apply font-light;
     }
@@ -26,7 +26,8 @@
   }
 
   .hourly-forecast {
-    @apply mb-1;
+    @apply mt-1;
+    @apply mb-2;
     @apply -mr-3;
     @apply list-none;
     @apply p-0;
