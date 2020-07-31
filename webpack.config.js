@@ -12,6 +12,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const mode = process.env.NODE_ENV;
+const buildType = process.env.BUILD_TYPE;
 
 const cssWhitelistClassArray = [/tippy/, /odd/];
 
@@ -119,10 +120,20 @@ const webpackPlugins = [
   new CopyWebpackPlugin({
     patterns: [
       {
-        from: './public/*.*',
+        from: `./public/manifest${buildType === 'extension' ? '' : '-pwa'}.json`,
         to: './',
         flatten: true,
         force: true,
+      },
+    ],
+  }),
+  new CopyWebpackPlugin({
+    patterns: [
+      {
+        from: `./public/${buildType === 'extension' ? 'extension' : 'pwa'}.html`,
+        to: './index.html',
+        force: true,
+        flatten: true,
       },
     ],
   }),
