@@ -10,8 +10,9 @@ const Clock = (props) => {
   };
 
   useEffect(() => {
-    setInterval(updateDateTime, (1000));
-    return () => {};
+    const clockInterval = setInterval(updateDateTime, (1000));
+
+    return () => clearInterval(clockInterval);
   }, []);
 
   const timeFormatted = () => {
