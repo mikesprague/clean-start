@@ -57,7 +57,7 @@
     "react-dom": "^16.13.1",
     "register-service-worker": "^1.7.1",
     "snyk": "^1.369.2",
-    "tailwindcss": "^1.6.0"
+    "tailwindcss": "^1.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.0",
