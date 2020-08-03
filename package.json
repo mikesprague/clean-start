@@ -5,18 +5,19 @@
   "private": true,
   "engines": {
     "node": ">= 12.x",
-    "npm": ">= 6.x"
+    "npm": ">= 6.x",
+    "yarn": "1.22.4"
   },
   "scripts": {
-    "build": "npm run webpack && npm run lambda:build",
-    "build:extension": "npm run clean && cross-env BUILD_TYPE=extension npm run webpack && npm run zip",
-    "build:local": "npm run clean && npm run webpack && npm run lambda:build",
+    "build": "yarn webpack && yarn lambda:build",
+    "build:extension": "yarn clean && cross-env BUILD_TYPE=extension yarn webpack && yarn zip",
+    "build:local": "yarn clean && yarn webpack && yarn lambda:build",
     "clean": "rm -rf ./build && rm -rf ./lambda",
     "lambda:build": "netlify-lambda build ./src/functions",
     "lambda:serve": "netlify-lambda serve ./src/functions --config ./functions.config.js",
-    "prepublish": "npm run snyk-protect",
+    "prepublish": "yarn snyk-protect",
     "snyk-protect": "snyk protect",
-    "start": "concurrently 'npm run webpack:serve' 'npm run lambda:serve' --names '📦,💻' --prefix '[{name}] ' --kill-others",
+    "start": "concurrently 'yarn webpack:serve' 'yarn lambda:serve' --names '📦,💻' --prefix '[{name}] ' --kill-others",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "cross-env NODE_ENV=production webpack -p --colors",
     "webpack:dev": "cross-env NODE_ENV=development webpack -d --colors --display minimal",
