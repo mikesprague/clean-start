@@ -164,6 +164,8 @@
       "parser": "babel-parser"
     },
     "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
       "curly": "error",
       "object-curly-newline": "error",
       "semi": "error",
