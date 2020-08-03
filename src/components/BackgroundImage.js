@@ -8,7 +8,7 @@ import './BackgroundImage.scss';
 const BackgroundImage = (props) => {
   const [allBgImagesData, setAllBgImagesData] = useState(null);
   useEffect(() => {
-    const loadQuoteData = async () => {
+    const loadBgImageData = async () => {
       const data = await axios.get(`${apiUrl()}/background-image`)
         .then((response) => {
           // console.log(response.data);
@@ -16,7 +16,7 @@ const BackgroundImage = (props) => {
         });
       setAllBgImagesData(data);
     };
-    loadQuoteData();
+    loadBgImageData();
 
     return () => {};
   }, []);
@@ -82,7 +82,7 @@ const BackgroundImage = (props) => {
     <Fragment>
       <Tippy content="Change background image" placement="right">
         <a className={bgImage ? 'rotate-bg visible' : 'rotate-bg invisible'} href="#" onClick={clickHandler}>
-          <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth />
+          {isLoading ? <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth spin /> : <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth /> }
         </a>
       </Tippy>
       <div className="bg-metadata">
