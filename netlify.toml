@@ -1,16 +1,16 @@
 [build]
-  command = "yarn build"
+  command = "npn run build"
   functions = "lambda"
   publish="build"
 
 [dev]
-  command = "yarn start"
+  command = "npm start"
   port = 4444
   publish = "build"
   functionsPort = 9000
 
 [production]
-  command = "yarn build"
+  command = "npm run build"
   publish = "build"
 
 [[redirects]]
