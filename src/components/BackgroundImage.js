@@ -57,6 +57,7 @@ const BackgroundImage = (props) => {
         };
         setBgImage(finalImageData);
         setImageUrl(imageUrl);
+        setImageThumbUrl(imageThumbUrl);
       };
       prepareImageMetaData();
     }
@@ -64,10 +65,11 @@ const BackgroundImage = (props) => {
   }, [allBgImagesData, bgImageNum]);
 
   const [imageUrl, setImageUrl] = useState('');
+  const [imageThumbUrl, setImageThumbUrl] = useState('');
   useEffect(() => {
     const updateBg = () => {
-      document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('${imageUrl}')`;
-      document.body.style.backgroundSize = 'cover';
+      document.body.style.background = `linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('${imageUrl}') no-repeat fixed center center, linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('${imageThumbUrl}') no-repeat fixed center center`;
+      document.body.style.backgroundSize = 'cover, cover';
     }
     updateBg();
   }, [imageUrl]);
@@ -82,7 +84,7 @@ const BackgroundImage = (props) => {
     <Fragment>
       <Tippy content="Change background image" placement="right">
         <a className={bgImage ? 'rotate-bg visible' : 'rotate-bg invisible'} href="#" onClick={clickHandler}>
-          {isLoading ? <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth spin /> : <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth /> }
+          <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth />
         </a>
       </Tippy>
       <div className="bg-metadata">
