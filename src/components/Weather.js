@@ -73,7 +73,11 @@ const Weather = (props) => {
 
   return (
     <div className="weather-container">
-      <FontAwesomeIcon icon="hourglass-half" size="3x" fixedWidth spin className={isLoading ? 'block float-right mt-8' : 'hidden'} />
+      <div className={isLoading ? 'block text-right mt-4' : 'hidden'}>
+        <FontAwesomeIcon icon="hourglass-half" size="2x" fixedWidth spin className="mr-12" />
+        <br />
+        loading weather
+      </div>
       <span className={isLoading ? 'invisible' : 'visible'}>
         <h4 className="weather-location">{data ? data.location.locationName : ''}</h4>
         <div className="icon-and-temp">
@@ -93,6 +97,7 @@ const Weather = (props) => {
           <Tippy
             content={hour ? `${hour.summary} (Feels ${Math.round(hour.apparentTemperature)}${String.fromCharCode(176)})` : ''}
             placement="left"
+            key={nanoid(8)}
           >
             <li key={nanoid(8)} className="w-1/4">
               {dayjs.unix(hour.time).format('ha')}<br />
