@@ -74,7 +74,7 @@ const Weather = (props) => {
   return (
     <div className="weather-container">
       <div className={isLoading ? 'block text-right mt-4' : 'hidden'}>
-        <FontAwesomeIcon icon="hourglass-half" size="2x" fixedWidth spin className="mr-12" />
+        <FontAwesomeIcon icon="hourglass-half" size="2x" fixedWidth spin className="mr-8" />
         <br />
         loading weather
       </div>
