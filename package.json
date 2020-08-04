@@ -48,7 +48,7 @@
     "axios": "^0.19.2",
     "cross-env": "^7.0.2",
     "cheerio": "^1.0.0-rc.3",
-    "dayjs": "^1.8.31",
+    "dayjs": "^1.8.32",
     "dompurify": "^2.0.12",
     "dotenv": "^8.2.0",
     "he": "^1.2.0",
@@ -57,8 +57,8 @@
     "react-hot-loader": "^4.12.21",
     "react-dom": "^16.13.1",
     "register-service-worker": "^1.7.1",
-    "snyk": "^1.369.2",
-    "tailwindcss": "^1.6.1"
+    "snyk": "^1.369.3",
+    "tailwindcss": "^1.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.11.0",
