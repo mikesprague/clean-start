@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { getData, setData } from '../modules/local-storage';
 
 export const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
-      const item = window.localStorage.getItem(key);
+      const item = getData(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (err) {
       console.error(err);
@@ -15,7 +16,7 @@ export const useLocalStorage = (key, initialValue) => {
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      setData(key, valueToStore);
     } catch (err) {
       console.error(err);
     }
