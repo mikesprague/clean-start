@@ -6,8 +6,7 @@ import { apiUrl, stripHTML } from '../modules/helpers';
 import './Quote.scss';
 
 const Quote = (props) => {
-  const [quoteData, setQuoteData] = useState(null);
-
+  const [allQuotesData, setAllQuotesData] = useState(null);
   useEffect(() => {
     const loadQuoteData = async () => {
       const designQuoteData = await axios.get(`${apiUrl()}/quotes`)
@@ -15,27 +14,36 @@ const Quote = (props) => {
           // console.log(response.data);
           return response.data;
         });
-      const randomNumber = Math.floor(Math.random() * (designQuoteData.length - 1))
-      let quote = designQuoteData[randomNumber];
+      setAllQuotesData(designQuoteData);
+      // return designQuoteData;
+    };
+    loadQuoteData();
+    return () => {};
+  }, []);
+
+  const [quoteData, setQuoteData] = useState(null);
+  useEffect(() => {
+    if (allQuotesData) {
+      const randomNumber = Math.floor(Math.random() * (allQuotesData.length - 1))
+      let quote = allQuotesData[randomNumber];
       quote = {
         ...quote,
         quoteAuthor: he.decode(dompurify.sanitize(quote.quoteAuthor)),
         quoteExcerpt: he.decode(dompurify.sanitize(quote.quoteExcerpt)),
       };
       setQuoteData(quote);
-    };
-    loadQuoteData();
+    }
+
     return () => {};
-  }, []);
+  }, [allQuotesData]);
 
   return (
     <div className="quote-container">
       <a href={quoteData && quoteData.quoteLink} target="_blank" rel="noopener">
-        <p className="px-4">
+        <p className={quoteData ? 'px-4 visible' : 'px-4 invisible'}>
           {quoteData && stripHTML(quoteData.quoteExcerpt)}
-        </p>
-        <p className={quoteData ? 'quote-author visible' : 'quote-author invisible'}>
-          &mdash; {quoteData && quoteData.quoteAuthor}
+          <br />
+          <em>&mdash; {quoteData && quoteData.quoteAuthor}</em>
         </p>
       </a>
     </div>
