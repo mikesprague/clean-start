@@ -68,9 +68,8 @@ const BackgroundImage = (props) => {
   const [imageThumbUrl, setImageThumbUrl] = useState('');
   useEffect(() => {
     const updateBg = () => {
-      document.body.style.background = `linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('${imageUrl}') no-repeat fixed center center`;
-      document.body.style.backgroundSize = 'cover';
-      document.body.style.transition = 'background-image .5s linear';
+      document.body.style.background = `linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('${imageUrl}') no-repeat fixed center center, linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('${imageThumbUrl}') no-repeat fixed center center`;
+      document.body.style.backgroundSize = 'cover, cover';
     }
     updateBg();
   }, [imageUrl]);

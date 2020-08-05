@@ -2,6 +2,7 @@ import axios from 'axios';
 import dompurify from 'dompurify';
 import he from 'he';
 import React, { useEffect, useState } from 'react';
+
 import { apiUrl, stripHTML } from '../modules/helpers';
 import './Quote.scss';
 
@@ -28,8 +29,8 @@ const Quote = (props) => {
       let quote = allQuotesData[randomNumber];
       quote = {
         ...quote,
-        quoteAuthor: he.decode(dompurify.sanitize(quote.quoteAuthor)),
-        quoteExcerpt: he.decode(dompurify.sanitize(quote.quoteExcerpt)),
+        quoteAuthor: stripHTML(he.decode(dompurify.sanitize(quote.quoteAuthor))),
+        quoteExcerpt: stripHTML(he.decode(dompurify.sanitize(quote.quoteExcerpt))),
       };
       setQuoteData(quote);
     }
@@ -39,11 +40,11 @@ const Quote = (props) => {
 
   return (
     <div className="quote-container">
-      <a href={quoteData && quoteData.quoteLink} target="_blank" rel="noopener">
+      <a href={quoteData ? quoteData.quoteLink : ''} target="_blank" rel="noopener">
         <p className={quoteData ? 'px-4 visible' : 'px-4 invisible'}>
-          {quoteData && stripHTML(quoteData.quoteExcerpt)}
+          {quoteData ? quoteData.quoteExcerpt : ''}
           <br />
-          <em>&mdash; {quoteData && quoteData.quoteAuthor}</em>
+          <em>&mdash; {quoteData ? quoteData.quoteAuthor : ''}</em>
         </p>
       </a>
     </div>
