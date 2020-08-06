@@ -8,13 +8,15 @@ Open source new tab extension
 
 ## Contents
 
-- [About](#about)
-- [Install](#install)
-- [Build](#build)
-- [Demo](#demo)
-- [Screenshots](#screenshots)
-- [Uses](#uses)
-- [License](#license)
+- [Clean Start](#clean-start)
+  - [Contents](#contents)
+  - [About](#about)
+  - [Install](#install)
+  - [Build](#build)
+  - [Demo](#demo)
+  - [Screenshots](#screenshots)
+  - [Uses](#uses)
+  - [License](#license)
 
 ## About
 
@@ -37,10 +39,10 @@ Open source new tab extension
 
 ## Build
 
-- Install dependencies `npm install`
-- Build extension `npm run build:extension`
-  - This will create a `public` folder with the extension files and an `extension.zip` file for submitting
-- Run/develop locally `npm run dev`
+- Install dependencies `yarn`
+- Build extension `yarn build:extension`
+  - This will create a `build` folder with the extension files and an `clean-start-extension.zip` file for submitting
+- Run/develop locally `yarn start`
 
 NOTE: You will need API keys from Dark Sky, Unsplash, and Google Maps to build/run the Netlify functions this extension uses without modification
 

@@ -1,0 +1,17 @@
+.quote-container {
+  @apply text-lg;
+  @apply font-normal;
+  @apply items-center;
+  @apply mt-5;
+  @apply text-center;
+
+  p {
+    @apply inline-block;
+    @apply py-0;
+    @apply px-12;
+  }
+
+  .quote-author {
+    @apply italic;
+  }
+}

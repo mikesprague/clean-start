@@ -1,0 +1,50 @@
+.weather-container {
+  @apply cursor-default;
+  @apply text-right;
+  @apply float-right;
+  @apply w-48;
+
+  .weather-location {
+    @apply text-xl;
+    @apply font-medium;
+    @apply -mb-2;
+  }
+
+  .icon-and-temp {
+    @apply text-4xl;
+    @apply font-semibold;
+
+    .feels-like-temp {
+      @apply -mt-2;
+      @apply text-base;
+      @apply font-light;
+    }
+
+    .weather-icon {
+      @apply font-extrabold;
+    }
+  }
+
+  .hourly-forecast {
+    @apply mt-1;
+    @apply mb-2;
+    @apply -mr-3;
+    @apply list-none;
+    @apply p-0;
+
+    li {
+      @apply text-center;
+      @apply text-sm;
+    }
+  }
+
+  .powered-by {
+    @apply mt-1;
+    @apply font-thin;
+    font-size: .65rem;
+  }
+
+  .weather-last-updated {
+    @apply font-thin;
+  }
+}
