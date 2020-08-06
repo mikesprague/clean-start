@@ -1,31 +1,41 @@
 import axios from 'axios';
-import React, { Fragment, useState, useEffect } from 'react';
+import dayjs from 'dayjs';
+import React, { Fragment, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import { apiUrl } from '../modules/helpers';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 import './BackgroundImage.scss';
 
 const BackgroundImage = (props) => {
-  const [allBgImagesData, setAllBgImagesData] = useState(null);
+  const [allBgImagesData, setAllBgImagesData] = useLocalStorage('bgImagesData', null);
   useEffect(() => {
     const loadBgImageData = async () => {
-      const data = await axios.get(`${apiUrl()}/background-image`)
-        .then((response) => {
-          // console.log(response.data);
-          return response.data;
-        });
-      setAllBgImagesData(data);
+      const bgImagesData = await axios
+        .get(`${apiUrl()}/background-image`)
+        .then((response) => response.data);
+      setAllBgImagesData({
+        lastUpdated: dayjs().toString(),
+        data: bgImagesData,
+      });
     };
-    loadBgImageData();
+    if (allBgImagesData && allBgImagesData.lastUpdated) {
+      const nextUpdateTime = dayjs(allBgImagesData.lastUpdated).add(360, 'minute');
+      if (dayjs().isAfter(nextUpdateTime)) {
+        loadBgImageData();
+      }
+    } else {
+      loadBgImageData();
+    }
 
     return () => {};
   }, []);
 
   const [bgImage, setBgImage] = useState(null);
-  const [bgImageNum, setBgImageNum] = useState(0);
+  const [bgImageNum, setBgImageNum] = useLocalStorage('bgImageNum', 0);
   useEffect(() => {
-    if (allBgImagesData) {
-      const currentImage = allBgImagesData[bgImageNum];
+    if (allBgImagesData && allBgImagesData.data) {
+      const currentImage = allBgImagesData.data[bgImageNum];
       const prepareImageMetaData = () => {
         const linkSuffix = '?utm_source=Clean%20Start%20-%20Open%20Source%20New%20Tab%20Extension&utm_medium=referral';
         const {

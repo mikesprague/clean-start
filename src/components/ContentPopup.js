@@ -9,12 +9,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import { apiUrl } from '../modules/helpers';
 import { getPopupInfo, handleDevTo, handleGitHub, handleHackerNews, handleProductHunt, handleReddit } from '../modules/content-popup';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 import './ContentPopup.scss';
 
 const ContentPopup = (props) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useLocalStorage(`${props.type}Data`, null);
   useEffect(() => {
-    let apiData = null;
     switch (props.type) {
       case 'dev-to':
         const getDevToPosts = async (devToUrl = `${apiUrl()}/dev-to-posts`) => {
@@ -43,10 +43,19 @@ const ContentPopup = (props) => {
           for (let i = 0; i < 10; i+=1) {
             returnData.push(devToData[i]);
           }
-          setData(returnData);
-          return returnData;
+          setData({
+            lastUpdated: dayjs().toString(),
+            data: returnData,
+          });
         };
-        getDevToPosts();
+        if (data && data.lastUpdated) {
+          const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
+          if (dayjs().isAfter(nextUpdateTime)) {
+            getDevToPosts();
+          }
+        } else {
+          getDevToPosts();
+        }
         break;
       case 'github':
         const getTrendingRepos = async (dataUrl = `${apiUrl()}/github-trending-repos`) => {
@@ -57,12 +66,20 @@ const ContentPopup = (props) => {
               for (let i = 0; i < 10; i+=1) {
                 returnData.push(response.data[i]);
               }
-              setData(returnData);
-              return returnData;
             });
-          return pageData;
+          setData({
+            lastUpdated: dayjs().toString(),
+            data: returnData,
+          });
         };
-        getTrendingRepos();
+        if (data && data.lastUpdated) {
+          const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
+          if (dayjs().isAfter(nextUpdateTime)) {
+            getTrendingRepos();
+          }
+        } else {
+          getTrendingRepos();
+        }
         break;
       case 'hacker-news':
         const getHackerNewsPosts = async (hackerNewsUrl = `${apiUrl()}/hacker-news-posts`) => {
@@ -89,10 +106,19 @@ const ContentPopup = (props) => {
           for (let i = 0; i < 10; i+=1) {
             returnData.push(hackerNewsData[i]);
           }
-          setData(returnData);
-          return returnData;
+          setData({
+            lastUpdated: dayjs().toString(),
+            data: returnData,
+          });
         };
-        getHackerNewsPosts();
+        if (data && data.lastUpdated) {
+          const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
+          if (dayjs().isAfter(nextUpdateTime)) {
+            getHackerNewsPosts();
+          }
+        } else {
+          getHackerNewsPosts();
+        }
         break;
       case 'product-hunt':
         const getProductHuntPosts = async (productHuntRssUrl = `${apiUrl()}/product-hunt-posts`) => {
@@ -121,22 +147,38 @@ const ContentPopup = (props) => {
           for (let i = 0; i < 10; i+=1) {
             returnData.push(productHuntData[i]);
           }
-          setData(returnData);
-          return returnData;
+          setData({
+            lastUpdated: dayjs().toString(),
+            data: returnData,
+          });
         };
-        getProductHuntPosts();
+        if (data && data.lastUpdated) {
+          const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
+          if (dayjs().isAfter(nextUpdateTime)) {
+            getProductHuntPosts();
+          }
+        } else {
+          getProductHuntPosts();
+        }
         break;
       case 'reddit':
         const getRedditPosts = async (redditPostsApiUrl = `${apiUrl()}/reddit-posts`) => {
-          const redditPostsData = await axios.get(redditPostsApiUrl)
-            .then((response) => {
-              // console.log(response.data);
-              setData(response.data);
-              return response.data;
-            });
-          return redditPostsData;
+          const returnData = await axios
+            .get(redditPostsApiUrl)
+            .then(response => response.data);
+          setData({
+            lastUpdated: dayjs().toString(),
+            data: returnData,
+          });
         };
-        getRedditPosts();
+        if (data && data.lastUpdated) {
+          const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
+          if (dayjs().isAfter(nextUpdateTime)) {
+            getRedditPosts();
+          }
+        } else {
+          getRedditPosts();
+        }
         break;
       default:
         break;
@@ -146,26 +188,26 @@ const ContentPopup = (props) => {
   const [postsMarkup, setPostsMarkup] = useState(null);
   useEffect(() => {
     let markup = null;
-    if (data) {
+    if (data && data.data) {
       switch (props.type) {
         case 'dev-to':
-          markup = handleDevTo(data);
+          markup = handleDevTo(data.data);
           setPostsMarkup(markup);
           break;
         case 'github':
-          markup = handleGitHub(data);
+          markup = handleGitHub(data.data);
           setPostsMarkup(markup);
           break;
         case 'hacker-news':
-          markup = handleHackerNews(data);
+          markup = handleHackerNews(data.data);
           setPostsMarkup(markup);
           break;
         case 'product-hunt':
-          markup = handleProductHunt(data);
+          markup = handleProductHunt(data.data);
           setPostsMarkup(markup);
           break;
         case 'reddit':
-          markup = handleReddit(data);
+          markup = handleReddit(data.data);
           setPostsMarkup(markup);
           break;
         default:

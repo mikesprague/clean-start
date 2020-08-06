@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { useState } from 'react';
 import { getData, setData } from '../modules/local-storage';
 
@@ -5,7 +6,7 @@ export const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = getData(key);
-      return item ? JSON.parse(item) : initialValue;
+      return item ? item : initialValue;
     } catch (err) {
       console.error(err);
       return initialValue;

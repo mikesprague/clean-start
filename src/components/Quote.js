@@ -1,32 +1,42 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
 import dompurify from 'dompurify';
 import he from 'he';
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useRef, useState } from 'react';
 import { apiUrl, stripHTML } from '../modules/helpers';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 import './Quote.scss';
 
 const Quote = (props) => {
-  const [allQuotesData, setAllQuotesData] = useState(null);
+  const [allQuotesData, setAllQuotesData] = useLocalStorage('quoteData', null);
+
   useEffect(() => {
     const loadQuoteData = async () => {
-      const designQuoteData = await axios.get(`${apiUrl()}/quotes`)
-        .then((response) => {
-          // console.log(response.data);
-          return response.data;
-        });
-      setAllQuotesData(designQuoteData);
-      // return designQuoteData;
+      const designQuoteData = await axios
+        .get(`${apiUrl()}/quotes`)
+        .then(response => response.data);
+      setAllQuotesData({
+        lastUpdated: dayjs().toString(),
+        data: designQuoteData,
+      });
     };
-    loadQuoteData();
+    if (allQuotesData && allQuotesData.lastUpdated) {
+      const nextUpdateTime = dayjs(allQuotesData.lastUpdated).add(360, 'minute');
+      if (dayjs().isAfter(nextUpdateTime)) {
+        loadQuoteData();
+      }
+    } else {
+      loadQuoteData();
+    }
+
     return () => {};
   }, []);
 
   const [quoteData, setQuoteData] = useState(null);
   useEffect(() => {
-    if (allQuotesData) {
-      const randomNumber = Math.floor(Math.random() * (allQuotesData.length - 1))
-      let quote = allQuotesData[randomNumber];
+    if (allQuotesData && allQuotesData.data) {
+      const randomNumber = Math.floor(Math.random() * (allQuotesData.data.length - 1))
+      let quote = allQuotesData.data[randomNumber];
       quote = {
         ...quote,
         quoteAuthor: stripHTML(he.decode(dompurify.sanitize(quote.quoteAuthor))),
