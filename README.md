@@ -36,13 +36,14 @@ Open source new tab extension
 
 - Chrome Store: [https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol](https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol)
 - Firefox Add-ons: [https://addons.mozilla.org/en-US/firefox/addon/clean-start/](https://addons.mozilla.org/en-US/firefox/addon/clean-start/)
+- Edge Add-ons: [https://microsoftedge.microsoft.com/addons/detail/clean-start/aifahnhgmoaeckhcdnhdnoamjnkeppjf](https://microsoftedge.microsoft.com/addons/detail/clean-start/aifahnhgmoaeckhcdnhdnoamjnkeppjf)
 
 ## Build
 
-- Install dependencies `yarn`
-- Build extension `yarn build:extension`
+- Install dependencies `npm install`
+- Build extension `npm run build:extension`
   - This will create a `build` folder with the extension files and an `clean-start-extension.zip` file for submitting
-- Run/develop locally `yarn start`
+- Run/develop locally `npm run start`
 
 NOTE: You will need API keys from Dark Sky, Unsplash, and Google Maps to build/run the Netlify functions this extension uses without modification
 
@@ -54,25 +55,27 @@ Demo available as a progressive web app (PWA):
 
 ## Screenshots
 
-![Clean Start Screenshot One](./screenshot-1.png "Clean Start Screenshot One")
+New screenshots coming
+
+<!-- ![Clean Start Screenshot One](./screenshot-1.png "Clean Start Screenshot One")
 ![Clean Start Screenshot Two](./screenshot-2.png "Clean Start Screenshot Two")
 ![Clean Start Screenshot Three](./screenshot-3.png "Clean Start Screenshot Three")
 ![Clean Start Screenshot Four](./screenshot-4.png "Clean Start Screenshot Four")
 ![Clean Start Screenshot Five](./screenshot-5.png "Clean Start Screenshot Five")
-![Clean Start Screenshot Six](./screenshot-6.png "Clean Start Screenshot Six")
+![Clean Start Screenshot Six](./screenshot-6.png "Clean Start Screenshot Six") -->
 
 ## Uses
 
 - Demo hosting - [Netlify](https://www.netlify.com)
 - Serveless functions used for backend API - [Netlify Functions](https://www.netlify.com/products/functions/)
-- Dependency monitoring - [Snyk](https://github.com/snyk/snyk)
+- JavaScript Library - [React](https://reactjs.org/)
 - Icons - [FontAwesome](https://fontawesome.com/)
 - Font ([Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab)) - [Google Fonts](https://fonts.google.com/)
 - Tooltips and content popups - [tippy.js](https://github.com/atomiks/tippyjs)
 - Date/time lib - [dayjs](https://github.com/iamkun/dayjs)
-- CSS framework (bc I am lazy) - [bootstrap](https://github.com/twbs/bootstrap)
-  - NOTE: unused CSS bloat removed during webpack build
+- CSS framework - [Tailwind CSS](https://tailwindcss.com/)
 - HTTP lib/client - [axios](https://github.com/axios/axios/)
+- Dependency monitoring - [Snyk](https://github.com/snyk/snyk)
 - Open source license compliance monitoring - [FOSSA](https://fossa.com/)
 
 ## License
