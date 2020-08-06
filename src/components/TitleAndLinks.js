@@ -1,15 +1,17 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import './TitleAndLinks.scss';
 
 const TitleAndLinks = (props) => {
-  const isExtension = () => {
-    if (window.location.origin.includes('-extension://')) {
-      return true;
-    }
-    return false;
-  };
+  const [isExtension, setIsExtension] = useState(true);
+
+  useEffect(() => {
+    setIsExtension(window.location.origin.includes('-extension://'));
+
+    return () => {};
+  }, []);
+
   const installLinks = (
     <h2 className="install-links">
       <Tippy content="Install via Chrome Store" placement="left">
@@ -31,13 +33,13 @@ const TitleAndLinks = (props) => {
   );
 
   return (
-    <Fragment>
+    <section>
       <h1 className="app-name"><span className="pwa-link-tooltip">Clean Start</span></h1>
       <Tippy content="Source code available on GitHub" placement="left">
         <a className="source-link" href="https://github.com/mikesprague/clean-start" target="_blank" rel="noopener">Open Source New Tab Extension</a>
       </Tippy>
-      {!isExtension ? '' : installLinks}
-    </Fragment>
+      {isExtension ? '' : installLinks}
+    </section>
   )
 };
 
