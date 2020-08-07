@@ -56,7 +56,7 @@
     "react-hot-loader": "^4.12.21",
     "react-dom": "^16.13.1",
     "register-service-worker": "^1.7.1",
-    "snyk": "^1.369.3",
+    "snyk": "^1.370.0",
     "tailwindcss": "^1.6.2"
   },
   "devDependencies": {
