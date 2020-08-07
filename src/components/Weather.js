@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import { apiUrl } from '../modules/helpers';
+import { clearData, resetData } from '../modules/local-storage';
 import { getWeatherIcon } from '../modules/weather';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import './Weather.scss';
@@ -34,6 +35,7 @@ const Weather = (props) => {
     if (coordinates && weatherData && weatherData.lastUpdated) {
       const nextUpdateTime = dayjs(weatherData.lastUpdated).add(20, 'minute');
       if (dayjs().isAfter(nextUpdateTime)) {
+        clearData('coordinates');
         doGeolocation();
       }
     } else {
