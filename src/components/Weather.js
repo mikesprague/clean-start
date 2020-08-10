@@ -30,7 +30,7 @@ const Weather = (props) => {
         enableHighAccuracy: true,
         maximumAge: 3600000 // 1 hour (number of seconds * 1000 milliseconds)
       };
-      navigator.geolocation.getCurrentPosition(getPosition, geolocationError, geolocationOptions);
+      await navigator.geolocation.getCurrentPosition(getPosition, geolocationError, geolocationOptions);
     }
     if (coordinates && weatherData && weatherData.lastUpdated) {
       const nextUpdateTime = dayjs(weatherData.lastUpdated).add(20, 'minute');
@@ -81,15 +81,15 @@ const Weather = (props) => {
   useEffect(() => {
     if (weatherData) {
       const hourly = [];
+      const startHour = dayjs().format('m') > 30 ? 1 : 0;
       const numHoursToShow = 4;
       weatherData.data.weather.hourly.data.map((hourData, index) => {
-        if (index < numHoursToShow) {
+        if (index >= startHour && index < (startHour + numHoursToShow)) {
           hourly.push(hourData);
         }
       });
       setHourlyData(hourly);
     }
-    // return () => {};
   }, [weatherData]);
 
   return (
