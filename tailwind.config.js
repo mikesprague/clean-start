@@ -6,6 +6,7 @@ module.exports = {
   variants: {},
   future: {
     removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
   },
   plugins: [
     require('@tailwindcss/typography'),
