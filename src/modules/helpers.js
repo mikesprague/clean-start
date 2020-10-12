@@ -1,4 +1,4 @@
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faChrome,
   faDev,
@@ -8,7 +8,7 @@ import {
   faHackerNews,
   faProductHunt,
   faRedditAlien,
-} from '@fortawesome/free-brands-svg-icons'
+} from '@fortawesome/free-brands-svg-icons';
 import {
   faBolt,
   faCalendar,
@@ -27,6 +27,7 @@ import {
   faShareAlt,
   faSmog,
   faSnowflake,
+  faSpinner,
   faStar,
   faSun,
   faSync,
@@ -35,9 +36,8 @@ import {
   faTint,
   faUser,
   faWind,
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
 import { register } from 'register-service-worker';
-import tippy from 'tippy.js';
 // import { resetData } from './local-storage';
 
 export const appConfig = {
@@ -148,6 +148,7 @@ export const initIcons = () => {
     faCloudShowersHeavy,
     faThermometerHalf,
     faHourglassHalf,
+    faSpinner,
     faCode,
     faTint,
     faMapMarkerAlt,
