@@ -1,8 +1,4 @@
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
 const path = require('path');
-const purgecss = require('@fullhuman/postcss-purgecss');
-const tailwindcss = require('tailwindcss');
 const webpack = require('webpack');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -14,37 +10,6 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const mode = process.env.NODE_ENV;
 const buildType = process.env.BUILD_TYPE;
-
-const cssWhitelistClassArray = [/tippy/, /odd/, /repo-language-color/, /fa-rotate-270/];
-
-const postCssPluginsArray = [
-    autoprefixer(),
-    tailwindcss(),
-    cssnano({
-      preset: 'default',
-    }),
-];
-if (mode === 'production') {
-  postCssPluginsArray.push(
-    purgecss({
-      content: [
-        './public/index.html',
-        './src/components//**/*.js',
-        './src/components//**/*.jsx',
-      ],
-      defaultExtractor: (content) => {
-        // Capture as liberally as possible, including things like `h-(screen-1.5)`
-        const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
-        // Capture classes within other delimiters like .block(class="w-1/2") in Pug
-        const innerMatches = content.match(/[^<>"'`\s.()]*[^<>"'`\s.():]/g) || [];
-        return broadMatches.concat(innerMatches);
-      },
-      fontFace: false,
-      whitelistPatterns: cssWhitelistClassArray,
-      whitelistPatternsChildren: cssWhitelistClassArray,
-    })
-  );
-}
 
 const webpackRules = [
   {
@@ -64,17 +29,12 @@ const webpackRules = [
       {
         loader: 'css-loader',
         options: {
+          importLoaders: true,
           sourceMap: true,
         },
       },
       {
         loader: 'postcss-loader',
-        options: {
-          sourceMap: true,
-          plugins() {
-            return postCssPluginsArray;
-          },
-        },
       },
       {
         loader: 'sass-loader',
