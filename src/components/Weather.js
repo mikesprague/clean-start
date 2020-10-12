@@ -11,7 +11,6 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 import './Weather.scss';
 
 const Weather = () => {
-  const [weatherData, setWeatherData] = useLocalStorage('weatherData', null);
   const [coordinates, setCoordinates] = useLocalStorage('coordinates', null);
   useEffect(() => {
     async function getPosition(position) {
@@ -43,6 +42,7 @@ const Weather = () => {
     // return () => {};
   }, []);
 
+  const [weatherData, setWeatherData] = useLocalStorage('weatherData', null);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setIsLoading(true);
