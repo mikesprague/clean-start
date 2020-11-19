@@ -55,7 +55,6 @@ const webpackRules = [
 ];
 
 const webpackPlugins = [
-  new WebPackBar(),
   new MiniCssExtractPlugin({
     filename: './css/styles.css',
     chunkFilename: './css/[id].[chunkhash].css',
