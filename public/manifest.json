@@ -11,7 +11,7 @@
     "64": "/images/new-tab-icon-64.png",
     "128": "/images/new-tab-icon-128.png"
   },
-  "version": "0.6.0",
+  "version": "0.7.0",
   "manifest_version": 2,
   "chrome_url_overrides": {
     "newtab": "index.html"
@@ -22,5 +22,4 @@
     "unlimitedStorage",
     "https://cleanst.art/*"
   ],
-  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }
