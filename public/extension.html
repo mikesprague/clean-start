@@ -8,32 +8,14 @@
     <meta name="description" content="Open source new tab extension">
     <meta name="author" content="Michael Sprague">
     <link rel="preconnect" href="https://cleanst.art">
-    <link rel="preconnect" href="https://ssl.google-analytics.com">
     <link rel="dns-prefetch" href="https://cleanst.art">
-    <link rel="dns-prefetch" href="https://ssl.google-analytics.com">
-    <link rel="preload" as="script" type="text/javascript" href="/js/vendors~main.bundle.js">
-    <link rel="preload" as="script" type="text/javascript" href="/js/bundle.js">
-    <link rel="preload" as="script" type="text/javascript" href="https://ssl.google-analytics.com/ga.js">
+    <link rel="preload" as="script" type="text/javascript" href="/js/main.js">
     <link rel="preload" as="style" type="text/css" href="/css/styles.css">
     <link href="/css/styles.css" media="screen" rel="stylesheet">
     <link rel="icon" type="image/png" href="/images/new-tab-icon-128.png">
   </head>
   <body>
     <div id="root"></div>
-    <script src="/js/vendors~main.bundle.js"></script>
-    <script src="/js/bundle.js"></script>
-    <script>
-      const _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-      _gaq.push(['_trackPageview']);
-
-      (() => {
-        const ga = document.createElement('script');
-        ga.type = 'text/javascript'; ga.async = true;
-        ga.src = 'https://ssl.google-analytics.com/ga.js';
-        const s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
+    <script src="/js/main.js"></script>
   </body>
 </html>
