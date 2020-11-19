@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faChrome,
@@ -163,4 +164,17 @@ export const initIcons = () => {
     faEdge,
     faFirefoxBrowser,
   );
+};
+
+export const isCacheExpired = (lastUpdated, cacheDurationInMinutes) => {
+  try {
+    const nextUpdateTime = dayjs(lastUpdated).add(cacheDurationInMinutes, 'minute');
+    if (dayjs().isAfter(nextUpdateTime)) {
+      return true;
+    }
+  } catch (error) {
+    handleError(error);
+    return true;
+  }
+  return false;
 };

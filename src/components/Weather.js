@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
-import { apiUrl } from '../modules/helpers';
+import { apiUrl, isCacheExpired } from '../modules/helpers';
 import { clearData } from '../modules/local-storage';
 import { getWeatherIcon } from '../modules/weather';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -12,67 +12,68 @@ import './Weather.scss';
 
 const Weather = () => {
   const [coordinates, setCoordinates] = useLocalStorage('coordinates', null);
+
   useEffect(() => {
     async function getPosition(position) {
       setCoordinates({
         lat: position.coords.latitude,
         lng: position.coords.longitude,
+        lastUpdated: dayjs().toString(),
       });
     }
     async function geolocationError(error) {
-      console.error(error);
+      handleError(error);
     }
     async function doGeolocation() {
       const geolocationOptions = {
         enableHighAccuracy: true,
-        maximumAge: 3600000 // 1 hour (number of seconds * 1000 milliseconds)
+        maximumAge: 3600000, // 1 hour (number of seconds * 1000 milliseconds)
       };
       await navigator.geolocation.getCurrentPosition(getPosition, geolocationError, geolocationOptions);
     }
-    if (coordinates && weatherData && weatherData.lastUpdated) {
-      const nextUpdateTime = dayjs(weatherData.lastUpdated).add(20, 'minute');
-      if (dayjs().isAfter(nextUpdateTime)) {
+
+    if (coordinates) {
+      if (isCacheExpired(coordinates.lastUpdated, 10)) {
         clearData('coordinates');
         doGeolocation();
       }
     } else {
+      clearData('coordinates');
       doGeolocation();
     }
 
     // return () => {};
-  }, []);
+  }, [coordinates, setCoordinates]);
 
   const [weatherData, setWeatherData] = useLocalStorage('weatherData', null);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    setIsLoading(true);
-    if (coordinates) {
-      const { lat, lng } = coordinates;
-      const getWeatherData = async (latitude, longitude) => {
-        const weatherApiurl = `${apiUrl()}/location-and-weather/?lat=${latitude}&lng=${longitude}`;
-        const weatherApiData =  await axios
-          .get(weatherApiurl)
-          .then(response => response.data);
-        setWeatherData({
-          lastUpdated: dayjs().toString(),
-          data: weatherApiData,
-        });
-        setIsLoading(false);
-      };
-      if (weatherData && weatherData.lastUpdated) {
-        const nextUpdateTime = dayjs(weatherData.lastUpdated).add(20, 'minute');
-        if (dayjs().isAfter(nextUpdateTime)) {
-          getWeatherData(lat, lng);
-        } else {
-          setIsLoading(false);
-        }
-      } else {
+    if (!coordinates) { return; }
+
+    const getWeatherData = async (latitude, longitude) => {
+      const weatherApiurl = `${apiUrl()}/location-and-weather/?lat=${latitude}&lng=${longitude}`;
+      const weatherApiData = await axios
+        .get(weatherApiurl)
+        .then((response) => response.data);
+      setWeatherData({
+        lastUpdated: dayjs().toString(),
+        data: weatherApiData,
+      });
+    };
+
+    const { lat, lng } = coordinates;
+    if (weatherData && weatherData.lastUpdated) {
+      if (isCacheExpired(weatherData.lastUpdated, 10)) {
+        clearData('weatherData');
         getWeatherData(lat, lng);
       }
+    } else {
+      clearData('weatherData');
+      getWeatherData(lat, lng);
     }
 
-    return () => {};
-  }, []);
+    // return() => {};
+  }, [coordinates, weatherData, setWeatherData]);
 
   const [hourlyData, setHourlyData] = useState(null);
   useEffect(() => {
