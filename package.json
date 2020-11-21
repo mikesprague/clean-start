@@ -50,12 +50,12 @@
     "dayjs": "^1.9.6",
     "dompurify": "^2.2.2",
     "he": "^1.2.0",
-    "nanoid": "^3.1.17",
+    "nanoid": "^3.1.18",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hot-loader": "^4.13.0",
     "register-service-worker": "^1.7.1",
-    "snyk": "^1.429.0",
+    "snyk": "^1.430.0",
     "tailwindcss": "^2.0.1"
   },
   "devDependencies": {
