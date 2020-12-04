@@ -42,7 +42,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.13",
-    "@hot-loader/react-dom": "^17.0.0",
+    "@hot-loader/react-dom": "^17.0.1",
     "@tailwindcss/typography": "^0.3.1",
     "@tippyjs/react": "^4.2.0",
     "axios": "^0.21.0",
@@ -50,12 +50,12 @@
     "dayjs": "^1.9.6",
     "dompurify": "^2.2.2",
     "he": "^1.2.0",
-    "nanoid": "^3.1.18",
+    "nanoid": "^3.1.20",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hot-loader": "^4.13.0",
     "register-service-worker": "^1.7.1",
-    "snyk": "^1.431.2",
+    "snyk": "^1.434.2",
     "tailwindcss": "^2.0.1"
   },
   "devDependencies": {
