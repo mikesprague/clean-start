@@ -62,8 +62,7 @@ const webpackPlugins = [
     patterns: [
       {
         from: './public/images/**/*',
-        to: './images',
-        flatten: true,
+        to: './images/[name].[ext]',
         force: true,
       },
     ],
@@ -72,8 +71,7 @@ const webpackPlugins = [
     patterns: [
       {
         from: './public/fonts/*.woff2',
-        to: './css/fonts',
-        flatten: true,
+        to: './css/fonts/[name].[ext]',
         force: true,
       },
     ],
@@ -82,8 +80,7 @@ const webpackPlugins = [
     patterns: [
       {
         from: `./public/manifest${buildType === 'extension' ? '' : '-pwa'}.json`,
-        to: './',
-        flatten: true,
+        to: './[name].[ext]',
         force: true,
       },
     ],
