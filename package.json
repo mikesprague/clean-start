@@ -48,15 +48,15 @@
     "axios": "^0.21.0",
     "cheerio": "^1.0.0-rc.3",
     "dayjs": "^1.9.7",
-    "dompurify": "^2.2.2",
+    "dompurify": "^2.2.3",
     "he": "^1.2.0",
     "nanoid": "^3.1.20",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hot-loader": "^4.13.0",
-    "register-service-worker": "^1.7.1",
-    "snyk": "^1.434.2",
-    "tailwindcss": "^2.0.1"
+    "register-service-worker": "^1.7.2",
+    "snyk": "^1.436.0",
+    "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
