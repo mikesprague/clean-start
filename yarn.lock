@@ -1268,12 +1268,12 @@
     postcss "7.0.32"
     purgecss "^3.0.0"
 
-"@fullhuman/postcss-purgecss@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@fullhuman/postcss-purgecss/-/postcss-purgecss-3.1.0.tgz#3b396e21c167196b7bd226230e36fa68c1e2cb31"
-  integrity sha512-3/jDpO5nIc+swrqek8oQE98oDxs9iaSXNs3MWMDE0RQlzJ54OR5QFdw49CicVgTPxpg3xbbNV2HX06tf+/a9dA==
+"@fullhuman/postcss-purgecss@^3.1.3":
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/@fullhuman/postcss-purgecss/-/postcss-purgecss-3.1.3.tgz#47af7b87c9bfb3de4bc94a38f875b928fffdf339"
+  integrity sha512-kwOXw8fZ0Lt1QmeOOrd+o4Ibvp4UTEBFQbzvWldjlKv5n+G9sXfIPn1hh63IQIL8K8vbvv1oYMJiIUbuy9bGaA==
   dependencies:
-    purgecss "^3.1.0"
+    purgecss "^3.1.3"
 
 "@hapi/address@^2.1.2":
   version "2.1.4"
@@ -1346,10 +1346,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@netlify/build@^7.0.0":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@netlify/build/-/build-7.0.2.tgz#caa1a8b96c90a182cc15ee351079b31453caa6c6"
-  integrity sha512-fJWq4G02kxDL9sdEQRZNVDRo+3JMVyXgxH4Ql1qK4IzxjarGL2hTbU4QHg0IpYRnVUuq3e4/BBIgX3CFy2Qxeg==
+"@netlify/build@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@netlify/build/-/build-8.0.0.tgz#e65aa7c95c06cc335c9e7396102fa42c9dc353e9"
+  integrity sha512-yF9kmeMEn5qPc6D62AyuzaFD/L+TDvZH5+0zw5NpXs5caUysBDolV/rxQa4KTVCaPBBqx044/J69byMuoH5zpQ==
   dependencies:
     "@bugsnag/js" "^7.0.0"
     "@netlify/cache-utils" "^1.0.6"
@@ -8443,10 +8443,10 @@ html-void-elements@^1.0.0:
   resolved "https://registry.yarnpkg.com/html-void-elements/-/html-void-elements-1.0.5.tgz#ce9159494e86d95e45795b166c2021c2cfca4483"
   integrity sha512-uE/TxKuyNIcx44cIWnjr/rfIATDH7ZaOMmstu0CwhFG1Dunhlp4OC6/NMbhiwoq5BpW0ubi303qnEk/PZj614w==
 
-html-webpack-plugin@^5.0.0-alpha.15:
-  version "5.0.0-alpha.15"
-  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-5.0.0-alpha.15.tgz#4562c3afa9d79e2ee0cf0c8e1a43ed47487d6115"
-  integrity sha512-SFnpxiOo8EZ37fPUG4elnii78E7WBlv6pqJl0rwK5knWRpvzQbbPGmn/hNrnBvgPbKi5RHwoaEdsQkLvHk+AzA==
+html-webpack-plugin@^5.0.0-alpha.17:
+  version "5.0.0-alpha.17"
+  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-5.0.0-alpha.17.tgz#42598fe4609efad3725c26d085c9d64197fa1587"
+  integrity sha512-r0QS/ZX+pEE/OrpX1bOrtO31TuRiAdvopLmP47NXcqnzolKoTMneKoB6drm2UnvRgv+AlA5NzSaKG4d6gwyd8Q==
   dependencies:
     "@types/html-minifier-terser" "^5.0.0"
     html-minifier-terser "^5.0.1"
@@ -11028,12 +11028,12 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.0.tgz#0fbdcf3e13fe4994781280524f8b96b0cdff9c61"
   integrity sha512-AO81vsIO1k1sM4Zrd6Hu7regmJN1NSiAja10gc4bX3F0wd+9rQmcuHQaHVQCYIEC8iFXnE+mavh23GOt7wBgug==
 
-netlify-cli@^2.69.8:
-  version "2.69.8"
-  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-2.69.8.tgz#7915948efc32263d0fbef277861622c482f741f0"
-  integrity sha512-Lo89ZY7Iyout2fm3D9K6jOUcSBFw5yNvA3UpoZVsM4SC2nFJxdAT86k/wgBe14BUDfLTdhcsPvTzEFuYPfTuhg==
+netlify-cli@^2.69.9:
+  version "2.69.9"
+  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-2.69.9.tgz#de24fa8b7da38ca0cd5884cd292cf04c82fa604a"
+  integrity sha512-r6EtcRN3pRC9Tp3D/xAX7Em/vUZuKGp1IQ8ZL8J6VrQzgyfpBu/iJUSmA9yprTh8ltAt2TzkLkn2DDh3+X4OAg==
   dependencies:
-    "@netlify/build" "^7.0.0"
+    "@netlify/build" "^8.0.0"
     "@netlify/config" "^2.0.9"
     "@netlify/plugin-edge-handlers" "^1.10.0"
     "@netlify/traffic-mesh-agent" "^0.27.0"
@@ -13188,10 +13188,10 @@ purgecss@^3.0.0:
     postcss "7.0.32"
     postcss-selector-parser "^6.0.2"
 
-purgecss@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/purgecss/-/purgecss-3.1.0.tgz#fcf6b76e1659fd67b647dd076fd3a51fd9464604"
-  integrity sha512-tmrs1I5B7FczyeChZPkR098BIqqMX+qDPG5f0KUHaLXqXXCjgRFyobht5sJSqL6wfHYX0JLhWSUUiPBVEH95Cg==
+purgecss@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/purgecss/-/purgecss-3.1.3.tgz#26987ec09d12eeadc318e22f6e5a9eb0be094f41"
+  integrity sha512-hRSLN9mguJ2lzlIQtW4qmPS2kh6oMnA9RxdIYK8sz18QYqd6ePp4GNDl18oWHA1f2v2NEQIh51CO8s/E3YGckQ==
   dependencies:
     commander "^6.0.0"
     glob "^7.0.0"
@@ -16869,10 +16869,10 @@ webpack@^4.43.0:
     watchpack "^1.7.4"
     webpack-sources "^1.4.1"
 
-webpack@^5.10.1:
-  version "5.10.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.10.1.tgz#81d1853d34bef5d6e5bfa119b98a43764b26c100"
-  integrity sha512-mHu4iM2mW7d/8R91VPPNtUCNd1D8k51TTb4e0XjylapIR6WEmW8XUTBZq8TqmShj9XYxVXJn6AzKlWnrlty6DA==
+webpack@^5.10.3:
+  version "5.10.3"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.10.3.tgz#933cbd5e79d62040d988049ff0f515a6dc333006"
+  integrity sha512-KFPEbpNKfNU4t2CDsUZJ7KpuUbzDqGUCZqLmz4667KSUWMc9BuR3a8jpa72Emv7JUbdGwISD9OZjoI9S5BnHig==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.45"
