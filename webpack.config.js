@@ -71,7 +71,7 @@ const webpackPlugins = [
     patterns: [
       {
         from: './public/fonts/*.woff2',
-        to: './css/fonts/[name].[ext]',
+        to: './fonts/[name].[ext]',
         force: true,
       },
     ],
