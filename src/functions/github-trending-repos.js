@@ -10,7 +10,7 @@ exports.handler = async (event, context, callback) => {
   const postsData = await axios.get('https://github.com/trending?spoken_language_code=en')
     .then((response) => {
       const markup = response.data;
-      const rowSelector = 'body > div.application-main > main > div.explore-pjax-container.container-lg.p-responsive.pt-6 > div > div:nth-child(2) > article';
+      const rowSelector = 'body > div.application-main > main > div.position-relative.container-lg.p-responsive.pt-6 > div > div:nth-child(2) > article';
       const linkTitleSelector = 'h1 > a';
       const descriptionSelector = 'p';
       // const languageSelector = 'div.f6.text-gray.mt-2 > span.d-inline-block.ml-0.mr-3';
