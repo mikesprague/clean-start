@@ -62,25 +62,25 @@ const webpackPlugins = [
     patterns: [
       {
         from: './public/images/**/*',
-        to: './images/[name].[ext]',
+        to: './images/[name][ext]',
         force: true,
       },
     ],
   }),
-  new CopyWebpackPlugin({
-    patterns: [
-      {
-        from: './public/fonts/*.woff2',
-        to: './fonts/[name].[ext]',
-        force: true,
-      },
-    ],
-  }),
+  // new CopyWebpackPlugin({
+  //   patterns: [
+  //     {
+  //       from: './public/fonts/*.woff2',
+  //       to: './fonts/[name][ext]',
+  //       force: true,
+  //     },
+  //   ],
+  // }),
   new CopyWebpackPlugin({
     patterns: [
       {
         from: `./public/manifest${buildType === 'extension' ? '' : '-pwa'}.json`,
-        to: './[name].[ext]',
+        to: './[name][ext]',
         force: true,
       },
     ],
