@@ -1658,10 +1658,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@netlify/build@^9.11.3":
-  version "9.11.4"
-  resolved "https://registry.yarnpkg.com/@netlify/build/-/build-9.11.4.tgz#59112f0af194263dccb12047b05892880747f6e5"
-  integrity sha512-Sp29Nh//rNq7mqiTjpFQyfM7Xo/aO6IibYjZMsTX/Jsc4oPDKpFjOa0QJj5zNlQAwX6M0vsQTD/De87s4qvjZw==
+"@netlify/build@^9.11.4":
+  version "9.13.2"
+  resolved "https://registry.yarnpkg.com/@netlify/build/-/build-9.13.2.tgz#a69dc51660f17e321b7a7321b6b77d3cb52536f1"
+  integrity sha512-XhTk7Wm/l+GpE+bw7zZQpPBKV3Jsxjo1k3qCkMO3sWufN+pKmm+Z4DFRLhAKE+Vbev0wMf52HGhXEheroM5M1w==
   dependencies:
     "@bugsnag/js" "^7.0.0"
     "@netlify/cache-utils" "^1.0.7"
@@ -5789,10 +5789,10 @@ css-declaration-sorter@^4.0.1:
     postcss "^7.0.1"
     timsort "^0.3.0"
 
-css-loader@5.1.3:
-  version "5.1.3"
-  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-5.1.3.tgz#87f6fc96816b20debe3cf682f85c7e56a963d0d1"
-  integrity sha512-CoPZvyh8sLiGARK3gqczpfdedbM74klGWurF2CsNZ2lhNaXdLIUks+3Mfax3WBeRuHoglU+m7KG/+7gY6G4aag==
+css-loader@5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-5.2.0.tgz#a9ecda190500863673ce4434033710404efbff00"
+  integrity sha512-MfRo2MjEeLXMlUkeUwN71Vx5oc6EJnx5UQ4Yi9iUtYQvrPtwLUucYptz0hc6n++kdNcyF5olYBS4vPjJDAcLkw==
   dependencies:
     camelcase "^6.2.0"
     cssesc "^3.0.0"
@@ -7143,10 +7143,10 @@ eslint-plugin-react-hooks@4.2.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.2.0.tgz#8c229c268d468956334c943bb45fc860280f5556"
   integrity sha512-623WEiZJqxR7VdxFCKLI6d6LLpwJkGPYKODnkH3D7WpOG5KM8yWueBd8TLsNAetEJNF5iJmolaAKO3F8yzyVBQ==
 
-eslint-plugin-react@7.23.0:
-  version "7.23.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.23.0.tgz#082512fc3538c7a688b24ea2f407cba1e9a7f463"
-  integrity sha512-5rfsRiHKIAdhxv3NxrzE+dBC7BFsNhuErL+Fy940oD1cau55JVTnuL25sqXqD7XY0OkYCRsKEqxZVwezE5ol5w==
+eslint-plugin-react@7.23.1:
+  version "7.23.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.23.1.tgz#f1a2e844c0d1967c822388204a8bc4dee8415b11"
+  integrity sha512-MvFGhZjI8Z4HusajmSw0ougGrq3Gs4vT/0WgwksZgf5RrLrRa2oYAw56okU4tZJl8+j7IYNuTM+2RnFEuTSdRQ==
   dependencies:
     array-includes "^3.1.3"
     array.prototype.flatmap "^1.2.4"
@@ -11794,12 +11794,12 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.0.tgz#0fbdcf3e13fe4994781280524f8b96b0cdff9c61"
   integrity sha512-AO81vsIO1k1sM4Zrd6Hu7regmJN1NSiAja10gc4bX3F0wd+9rQmcuHQaHVQCYIEC8iFXnE+mavh23GOt7wBgug==
 
-netlify-cli@3.13.6:
-  version "3.13.6"
-  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-3.13.6.tgz#0a21c61af532d072f2c50d458c6d69ac696d82f4"
-  integrity sha512-8Pqv+8/X5KxTwgfwtokoUUHbANqtJIwAKTG1uzwnMlCVl9pWcZdMtia7b3UsMAr2tBwJhwh7zuGJ5X9hQCa4Hg==
+netlify-cli@3.13.7:
+  version "3.13.7"
+  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-3.13.7.tgz#968f3d53be21d15a2ee74054226f661cffb0e163"
+  integrity sha512-I5aY4yOi3R5yNzhMy3RK9LG42jD422Eni/iiwv7+As9EpkYYcWXFwPLy7mE1bxE9xtyxkE1zKxKqEqDjLqt2kA==
   dependencies:
-    "@netlify/build" "^9.11.3"
+    "@netlify/build" "^9.11.4"
     "@netlify/config" "^4.2.0"
     "@netlify/framework-info" "^3.2.0"
     "@netlify/plugin-edge-handlers" "^1.11.6"
@@ -17630,10 +17630,10 @@ webpack-sources@^2.1.1:
     source-list-map "^2.0.1"
     source-map "^0.6.1"
 
-webpack@5.27.2:
-  version "5.27.2"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.27.2.tgz#44442219e1469ebe00292703b848580faae03f07"
-  integrity sha512-brNF3N/EdvMzkaZ/Xzb8sqPn5Si3iw6meqCnmNFtcnkorZsFZCBFMa2ElpIMjx6sKWYsnUpBO2dnX+7xgj+mjg==
+webpack@5.28.0:
+  version "5.28.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.28.0.tgz#0de8bcd706186b26da09d4d1e8cbd3e4025a7c2f"
+  integrity sha512-1xllYVmA4dIvRjHzwELgW4KjIU1fW4PEuEnjsylz7k7H5HgPOctIq7W1jrt3sKH9yG5d72//XWzsHhfoWvsQVg==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.46"
