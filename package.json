@@ -71,7 +71,7 @@
     "@babel/preset-react": "7.13.13",
     "@babel/runtime": "7.13.10",
     "@fullhuman/postcss-purgecss": "4.0.3",
-    "@octokit/core": "^3.3.1",
+    "@octokit/core": "^3.3.2",
     "@typescript-eslint/eslint-plugin": "4.20.0",
     "@typescript-eslint/parser": "4.20.0",
     "autoprefixer": "10.2.5",
