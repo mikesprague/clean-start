@@ -1544,7 +1544,7 @@
     unixify "^1.0.0"
     yargs "^15.4.1"
 
-"@netlify/zip-it-and-ship-it@^3.5.0", "@netlify/zip-it-and-ship-it@^3.6.0":
+"@netlify/zip-it-and-ship-it@^3.5.0", "@netlify/zip-it-and-ship-it@^3.6.0", "@netlify/zip-it-and-ship-it@^3.7.0":
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/@netlify/zip-it-and-ship-it/-/zip-it-and-ship-it-3.7.0.tgz#ad936b55444cb8103e57f58d609cd0fe1fcb2b38"
   integrity sha512-WPdJ8UulZxv+Niobjp49v8TO2+7V7Kks+1me4Zl4zuv09z8ZTE2/6b8bOCnB+tysTINrmTfi8ZMweB44gyLFLg==
@@ -11243,10 +11243,10 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.0.tgz#0fbdcf3e13fe4994781280524f8b96b0cdff9c61"
   integrity sha512-AO81vsIO1k1sM4Zrd6Hu7regmJN1NSiAja10gc4bX3F0wd+9rQmcuHQaHVQCYIEC8iFXnE+mavh23GOt7wBgug==
 
-netlify-cli@3.21.4:
-  version "3.21.4"
-  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-3.21.4.tgz#c56d81da15c13195d74883c3854dcce55ecb6b2b"
-  integrity sha512-c7pgFUAkFWtLLv9gD1an1UU6ShhfulZir6OxRsTDxhBGs8lXhRnaF7lOLbfsMZSlJz45+r9wZ+3bABTZiTJAFg==
+netlify-cli@3.21.5:
+  version "3.21.5"
+  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-3.21.5.tgz#2d137a163a1db42b1db837b9f90055a71f25b9ee"
+  integrity sha512-ilBWupjt7lLMVuRMrSgA/dY0VDGbeGJe125FyJt8JbJ++CMXJdBPLSOAkhDoIO3v4aP9Mrw1y4PLEih6v2W6bg==
   dependencies:
     "@netlify/build" "^11.2.2"
     "@netlify/config" "^6.0.2"
@@ -11254,7 +11254,7 @@ netlify-cli@3.21.4:
     "@netlify/plugin-edge-handlers" "^1.11.6"
     "@netlify/plugins-list" "^2.8.0"
     "@netlify/traffic-mesh-agent" "^0.27.10"
-    "@netlify/zip-it-and-ship-it" "^3.6.0"
+    "@netlify/zip-it-and-ship-it" "^3.7.0"
     "@oclif/command" "^1.6.1"
     "@oclif/config" "^1.15.1"
     "@oclif/errors" "^1.3.4"
@@ -12938,10 +12938,10 @@ postcss-values-parser@^1.5.0:
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
-postcss@8.2.10, postcss@^8.1.6, postcss@^8.2.1, postcss@^8.2.10, postcss@^8.2.9:
-  version "8.2.10"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.2.10.tgz#ca7a042aa8aff494b334d0ff3e9e77079f6f702b"
-  integrity sha512-b/h7CPV7QEdrqIxtAf2j31U5ef05uBDuvoXv6L51Q4rcS1jdlXAVKJv+atCFdUXYl9dyTHGyoMzIepwowRJjFw==
+postcss@8.2.12:
+  version "8.2.12"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.2.12.tgz#81248a1a87e0f575cc594a99a08207fd1c4addc4"
+  integrity sha512-BJnGT5+0q2tzvs6oQfnY2NpEJ7rIXNfBnZtQOKCIsweeWXBXeDd5k31UgTdS3d/c02ouspufn37mTaHWkJyzMQ==
   dependencies:
     colorette "^1.2.2"
     nanoid "^3.1.22"
@@ -12974,6 +12974,15 @@ postcss@^7.0.2:
     chalk "^2.4.2"
     source-map "^0.6.1"
     supports-color "^6.1.0"
+
+postcss@^8.1.6, postcss@^8.2.1, postcss@^8.2.10, postcss@^8.2.9:
+  version "8.2.10"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.2.10.tgz#ca7a042aa8aff494b334d0ff3e9e77079f6f702b"
+  integrity sha512-b/h7CPV7QEdrqIxtAf2j31U5ef05uBDuvoXv6L51Q4rcS1jdlXAVKJv+atCFdUXYl9dyTHGyoMzIepwowRJjFw==
+  dependencies:
+    colorette "^1.2.2"
+    nanoid "^3.1.22"
+    source-map "^0.6.1"
 
 precinct@^6.3.1:
   version "6.3.1"
