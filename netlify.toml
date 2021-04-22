@@ -15,13 +15,19 @@
 
 [[redirects]]
   from = "https://clean-start.netlify.com/*"
-  to = "https://cleanst.art/:splat"
+  to = "https://cleanstart.page/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://cleanst.art/*"
+  to = "https://cleanstart.page/:splat"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://my-start.page/*"
-  to = "https://cleanst.art/:splat"
+  to = "https://cleanstart.page/:splat"
   status = 301
   force = true
 

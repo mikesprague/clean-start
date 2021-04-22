@@ -98,11 +98,11 @@ export function isDev () {
 
 export function apiUrl () {
   if (isExtension()) {
-    return 'https://cleanst.art/.netlify/functions';
+    return 'https://cleanstart.page/.netlify/functions';
   }
   if (isDev()) {
     // return 'http://localhost:9000';
-    return 'https://cleanst.art/.netlify/functions';
+    return 'https://cleanstart.page/.netlify/functions';
   }
   return `https://${window.location.hostname}${window.location.port ? ': ${window.location.port}' : ''}/.netlify/functions`;
 }

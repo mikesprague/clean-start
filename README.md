@@ -51,7 +51,7 @@ NOTE: You will need API keys from Dark Sky, Unsplash, and Google Maps to build/r
 
 Demo available as a progressive web app (PWA):
 
-- [https://cleanst.art](https://cleanst.art)
+- [https://cleanstart.page](https://cleanstart.page)
 
 ## Screenshots
 

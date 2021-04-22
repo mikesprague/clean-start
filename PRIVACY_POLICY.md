@@ -22,7 +22,7 @@ For the purposes of this Privacy Policy:
 - **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Clean Start (new tab extension).
 - **Affiliate** means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.
 - **Account** means a unique account created for You to access our Service or parts of our Service.
-- **Website** refers to Clean Start (new tab extension), accessible from https://cleanst.art
+- **Website** refers to Clean Start (new tab extension), accessible from https://cleanstart.page/
 - **Service** refers to the Website.
 - **Country** refers to: New York, United States
 - **Service Provider** means any natural or legal person who processes the data on behalf of the Company. It refers to third-party companies or individuals employed by the Company to facilitate the Service, to provide the Service on behalf of the Company, to perform services related to the Service or to assist the Company in analyzing how the Service is used.
