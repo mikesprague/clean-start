@@ -100,7 +100,7 @@
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.3.1",
     "mini-css-extract-plugin": "1.5.1",
-    "netlify-cli": "3.23.1",
+    "netlify-cli": "3.23.3",
     "netlify-lambda": "2.0.5",
     "node-sass": "5.0.0",
     "postcss": "8.2.13",
@@ -114,7 +114,7 @@
     "style-loader": "2.0.0",
     "terser-webpack-plugin": "5.1.1",
     "typescript": "4.2.4",
-    "webpack": "5.36.0",
+    "webpack": "5.36.1",
     "webpack-cli": "4.6.0",
     "webpack-dev-server": "3.11.2",
     "workbox-webpack-plugin": "6.1.5"
