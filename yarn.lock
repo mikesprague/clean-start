@@ -11183,10 +11183,10 @@ min-document@^2.19.0:
   dependencies:
     dom-walk "^0.1.0"
 
-mini-css-extract-plugin@1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-1.5.1.tgz#c0ac557c48a7de47de3df0768fe037c9cf961f69"
-  integrity sha512-wEpr0XooH6rw/Mlf+9KTJoMBLT3HujzdTrmohPjAzF47N4Q6yAeczQLpRD/WxvAtXvskcXbily7TAdCfi2M4Dg==
+mini-css-extract-plugin@1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-1.6.0.tgz#b4db2525af2624899ed64a23b0016e0036411893"
+  integrity sha512-nPFKI7NSy6uONUo9yn2hIfb9vyYvkFu95qki0e21DQ9uaqNKDP15DGpK0KnV6wDroWxPHtExrdEwx/yDQ8nVRw==
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
@@ -17184,10 +17184,10 @@ webpack-sources@^2.1.1:
     source-list-map "^2.0.1"
     source-map "^0.6.1"
 
-webpack@5.36.1:
-  version "5.36.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.36.1.tgz#d82bad3384f84ed45a8de3844c31730f56361ab7"
-  integrity sha512-2u25a82T+6quAxSlzEpN/R/RICwt20ONU3z3Ko05S8KVH9FXILcBYb2hD/rQtZT5y7lRAIsIIs05pdndY7ourQ==
+webpack@5.36.2:
+  version "5.36.2"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.36.2.tgz#6ef1fb2453ad52faa61e78d486d353d07cca8a0f"
+  integrity sha512-XJumVnnGoH2dV+Pk1VwgY4YT6AiMKpVoudUFCNOXMIVrEKPUgEwdIfWPjIuGLESAiS8EdIHX5+TiJz/5JccmRg==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.47"
