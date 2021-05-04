@@ -4,6 +4,7 @@ exports.handler = async (event, context, callback) => {
   const callbackHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json',
   };
 
   const redditPosts = await axios.get('https://www.reddit.com/r/popular.json?limit=10')

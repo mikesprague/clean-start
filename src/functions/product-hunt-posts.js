@@ -4,6 +4,7 @@ exports.handler = async (event, context, callback) => {
   const callbackHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json',
   };
 
   const postsData = await axios.get('https://www.producthunt.com/feed?category=undefined', {

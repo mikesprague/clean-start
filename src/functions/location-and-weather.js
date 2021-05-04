@@ -5,20 +5,21 @@ exports.handler = async (event, context, callback) => {
   const callbackHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json',
   };
 
   if (!lat) {
     return {
       headers: callbackHeaders,
       statusCode: 400,
-      body: 'Missing "lat" parameter',
+      body: JSON.stringify('Missing "lat" parameter'),
     };
   }
   if (!lng) {
     return {
       headers: callbackHeaders,
       statusCode: 400,
-      body: 'Missing "lng" parameter',
+      body: JSON.stringify('Missing "lng" parameter'),
     };
   }
 
