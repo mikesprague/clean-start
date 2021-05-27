@@ -55,7 +55,7 @@
     "react-dom": "17.0.2",
     "react-hot-loader": "4.13.0",
     "register-service-worker": "1.7.2",
-    "snyk": "1.609.0",
+    "snyk": "1.616.0",
     "tailwindcss": "2.1.2"
   },
   "devDependencies": {
