@@ -1944,29 +1944,27 @@
     micromatch "^4.0.2"
     picomatch "^2.2.1"
 
-"@snyk/fix-pipenv-pipfile@0.3.5":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@snyk/fix-pipenv-pipfile/-/fix-pipenv-pipfile-0.3.5.tgz#762d1d01f5dac95cad0ff39e7205aa09e3d19483"
-  integrity sha512-Kqe9wqUrSSGB0+QFrJjCy5ub7bNg10F5I/avJK95RY/2g9cXpQnkdkTexRmVdOl+IF5z3JBXRjBnIQb6buvp6w==
+"@snyk/fix-pipenv-pipfile@0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@snyk/fix-pipenv-pipfile/-/fix-pipenv-pipfile-0.4.3.tgz#874ba955cdc71306d77fa98ab5bb4b101188f3fb"
+  integrity sha512-dBQaoPmmvc8Dzq/D1z5HKJRI6BgjS5SBSBJs4+NoCpOVTqeoDwP8hG3fC++480kbqlugEaEnHZu4uvA3H9oF7A==
   dependencies:
     bottleneck "2.19.5"
     debug "4.3.1"
+    prettier "^2.3.0"
     source-map-support "^0.5.16"
     tslib "^1.10.0"
 
-"@snyk/fix@1.601.0":
-  version "1.601.0"
-  resolved "https://registry.yarnpkg.com/@snyk/fix/-/fix-1.601.0.tgz#ff16c67e7e5643be16c6ac092d9de1ba162ce7f3"
-  integrity sha512-0Fz0nC547Qkg0FGpmvzDIPrrXvisQN6c07JM0RReM8Xb47p1o51O/MPsWdHIFJasIT5HkshyOaV5rjGQmfwHtQ==
+"@snyk/fix@1.621.0":
+  version "1.621.0"
+  resolved "https://registry.yarnpkg.com/@snyk/fix/-/fix-1.621.0.tgz#bf9c18136033897d949fe4553080a740e2b0dbac"
+  integrity sha512-D4gqCM+AM2Q+Tgo3fE3yvo/02/vmOaXrG4taUsuq4hA1HAb9OjNv8QczSJYWmMbewGvmEGaXc+kTS+ejJuRI1Q==
   dependencies:
     "@snyk/dep-graph" "^1.21.0"
-    "@snyk/fix-pipenv-pipfile" "0.3.5"
-    bottleneck "2.19.5"
+    "@snyk/fix-pipenv-pipfile" "0.4.3"
     chalk "4.1.0"
-    child_process "1.0.2"
     debug "^4.3.1"
     lodash.groupby "4.6.0"
-    lodash.orderby "^4.6.0"
     lodash.sortby "^4.7.0"
     ora "5.4.0"
     p-map "^4.0.0"
@@ -4439,11 +4437,6 @@ child-process@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/child-process/-/child-process-1.0.2.tgz#98974dc7ed1ee4c6229f8e305fa7313a6885a7f2"
   integrity sha1-mJdNx+0e5MYin44wX6cxOmiFp/I=
-
-child_process@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/child_process/-/child_process-1.0.2.tgz#b1f7e7fc73d25e7fd1d455adc94e143830182b5a"
-  integrity sha1-sffn/HPSXn/R1FWtyU4UODAYK1o=
 
 chokidar@^2.1.8:
   version "2.1.8"
@@ -13040,7 +13033,7 @@ prettier-stylelint@0.4.2:
     tempy "^0.2.1"
     update-notifier "^2.2.0"
 
-prettier@2.3.0, prettier@^2.0.0:
+prettier@2.3.0, prettier@^2.0.0, prettier@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.3.0.tgz#b6a5bf1284026ae640f17f7ff5658a7567fc0d18"
   integrity sha512-kXtO4s0Lz/DW/IJ9QdWhAf7/NmPWQXkFr/r/WkR3vyI+0v8amTDxiaQSLzs8NBlytfLWX/7uQUMIW677yLKl4w==
@@ -14869,17 +14862,17 @@ snyk-try-require@^2.0.0:
     lodash.clonedeep "^4.3.0"
     lru-cache "^5.1.1"
 
-snyk@1.620.0:
-  version "1.620.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.620.0.tgz#353f3d729e65e4b8bed7b5af508ea2ac90460505"
-  integrity sha512-fZztU5BlKBk88XXhAFBJb3pZQfkNdbnzYAABnxhj9FVb/bQaTjSIgZlhavNfvXMpP+0CtyBaiApK0FBCnHcj5A==
+snyk@1.621.0:
+  version "1.621.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.621.0.tgz#8bebf9df770443de85e79d7d016366224cd1765f"
+  integrity sha512-kCFbRPseycdoGjqtFyWlQ7PPkgTbW3o1MGwxZxPnFISergf5N7+7zzO/b2gxWtCFi89r0OK2JsLQbgTH7dltbw==
   dependencies:
     "@open-policy-agent/opa-wasm" "^1.2.0"
     "@snyk/cli-interface" "2.11.0"
     "@snyk/cloud-config-parser" "^1.9.2"
     "@snyk/code-client" "3.7.0"
     "@snyk/dep-graph" "^1.27.1"
-    "@snyk/fix" "1.601.0"
+    "@snyk/fix" "1.621.0"
     "@snyk/gemfile" "1.2.0"
     "@snyk/graphlib" "^2.1.9-patch.3"
     "@snyk/inquirer" "^7.3.3-patch"
@@ -15711,10 +15704,10 @@ table@^6.0.9:
     string-width "^4.2.0"
     strip-ansi "^6.0.0"
 
-tailwindcss@2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-2.1.3.tgz#4ae211bd16880df2406afafde457851c299ea783"
-  integrity sha512-434rlH/gVSm0Qhc2pQjvsQeasrcmPWEWSxyDcF66Y+CavOURsdqx3hymqqXlozs+CVWN3z+VpFV/PE9b2wx/GA==
+tailwindcss@2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-2.1.4.tgz#ee8a1b8ccc140db61960b6738f968a8a1c4cd1f8"
+  integrity sha512-fh1KImDLg6se/Suaelju/5oFbqq1b0ntagmGLu0aG9LlnNPGHgO1n/4E57CbKcCtyz/VYnvVXUiWmfyfBBZQ6g==
   dependencies:
     "@fullhuman/postcss-purgecss" "^3.1.3"
     bytes "^3.0.0"
