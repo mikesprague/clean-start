@@ -1839,10 +1839,10 @@
     js-yaml "^3.13.1"
     tslib "^1.10.0"
 
-"@snyk/code-client@3.7.0":
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/@snyk/code-client/-/code-client-3.7.0.tgz#c79684fbb710ca2f2595704eca67560dc9f6d779"
-  integrity sha512-a1uGkSpO4Pr9UucZUVfUR5PVcl1fEA4sXbdZPyzs1AABE7JhMY6FnBYKgQFz2qIkPAPy4M0m18bnGpHq5ZdWNg==
+"@snyk/code-client@3.8.1":
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/@snyk/code-client/-/code-client-3.8.1.tgz#9e109004854ff3a3dd4f0e18a9526e0c4ab8bdaa"
+  integrity sha512-7HrkscxEXC5eVehZ6nip2uIFDbuvCuux0lrj78twaAnVn9uUx/4G7AKZl8JcrESQEN6py80tJzjvPlBybHJ1+g==
   dependencies:
     "@deepcode/dcignore" "^1.0.2"
     "@snyk/fast-glob" "^3.2.6-patch"
@@ -1850,7 +1850,6 @@
     "@types/lodash.chunk" "^4.2.6"
     "@types/lodash.omit" "^4.5.6"
     "@types/lodash.union" "^4.6.6"
-    "@types/multimatch" "^4.0.0"
     "@types/sarif" "^2.1.3"
     "@types/uuid" "^8.3.0"
     axios "^0.21.1"
@@ -2344,13 +2343,6 @@
   integrity sha512-U5icWpv7YnZYGsN4/cmh3WD2onMY0aJIiTE6+51TwJCttdHvtCYmkBNOobHlXwrJRL0nkH9jH4kD+1FAdMN4Tg==
   dependencies:
     "@types/node" "*"
-
-"@types/multimatch@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@types/multimatch/-/multimatch-4.0.0.tgz#e14237ade6cba7b79fe3a1a5d4e9579613cee6b6"
-  integrity sha512-xS26gtqY5QASmfU/6jb5vj7F0D0SctgRGtwXsKSNng1knk/OewjISlkMwGonkMCbZCqSoW3s6nL0sAtTlzbL/g==
-  dependencies:
-    multimatch "*"
 
 "@types/node-fetch@^2.1.6":
   version "2.5.10"
@@ -11032,7 +11024,7 @@ multicast-dns@^6.0.1:
     dns-packet "^1.3.1"
     thunky "^1.0.2"
 
-multimatch@*, multimatch@^5.0.0:
+multimatch@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/multimatch/-/multimatch-5.0.0.tgz#932b800963cea7a31a033328fa1e0c3a1874dbe6"
   integrity sha512-ypMKuglUrZUD99Tk2bUQ+xNQj43lPEfAeX2o9cTteAmShXy2VHDJpuwu1o0xqoKCt9jLVAvwyFKdLTPXKAfJyA==
@@ -14560,10 +14552,10 @@ snyk-module@^3.0.0, snyk-module@^3.1.0:
     debug "^4.1.1"
     hosted-git-info "^4.0.2"
 
-snyk-mvn-plugin@2.26.0:
-  version "2.26.0"
-  resolved "https://registry.yarnpkg.com/snyk-mvn-plugin/-/snyk-mvn-plugin-2.26.0.tgz#a4ce4aecf6b6f20f0b9797f2a7680982fa1fe5b5"
-  integrity sha512-LxYNWXPJxcwbkCK+vE7t437RttEDcbsS2KJJYzFtrr6u7g26c51u9aMHYPCDAEmwjI1A28zSrh7Wp45JW4YOqg==
+snyk-mvn-plugin@2.26.1:
+  version "2.26.1"
+  resolved "https://registry.yarnpkg.com/snyk-mvn-plugin/-/snyk-mvn-plugin-2.26.1.tgz#4ada6a20d4adf8db97d11ee9f7bd6f54d39fc06b"
+  integrity sha512-DCs53aRT/uK2e1jXzeVG2d+Ll0bmY/YHL+jEYaWJko8XwGoVwqCrVOkRyzXd2KOZUk3gpD6MaxIrBWsc8RJzRA==
   dependencies:
     "@snyk/cli-interface" "2.11.0"
     "@snyk/dep-graph" "^1.23.1"
@@ -14745,15 +14737,15 @@ snyk-try-require@^2.0.0:
     lodash.clonedeep "^4.3.0"
     lru-cache "^5.1.1"
 
-snyk@1.624.0:
-  version "1.624.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.624.0.tgz#c9c16100eb0711dea28f49a8f00a660a48494c87"
-  integrity sha512-siLr5d8P835r3A8FC5Cd6xEhgwXk6y3cEsukwxA/H0DCl/6PO4xbw/FqJhxYc3ukZhS2TRamQu1JwZ7RrQ2EKg==
+snyk@1.628.0:
+  version "1.628.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.628.0.tgz#b49889380232760832e87364d9cdc56f0309d8b5"
+  integrity sha512-vPg4Q1z/gqCgJZGv6V6Q/Jb9wBlqHt55/KBNtrjv9vOhMquM/tBtFpw2G0l8O4enR7VRxuQhiQ5MCkILIr6Oyw==
   dependencies:
     "@open-policy-agent/opa-wasm" "^1.2.0"
     "@snyk/cli-interface" "2.11.0"
     "@snyk/cloud-config-parser" "^1.9.2"
-    "@snyk/code-client" "3.7.0"
+    "@snyk/code-client" "3.8.1"
     "@snyk/dep-graph" "^1.27.1"
     "@snyk/fix" "1.620.0"
     "@snyk/gemfile" "1.2.0"
@@ -14802,7 +14794,7 @@ snyk@1.624.0:
     snyk-go-plugin "1.17.0"
     snyk-gradle-plugin "3.16.0"
     snyk-module "3.1.0"
-    snyk-mvn-plugin "2.26.0"
+    snyk-mvn-plugin "2.26.1"
     snyk-nodejs-lockfile-parser "1.35.0"
     snyk-nuget-plugin "1.21.1"
     snyk-php-plugin "1.9.2"
