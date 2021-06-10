@@ -14739,10 +14739,10 @@ snyk-try-require@^2.0.0:
     lodash.clonedeep "^4.3.0"
     lru-cache "^5.1.1"
 
-snyk@1.623.0:
-  version "1.623.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.623.0.tgz#a1edea4466879d99d3c321b738f7ddd3bedeced3"
-  integrity sha512-GV8c+80qFLuaJeu0eFnoNQpNftRghO4QAtXcYJemHNp2+EP9c1ouUlq3eamUJVpqUeo6/J/R51N8uXlwNOdwoQ==
+snyk@1.624.0:
+  version "1.624.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.624.0.tgz#c9c16100eb0711dea28f49a8f00a660a48494c87"
+  integrity sha512-siLr5d8P835r3A8FC5Cd6xEhgwXk6y3cEsukwxA/H0DCl/6PO4xbw/FqJhxYc3ukZhS2TRamQu1JwZ7RrQ2EKg==
   dependencies:
     "@open-policy-agent/opa-wasm" "^1.2.0"
     "@snyk/cli-interface" "2.11.0"
@@ -14809,9 +14809,9 @@ snyk@1.623.0:
     source-map-support "^0.5.11"
     strip-ansi "^5.2.0"
     tar "^6.1.0"
-    tempfile "^2.0.0"
+    tempy "^1.0.1"
     update-notifier "^5.1.0"
-    uuid "^3.3.2"
+    uuid "^8.3.2"
     wrap-ansi "^5.1.0"
     yaml "^1.10.2"
 
@@ -15682,14 +15682,6 @@ temp-write@^3.3.0:
     temp-dir "^1.0.0"
     uuid "^3.0.1"
 
-tempfile@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/tempfile/-/tempfile-2.0.0.tgz#6b0446856a9b1114d1856ffcbe509cccb0977265"
-  integrity sha1-awRGhWqbERTRhW/8vlCczLCXcmU=
-  dependencies:
-    temp-dir "^1.0.0"
-    uuid "^3.0.1"
-
 tempy@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/tempy/-/tempy-0.2.1.tgz#9038e4dbd1c201b74472214179bc2c6f7776e54c"
@@ -15708,7 +15700,7 @@ tempy@^0.6.0:
     type-fest "^0.16.0"
     unique-string "^2.0.0"
 
-tempy@^1.0.0:
+tempy@^1.0.0, tempy@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tempy/-/tempy-1.0.1.tgz#30fe901fd869cfb36ee2bd999805aa72fbb035de"
   integrity sha512-biM9brNqxSc04Ee71hzFbryD11nX7VPhQQY32AdDmjFvodsRFz/3ufeoTZ6uYkRFfGo188tENcASNs3vTdsM0w==
