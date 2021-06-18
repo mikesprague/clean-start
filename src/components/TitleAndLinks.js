@@ -19,16 +19,6 @@ const TitleAndLinks = (props) => {
           <FontAwesomeIcon icon={["fab", "chrome"]} fixedWidth />
         </a>
       </Tippy>
-      <Tippy content="Install via Firefox Add-ons" placement="left">
-        <a href="https://addons.mozilla.org/en-US/firefox/addon/clean-start/" target="_blank" rel="noopener">
-          <FontAwesomeIcon icon={["fab", "firefox-browser"]} fixedWidth />
-        </a>
-      </Tippy>
-      <Tippy content="Install via Edge Add-ons" placement="left">
-        <a href="https://microsoftedge.microsoft.com/addons/detail/clean-start/aifahnhgmoaeckhcdnhdnoamjnkeppjf" target="_blank" rel="noopener">
-          <FontAwesomeIcon icon={["fab", "edge"]} fixedWidth />
-        </a>
-      </Tippy>
     </h2>
   );
 
