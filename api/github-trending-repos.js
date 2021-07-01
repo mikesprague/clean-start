@@ -1,13 +1,7 @@
 const axios = require('axios').default;
 const cheerio = require('cheerio');
 
-exports.handler = async (event, context, callback) => {
-  const callbackHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json',
-  };
-
+module.exports = async (req, res) => {
   const postsData = await axios
     .get('https://github.com/trending?spoken_language_code=en')
     .then((response) => {
@@ -76,15 +70,7 @@ exports.handler = async (event, context, callback) => {
     })
     .catch((error) => {
       console.error(error);
-      return {
-        headers: callbackHeaders,
-        statusCode: 500,
-        body: JSON.stringify(error),
-      };
+      res.status(500).json(error);
     });
-  return {
-    headers: callbackHeaders,
-    statusCode: 200,
-    body: JSON.stringify(postsData),
-  };
+  res.status(200).json(postsData);
 };

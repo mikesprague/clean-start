@@ -1,15 +1,9 @@
 const axios = require('axios').default;
 
-exports.handler = async (event, context, callback) => {
+module.exports = async (req, res) => {
   const {
     UNSPLASH_ACCESS_KEY,
   } = process.env;
-
-  const callbackHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json',
-  };
 
   const unsplashCollectionsArray = [
     327760, // nature
@@ -74,21 +68,15 @@ exports.handler = async (event, context, callback) => {
   };
 
   const imageData = await axios.get(unsplashApiurl)
-    .then((response) => {
-      return response;
-    }).catch((error) => {
+    .then((response) => response.data).catch((error) => {
       console.error(error);
-      return {
-        headers: callbackHeaders,
-        statusCode: 500,
-        body: JSON.stringify(error),
-      };
+      res.status(500).json(error);
     });
 
-  const returnData = normalizeImageData(imageData.data);
-  return {
-    headers: callbackHeaders,
-    statusCode: 200,
-    body: JSON.stringify(returnData),
-  };
+  const returnData = normalizeImageData(imageData);
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=600');
+  // res.setHeader('Access-Control-Allow-Origin', '*');
+  // res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  // res.setHeader('Content-Type', 'application/json');
+  res.status(200).json(returnData);
 };

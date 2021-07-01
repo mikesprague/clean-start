@@ -121,8 +121,8 @@ module.exports = {
     contentBase: path.join(__dirname, 'public/'),
     hotOnly: true,
     open: true,
-    port: 3000,
-    publicPath: 'http://localhost:3000/',
+    port: 8888,
+    publicPath: 'http://localhost:8888/',
     stats: 'minimal',
   },
   module: {

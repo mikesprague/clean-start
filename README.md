@@ -2,7 +2,7 @@
 
 Open source new tab extension
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/3650a376-408f-4155-8227-7bb418b3574f/deploy-status)](https://app.netlify.com/sites/clean-start/deploys)
+[![Vercel Deployment Status](https://img.shields.io/github/deployments/mikesprague/clean-start/production?label=Vercel%20%28build%20%26%20deploy%29&logo=Vercel&logoColor=white)](https://vercel.com/m5ls5e/clean-start/deployments)
 [![Known Vulnerabilities](https://snyk.io/test/github/mikesprague/clean-start/badge.svg?targetFile=package.json)](https://snyk.io/test/github/mikesprague/clean-start?targetFile=package.json)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmikesprague%2Fclean-start.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmikesprague%2Fclean-start?ref=badge_shield)
 

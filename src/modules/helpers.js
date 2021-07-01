@@ -98,13 +98,12 @@ export function isDev () {
 
 export function apiUrl () {
   if (isExtension()) {
-    return 'https://cleanstart.page/.netlify/functions';
+    return 'https://cleanstart.page/api';
   }
   if (isDev()) {
-    // return 'http://localhost:9000';
-    return 'https://cleanstart.page/.netlify/functions';
+    return 'http://localhost:3000';
   }
-  return `https://${window.location.hostname}${window.location.port ? ': ${window.location.port}' : ''}/.netlify/functions`;
+  return `https://${window.location.hostname}/api`;
 }
 
 export function handleError(error) {

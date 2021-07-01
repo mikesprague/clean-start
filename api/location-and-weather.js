@@ -1,26 +1,15 @@
 const axios = require('axios').default;
 
-exports.handler = async (event, context, callback) => {
-  const { lat, lng } = event.queryStringParameters;
-  const callbackHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json',
-  };
+module.exports = async (req, res) => {
+  const { lat, lng } = req.query || null;
 
   if (!lat) {
-    return {
-      headers: callbackHeaders,
-      statusCode: 400,
-      body: JSON.stringify('Missing "lat" parameter'),
-    };
+    res.status(400).json('Missing "lat" parameter');
+    return;
   }
   if (!lng) {
-    return {
-      headers: callbackHeaders,
-      statusCode: 400,
-      body: JSON.stringify('Missing "lng" parameter'),
-    };
+    res.status(400).json('Missing "lng" parameter');
+    return;
   }
 
   const {
@@ -29,7 +18,7 @@ exports.handler = async (event, context, callback) => {
     // OPEN_WEATHERMAP_API_KEI,
   } = process.env;
 
-  const units = event.queryStringParameters.units || 'auto';
+  const units = req.query.units || 'auto';
   const geocodeApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_MAPS_API_KEY}`;
   const weatherApiUrl = `https://api.darksky.net/forecast/${DARK_SKY_API_KEY}/${lat},${lng}/?units=${units}`;
   // const openWeatherMapApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&&units=${units}&appid=${OPEN_WEATHERMAP_API_KEI}`;
@@ -64,12 +53,8 @@ exports.handler = async (event, context, callback) => {
       return locationData;
     })
     .catch((err) => {
-      console.log(err);
-      return {
-        headers: callbackHeaders,
-        statusCode: 500,
-        body: JSON.stringify(err),
-      };
+      console.error(err);
+      res.status(500).json(err);
     });
 
   const weatherPromise = await axios.get(weatherApiUrl)
@@ -80,19 +65,13 @@ exports.handler = async (event, context, callback) => {
       return weatherData;
     })
     .catch((err) => {
-      return {
-        headers: callbackHeaders,
-        statusCode: 500,
-        body: JSON.stringify(err),
-      };
+      console.error(err);
+      res.status(500).json(err);
     });
 
-  return {
-    headers: callbackHeaders,
-    statusCode: 200,
-    body: JSON.stringify({
-      location: geocodePromise.location,
-      weather: weatherPromise.weather,
-    }),
-  };
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=300');
+  res.status(200).json({
+    location: geocodePromise.location,
+    weather: weatherPromise.weather,
+  });
 };
