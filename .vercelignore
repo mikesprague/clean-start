@@ -4,3 +4,4 @@ LICENSE
 jsconfig.json
 .clean-start.code-workspace
 .env
+netlify.toml
