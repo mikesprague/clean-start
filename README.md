@@ -66,7 +66,7 @@ New screenshots coming
 
 ## Uses
 
-- Front-end Hosting and Serveless Functions for API - [Vercel](https://vercel.com)
+- PWA Hosting and Serveless Functions for API - [Vercel](https://vercel.com)
 - JavaScript Library - [React](https://reactjs.org/)
 - Icons - [FontAwesome](https://fontawesome.com/)
 - Font ([Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab)) - [Google Fonts](https://fonts.google.com/)
