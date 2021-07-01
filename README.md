@@ -45,7 +45,7 @@ Open source new tab extension
   - This will create a `build` folder with the extension files and an `clean-start-extension.zip` file for submitting
 - Run/develop locally `yarn start`
 
-NOTE: You will need API keys from Dark Sky, Unsplash, and Google Maps to build/run the Netlify functions this extension uses without modification
+NOTE: You will need API keys from Dark Sky, Unsplash, and Google Maps to build/run the API functions this extension uses without modification
 
 ## Demo
 
@@ -66,8 +66,7 @@ New screenshots coming
 
 ## Uses
 
-- Demo hosting - [Netlify](https://www.netlify.com)
-- Serveless functions used for backend API - [Netlify Functions](https://www.netlify.com/products/functions/)
+- Front-end Hosting and Serveless Functions for API - [Vercel](https://vercel.com)
 - JavaScript Library - [React](https://reactjs.org/)
 - Icons - [FontAwesome](https://fontawesome.com/)
 - Font ([Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab)) - [Google Fonts](https://fonts.google.com/)
