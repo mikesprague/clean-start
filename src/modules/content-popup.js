@@ -1,22 +1,20 @@
-import axios from 'axios';
 import { nanoid } from 'nanoid';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { apiUrl } from './helpers';
 
 export const handleReddit = (apiData) => {
   let idx = 0;
   const markup = apiData.map(post => {
     const listItemMarkup = (
       <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
-        <a href={`${getPopupInfo('reddit').url}${post.permalink}`} target="_blank" rel="noopener">
+        <a href={`${exports.getPopupInfo('reddit').url}${post.permalink}`} target="_blank" rel="noopener noreferrer">
           <strong>{post.title}</strong>
         </a>
         <br />
         <small>
-          <a href={`${getPopupInfo('reddit').url}${post.subreddit}`} target="_blank" rel="noopener">/r/{post.subreddit}</a>
+          <a href={`${exports.getPopupInfo('reddit').url}${post.subreddit}`} target="_blank" rel="noopener noreferrer">/r/{post.subreddit}</a>
           &nbsp;&nbsp;
-          <a href={`${getPopupInfo('reddit').url}${post.author}`} target="_blank" rel="noopener">
+          <a href={`${exports.getPopupInfo('reddit').url}${post.author}`} target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon="user" fixedWidth /> {post.author}
           </a>
         </small>
@@ -34,7 +32,7 @@ export const handleProductHunt = (apiData) => {
   const markup = apiData.map(post => {
     const listItemMarkup = (
       <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
-        <a href={`${post.link}`} target="_blank" rel="noopener">
+        <a href={`${post.link}`} target="_blank" rel="noopener noreferrer">
           <strong>{post.title}</strong>
         </a>
         <br />
@@ -54,7 +52,7 @@ export const handleHackerNews = (apiData) => {
   const markup = apiData.map(post => {
     const listItemMarkup = (
       <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
-        <a href={`${post.link}`} target="_blank" rel="noopener">
+        <a href={`${post.link}`} target="_blank" rel="noopener noreferrer">
           <strong>{post.title}</strong>
         </a>
         <br />
@@ -75,7 +73,7 @@ export const handleDevTo = (apiData) => {
   const markup = apiData.map(post => {
     const listItemMarkup = (
       <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
-        <a href={`${post.link}`} target="_blank" rel="noopener">
+        <a href={`${post.link}`} target="_blank" rel="noopener noreferrer">
           <strong>{post.title}</strong>
         </a>
         <br />
@@ -110,24 +108,24 @@ export const handleGitHub = (apiData) => {
     const styles = languageStyle ? { 'backgroundColor': languageStyle.replace('background-color: ', '')} : '';
     // console.log(styles);
     const languageMarkup = languageName ? (
-      <Fragment>
-        <span className="repo-language-color" style={styles}></span>
+      <>
+        <span className="repo-language-color" style={styles} />
         {languageName} &nbsp;&nbsp;
-      </Fragment>
+      </>
      ) : '';
     const starsMarkup = stars.trim().length ? (
-      <Fragment>
-        <a href={starsLink} target="_blank" rel="noopener"><FontAwesomeIcon icon="star" />{repo.stars}</a> &nbsp;&nbsp;
-      </Fragment>
+      <>
+        <a href={starsLink} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon="star" />{repo.stars}</a> &nbsp;&nbsp;
+      </>
      ) : '';
     const forksMarkup = forks.trim().length ? (
-      <Fragment>
+      <>
         <a href={forksLink}><FontAwesomeIcon icon="share-alt" rotate={270} /> {repo.forks}</a>
-      </Fragment>
+      </>
      ) : '';
     const listItemMarkup = (
       <li key={nanoid(8)} className={`list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''} text-white`}>
-        <a href={link} target="_blank" rel="noopener">
+        <a href={link} target="_blank" rel="noopener noreferrer">
           <strong>{title}</strong>
         </a>
         <br />
