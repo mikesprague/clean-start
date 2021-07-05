@@ -1,158 +1,6 @@
-import axios from 'axios';
 import { nanoid } from 'nanoid';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { apiUrl } from './helpers';
-
-export const handleReddit = (apiData) => {
-  let idx = 0;
-  const markup = apiData.map(post => {
-    const listItemMarkup = (
-      <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
-        <a href={`${getPopupInfo('reddit').url}${post.permalink}`} target="_blank" rel="noopener">
-          <strong>{post.title}</strong>
-        </a>
-        <br />
-        <small>
-          <a href={`${getPopupInfo('reddit').url}${post.subreddit}`} target="_blank" rel="noopener">/r/{post.subreddit}</a>
-          &nbsp;&nbsp;
-          <a href={`${getPopupInfo('reddit').url}${post.author}`} target="_blank" rel="noopener">
-            <FontAwesomeIcon icon="user" fixedWidth /> {post.author}
-          </a>
-        </small>
-      </li>
-    );
-    idx += 1;
-    return listItemMarkup;
-  });
-  return markup;
-};
-
-export const handleProductHunt = (apiData) => {
-  let idx = 0;
-  // console.log(apiData);
-  const markup = apiData.map(post => {
-    const listItemMarkup = (
-      <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
-        <a href={`${post.link}`} target="_blank" rel="noopener">
-          <strong>{post.title}</strong>
-        </a>
-        <br />
-        <small>
-          <FontAwesomeIcon icon="calendar" fixedWidth /> {post.published}
-        </small>
-      </li>
-    );
-    idx += 1;
-    return listItemMarkup;
-  });
-  return markup;
-};
-
-export const handleHackerNews = (apiData) => {
-  let idx = 0;
-  const markup = apiData.map(post => {
-    const listItemMarkup = (
-      <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
-        <a href={`${post.link}`} target="_blank" rel="noopener">
-          <strong>{post.title}</strong>
-        </a>
-        <br />
-        <small>
-          <FontAwesomeIcon icon="calendar" fixedWidth /> {post.pubDate}
-        </small>
-      </li>
-    );
-    idx += 1;
-    return listItemMarkup;
-  });
-  return markup;
-};
-
-export const handleDevTo = (apiData) => {
-  // console.log(apiData);
-  let idx = 0;
-  const markup = apiData.map(post => {
-    const listItemMarkup = (
-      <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
-        <a href={`${post.link}`} target="_blank" rel="noopener">
-          <strong>{post.title}</strong>
-        </a>
-        <br />
-        <small>
-          <FontAwesomeIcon icon="user" fixedWidth /> {post.author}
-          <br />
-          <FontAwesomeIcon icon="calendar" fixedWidth /> {post.pubDate}
-        </small>
-      </li>
-    );
-    idx += 1;
-    return listItemMarkup;
-  });
-  return markup;
-};
-
-export const handleGitHub = (apiData) => {
-  let idx = 0;
-  const reposMarkup = apiData.map(repo => {
-    const {
-      title,
-      description,
-      stars,
-      starsLink,
-      forks,
-      forksLink,
-      starsToday,
-      languageStyle,
-      languageName,
-      link,
-    } = repo;
-    const styles = languageStyle ? { 'backgroundColor': languageStyle.replace('background-color: ', '')} : '';
-    // console.log(styles);
-    const languageMarkup = languageName ? (
-      <Fragment>
-        <span className="repo-language-color" style={styles}></span>
-        {languageName} &nbsp;&nbsp;
-      </Fragment>
-     ) : '';
-    const starsMarkup = stars.trim().length ? (
-      <Fragment>
-        <a href={starsLink} target="_blank" rel="noopener"><FontAwesomeIcon icon="star" />{repo.stars}</a> &nbsp;&nbsp;
-      </Fragment>
-     ) : '';
-    const forksMarkup = forks.trim().length ? (
-      <Fragment>
-        <a href={forksLink}><FontAwesomeIcon icon="share-alt" rotate={270} /> {repo.forks}</a>
-      </Fragment>
-     ) : '';
-    const listItemMarkup = (
-      <li key={nanoid(8)} className={`list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''} text-white`}>
-        <a href={link} target="_blank" rel="noopener">
-          <strong>{title}</strong>
-        </a>
-        <br />
-        {description}
-        <div className="flex">
-          <div className="w-1/2 text-left">
-            <small>
-              {languageMarkup}
-              {starsMarkup}
-              {forksMarkup}
-            </small>
-          </div>
-          <div className="w-1/2 text-right">
-            <small>
-              <FontAwesomeIcon icon="star" /> {starsToday}
-            </small>
-          </div>
-        </div>
-      </li>
-    );
-    idx += 1;
-    return listItemMarkup;
-  });
-  return reposMarkup;
-};
 
 export const getPopupInfo = (type) => {
   const infoMap = {
@@ -198,4 +46,154 @@ export const getPopupInfo = (type) => {
     },
   };
   return infoMap[type];
+};
+
+export const handleReddit = (apiData) => {
+  let idx = 0;
+  const markup = apiData.map(post => {
+    const listItemMarkup = (
+      <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
+        <a href={`${getPopupInfo('reddit').url}${post.permalink}`} target="_blank" rel="noopener noreferrer">
+          <strong>{post.title}</strong>
+        </a>
+        <br />
+        <small>
+          <a href={`${getPopupInfo('reddit').url}${post.subreddit}`} target="_blank" rel="noopener noreferrer">/r/{post.subreddit}</a>
+          &nbsp;&nbsp;
+          <a href={`${getPopupInfo('reddit').url}${post.author}`} target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon="user" fixedWidth /> {post.author}
+          </a>
+        </small>
+      </li>
+    );
+    idx += 1;
+    return listItemMarkup;
+  });
+  return markup;
+};
+
+export const handleProductHunt = (apiData) => {
+  let idx = 0;
+  // console.log(apiData);
+  const markup = apiData.map(post => {
+    const listItemMarkup = (
+      <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
+        <a href={`${post.link}`} target="_blank" rel="noopener noreferrer">
+          <strong>{post.title}</strong>
+        </a>
+        <br />
+        <small>
+          <FontAwesomeIcon icon="calendar" fixedWidth /> {post.published}
+        </small>
+      </li>
+    );
+    idx += 1;
+    return listItemMarkup;
+  });
+  return markup;
+};
+
+export const handleHackerNews = (apiData) => {
+  let idx = 0;
+  const markup = apiData.map(post => {
+    const listItemMarkup = (
+      <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
+        <a href={`${post.link}`} target="_blank" rel="noopener noreferrer">
+          <strong>{post.title}</strong>
+        </a>
+        <br />
+        <small>
+          <FontAwesomeIcon icon="calendar" fixedWidth /> {post.pubDate}
+        </small>
+      </li>
+    );
+    idx += 1;
+    return listItemMarkup;
+  });
+  return markup;
+};
+
+export const handleDevTo = (apiData) => {
+  // console.log(apiData);
+  let idx = 0;
+  const markup = apiData.map(post => {
+    const listItemMarkup = (
+      <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
+        <a href={`${post.link}`} target="_blank" rel="noopener noreferrer">
+          <strong>{post.title}</strong>
+        </a>
+        <br />
+        <small>
+          <FontAwesomeIcon icon="user" fixedWidth /> {post.author}
+          <br />
+          <FontAwesomeIcon icon="calendar" fixedWidth /> {post.pubDate}
+        </small>
+      </li>
+    );
+    idx += 1;
+    return listItemMarkup;
+  });
+  return markup;
+};
+
+export const handleGitHub = (apiData) => {
+  let idx = 0;
+  const reposMarkup = apiData.map(repo => {
+    const {
+      title,
+      description,
+      stars,
+      starsLink,
+      forks,
+      forksLink,
+      starsToday,
+      languageStyle,
+      languageName,
+      link,
+    } = repo;
+    const styles = languageStyle ? { 'backgroundColor': languageStyle.replace('background-color: ', '')} : '';
+    // console.log(styles);
+    const languageMarkup = languageName ? (
+      <>
+        <span className="repo-language-color" style={styles} />
+        {languageName} &nbsp;&nbsp;
+      </>
+     ) : '';
+    const starsMarkup = stars.trim().length ? (
+      <>
+        <a href={starsLink} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon="star" />{repo.stars}</a> &nbsp;&nbsp;
+      </>
+     ) : '';
+    const forksMarkup = forks.trim().length ? (
+      <>
+        <a href={forksLink}><FontAwesomeIcon icon="share-alt" rotate={270} /> {repo.forks}</a>
+      </>
+     ) : '';
+    const listItemMarkup = (
+      <li key={nanoid(8)} className={`list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''} text-white`}>
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          <strong>{title}</strong>
+        </a>
+        <br />
+        {description}
+        <div className="flex">
+          <div className="w-1/2 text-left">
+            <small>
+              {languageMarkup}
+              {starsMarkup}
+              {forksMarkup}
+            </small>
+          </div>
+          <div className="w-1/2 text-right">
+            <small>
+              <FontAwesomeIcon icon="star" /> {starsToday}
+            </small>
+          </div>
+        </div>
+      </li>
+    );
+    idx += 1;
+    return listItemMarkup;
+  });
+  return reposMarkup;
 };
