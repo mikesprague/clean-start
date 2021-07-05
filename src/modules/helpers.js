@@ -101,7 +101,7 @@ export function apiUrl () {
     return 'https://cleanstart.page/api';
   }
   if (isDev()) {
-    return 'http://localhost:3000';
+    return 'http://localhost:3000/api';
   }
   return `https://${window.location.hostname}/api`;
 }
