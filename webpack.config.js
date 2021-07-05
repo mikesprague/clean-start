@@ -93,6 +93,7 @@ const webpackPlugins = [
   new WorkboxPlugin.GenerateSW({
     cleanupOutdatedCaches: true,
     clientsClaim: true,
+    exclude: [/chrome-extension:\/\//],
     skipWaiting: true,
   }),
   new CompressionPlugin(),
