@@ -1,22 +1,22 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import dompurify from 'dompurify';
-import he from 'he';
 import { nanoid } from 'nanoid';
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import { apiUrl } from '../modules/helpers';
-import { getPopupInfo, handleDevTo, handleGitHub, handleHackerNews, handleProductHunt, handleReddit } from '../modules/content-popup';
+import {
+  getPopupInfo, handleDevTo, handleGitHub, handleHackerNews, handleProductHunt, handleReddit
+} from '../modules/content-popup';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import './ContentPopup.scss';
 
-const ContentPopup = (props) => {
-  const [data, setData] = useLocalStorage(`${props.type}Data`, null);
+const ContentPopup = ({ type }) => {
+  const [data, setData] = useLocalStorage(`${type}Data`, null);
   useEffect(() => {
-    switch (props.type) {
-      case 'dev-to':
+    switch (type) {
+      case 'dev-to': {
         const getDevToPosts = async (devToUrl = `${apiUrl()}/dev-to-posts`) => {
           const devToData = await axios.get(devToUrl)
             .then(response => {
@@ -57,10 +57,11 @@ const ContentPopup = (props) => {
           getDevToPosts();
         }
         break;
-      case 'github':
+      }
+      case 'github': {
         const getTrendingRepos = async (dataUrl = `${apiUrl()}/github-trending-repos`) => {
           const returnData = [];
-          const pageData = await axios.get(dataUrl)
+          await axios.get(dataUrl)
             .then(response => {
               // limit to 10 items
               for (let i = 0; i < 10; i+=1) {
@@ -81,7 +82,8 @@ const ContentPopup = (props) => {
           getTrendingRepos();
         }
         break;
-      case 'hacker-news':
+      }
+      case 'hacker-news': {
         const getHackerNewsPosts = async (hackerNewsUrl = `${apiUrl()}/hacker-news-posts`) => {
           const hackerNewsData = await axios.get(hackerNewsUrl)
           .then(response => {
@@ -120,7 +122,8 @@ const ContentPopup = (props) => {
           getHackerNewsPosts();
         }
         break;
-      case 'product-hunt':
+      }
+      case 'product-hunt': {
         const getProductHuntPosts = async (productHuntRssUrl = `${apiUrl()}/product-hunt-posts`) => {
           const productHuntData = await axios.get(productHuntRssUrl)
           .then(response => {
@@ -161,7 +164,8 @@ const ContentPopup = (props) => {
           getProductHuntPosts();
         }
         break;
-      case 'reddit':
+      }
+      case 'reddit': {
         const getRedditPosts = async (redditPostsApiUrl = `${apiUrl()}/reddit-posts`) => {
           const returnData = await axios
             .get(redditPostsApiUrl)
@@ -180,16 +184,18 @@ const ContentPopup = (props) => {
           getRedditPosts();
         }
         break;
-      default:
+      }
+      default: {
         break;
+      }
     };
-  }, []);
+  }, [data, setData, type]);
 
   const [postsMarkup, setPostsMarkup] = useState(null);
   useEffect(() => {
     let markup = null;
     if (data && data.data) {
-      switch (props.type) {
+      switch (type) {
         case 'dev-to':
           markup = handleDevTo(data.data);
           setPostsMarkup(markup);
@@ -215,40 +221,38 @@ const ContentPopup = (props) => {
       };
     }
     // return () => {};
-  }, [data]);
+  }, [type, data]);
 
   const [fullMarkup, setFullMarkup] = useState(null);
   useEffect(() => {
-    const buildPopup = () => {
-      return (
+    const buildPopup = () => (
         <ul className="list-group posts-container">
           <li key={nanoid(8)} className="list-group-item list-group-item-heading">
             <h5 className="text-xl font-medium">
-              <FontAwesomeIcon icon={["fab", `${getPopupInfo(props.type).icon}`]} fixedWidth /> {getPopupInfo(props.type).title}
+              <FontAwesomeIcon icon={['fab', `${getPopupInfo(type).icon}`]} fixedWidth /> {getPopupInfo(type).title}
               &nbsp;&nbsp;
               <small className="font-thin">
-                <a href={getPopupInfo(props.type).pageLink} title={`View on ${getPopupInfo(props.type).title}`} target="_blank" rel="noopener">
-                  <FontAwesomeIcon icon="external-link-alt" fixedWidth /> View on {getPopupInfo(props.type).siteName}
+                <a href={getPopupInfo(type).pageLink} title={`View on ${getPopupInfo(type).title}`} target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon="external-link-alt" fixedWidth /> View on {getPopupInfo(type).siteName}
                 </a>
               </small>
             </h5>
           </li>
           {postsMarkup}
         </ul>
-      );
-    };
+    );
     const markup = buildPopup();
     setFullMarkup(markup);
 
     // return () => {};
-  }, [postsMarkup]);
+  }, [type, postsMarkup]);
 
   return (
     <Tippy interactive={true} maxWidth="none" trigger="click" content={fullMarkup}>
-      <Tippy placement="left" content={getPopupInfo(props.type).title}>
-        <div className={`${props.type}-popup inline-block`}>
+      <Tippy placement="left" content={getPopupInfo(type).title}>
+        <div className={`${type}-popup inline-block`}>
           <FontAwesomeIcon
-            icon={["fab", `${getPopupInfo(props.type).icon}`]}
+            icon={['fab', `${getPopupInfo(type).icon}`]}
             className="content-popup-icon"
             fixedWidth
           />
@@ -256,6 +260,11 @@ const ContentPopup = (props) => {
       </Tippy>
     </Tippy>
   );
+};
+
+ContentPopup.displayName = 'ContentPopup';
+ContentPopup.propTypes = {
+  type: PropTypes.string.isRequired,
 };
 
 export default ContentPopup;
