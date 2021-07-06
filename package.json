@@ -46,7 +46,7 @@
     "axios": "0.21.1",
     "cheerio": "1.0.0-rc.10",
     "dayjs": "1.10.6",
-    "dompurify": "2.2.9",
+    "dompurify": "2.3.0",
     "he": "1.2.0",
     "nanoid": "3.1.23",
     "prop-types": "^15.7.2",
@@ -54,7 +54,7 @@
     "react-dom": "17.0.2",
     "react-hot-loader": "4.13.0",
     "register-service-worker": "1.7.2",
-    "snyk": "1.654.0",
+    "snyk": "1.655.0",
     "tailwindcss": "2.2.4"
   },
   "devDependencies": {
