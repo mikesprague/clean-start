@@ -1,5 +1,4 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
 import BackgroundImage from './BackgroundImage';
 import Clock from './Clock';
 import ContentPopup from './ContentPopup';
@@ -42,4 +41,4 @@ const App = () => (
   </>
 );
 
-export default hot(App);
+export default App;

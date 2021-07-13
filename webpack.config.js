@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
@@ -97,7 +96,6 @@ const webpackPlugins = [
     skipWaiting: true,
   }),
   new CompressionPlugin(),
-  new webpack.HotModuleReplacementPlugin()
 ];
 
 module.exports = {
@@ -107,9 +105,6 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     extensions: ['*', '.js', '.jsx'],
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
   },
   output: {
     filename: './js/[name].js',
@@ -118,14 +113,6 @@ module.exports = {
     publicPath: '/',
   },
   mode,
-  devServer: {
-    contentBase: path.join(__dirname, 'public/'),
-    hotOnly: true,
-    open: true,
-    port: 8888,
-    publicPath: 'http://localhost:8888/',
-    stats: 'minimal',
-  },
   module: {
     rules: webpackRules,
   },
