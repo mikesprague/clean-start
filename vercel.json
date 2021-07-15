@@ -33,7 +33,7 @@
         },
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "http://localhost:8888"
+          "value": "http://localhost:3000"
         }
       ]
     }
