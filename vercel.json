@@ -1,6 +1,14 @@
 {
   "headers": [
     {
+      "source": "/(*.woff2)",
+      "headers": [
+        {
+          "key": "Content-Type".
+          "value": "font/woff2"
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
