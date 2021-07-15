@@ -4,8 +4,9 @@
       "source": "/(*.woff2)",
       "headers": [
         {
-          "key": "Content-Type".
+          "key": "Content-Type",
           "value": "font/woff2"
+        }
       ]
     },
     {
