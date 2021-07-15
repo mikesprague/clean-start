@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/\.(woff2)$",
+      "source": "/:font.woff2",
       "headers": [
         {
           "key": "Content-Type",
