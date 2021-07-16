@@ -79,7 +79,7 @@ const webpackPlugins = [
   new CopyWebpackPlugin({
     patterns: [
       {
-        from: `./public/manifest${buildType === 'extension' ? '' : '-pwa'}.json`,
+	from: `./public/${buildType === 'extension' ? 'manifest.json' : 'cleanstart.webmanifest'}`,
         to: './[name][ext]',
         force: true,
       },
