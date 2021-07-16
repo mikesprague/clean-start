@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "yarn clean && yarn webpack",
-    "build:extension": "yarn clean && cross-env BUILD_TYPE=extension yarn webpack && yarn zip",
+    "build:extension": "yarn clean && cross-env BUILD_TYPE=extension NODE_ENV=production yarn webpack && yarn zip",
     "clean": "rm -rf ./build",
     "prepublish": "yarn snyk-protect",
     "snyk-protect": "snyk protect",
