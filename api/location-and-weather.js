@@ -69,7 +69,7 @@ module.exports = async (req, res) => {
       res.status(500).json(err);
     });
 
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=300');
+  res.setHeader('Cache-Control', 'max-age=600, s-maxage=600');
   res.status(200).json({
     location: geocodePromise.location,
     weather: weatherPromise.weather,

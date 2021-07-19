@@ -74,9 +74,6 @@ module.exports = async (req, res) => {
     });
 
   const returnData = normalizeImageData(imageData);
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=600');
-  // res.setHeader('Access-Control-Allow-Origin', '*');
-  // res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  // res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Cache-Control', 'max-age=900, s-maxage=900');
   res.status(200).json(returnData);
 };
