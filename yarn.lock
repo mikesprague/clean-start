@@ -10125,10 +10125,10 @@ snyk-try-require@^2.0.0:
     lodash.clonedeep "^4.3.0"
     lru-cache "^5.1.1"
 
-snyk@1.664.0:
-  version "1.664.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.664.0.tgz#fda4f29befc9e5442cbb7561bf8a1a4554e48ecc"
-  integrity sha512-4YPqDdPPZsn3BBN82UiN6+Jy4zdKbBvw4MKClvh2QQgUJy6R9nEm/Q8IbdsM0jOqPByDRWVMwsCPQu3ZpqG3KA==
+snyk@1.665.0:
+  version "1.665.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.665.0.tgz#b88bdad3a8d60e8712a9883cb3ba962c0e14ada1"
+  integrity sha512-3cWyOeUlRjxtvfUv+XjFNMc5rVAvx0NZq+Rawypq3OQgb9qpmThBJyiLfaJoolAxI0dMpZ7znJvfbWS7XPy2OQ==
   dependencies:
     "@open-policy-agent/opa-wasm" "^1.2.0"
     "@snyk/cli-interface" "2.11.0"
@@ -10732,10 +10732,10 @@ table@^6.0.9:
     string-width "^4.2.0"
     strip-ansi "^6.0.0"
 
-tailwindcss@2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-2.2.5.tgz#5d71674baa98b97fe888b88b56c177b929ae290c"
-  integrity sha512-/85aI7qltFUXCF/zRKCm2Z1TYKy74DK3V4DP1gxz++YK0CgV3TlXB9h7ylKAukrc+ILcRPe6+dSQ1lbCj8XSJQ==
+tailwindcss@2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-2.2.6.tgz#e401c995d22b31f5f711d508c3c35740a2dff971"
+  integrity sha512-hyYAltGfxf7zPpB9lImj7uUCoa0gdUKhG91J1JXdlLq2bTAgessoA0doJ1FhKc1KwSUfx0hiohPQbMfNFgQO1A==
   dependencies:
     arg "^5.0.0"
     bytes "^3.0.0"
