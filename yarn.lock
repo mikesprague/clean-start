@@ -8198,6 +8198,11 @@ peek-stream@^1.1.0:
     duplexify "^3.5.0"
     through2 "^2.0.3"
 
+pegjs@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/pegjs/-/pegjs-0.10.0.tgz#cf8bafae6eddff4b5a7efb185269eaaf4610ddbd"
+  integrity sha1-z4uvrm7d/0tafvsYUmnqr0YQ3b0=
+
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
@@ -10096,10 +10101,10 @@ snyk-try-require@^2.0.0:
     lodash.clonedeep "^4.3.0"
     lru-cache "^5.1.1"
 
-snyk@1.668.0:
-  version "1.668.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.668.0.tgz#897d8cf4c799735127e957426bf62ddc4b47924b"
-  integrity sha512-iBcq6b2OOZAunU0qwbLhSHbfG3T1FtMTqTr0FUhOUAu9wRPAN5XbknRVeOb+ap1IbtzWeV1k6weY5Mp4liWirw==
+snyk@1.670.0:
+  version "1.670.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.670.0.tgz#5ad539ad3afc9bd5cbfc42cb2e09b4618bcac5a3"
+  integrity sha512-7m97Yk1fmAMFHgk8ETpmMY1aUsNdRBAi8HDCMer9N2gKcJjXBaP03XbUrIdDBOq5kfPLJnIfInRxQtTq4j9Twg==
   dependencies:
     "@open-policy-agent/opa-wasm" "^1.2.0"
     "@snyk/cli-interface" "2.11.0"
@@ -10143,6 +10148,7 @@ snyk@1.668.0:
     open "^7.0.3"
     ora "5.4.0"
     os-name "^3.0.0"
+    pegjs "^0.10.0"
     promise-queue "^2.2.5"
     proxy-from-env "^1.0.0"
     rimraf "^2.6.3"
