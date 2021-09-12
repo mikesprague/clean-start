@@ -96,7 +96,9 @@ const webpackPlugins = [
     exclude: [/chrome-extension:\/\//],
     skipWaiting: true,
   }),
-  new CompressionPlugin(),
+  new CompressionPlugin({
+    exclude: [/.map$/, /.txt$/],
+  }),
 ];
 
 module.exports = {
