@@ -98,6 +98,7 @@ const webpackPlugins = [
   }),
   new CompressionPlugin({
     include: [/.js$/, /.css$/, /.html$/],
+    exclude: [/.map$/, /.md$/, /.txt$/],
   }),
 ];
 
