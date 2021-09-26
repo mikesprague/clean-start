@@ -69,7 +69,7 @@
     "@octokit/core": "3.5.1",
     "@typescript-eslint/eslint-plugin": "4.31.2",
     "@typescript-eslint/parser": "4.31.2",
-    "autoprefixer": "10.3.5",
+    "autoprefixer": "10.3.6",
     "babel-loader": "8.2.2",
     "compression-webpack-plugin": "9.0.0",
     "copy-webpack-plugin": "9.0.1",
