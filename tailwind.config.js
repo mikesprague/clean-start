@@ -1,12 +1,11 @@
 module.exports = {
-  purge: false,
+  content: ['./public/**/*.html', './src/components/**/*.js', './src/modules/**/*.js'],
+  mode: 'jit',
   theme: {
-    extend: {},
+    extend: {}
   },
   variants: {
-    extend: {},
+    extend: {}
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require('@tailwindcss/typography')],
 };
