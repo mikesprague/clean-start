@@ -1237,10 +1237,10 @@
     lodash.merge "^4.6.2"
     lodash.uniq "^4.5.0"
 
-"@tippyjs/react@4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@tippyjs/react/-/react-4.2.5.tgz#9b5837db93a1cac953962404df906aef1a18e80d"
-  integrity sha512-YBLgy+1zznBNbx4JOoOdFXWMLXjBh9hLPwRtq3s8RRdrez2l3tPBRt2m2909wZd9S1KUeKjOOYYsnitccI9I3A==
+"@tippyjs/react@4.2.6":
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/@tippyjs/react/-/react-4.2.6.tgz#971677a599bf663f20bb1c60a62b9555b749cc71"
+  integrity sha512-91RicDR+H7oDSyPycI13q3b7o4O60wa2oRbjlz2fyRLmHImc4vyDwuUP8NtZaN0VARJY5hybvDYrFzhY9+Lbyw==
   dependencies:
     tippy.js "^6.3.1"
 
@@ -2008,10 +2008,10 @@ axe-core@^4.0.2:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.3.5.tgz#78d6911ba317a8262bfee292aeafcc1e04b49cc5"
   integrity sha512-WKTW1+xAzhMS5dJsxWkliixlO/PqC4VhmO9T4juNYcaTg9jzWiJsou6m5pxWYGfigWbwzJWeFY6z47a+4neRXA==
 
-axios@0.23.0:
-  version "0.23.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.23.0.tgz#b0fa5d0948a8d1d75e3d5635238b6c4625b05149"
-  integrity sha512-NmvAE4i0YAv5cKq8zlDoPd1VLKAqX5oLuZKs8xkJa4qi6RGn0uhCYFjWtHHC9EM/MwOwYWOs53W+V0aqEXq1sg==
+axios@0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.24.0.tgz#804e6fa1e4b9c5288501dd9dff56a7a0940d20d6"
+  integrity sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==
   dependencies:
     follow-redirects "^1.14.4"
 
@@ -7959,10 +7959,10 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
-snyk@1.741.0:
-  version "1.741.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.741.0.tgz#d5bd0044e2ec8ffc1da7cda0197001da7dfc38f5"
-  integrity sha512-fvEimFIEuFZ0NtWju4aCPgyaswpJXZfBlU9PlWPa7bzyhgB7ZKwDk2AwtUlYxk8bcUU4aye1sC+2afWK4gQ0cw==
+snyk@1.748.0:
+  version "1.748.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.748.0.tgz#89db50d4b2585ef2e6160a4c282e5b8df56a1431"
+  integrity sha512-LlnJG9LtOUR1rGQnGSYxr0F4j6GueI9OJozToY84deDSQoXoCDSP+Ie9f1c+AKjXBz/ojQpY0Gxhhc3BlBDsuA==
 
 source-list-map@^2.0.0:
   version "2.0.1"
