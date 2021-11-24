@@ -1445,6 +1445,13 @@
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
   integrity sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==
 
+"@types/cssnano@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@types/cssnano/-/cssnano-4.0.1.tgz#67fa912753d80973a016e7684a47fedf338aacff"
+  integrity sha512-hGOroxRTBkYl5gSBRJOffhV4+io+Y2bFX1VP7LgKEVHJt/LPPJaWUIuDAz74Vlp7l7hCDZfaDi7iPxwNwuVA4Q==
+  dependencies:
+    postcss "5 - 7"
+
 "@types/eslint-scope@^3.7.0":
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.1.tgz#8dc390a7b4f9dd9f1284629efce982e41612116e"
@@ -3058,11 +3065,12 @@ css-loader@6.5.1:
     postcss-value-parser "^4.1.0"
     semver "^7.3.5"
 
-css-minimizer-webpack-plugin@3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/css-minimizer-webpack-plugin/-/css-minimizer-webpack-plugin-3.1.4.tgz#8cbcbb31c946b143ad4d10ba5d6f3164d018fcaa"
-  integrity sha512-JXnwBEA+a3FrmuBIJz7tKnCYGyraP86nuvX+wAqik1Lc8Ne9Ql8h5RpFbM3HjMpjXfhnqRBoTYIfArji5mteOg==
+css-minimizer-webpack-plugin@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/css-minimizer-webpack-plugin/-/css-minimizer-webpack-plugin-3.2.0.tgz#f59c56ec11137b37f000081bd19b450095094ad2"
+  integrity sha512-5q4myvkmm29jRlI73Fl8Mc008i6o6hCEKnV6/fOrzRVDWD6EFGwDRX+SM2qCVeZ7XiztRDKHpTGDUeUMAOOagg==
   dependencies:
+    "@types/cssnano" "^4.0.1"
     cssnano "^5.0.6"
     jest-worker "^27.0.2"
     postcss "^8.3.5"
@@ -3734,10 +3742,10 @@ eslint-config-airbnb-base@^15.0.0:
     object.entries "^1.1.5"
     semver "^6.3.0"
 
-eslint-config-airbnb@19.0.0:
-  version "19.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-airbnb/-/eslint-config-airbnb-19.0.0.tgz#c518503e2dc7c04d91a3e8ff54dcdbd30729829c"
-  integrity sha512-f5FzCDw8osQJtifOGazdBtYuDOH38FVQSOwHvSU0iFjAmkdl4zQ1jG+YV6sVNt4gqVubqJwn98zZQzDoaCwDyw==
+eslint-config-airbnb@19.0.1:
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-airbnb/-/eslint-config-airbnb-19.0.1.tgz#c4e39150a22571a78b27f701fd40b67addf21d2a"
+  integrity sha512-ooV8Vdt3gmV6hCSJutRw5beArd56Cd++vvy7j0Y7DBhUKqcTyI7cWNcJpCJlcftGPRLtzdU0hNMtquOUSSm8nA==
   dependencies:
     eslint-config-airbnb-base "^15.0.0"
     object.assign "^4.1.2"
@@ -6959,6 +6967,11 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
+picocolors@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-0.2.1.tgz#570670f793646851d1ba135996962abad587859f"
+  integrity sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==
+
 picocolors@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
@@ -7473,14 +7486,22 @@ postcss-value-parser@^4.0.2, postcss-value-parser@^4.1.0:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.1.0.tgz#443f6a20ced6481a2bda4fa8532a6e55d789a2cb"
   integrity sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==
 
-postcss@8.3.11, postcss@^8.1.6, postcss@^8.2.1, postcss@^8.2.15, postcss@^8.3.5:
-  version "8.3.11"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.11.tgz#c3beca7ea811cd5e1c4a3ec6d2e7599ef1f8f858"
-  integrity sha512-hCmlUAIlUiav8Xdqw3Io4LcpA1DOt7h3LSTAC4G6JGHFFaWzI6qvFt9oilvl8BmkbBRX1IhM90ZAmpk68zccQA==
+"postcss@5 - 7":
+  version "7.0.39"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.39.tgz#9624375d965630e2e1f2c02a935c82a59cb48309"
+  integrity sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA==
+  dependencies:
+    picocolors "^0.2.1"
+    source-map "^0.6.1"
+
+postcss@8.4.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.0.tgz#cd4c33af00a00ba93ccf6ae1219f57c5e5ab5234"
+  integrity sha512-BRMNx3Wy7UI89jN8H4ZVS5lQMPM2OSMkOkvDCSjwXa7PWTs24k7Lm55NXLbMbs070LvraXaxN5l1npSOS6wMVw==
   dependencies:
     nanoid "^3.1.30"
     picocolors "^1.0.0"
-    source-map-js "^0.6.2"
+    source-map-js "^1.0.1"
 
 postcss@^5.2.16:
   version "5.2.18"
@@ -7500,6 +7521,15 @@ postcss@^6.0.14, postcss@^6.0.17, postcss@^6.0.23, postcss@^6.0.6, postcss@^6.0.
     chalk "^2.4.1"
     source-map "^0.6.1"
     supports-color "^5.4.0"
+
+postcss@^8.1.6, postcss@^8.2.1, postcss@^8.2.15, postcss@^8.3.5:
+  version "8.3.11"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.11.tgz#c3beca7ea811cd5e1c4a3ec6d2e7599ef1f8f858"
+  integrity sha512-hCmlUAIlUiav8Xdqw3Io4LcpA1DOt7h3LSTAC4G6JGHFFaWzI6qvFt9oilvl8BmkbBRX1IhM90ZAmpk68zccQA==
+  dependencies:
+    nanoid "^3.1.30"
+    picocolors "^1.0.0"
+    source-map-js "^0.6.2"
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -8506,6 +8536,11 @@ source-map-js@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-0.6.2.tgz#0bb5de631b41cfbda6cfba8bd05a80efdfd2385e"
   integrity sha512-/3GptzWzu0+0MBQFrDKzw/DvvMTUORvgY6k6jd/VS6iCR4RDTKWH6v6WPwQoUO8667uQEf9Oe38DxAYWY5F/Ug==
+
+source-map-js@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.1.tgz#a1741c131e3c77d048252adfa24e23b908670caf"
+  integrity sha512-4+TN2b3tqOCd/kaGRJ/sTYA0tR0mdXx26ipdolxcwtJVqEnqNYvlCAt1q3ypy4QMlYus+Zh34RNtYLoq2oQ4IA==
 
 source-map-support@^0.5.17, source-map-support@~0.5.20:
   version "0.5.20"
@@ -9708,10 +9743,10 @@ webpack-sources@^3.2.2:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.2.tgz#d88e3741833efec57c4c789b6010db9977545260"
   integrity sha512-cp5qdmHnu5T8wRg2G3vZZHoJPN14aqQ89SyQ11NpGH5zEMDCclt49rzo+MaRazk7/UeILhAI+/sEtcM+7Fr0nw==
 
-webpack@5.64.2:
-  version "5.64.2"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.64.2.tgz#152e28d4712a6223b06c06cba0d3e622a61611a0"
-  integrity sha512-4KGc0+Ozi0aS3EaLNRvEppfZUer+CaORKqL6OBjDLZOPf9YfN8leagFzwe6/PoBdHFxc/utKArl8LMC0Ivtmdg==
+webpack@5.64.3:
+  version "5.64.3"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.64.3.tgz#f4792cc3f8528db2c18375fa2cd269f69e0bf69f"
+  integrity sha512-XF6/IL9Bw2PPQioiR1UYA8Bs4tX3QXJtSelezKECdLFeSFzWoe44zqTzPW5N+xI3fACaRl2/G3sNA4WYHD7Iww==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.50"
