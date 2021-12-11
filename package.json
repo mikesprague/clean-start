@@ -37,8 +37,8 @@
     "@fortawesome/free-brands-svg-icons": "6.0.0-beta3",
     "@fortawesome/free-solid-svg-icons": "6.0.0-beta3",
     "@fortawesome/react-fontawesome": "0.1.16",
-    "@tailwindcss/forms": "^0.4.0-alpha.2",
-    "@tailwindcss/typography": "^0.5.0-alpha.3",
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.0",
     "@tippyjs/react": "4.2.6",
     "axios": "0.24.0",
     "cheerio": "1.0.0-rc.10",
@@ -50,8 +50,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "register-service-worker": "1.7.2",
-    "snyk": "1.787.0",
-    "tailwindcss": "^3.0.0-alpha.2"
+    "snyk": "1.789.0",
+    "tailwindcss": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.16.0",
