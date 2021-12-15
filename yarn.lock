@@ -8843,10 +8843,10 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
-snyk@1.790.0:
-  version "1.790.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.790.0.tgz#0002aa3b9dc326cea5e33c44ea32b4376b045298"
-  integrity sha512-1PPhRiiO5nPY3GvgU1mUXyjKTtVhenBylNszIQZzXddPxs9ayioNzyZ4Uv5DkPKzzo7TT4Aexaa0nvT0HTffdA==
+snyk@1.793.0:
+  version "1.793.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.793.0.tgz#07562983c2cd70287a1870944283216805bed87d"
+  integrity sha512-9MVNi07ParuDqh6M39RGVTkFCdKUPqgRMNDzOMF7waK+PW2Axo2fotUV5MHfzMFjZpiw8Ipnbc4LiFlneexWNw==
 
 source-list-map@^2.0.0:
   version "2.0.1"
@@ -9321,10 +9321,10 @@ table@^6.0.9:
     string-width "^4.2.3"
     strip-ansi "^6.0.1"
 
-tailwindcss@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.0.2.tgz#9eea4c6dbe8d6d2c11363d313f4a4eba2baeb652"
-  integrity sha512-i1KpjYnGYftjzdAth6jA5iMPjhxpUkk5L6DafhfnQs+KiiWaThYxmk47Weh4oFH1mZqP6MuiQNHxtoRVPOraLg==
+tailwindcss@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.0.5.tgz#468e20347b8c4b59bb0585361682126edb1dd9e3"
+  integrity sha512-59pNgzx2o+wkAk7IZGIH7H9eNS53gzZGrO3+NPyOEWHDbquHgiLL/c993T5t1vPSAeBxox4X5OgZwNuRvXVf+g==
   dependencies:
     arg "^5.0.1"
     chalk "^4.1.2"
