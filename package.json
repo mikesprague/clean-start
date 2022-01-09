@@ -46,12 +46,12 @@
     "dompurify": "2.3.4",
     "he": "1.2.0",
     "nanoid": "3.1.30",
-    "prop-types": "15.8.0",
+    "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "register-service-worker": "1.7.2",
-    "snyk": "1.814.0",
-    "tailwindcss": "^3.0.9"
+    "snyk": "1.820.0",
+    "tailwindcss": "^3.0.12"
   },
   "devDependencies": {
     "@babel/core": "7.16.7",
