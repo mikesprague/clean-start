@@ -7202,7 +7202,12 @@ nan@^2.13.2:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.15.0.tgz#3f34a473ff18e15c1b5626b62903b5ad6e665fee"
   integrity sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==
 
-nanoid@3.1.30, nanoid@^3.1.30:
+nanoid@3.1.32:
+  version "3.1.32"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.32.tgz#8f96069e6239cc0a9ae8c0d3b41a3b4933a88c0a"
+  integrity sha512-F8mf7R3iT9bvThBoW4tGXhXFHCctyCiUUPrWF8WaTqa3h96d9QybkSeba43XVOOE3oiLfkVDe4bT8MeGmkrTxw==
+
+nanoid@^3.1.30:
   version "3.1.30"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.30.tgz#63f93cc548d2a113dc5dfbc63bfa09e2b9b64362"
   integrity sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==
@@ -7747,7 +7752,7 @@ path-key@^3.0.0, path-key@^3.1.0:
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-3.1.1.tgz#581f6ade658cbba65a0d3380de7753295054f375"
   integrity sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==
 
-path-parse@^1.0.6:
+path-parse@^1.0.6, path-parse@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
   integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
@@ -9073,6 +9078,15 @@ resolve@^1.10.0, resolve@^1.14.2, resolve@^1.19.0, resolve@^1.20.0, resolve@^1.9
     is-core-module "^2.2.0"
     path-parse "^1.0.6"
 
+resolve@^1.21.0:
+  version "1.21.0"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.21.0.tgz#b51adc97f3472e6a5cf4444d34bc9d6b9037591f"
+  integrity sha512-3wCbTpk5WJlyE4mSOtDLhqQmGFi0/TD9VPwmiolnk8U0wRgMEktqCXd3vy5buTO3tljvalNvKrjHEfrd2WpEKA==
+  dependencies:
+    is-core-module "^2.8.0"
+    path-parse "^1.0.7"
+    supports-preserve-symlinks-flag "^1.0.0"
+
 resolve@^2.0.0-next.3:
   version "2.0.0-next.3"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-2.0.0-next.3.tgz#d41016293d4a8586a39ca5d9b5f15cbea1f55e46"
@@ -9411,10 +9425,10 @@ smart-buffer@^4.1.0:
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.2.0.tgz#6e1d71fa4f18c05f7d0ff216dd16a481d0e8d9ae"
   integrity sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==
 
-snyk@1.820.0:
-  version "1.820.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.820.0.tgz#abd9acebfc8fe00df01404304f0bd5d45bbf5111"
-  integrity sha512-O+c6I3ekVng1O2lsJVfdtbcXIendARjU+4zBq2YmQzaQWX+bZXBYoEZzsYb9UoyzriXhxUtjVDjE0RnJFVKPBQ==
+snyk@1.824.0:
+  version "1.824.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.824.0.tgz#548e33235bcf9cadff85b872e105fcd55a4533ba"
+  integrity sha512-5KkGw8rBbp0bIj1oFPaDxmkAIeduyrZsTjLiBAHsbpAkW9OAizsfgbDTIyk8oesuM/Hn2hTwrOFbby2/aN0amg==
 
 socks-proxy-agent@^6.0.0:
   version "6.1.1"
@@ -9837,6 +9851,11 @@ supports-color@^8.0.0:
   dependencies:
     has-flag "^4.0.0"
 
+supports-preserve-symlinks-flag@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
+  integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
 svg-tags@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/svg-tags/-/svg-tags-1.0.0.tgz#58f71cee3bd519b59d4b2a843b6c7de64ac04764"
@@ -9890,10 +9909,10 @@ table@^6.0.9:
     string-width "^4.2.3"
     strip-ansi "^6.0.1"
 
-tailwindcss@^3.0.12:
-  version "3.0.12"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.0.12.tgz#b43bf952dbfd62cec087319748eb69f8e1c7855d"
-  integrity sha512-VqhF86z2c34sJyS5ZS8Q2nYuN0KzqZw1GGsuQQO9kJ3mY1oG7Fsag0vICkxUVXk6P+1sUkTkjMjKWCjEF0hNHw==
+tailwindcss@^3.0.13:
+  version "3.0.13"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.0.13.tgz#0d571643bfc8c76602bbba95a780a9552ae44c64"
+  integrity sha512-raRPGFwQSGXn/3h0ttHND9jyPYfqk/ur2NXtlQuK25+ZnrCjlH1s1j4/oPswHGMoZzGNykUVycZ/LcROanUE0A==
   dependencies:
     arg "^5.0.1"
     chalk "^4.1.2"
@@ -9914,7 +9933,7 @@ tailwindcss@^3.0.12:
     postcss-selector-parser "^6.0.8"
     postcss-value-parser "^4.2.0"
     quick-lru "^5.1.1"
-    resolve "^1.20.0"
+    resolve "^1.21.0"
 
 tapable@^2.0.0, tapable@^2.1.1, tapable@^2.2.0:
   version "2.2.1"
