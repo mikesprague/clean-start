@@ -1,6 +1,6 @@
 {
   "name": "clean-start",
-  "version": "0.25.36",
+  "version": "0.25.36 dotenv  14.3.0  →  14.3.2",
   "description": "Open source new tab extension",
   "private": true,
   "engines": {
@@ -44,6 +44,7 @@
     "cheerio": "1.0.0-rc.10",
     "dayjs": "1.10.7",
     "dompurify": "2.3.4",
+    "dotenv": "14.3.2",
     "he": "1.2.0",
     "nanoid": "3.2.0",
     "prop-types": "15.8.1",
@@ -78,7 +79,6 @@
     "css-loader": "6.5.1",
     "css-minimizer-webpack-plugin": "3.4.1",
     "cssnano": "5.0.16",
-    "dotenv": "14.3.0",
     "eslint": "8.7.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.3.0",
