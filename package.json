@@ -1,6 +1,6 @@
 {
   "name": "clean-start",
-  "version": "0.25.36 dotenv  14.3.0  →  14.3.2",
+  "version": "0.26.0",
   "description": "Open source new tab extension",
   "private": true,
   "engines": {
