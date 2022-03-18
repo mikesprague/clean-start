@@ -8059,10 +8059,10 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
-snyk@^1.873.0:
-  version "1.873.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.873.0.tgz#854a53865fab37ecac07819337a69631236558c4"
-  integrity sha512-xmBvD6z5yUavhd7Saebi5SgYhJgc2F6ncsRWTf9AgGjZhX41Sg4hUWoR37QQZqkapjcwQ1AigJakTu0+g1UYMQ==
+snyk@^1.878.0:
+  version "1.878.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.878.0.tgz#02e8d2961e9a068bdbbced750f72e0f546d1a8f2"
+  integrity sha512-5esdH2PRGAc1DQE48GtvsUbAFnebFUXsKpDhR56KWx8G8JdC2lbaTheV0/MUoen5/+xNW6t35xHhUERFAK/MOw==
 
 source-list-map@^2.0.0:
   version "2.0.1"
