@@ -67,7 +67,6 @@
     "@babel/preset-react": "7.16.7",
     "@babel/runtime": "7.17.9",
     "@fullhuman/postcss-purgecss": "4.1.3",
-    "@octokit/core": "3.6.0",
     "@typescript-eslint/eslint-plugin": "5.21.0",
     "@typescript-eslint/parser": "5.21.0",
     "autoprefixer": "10.4.5",
@@ -81,6 +80,7 @@
     "eslint": "8.14.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.5.0",
+    "eslint-config-stylelint": "15.0.0",
     "eslint-plugin-compat": "4.0.2",
     "eslint-plugin-flowtype": "8.0.3",
     "eslint-plugin-html": "6.2.0",
@@ -99,10 +99,14 @@
     "postcss-loader": "6.2.1",
     "prettier": "2.6.2",
     "prettier-eslint": "14.0.2",
-    "prettier-stylelint": "0.4.2",
     "sass": "^1.51.0",
-    "sass-lint": "1.13.1",
     "sass-loader": "12.6.0",
+    "stylelint": "14.8.1",
+    "stylelint-config-prettier": "9.0.3",
+    "stylelint-config-prettier-scss": "0.0.1",
+    "stylelint-config-standard": "25.0.0",
+    "stylelint-config-standard-scss": "3.0.0",
+    "stylelint-prettier": "2.0.0",
     "style-loader": "3.3.1",
     "terser-webpack-plugin": "5.3.1",
     "typescript": "4.6.4",
@@ -145,7 +149,8 @@
     "extends": [
       "airbnb",
       "prettier",
-      "plugin:jsx-a11y/recommended"
+      "plugin:jsx-a11y/recommended",
+      "stylelint"
     ],
     "plugins": [
       "compat",
@@ -199,9 +204,6 @@
     }
   },
   "prettier": {
-    "plugins": [
-      "all"
-    ],
     "printWidth": 120,
     "semi": true,
     "singleQuote": true,
