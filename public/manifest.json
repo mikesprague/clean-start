@@ -11,16 +11,11 @@
     "64": "/images/new-tab-icon-64.png",
     "128": "/images/new-tab-icon-128.png"
   },
-  "version": "0.26.10",
+  "version": "0.27.0",
   "manifest_version": 3,
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
-  "permissions": [
-    "geolocation",
-    "unlimitedStorage"
-  ],
-  "host_permissions": [
-    "https://cleanstart.page/api/*"
-  ]
+  "permissions": ["geolocation", "unlimitedStorage"],
+  "host_permissions": ["https://cleanstart.page/api/*"]
 }
