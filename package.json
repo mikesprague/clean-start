@@ -42,7 +42,7 @@
     "axios": "0.27.2",
     "cheerio": "1.0.0-rc.10",
     "dayjs": "1.11.2",
-    "dompurify": "2.3.7",
+    "dompurify": "2.3.8",
     "dotenv": "16.0.1",
     "he": "1.2.0",
     "nanoid": "3.3.4",
