@@ -96,7 +96,7 @@
     "prettier-eslint": "15.0.1",
     "sass": "^1.54.4",
     "sass-loader": "13.0.2",
-    "stylelint": "14.10.0",
+    "stylelint": "14.11.0",
     "stylelint-config-prettier": "9.0.3",
     "stylelint-config-prettier-scss": "0.0.1",
     "stylelint-config-standard": "27.0.0",
