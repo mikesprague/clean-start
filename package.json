@@ -83,7 +83,7 @@
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-markdown": "3.0.0",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.31.0",
+    "eslint-plugin-react": "7.31.1",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-security": "1.5.0",
     "file-loader": "6.2.0",
@@ -171,6 +171,13 @@
             ".js",
             ".jsx"
           ]
+        }
+      ],
+      "react/function-component-definition": [
+        2,
+        {
+          "namedComponents": "arrow-function",
+          "unnamedComponents": "arrow-function"
         }
       ],
       "react-hooks/rules-of-hooks": "error",
