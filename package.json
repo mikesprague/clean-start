@@ -31,9 +31,9 @@
     "url": "https://github.com/mikesprague/clean-start/issues"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "6.1.2",
-    "@fortawesome/free-brands-svg-icons": "6.1.2",
-    "@fortawesome/free-solid-svg-icons": "6.1.2",
+    "@fortawesome/fontawesome-svg-core": "6.2.0",
+    "@fortawesome/free-brands-svg-icons": "6.2.0",
+    "@fortawesome/free-solid-svg-icons": "6.2.0",
     "@fortawesome/react-fontawesome": "0.2.0",
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/typography": "^0.5.4",
@@ -42,7 +42,7 @@
     "cheerio": "1.0.0-rc.12",
     "dayjs": "1.11.5",
     "dompurify": "2.4.0",
-    "dotenv": "16.0.1",
+    "dotenv": "16.0.2",
     "he": "1.2.0",
     "nanoid": "4.0.0",
     "prop-types": "15.8.1",
