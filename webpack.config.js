@@ -102,6 +102,20 @@ const webpackPlugins = [
   }),
 ];
 
+const injectCloudflareHeadersFile = new CopyWebpackPlugin({
+  patterns: [
+    {
+      from: './public/_headers',
+      to: './[name]',
+      force: true,
+    },
+  ],
+});
+
+if (buildType !== 'extension') {
+  webpackPlugins.push(injectCloudflareHeadersFile);
+}
+
 module.exports = {
   entry: [
     './src/index.js',
