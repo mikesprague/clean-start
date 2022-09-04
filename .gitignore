@@ -126,6 +126,7 @@ dist
 lambda
 build
 old
+.dev.vars
 
 # Local Netlify folder
 .netlify
