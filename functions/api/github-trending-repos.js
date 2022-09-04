@@ -1,11 +1,21 @@
-const axios = require('axios').default;
-const cheerio = require('cheerio');
+import cheerio from 'cheerio';
 
-module.exports = async (req, res) => {
-  const postsData = await axios
-    .get('https://github.com/trending?spoken_language_code=en')
-    .then((response) => {
-      const markup = response.data;
+export const onRequestGet = async (context) => {
+  const { cf, url } = context.request;
+
+  const urlParams = new URL(url).searchParams;
+
+  const healthcheck = urlParams.get('healthcheck');
+
+  if (healthcheck) {
+    return new Response(JSON.stringify('API is up and running'), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+  const postsData = await fetch('https://github.com/trending?spoken_language_code=en')
+    .then(async (response) => {
+      const markup = await response.text();
       const rowSelector = 'article.Box-row';
       const linkTitleSelector = 'h1 > a';
       const descriptionSelector = 'p';
@@ -70,8 +80,17 @@ module.exports = async (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json(error);
+      return new Response(JSON.stringify(error), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
     });
-  res.setHeader('Cache-Control', 'max-age=3600, s-maxage=3600');
-  res.status(200).json(postsData);
+
+  return new Response(JSON.stringify(postsData), {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'max-age=3600, s-maxage=3600',
+    },
+  });
 };

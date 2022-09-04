@@ -1,9 +1,17 @@
-const axios = require('axios').default;
+export const onRequestGet = async (context) => {
+  const { cf, url } = context.request;
 
-module.exports = async (req, res) => {
-  const {
-    UNSPLASH_ACCESS_KEY,
-  } = process.env;
+  const urlParams = new URL(url).searchParams;
+  const healthcheck = urlParams.get('healthcheck');
+
+  if (healthcheck) {
+    return new Response(JSON.stringify('API is up and running'), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const { UNSPLASH_ACCESS_KEY } = context.env;
 
   const unsplashCollectionsArray = [
     327760, // nature
@@ -31,25 +39,11 @@ module.exports = async (req, res) => {
         urls,
         user,
       } = imageData || null;
-      const {
-        html: imageLink,
-      } = links || null;
-      const {
-        title,
-        name,
-      } = location || null;
-      const {
-        regular: imageUrl,
-        small: imageSmallUrl,
-        thumb: imageThumbUrl,
-      } = urls || null;
-      const {
-        name: userName,
-        links: userLinks,
-      } = user || null;
-      const {
-        html: userLink,
-      } = userLinks || null;
+      const { html: imageLink } = links || null;
+      const { title, name } = location || null;
+      const { regular: imageUrl, small: imageSmallUrl, thumb: imageThumbUrl } = urls || null;
+      const { name: userName, links: userLinks } = user || null;
+      const { html: userLink } = userLinks || null;
       return {
         altDescription,
         createdAt,
@@ -67,13 +61,22 @@ module.exports = async (req, res) => {
     return returnData;
   };
 
-  const imageData = await axios.get(unsplashApiurl)
-    .then((response) => response.data).catch((error) => {
+  const imageData = await fetch(unsplashApiurl)
+    .then(async (response) => await response.json())
+    .catch((error) => {
       console.error(error);
-      res.status(500).json(error);
+      return new Response(JSON.stringify(error), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
     });
 
   const returnData = normalizeImageData(imageData);
-  res.setHeader('Cache-Control', 'max-age=900, s-maxage=900');
-  res.status(200).json(returnData);
+  return new Response(JSON.stringify(returnData), {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'max-age=900, s-maxage=900',
+    },
+  });
 };

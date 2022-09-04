@@ -1,34 +1,51 @@
-const axios = require('axios').default;
+export const onRequestGet = async (context) => {
+  const { cf, url } = context.request;
 
-module.exports = async (req, res) => {
-  const { lat, lng } = req.query || null;
+  const urlParams = new URL(url).searchParams;
 
-  if (!lat) {
-    res.status(400).json('Missing "lat" parameter');
-    return;
-  }
-  if (!lng) {
-    res.status(400).json('Missing "lng" parameter');
-    return;
+  const healthcheck = urlParams.get('healthcheck');
+  let lat = urlParams.get('lat') || cf.latitude;
+  let lng = urlParams.get('lng') || cf.longitude;
+  const units = urlParams.get('units') || 'auto';
+  const time = urlParams.get('time');
+
+  lat = parseFloat(lat).toFixed(5).toString();
+  lng = parseFloat(lng).toFixed(5).toString();
+
+  if (healthcheck) {
+    return new Response(JSON.stringify('API is up and running'), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
   const {
     GOOGLE_MAPS_API_KEY,
     DARK_SKY_API_KEY,
-    // OPEN_WEATHERMAP_API_KEI,
-  } = process.env;
+    // OPEN_WEATHERMAP_API_KEY,
+  } = context.env;
 
-  const units = req.query.units || 'auto';
+  const timeString = time ? `,${time}` : '';
   const geocodeApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_MAPS_API_KEY}`;
-  const weatherApiUrl = `https://api.darksky.net/forecast/${DARK_SKY_API_KEY}/${lat},${lng}/?units=${units}`;
-  // const openWeatherMapApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&&units=${units}&appid=${OPEN_WEATHERMAP_API_KEI}`;
+  const weatherApiUrl = `https://api.darksky.net/forecast/${DARK_SKY_API_KEY}/${lat},${lng}${timeString}/?units=${units}`;
+  // const openWeatherMapApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&&units=${units}&appid=${OPEN_WEATHERMAP_API_KEY}`;
 
-  const geocodePromise = await axios.get(geocodeApiUrl)
-    .then((response) => {
-      const fullResults = response.data.results;
+  const geocodePromise = await fetch(geocodeApiUrl)
+    .then(async (response) => {
+      const data = await response.json();
+      const fullResults = data.results;
       const formattedAddress = fullResults[0].formatted_address;
       let locationName = '';
-      const addressTargets = ['neighborhood', 'locality', 'administrative_area_level_2', 'administrative_area_level_1'];
+      const isUSA = formattedAddress.toLowerCase().includes('usa');
+      const addressTargets = [
+        'postal_town',
+        'locality',
+        'neighborhood',
+        'administrative_area_level_2',
+        'administrative_area_level_1',
+        'country',
+      ];
+
       addressTargets.forEach((target) => {
         if (!locationName.length) {
           fullResults.forEach((result) => {
@@ -42,6 +59,16 @@ module.exports = async (req, res) => {
           });
         }
       });
+
+      fullResults[0].address_components.forEach((component) => {
+        if (isUSA && component.types.indexOf('administrative_area_level_1') > -1) {
+          locationName = `${locationName}, ${component.short_name}`;
+        }
+
+        if (!isUSA && component.types.indexOf('country') > -1) {
+          locationName = `${locationName}, ${component.short_name}`;
+        }
+      });
       // console.log(locationName);
       const locationData = {
         location: {
@@ -52,26 +79,44 @@ module.exports = async (req, res) => {
       };
       return locationData;
     })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).json(err);
+    .catch((error) => {
+      console.error(error);
+
+      return new Response(JSON.stringify(error), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
     });
 
-  const weatherPromise = await axios.get(weatherApiUrl)
-    .then((response) => {
+  const weatherPromise = await fetch(weatherApiUrl)
+    .then(async (response) => {
+      const weather = await response.json();
       const weatherData = {
-        weather: response.data,
+        weather,
       };
+
       return weatherData;
     })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).json(err);
-    });
+    .catch((error) => {
+      console.error(error);
 
-  res.setHeader('Cache-Control', 'max-age=600, s-maxage=600');
-  res.status(200).json({
+      return new Response(JSON.stringify(error), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    });
+  // console.log(geocodePromise.location);
+
+  const returnData = JSON.stringify({
     location: geocodePromise.location,
     weather: weatherPromise.weather,
+  });
+
+  return new Response(returnData, {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'max-age=600, s-maxage=600',
+    },
   });
 };

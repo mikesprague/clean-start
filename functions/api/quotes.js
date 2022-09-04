@@ -1,23 +1,23 @@
-const axios = require('axios').default;
+export const onRequestGet = async (context) => {
+  const { cf, url } = context.request;
 
-module.exports = async (req, res) => {
+  const urlParams = new URL(url).searchParams;
+
+  const healthcheck = urlParams.get('healthcheck');
+
+  if (healthcheck) {
+    return new Response(JSON.stringify('API is up and running'), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   const normalizeQuoteData = (apiData) => {
     const returnData = apiData.map((quoteData) => {
-      const {
-        content,
-        excerpt,
-        link: quoteLink,
-        title,
-      } = quoteData || null;
-      const {
-        rendered: quoteExcerpt,
-      } = excerpt;
-      const {
-        rendered: quoteHtml,
-      } = content;
-      const {
-        rendered: quoteAuthor,
-      } = title;
+      const { content, excerpt, link: quoteLink, title } = quoteData || null;
+      const { rendered: quoteExcerpt } = excerpt;
+      const { rendered: quoteHtml } = content;
+      const { rendered: quoteAuthor } = title;
 
       return {
         quoteExcerpt,
@@ -29,12 +29,20 @@ module.exports = async (req, res) => {
     return returnData;
   };
 
-  const quotesData = await axios.get('https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand')
-    .then((response) => normalizeQuoteData(response.data))
+  const quotesData = await fetch('https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand')
+    .then(async (response) => normalizeQuoteData(await response.json()))
     .catch((error) => {
       console.error(error);
-      res.status(500).json(error);
+      return new Response(JSON.stringify(error), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
     });
-  res.setHeader('Cache-Control', 'max-age=1800, s-maxage=1800');
-  res.status(200).json(quotesData);
+  return new Response(JSON.stringify(quotesData), {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'max-age=1800, s-maxage=1800',
+    },
+  });
 };
