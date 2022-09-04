@@ -100,10 +100,15 @@ export function apiUrl () {
   if (isExtension()) {
     return 'https://cleanstart.page/api';
   }
-  if (isDev()) {
-    return 'http://localhost:3000/api';
+
+  let urlToReturn = `${window.location.protocol}//${window.location.hostname}/api`;
+
+  if (window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1')) {
+    urlToReturn = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/api`;
   }
-  return `https://${window.location.hostname}/api`;
+  // console.log(urlToReturn);
+
+  return urlToReturn;
 }
 
 export function handleError(error) {
