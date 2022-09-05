@@ -24,13 +24,10 @@
   },
 
   // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
-    "ms-azuretools.vscode-docker",
-    "mutantdino.resourcemonitor"
-  ],
+  "extensions": ["ms-azuretools.vscode-docker", "mutantdino.resourcemonitor"],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [3000],
+  "forwardPorts": [8788],
 
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "npm install"
