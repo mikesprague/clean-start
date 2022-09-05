@@ -115,21 +115,21 @@ export function handleError(error) {
   console.error(error);
 }
 
-export function initServiceWorker () {
-  register('/service-worker.js', {
-    updated(registration) {
-      console.log(`Updated to the latest version.\n${registration}`);
-      // resetData();
-      window.location.reload(true);
-    },
-    offline() {
-      console.info('No internet connection found. App is currently offline.');
-    },
-    error(error) {
-      console.error('Error during service worker registration:', error);
-    },
-  });
-};
+// export function initServiceWorker () {
+//   register('/service-worker.js', {
+//     updated(registration) {
+//       console.log(`Updated to the latest version.\n${registration}`);
+//       // resetData();
+//       window.location.reload(true);
+//     },
+//     offline() {
+//       console.info('No internet connection found. App is currently offline.');
+//     },
+//     error(error) {
+//       console.error('Error during service worker registration:', error);
+//     },
+//   });
+// };
 
 export const initIcons = () => {
   library.add(

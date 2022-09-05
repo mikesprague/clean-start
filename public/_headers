@@ -11,3 +11,6 @@
   Cross-Origin-Resource-Policy: same-site
   Access-Control-Allow-Origin: https://cleanstart.page
   Vary: Origin
+
+/api/*
+  Cache-Control: max-age=300, s-maxage=300;

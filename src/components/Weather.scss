@@ -7,7 +7,7 @@
   .weather-location {
     @apply text-xl;
     @apply font-medium;
-    @apply -mb-2;
+    // @apply -mb-1;
   }
 
   .icon-and-temp {
@@ -15,7 +15,7 @@
     @apply font-semibold;
 
     .feels-like-temp {
-      @apply -mt-2;
+      @apply -mt-1;
       @apply text-base;
       @apply font-light;
     }
@@ -27,7 +27,7 @@
 
   .hourly-forecast {
     @apply mt-1;
-    @apply mb-2;
+    // @apply mb-2;
     @apply -mr-3;
     @apply list-none;
     @apply p-0;
