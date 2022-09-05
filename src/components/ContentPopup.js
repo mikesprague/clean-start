@@ -18,29 +18,10 @@ const ContentPopup = ({ type }) => {
     switch (type) {
       case 'dev-to': {
         const getDevToPosts = async (devToUrl = `${apiUrl()}/dev-to-posts`) => {
-          const devToData = await axios.get(devToUrl)
-            .then(response => {
-              const parser = new DOMParser();
-              const xml = parser.parseFromString(response.data, 'text/xml');
-              const items = Array.from(xml.querySelectorAll('item'));
-              const dtData = items.map(item => {
-                // author, title, link, pubDate, description
-                const author = item.querySelector('author').innerHTML;
-                const title = item.querySelector('title').innerHTML;
-                const link = item.querySelector('link').innerHTML;
-                const pubDate = item.querySelector('pubDate').innerHTML;
-                return {
-                  author,
-                  title,
-                  link,
-                  pubDate,
-                };
-              });
-              return dtData;
-            });
+          const devToData = await axios.get(devToUrl).then((response) => response.data);
           const returnData = [];
           // limit to 10 items
-          for (let i = 0; i < 10; i+=1) {
+          for (let i = 0; i < 10; i += 1) {
             returnData.push(devToData[i]);
           }
           setData({
@@ -64,7 +45,7 @@ const ContentPopup = ({ type }) => {
           await axios.get(dataUrl)
             .then(response => {
               // limit to 10 items
-              for (let i = 0; i < 10; i+=1) {
+              for (let i = 0; i < 10; i += 1) {
                 returnData.push(response.data[i]);
               }
             });
@@ -85,27 +66,10 @@ const ContentPopup = ({ type }) => {
       }
       case 'hacker-news': {
         const getHackerNewsPosts = async (hackerNewsUrl = `${apiUrl()}/hacker-news-posts`) => {
-          const hackerNewsData = await axios.get(hackerNewsUrl)
-          .then(response => {
-            const parser = new DOMParser();
-            const xml = parser.parseFromString(response.data, 'text/xml');
-            const items = Array.from(xml.querySelectorAll('item'));
-            const hnData = items.map(item => {
-              // title, link, pubDate, comments, description
-              const title = item.querySelector('title').innerHTML;
-              const link = item.querySelector('link').innerHTML;
-              const pubDate = item.querySelector('pubDate').innerHTML;
-              return {
-                title,
-                link,
-                pubDate,
-              };
-            });
-            return hnData;
-          });
+          const hackerNewsData = await axios.get(hackerNewsUrl).then((response) => response.data);
           const returnData = [];
           // limit to 10 items
-          for (let i = 0; i < 10; i+=1) {
+          for (let i = 0; i < 10; i += 1) {
             returnData.push(hackerNewsData[i]);
           }
           setData({
@@ -125,26 +89,7 @@ const ContentPopup = ({ type }) => {
       }
       case 'product-hunt': {
         const getProductHuntPosts = async (productHuntRssUrl = `${apiUrl()}/product-hunt-posts`) => {
-          const productHuntData = await axios.get(productHuntRssUrl)
-          .then(response => {
-            const parser = new DOMParser();
-            const xml = parser.parseFromString(response.data, 'text/xml');
-            const entries = Array.from(xml.querySelectorAll('entry'));
-            const phData = entries.map(entry => {
-              // id, published, updated, title, link.href, content, author>name
-              const content = entry.querySelector('content').innerHTML;
-              const link = entry.querySelector('link').getAttribute('href');
-              const published = entry.querySelector('published').innerHTML;
-              const title = entry.querySelector('title').innerHTML;
-              return {
-                content,
-                link,
-                published,
-                title,
-              };
-            });
-            return phData;
-          });
+          const productHuntData = await axios.get(productHuntRssUrl).then(response => response.data);
           const returnData = [];
           // limit to 10 items
           for (let i = 0; i < 10; i+=1) {
