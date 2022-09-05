@@ -74,10 +74,12 @@ export const handleReddit = (apiData) => {
 
 export const handleProductHunt = (apiData) => {
   let idx = 0;
-  // console.log(apiData);
-  const markup = apiData.map(post => {
+  const markup = apiData.map((post) => {
     const listItemMarkup = (
-      <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
+      <li
+        key={nanoid(8)}
+        className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}
+      >
         <a href={`${post.link}`} target="_blank" rel="noopener noreferrer">
           <strong>{post.title}</strong>
         </a>
@@ -95,9 +97,12 @@ export const handleProductHunt = (apiData) => {
 
 export const handleHackerNews = (apiData) => {
   let idx = 0;
-  const markup = apiData.map(post => {
+  const markup = apiData.map((post) => {
     const listItemMarkup = (
-      <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
+      <li
+        key={nanoid(8)}
+        className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}
+      >
         <a href={`${post.link}`} target="_blank" rel="noopener noreferrer">
           <strong>{post.title}</strong>
         </a>
@@ -114,11 +119,13 @@ export const handleHackerNews = (apiData) => {
 };
 
 export const handleDevTo = (apiData) => {
-  // console.log(apiData);
   let idx = 0;
-  const markup = apiData.map(post => {
+  const markup = apiData.map((post) => {
     const listItemMarkup = (
-      <li key={nanoid(8)} className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}>
+      <li
+        key={nanoid(8)}
+        className={`list-group-item list-group-item-action text-white ${idx % 2 === 0 ? ' odd' : ''}`}
+      >
         <a href={`${post.link}`} target="_blank" rel="noopener noreferrer">
           <strong>{post.title}</strong>
         </a>
