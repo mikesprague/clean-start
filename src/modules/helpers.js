@@ -76,19 +76,18 @@ export const appConfig = {
   weatherLastUpdatedKey: 'weatherLastUpdated',
 };
 
-export function stripHTML(originalString) {
-  return originalString.replace(/(<([^>]+)>)/gi, '');
-}
+export const stripHTML = (originalString) =>
+  originalString.replace(/(<([^>]+)>)/g, '');
 
-export function isExtension() {
+export const isExtension = () => {
   if (window.location.origin.includes('-extension://')) {
     return true;
   }
 
   return false;
-}
+};
 
-export function isDev() {
+export const isDev = () => {
   if (
     window.location.hostname === 'localhost' ||
     window.location.hostname === '127.0.0.1'
@@ -97,9 +96,9 @@ export function isDev() {
   }
 
   return false;
-}
+};
 
-export function apiUrl() {
+export const apiUrl = () => {
   if (isExtension()) {
     return 'https://cleanstart.page/api';
   }
@@ -115,11 +114,11 @@ export function apiUrl() {
   // console.log(urlToReturn);
 
   return urlToReturn;
-}
+};
 
-export function handleError(error) {
+export const handleError = (error) => {
   console.error(error);
-}
+};
 
 export const initIcons = () => {
   library.add(
