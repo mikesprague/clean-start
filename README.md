@@ -18,7 +18,7 @@ Open source new tab extension
 
 - Layout/design based on what I liked from the Momentum browser extension
 - Date and time with greeting
-- Current temp/conditions (powered by [Dark Sky](https://darksky.net/poweredby/))
+- Current temp/conditions (from [OpenWeatherMap](https://openweathermap.org/api))
 - Random quote (from [Quotes on Design API](https://quotesondesign.com/api/))
 - Random background image (from [Unsplash API](https://unsplash.com/developers/))
 - Top posts from some useful sites
@@ -37,9 +37,39 @@ Open source new tab extension
 - Install dependencies `npm install`
 - Build extension `npm run build:extension`
   - This will create a `build` folder with the extension files and a `clean-start-extension.zip` file (used for submission to Chrome Store)
+
+### Local Development
+
 - Run/develop locally `npm start`
 
-NOTE: You will need API keys from Dark Sky, Unsplash, and Google Maps to build/run the API functions this extension uses without modification
+### API Keys
+
+NOTE: You will need API keys from OpenWeatherMap and Unsplash to build and run the serverless functions used as API endpoints for this extension. You can
+get API keys for both services for FREE (links below)
+
+OpenWeatherMap
+
+- Developer page <https://openweathermap.org/api>
+- Sign up for FREE <https://home.openweathermap.org/users/sign_up>
+
+Unsplash
+
+- Developer page <https://unsplash.com/developers>
+- Sign up for FREE <https://unsplash.com/oauth/applications>
+
+Once you have the API keys, make sure to set environment variables for each using the following names:
+
+- `UNSPLASH_ACCESS_KEY`
+- `UNSPLASH_SECRET_KEY`
+- `OPEN_WEATHERMAP_API_KEY`
+
+For local development, create a file in the root directory of this project named `.dev.vars` with the same format as a typical `.env` file:
+
+```bash
+UNSPLASH_ACCESS_KEY="xxxxxx"
+UNSPLASH_SECRET_KEY="xxxxxx"
+OPEN_WEATHERMAP_API_KEY="xxxxxx"
+```
 
 ## Demo
 
@@ -64,7 +94,7 @@ New screenshots coming
 - Builds - [Vite](https://vitejs.dev/)
 - JavaScript Library - [React](https://reactjs.org/)
 - Icons - [FontAwesome](https://fontawesome.com/)
-- Font ([Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab)) - [Google Fonts](https://fonts.google.com/)
+- Font ([Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab))
 - Tooltips and content popups - [tippy.js](https://github.com/atomiks/tippyjs)
 - Date/time lib - [dayjs](https://github.com/iamkun/dayjs)
 - CSS framework - [Tailwind CSS](https://tailwindcss.com/)
