@@ -20,9 +20,9 @@ export default defineConfig({
   },
   plugins: [
     VitePWA({
-      navigateFallbackDenylist: [/^\/api/],
       injectRegister: 'auto',
       workbox: {
+        navigateFallbackDenylist: [/^\/api/, /^chrome-extension:\S+/],
         clientsClaim: true,
         skipWaiting: true,
         cleanupOutdatedCaches: true,
