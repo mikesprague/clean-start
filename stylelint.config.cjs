@@ -1,5 +1,4 @@
 module.exports = {
-  ignorePath: './**/*.md',
   extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier-scss'],
   rules: {
     'scss/at-rule-no-unknown': [
