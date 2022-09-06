@@ -5,7 +5,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { nanoid } from 'nanoid';
 
-import { apiUrl, handleError, isCacheExpired } from '../modules/helpers';
+import { apiUrl, isCacheExpired } from '../modules/helpers';
 import { clearData } from '../modules/local-storage';
 import { getWeatherIcon } from '../modules/weather';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -13,58 +13,13 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 import './Weather.scss';
 
 export const Weather = () => {
-  const [coordinates, setCoordinates] = useLocalStorage('coordinates', null);
-
-  useEffect(() => {
-    async function getPosition(position) {
-      setCoordinates({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-        lastUpdated: dayjs().toString(),
-      });
-    }
-
-    async function geolocationError(error) {
-      handleError(error);
-    }
-
-    async function doGeolocation() {
-      const geolocationOptions = {
-        enableHighAccuracy: true,
-        maximumAge: 3600000, // 1 hour (number of seconds * 1000 milliseconds)
-      };
-
-      await navigator.geolocation.getCurrentPosition(
-        getPosition,
-        geolocationError,
-        geolocationOptions,
-      );
-    }
-
-    if (coordinates) {
-      if (isCacheExpired(coordinates.lastUpdated, 10)) {
-        clearData('coordinates');
-        doGeolocation();
-      }
-    } else {
-      clearData('coordinates');
-      doGeolocation();
-    }
-
-    // return () => {};
-  }, [coordinates, setCoordinates]);
-
   const [weatherData, setWeatherData] = useLocalStorage('weatherData', null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (!coordinates) {
-      return;
-    }
-
-    const getWeatherData = async (latitude, longitude) => {
+    const getWeatherData = async () => {
       setIsLoading(true);
-      const weatherApiurl = `${apiUrl()}/location-and-weather/?lat=${latitude}&lng=${longitude}`;
+      const weatherApiurl = `${apiUrl()}/location-and-weather`;
 
       const weatherApiData = await axios
         .get(weatherApiurl)
@@ -78,20 +33,18 @@ export const Weather = () => {
       setIsLoading(false);
     };
 
-    const { lat, lng } = coordinates;
-
     if (weatherData && weatherData.lastUpdated) {
       if (isCacheExpired(weatherData.lastUpdated, 10)) {
         clearData('weatherData');
-        getWeatherData(lat, lng);
+        getWeatherData();
       }
     } else {
       clearData('weatherData');
-      getWeatherData(lat, lng);
+      getWeatherData();
     }
 
     // return() => {};
-  }, [coordinates, weatherData, setWeatherData]);
+  }, [weatherData, setWeatherData]);
 
   const [hourlyData, setHourlyData] = useState(null);
 
@@ -101,7 +54,9 @@ export const Weather = () => {
       const startHour = dayjs().format('m') > 30 ? 1 : 0;
       const numHoursToShow = 4;
 
-      weatherData.data.weather.hourly.data.forEach((hourData, index) => {
+      weatherData.data.weather.hourly.forEach((hourData, index) => {
+        // console.log(hourData);
+
         if (index >= startHour && index < startHour + numHoursToShow) {
           hourly.push(hourData);
         }
@@ -133,7 +88,7 @@ export const Weather = () => {
           <Tippy
             content={
               weatherData && weatherData.data && weatherData.data.weather
-                ? weatherData.data.weather.currently.summary
+                ? weatherData.data.weather.current.weather[0].description
                 : ''
             }
             placement="left"
@@ -142,7 +97,9 @@ export const Weather = () => {
               <FontAwesomeIcon
                 icon={
                   weatherData && weatherData.data
-                    ? getWeatherIcon(weatherData.data.weather.currently.icon)
+                    ? getWeatherIcon(
+                        weatherData.data.weather.current.weather[0].icon,
+                      )
                     : 'hourglass-half'
                 }
                 fixedWidth
@@ -151,7 +108,7 @@ export const Weather = () => {
               <strong className="weather-temp">
                 {weatherData && weatherData.data
                   ? ` ${Math.round(
-                      weatherData.data.weather.currently.temperature,
+                      weatherData.data.weather.current.temp,
                     )}${String.fromCharCode(176)}`
                   : ' -- '}
               </strong>
@@ -161,7 +118,7 @@ export const Weather = () => {
             {/* Math.round(weatherData.weather.currently.temperature) !== Math.round(weatherData.weather.currently.apparentTemperature) */}
             {weatherData && weatherData.data
               ? `Feels ${Math.round(
-                  weatherData.data.weather.currently.apparentTemperature,
+                  weatherData.data.weather.current.feels_like,
                 )}${String.fromCharCode(176)}`
               : ''}
           </div>
@@ -174,8 +131,8 @@ export const Weather = () => {
               <Tippy
                 content={
                   hour
-                    ? `${hour.summary} (Feels ${Math.round(
-                        hour.apparentTemperature,
+                    ? `${hour.weather[0].description} (Feels ${Math.round(
+                        hour.feels_like,
                       )}${String.fromCharCode(176)})`
                     : ''
                 }
@@ -183,13 +140,13 @@ export const Weather = () => {
                 key={nanoid(8)}
               >
                 <li key={nanoid(8)} className="w-1/4">
-                  {dayjs.unix(hour.time).format('ha')}
+                  {dayjs.unix(hour.dt).format('ha')}
                   <br />
                   <FontAwesomeIcon
-                    icon={getWeatherIcon(hour.icon)}
+                    icon={getWeatherIcon(hour.weather[0].icon)}
                     fixedWidth
                   />
-                  {` ${Math.round(hour.temperature)}`}&deg;
+                  {` ${Math.round(hour.temp)}`}&deg;
                 </li>
               </Tippy>
             ))}
@@ -200,11 +157,11 @@ export const Weather = () => {
           }
         >
           <a
-            href="https://darksky.net/poweredby/"
+            href="https://openweathermap/api/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Powered by Dark Sky
+            Powered by OpenWeatherMap
           </a>
         </div>
       </span>
