@@ -2,10 +2,6 @@
 
 Open source new tab extension
 
-[![Vercel Deployment Status](https://img.shields.io/github/deployments/mikesprague/clean-start/production?label=Vercel%20%28build%20%26%20deploy%29&logo=Vercel&logoColor=white)](https://vercel.com/m5ls5e/clean-start/deployments)
-[![Known Vulnerabilities](https://snyk.io/test/github/mikesprague/clean-start/badge.svg?targetFile=package.json)](https://snyk.io/test/github/mikesprague/clean-start?targetFile=package.json)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmikesprague%2Fclean-start.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmikesprague%2Fclean-start?ref=badge_shield)
-
 ## Contents
 
 - [Clean Start](#clean-start)
@@ -35,15 +31,13 @@ Open source new tab extension
 ## Install
 
 - Chrome Store: [https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol](https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol)
-- Firefox Add-ons: [https://addons.mozilla.org/en-US/firefox/addon/clean-start/](https://addons.mozilla.org/en-US/firefox/addon/clean-start/)
-- Edge Add-ons: [https://microsoftedge.microsoft.com/addons/detail/clean-start/aifahnhgmoaeckhcdnhdnoamjnkeppjf](https://microsoftedge.microsoft.com/addons/detail/clean-start/aifahnhgmoaeckhcdnhdnoamjnkeppjf)
 
 ## Build
 
-- Install dependencies `yarn`
-- Build extension `yarn build:extension`
-  - This will create a `build` folder with the extension files and an `clean-start-extension.zip` file for submitting
-- Run/develop locally `yarn start`
+- Install dependencies `npm install`
+- Build extension `npm run build:extension`
+  - This will create a `build` folder with the extension files and a `clean-start-extension.zip` file (used for submission to Chrome Store)
+- Run/develop locally `npm start`
 
 NOTE: You will need API keys from Dark Sky, Unsplash, and Google Maps to build/run the API functions this extension uses without modification
 
@@ -66,7 +60,8 @@ New screenshots coming
 
 ## Uses
 
-- PWA Hosting and Serveless Functions for API - [Vercel](https://vercel.com)
+- PWA Hosting and Serveless Functions for API - [CloudFlare Pages](https://pages.cloudflare.com/)
+- Builds - [Vite](https://vitejs.dev/)
 - JavaScript Library - [React](https://reactjs.org/)
 - Icons - [FontAwesome](https://fontawesome.com/)
 - Font ([Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab)) - [Google Fonts](https://fonts.google.com/)
@@ -74,16 +69,12 @@ New screenshots coming
 - Date/time lib - [dayjs](https://github.com/iamkun/dayjs)
 - CSS framework - [Tailwind CSS](https://tailwindcss.com/)
 - HTTP lib/client - [axios](https://github.com/axios/axios/)
-- Dependency monitoring - [Snyk](https://github.com/snyk/snyk)
-- Open source license compliance monitoring - [FOSSA](https://fossa.com/)
 
 ## License
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmikesprague%2Fclean-start.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmikesprague%2Fclean-start?ref=badge_large)
-
 MIT License
 
-Copyright (c) 2020 Michael Sprague
+Copyright (c) 2022 Michael Sprague
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
