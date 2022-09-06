@@ -1,13 +1,15 @@
-import axios from 'axios';
-import dayjs from 'dayjs';
-import { nanoid } from 'nanoid';
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
-import { apiUrl, isCacheExpired } from '../modules/helpers';
+import axios from 'axios';
+import dayjs from 'dayjs';
+import { nanoid } from 'nanoid';
+
+import { apiUrl, handleError, isCacheExpired } from '../modules/helpers';
 import { clearData } from '../modules/local-storage';
 import { getWeatherIcon } from '../modules/weather';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+
 import './Weather.scss';
 
 const Weather = () => {
@@ -21,15 +23,22 @@ const Weather = () => {
         lastUpdated: dayjs().toString(),
       });
     }
+
     async function geolocationError(error) {
       handleError(error);
     }
+
     async function doGeolocation() {
       const geolocationOptions = {
         enableHighAccuracy: true,
         maximumAge: 3600000, // 1 hour (number of seconds * 1000 milliseconds)
       };
-      await navigator.geolocation.getCurrentPosition(getPosition, geolocationError, geolocationOptions);
+
+      await navigator.geolocation.getCurrentPosition(
+        getPosition,
+        geolocationError,
+        geolocationOptions,
+      );
     }
 
     if (coordinates) {
@@ -47,21 +56,30 @@ const Weather = () => {
 
   const [weatherData, setWeatherData] = useLocalStorage('weatherData', null);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    if (!coordinates) { return; }
+    if (!coordinates) {
+      return;
+    }
 
     const getWeatherData = async (latitude, longitude) => {
+      setIsLoading(true);
       const weatherApiurl = `${apiUrl()}/location-and-weather/?lat=${latitude}&lng=${longitude}`;
+
       const weatherApiData = await axios
         .get(weatherApiurl)
         .then((response) => response.data);
+
       setWeatherData({
         lastUpdated: dayjs().toString(),
         data: weatherApiData,
       });
+
+      setIsLoading(false);
     };
 
     const { lat, lng } = coordinates;
+
     if (weatherData && weatherData.lastUpdated) {
       if (isCacheExpired(weatherData.lastUpdated, 10)) {
         clearData('weatherData');
@@ -76,13 +94,15 @@ const Weather = () => {
   }, [coordinates, weatherData, setWeatherData]);
 
   const [hourlyData, setHourlyData] = useState(null);
+
   useEffect(() => {
     if (weatherData) {
       const hourly = [];
       const startHour = dayjs().format('m') > 30 ? 1 : 0;
       const numHoursToShow = 4;
+
       weatherData.data.weather.hourly.data.forEach((hourData, index) => {
-        if (index >= startHour && index < (startHour + numHoursToShow)) {
+        if (index >= startHour && index < startHour + numHoursToShow) {
           hourly.push(hourData);
         }
       });
@@ -93,41 +113,97 @@ const Weather = () => {
   return (
     <div className="weather-container">
       <div className={isLoading ? 'block text-right mt-4' : 'hidden'}>
-        <FontAwesomeIcon icon="spinner" size="2x" fixedWidth pulse className="mr-8" />
+        <FontAwesomeIcon
+          icon="spinner"
+          size="2x"
+          fixedWidth
+          pulse
+          className="mr-8"
+        />
         <br />
         loading weather
       </div>
       <span className={isLoading ? 'invisible' : 'visible'}>
-        <h4 className="weather-location">{weatherData && weatherData.data ? weatherData.data.location.locationName : ''}</h4>
+        <h4 className="weather-location">
+          {weatherData && weatherData.data
+            ? weatherData.data.location.locationName
+            : ''}
+        </h4>
         <div className="icon-and-temp">
-          <Tippy content={weatherData && weatherData.data && weatherData.data.weather ? weatherData.data.weather.currently.summary : ''} placement="left">
+          <Tippy
+            content={
+              weatherData && weatherData.data && weatherData.data.weather
+                ? weatherData.data.weather.currently.summary
+                : ''
+            }
+            placement="left"
+          >
             <span>
-              <FontAwesomeIcon icon={weatherData && weatherData.data ? getWeatherIcon(weatherData.data.weather.currently.icon) : 'hourglass-half' } fixedWidth className="weather-icon" />
-              <strong className="weather-temp">{weatherData && weatherData.data ? ` ${Math.round(weatherData.data.weather.currently.temperature)}${String.fromCharCode(176)}` : ' -- '}</strong>
+              <FontAwesomeIcon
+                icon={
+                  weatherData && weatherData.data
+                    ? getWeatherIcon(weatherData.data.weather.currently.icon)
+                    : 'hourglass-half'
+                }
+                fixedWidth
+                className="weather-icon"
+              />
+              <strong className="weather-temp">
+                {weatherData && weatherData.data
+                  ? ` ${Math.round(
+                      weatherData.data.weather.currently.temperature,
+                    )}${String.fromCharCode(176)}`
+                  : ' -- '}
+              </strong>
             </span>
           </Tippy>
           <div className="feels-like-temp">
             {/* Math.round(weatherData.weather.currently.temperature) !== Math.round(weatherData.weather.currently.apparentTemperature) */}
-            {weatherData && weatherData.data ? `Feels ${Math.round(weatherData.data.weather.currently.apparentTemperature)}${String.fromCharCode(176)}` : ''}
+            {weatherData && weatherData.data
+              ? `Feels ${Math.round(
+                  weatherData.data.weather.currently.apparentTemperature,
+                )}${String.fromCharCode(176)}`
+              : ''}
           </div>
         </div>
         <ul className="flex hourly-forecast">
-        {weatherData && weatherData.data && hourlyData && hourlyData.map((hour) => (
-          <Tippy
-            content={hour ? `${hour.summary} (Feels ${Math.round(hour.apparentTemperature)}${String.fromCharCode(176)})` : ''}
-            placement="left"
-            key={nanoid(8)}
-          >
-            <li key={nanoid(8)} className="w-1/4">
-              {dayjs.unix(hour.time).format('ha')}<br />
-              <FontAwesomeIcon icon={getWeatherIcon(hour.icon)} fixedWidth />
-              {` ${Math.round(hour.temperature)}`}&deg;
-            </li>
-          </Tippy>
-        ))}
+          {weatherData &&
+            weatherData.data &&
+            hourlyData &&
+            hourlyData.map((hour) => (
+              <Tippy
+                content={
+                  hour
+                    ? `${hour.summary} (Feels ${Math.round(
+                        hour.apparentTemperature,
+                      )}${String.fromCharCode(176)})`
+                    : ''
+                }
+                placement="left"
+                key={nanoid(8)}
+              >
+                <li key={nanoid(8)} className="w-1/4">
+                  {dayjs.unix(hour.time).format('ha')}
+                  <br />
+                  <FontAwesomeIcon
+                    icon={getWeatherIcon(hour.icon)}
+                    fixedWidth
+                  />
+                  {` ${Math.round(hour.temperature)}`}&deg;
+                </li>
+              </Tippy>
+            ))}
         </ul>
-        <div className={weatherData && hourlyData ? 'powered-by' : 'powered-by hidden'}>
-          <a href="https://darksky.net/poweredby/" target="_blank" rel="noopener noreferrer">
+        <div
+          className={
+            weatherData && hourlyData ? 'powered-by' : 'powered-by hidden'
+          }
+        >
+          <a
+            href="https://darksky.net/poweredby/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Powered by Dark Sky
           </a>
         </div>

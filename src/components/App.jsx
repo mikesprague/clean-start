@@ -1,11 +1,14 @@
 import React from 'react';
+
+import { initIcons } from '../modules/helpers';
+
 import BackgroundImage from './BackgroundImage';
 import Clock from './Clock';
 import ContentPopup from './ContentPopup';
 import Quote from './Quote';
 import TitleAndLinks from './TitleAndLinks';
 import Weather from './Weather';
-import { initIcons } from '../modules/helpers';
+
 import './App.scss';
 
 initIcons();
