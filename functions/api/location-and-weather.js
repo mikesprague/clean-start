@@ -51,7 +51,10 @@ export const onRequestGet = async (context) => {
           fullResults.forEach((result) => {
             if (!locationName.length) {
               result.address_components.forEach((component) => {
-                if (!locationName.length && component.types.indexOf(target) > -1) {
+                if (
+                  !locationName.length &&
+                  component.types.indexOf(target) > -1
+                ) {
                   locationName = component.long_name;
                 }
               });
@@ -61,7 +64,10 @@ export const onRequestGet = async (context) => {
       });
 
       fullResults[0].address_components.forEach((component) => {
-        if (isUSA && component.types.indexOf('administrative_area_level_1') > -1) {
+        if (
+          isUSA &&
+          component.types.indexOf('administrative_area_level_1') > -1
+        ) {
           locationName = `${locationName}, ${component.short_name}`;
         }
 
@@ -77,6 +83,7 @@ export const onRequestGet = async (context) => {
           fullResults,
         },
       };
+
       return locationData;
     })
     .catch((error) => {

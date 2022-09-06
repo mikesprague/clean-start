@@ -2,7 +2,7 @@ import cheerio from 'cheerio';
 import dayjs from 'dayjs';
 
 export const onRequestGet = async (context) => {
-  const { cf, url } = context.request;
+  const { url } = context.request;
 
   const urlParams = new URL(url).searchParams;
 
@@ -37,7 +37,10 @@ export const onRequestGet = async (context) => {
           const link = itemAsString.substring(linkStart, linkEnd).trim();
           // console.log(link);
           const title = $(elem).find('title').text().trim();
-          const pubDate = dayjs($(elem).find('pubDate').text().trim()).toISOString();
+          const pubDate = dayjs(
+            $(elem).find('pubDate').text().trim(),
+          ).toISOString();
+
           returnData.push({
             title,
             link,
@@ -45,10 +48,12 @@ export const onRequestGet = async (context) => {
           });
         });
       // console.log(returnData);
+
       return returnData;
     })
     .catch((error) => {
       console.error(error);
+
       return new Response(
         JSON.stringify({
           message: error.message,

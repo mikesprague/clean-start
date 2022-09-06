@@ -1,7 +1,7 @@
 import cheerio from 'cheerio';
 
 export const onRequestGet = async (context) => {
-  const { cf, url } = context.request;
+  const { url } = context.request;
 
   const urlParams = new URL(url).searchParams;
 
@@ -13,6 +13,7 @@ export const onRequestGet = async (context) => {
       headers: { 'Content-Type': 'application/json' },
     });
   }
+
   const postsData = await fetch('https://github.com/trending?spoken_language_code=en')
     .then(async (response) => {
       const markup = await response.text();
@@ -27,16 +28,23 @@ export const onRequestGet = async (context) => {
       const languageNameSelector = `${languageSelector} > span.d-inline-block.ml-0.mr-3 > span:nth-child(2)`;
       const $ = cheerio.load(markup);
       const returnData = [];
+
       $(rowSelector).each((i, elem) => {
         const title = $(elem).find(linkTitleSelector).attr('href').substring(1);
-        const link = `https://github.com${$(elem).find(linkTitleSelector).attr('href')}`;
+        const link = `https://github.com${$(elem)
+          .find(linkTitleSelector)
+          .attr('href')}`;
         const description = $(elem)
           .find(descriptionSelector)
           .text()
           .replace(/\r?\n|\r/, '')
           .trim();
-        const forksLink = `https://github.com${$(elem).find(forksSelector).attr('href')}`;
-        const starsLink = `https://github.com${$(elem).find(starsSelector).attr('href')}`;
+        const forksLink = `https://github.com${$(elem)
+          .find(forksSelector)
+          .attr('href')}`;
+        const starsLink = `https://github.com${$(elem)
+          .find(starsSelector)
+          .attr('href')}`;
         const stars = $(elem)
           .find(starsSelector)
           .text()
@@ -76,10 +84,12 @@ export const onRequestGet = async (context) => {
           link,
         });
       });
+
       return returnData;
     })
     .catch((error) => {
       console.error(error);
+
       return new Response(JSON.stringify(error), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },

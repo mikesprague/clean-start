@@ -1,5 +1,5 @@
 export const onRequestGet = async (context) => {
-  const { cf, url } = context.request;
+  const { url } = context.request;
 
   const urlParams = new URL(url).searchParams;
   const healthcheck = urlParams.get('healthcheck');
@@ -41,9 +41,14 @@ export const onRequestGet = async (context) => {
       } = imageData || null;
       const { html: imageLink } = links || null;
       const { title, name } = location || null;
-      const { regular: imageUrl, small: imageSmallUrl, thumb: imageThumbUrl } = urls || null;
+      const {
+        regular: imageUrl,
+        small: imageSmallUrl,
+        thumb: imageThumbUrl,
+      } = urls || null;
       const { name: userName, links: userLinks } = user || null;
       const { html: userLink } = userLinks || null;
+
       return {
         altDescription,
         createdAt,
@@ -58,13 +63,19 @@ export const onRequestGet = async (context) => {
         userName,
       };
     });
+
     return returnData;
   };
 
   const imageData = await fetch(unsplashApiurl)
-    .then(async (response) => await response.json())
+    .then(async (response) => {
+      const json = await response.json();
+
+      return json;
+    })
     .catch((error) => {
       console.error(error);
+
       return new Response(JSON.stringify(error), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
@@ -72,6 +83,7 @@ export const onRequestGet = async (context) => {
     });
 
   const returnData = normalizeImageData(imageData);
+
   return new Response(JSON.stringify(returnData), {
     status: 200,
     headers: {

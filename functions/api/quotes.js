@@ -1,5 +1,5 @@
 export const onRequestGet = async (context) => {
-  const { cf, url } = context.request;
+  const { url } = context.request;
 
   const urlParams = new URL(url).searchParams;
 
@@ -26,23 +26,28 @@ export const onRequestGet = async (context) => {
         quoteLink,
       };
     });
+
     return returnData;
   };
 
-  const quotesData = await fetch('https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand')
+  const quotesData = await fetch(
+    'https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand',
+  )
     .then(async (response) => normalizeQuoteData(await response.json()))
     .catch((error) => {
       console.error(error);
+
       return new Response(JSON.stringify(error), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
       });
     });
-  return new Response(JSON.stringify(quotesData), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'max-age=1800, s-maxage=1800',
-    },
-  });
+
+    return new Response(JSON.stringify(quotesData), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'max-age=1800, s-maxage=1800',
+      },
+    });
 };

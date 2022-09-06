@@ -1,5 +1,5 @@
 export const onRequestGet = async (context) => {
-  const { cf, url } = context.request;
+  const { url } = context.request;
 
   const urlParams = new URL(url).searchParams;
 
@@ -12,20 +12,25 @@ export const onRequestGet = async (context) => {
     });
   }
 
-  const redditPosts = await fetch('https://www.reddit.com/r/popular.json?limit=10')
+  const redditPosts = await fetch(
+    'https://www.reddit.com/r/popular.json?limit=10',
+  )
     .then(async (response) => {
       const data = await response.json();
       const { children } = data.data;
       const returnData = children.map((child) => child.data);
+
       return returnData;
     })
     .catch((error) => {
       console.error(error);
+
       return new Response(JSON.stringify(error), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
       });
     });
+
   return new Response(JSON.stringify(redditPosts), {
     status: 200,
     headers: {
