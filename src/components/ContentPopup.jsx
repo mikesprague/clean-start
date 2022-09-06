@@ -19,7 +19,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 import './ContentPopup.scss';
 
-const ContentPopup = ({ type }) => {
+export const ContentPopup = ({ type }) => {
   const [data, setData] = useLocalStorage(`${type}Data`, null);
 
   useEffect(() => {
@@ -274,5 +274,3 @@ ContentPopup.displayName = 'ContentPopup';
 ContentPopup.propTypes = {
   type: PropTypes.string.isRequired,
 };
-
-export default ContentPopup;

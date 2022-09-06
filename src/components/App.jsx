@@ -2,18 +2,18 @@ import React from 'react';
 
 import { initIcons } from '../modules/helpers';
 
-import BackgroundImage from './BackgroundImage';
-import Clock from './Clock';
-import ContentPopup from './ContentPopup';
-import Quote from './Quote';
-import TitleAndLinks from './TitleAndLinks';
-import Weather from './Weather';
+import { BackgroundImage } from './BackgroundImage';
+import { Clock } from './Clock';
+import { ContentPopup } from './ContentPopup';
+import { Quote } from './Quote';
+import { TitleAndLinks } from './TitleAndLinks';
+import { Weather } from './Weather';
 
 import './App.scss';
 
 initIcons();
 
-const App = () => (
+export const App = () => (
   <>
     <div className="header">
       <div className="w-1/2">
@@ -43,5 +43,3 @@ const App = () => (
     </div>
   </>
 );
-
-export default App;

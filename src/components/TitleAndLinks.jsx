@@ -6,7 +6,7 @@ import { version } from '../../package.json';
 
 import './TitleAndLinks.scss';
 
-const TitleAndLinks = () => {
+export const TitleAndLinks = () => {
   const [isExtension, setIsExtension] = useState(true);
 
   useEffect(() => {
@@ -49,5 +49,3 @@ const TitleAndLinks = () => {
     </section>
   );
 };
-
-export default TitleAndLinks;

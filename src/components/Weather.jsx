@@ -12,7 +12,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 import './Weather.scss';
 
-const Weather = () => {
+export const Weather = () => {
   const [coordinates, setCoordinates] = useLocalStorage('coordinates', null);
 
   useEffect(() => {
@@ -211,5 +211,3 @@ const Weather = () => {
     </div>
   );
 };
-
-export default Weather;

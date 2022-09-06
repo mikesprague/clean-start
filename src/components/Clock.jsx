@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 
 import './Clock.scss';
 
-const Clock = () => {
+export const Clock = () => {
   const [dateTime, setDateTime] = useState(dayjs());
 
   const updateDateTime = () => {
@@ -45,5 +45,3 @@ const Clock = () => {
     </div>
   );
 };
-
-export default Clock;

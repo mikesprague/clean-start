@@ -2,9 +2,7 @@ import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { registerSW } from 'virtual:pwa-register';
 
-import App from './components/App';
-
-// import { initServiceWorker, isDev } from './modules/helpers';
+import { App } from './components/App';
 
 import 'tippy.js/dist/tippy.css';
 import './index.scss';
@@ -25,7 +23,3 @@ registerSW({
   onOfflineReady() {},
   immediate: true,
 });
-
-// if (!isDev()) {
-//   initServiceWorker();
-// }

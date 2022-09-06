@@ -9,7 +9,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 import './BackgroundImage.scss';
 
-const BackgroundImage = () => {
+export const BackgroundImage = () => {
   const [allBgImagesData, setAllBgImagesData] = useLocalStorage(
     'bgImagesData',
     null,
@@ -166,5 +166,3 @@ const BackgroundImage = () => {
     </>
   );
 };
-
-export default BackgroundImage;

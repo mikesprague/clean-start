@@ -9,7 +9,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 import './Quote.scss';
 
-const Quote = () => {
+export const Quote = () => {
   const [allQuotesData, setAllQuotesData] = useLocalStorage('quoteData', null);
 
   useEffect(() => {
@@ -80,5 +80,3 @@ const Quote = () => {
     </div>
   );
 };
-
-export default Quote;
