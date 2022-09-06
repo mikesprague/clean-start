@@ -1,8 +1,7 @@
 import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-
-const appVersion = (await import('./package.json')).version;
+import { version } from './package.json';
 
 export default defineConfig({
   root: 'src',
@@ -36,7 +35,7 @@ export default defineConfig({
         './images/new-tab-icon-128.png',
       ],
       manifest: {
-        version: appVersion,
+        version,
         name: 'Clean Start',
         short_name: 'Clean Start',
         description: 'Open source new tab extension',
