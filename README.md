@@ -2,18 +2,6 @@
 
 Open source new tab extension
 
-## Contents
-
-- [Clean Start](#clean-start)
-  - [Contents](#contents)
-  - [About](#about)
-  - [Install](#install)
-  - [Build](#build)
-  - [Demo](#demo)
-  - [Screenshots](#screenshots)
-  - [Uses](#uses)
-  - [License](#license)
-
 ## About
 
 - Layout/design based on what I liked from the Momentum browser extension
@@ -27,6 +15,21 @@ Open source new tab extension
   - [Hacker News Top Posts](https://news.ycombinator.com/)
   - [Product Hunt Top Posts](https://producthunt.com/)
   - [Reddit Popular Posts](https://www.reddit.com/r/popular)
+
+## Demo
+
+Demo available as a progressive web app (PWA):
+
+- [https://cleanstart.page](https://cleanstart.page)
+
+<!-- ## Screenshots
+
+![Clean Start Screenshot One](./screenshot-1.png "Clean Start Screenshot One")
+![Clean Start Screenshot Two](./screenshot-2.png "Clean Start Screenshot Two")
+![Clean Start Screenshot Three](./screenshot-3.png "Clean Start Screenshot Three")
+![Clean Start Screenshot Four](./screenshot-4.png "Clean Start Screenshot Four")
+![Clean Start Screenshot Five](./screenshot-5.png "Clean Start Screenshot Five")
+![Clean Start Screenshot Six](./screenshot-6.png "Clean Start Screenshot Six") -->
 
 ## Install
 
@@ -70,23 +73,6 @@ UNSPLASH_ACCESS_KEY="xxxxxx"
 UNSPLASH_SECRET_KEY="xxxxxx"
 OPEN_WEATHERMAP_API_KEY="xxxxxx"
 ```
-
-## Demo
-
-Demo available as a progressive web app (PWA):
-
-- [https://cleanstart.page](https://cleanstart.page)
-
-## Screenshots
-
-New screenshots coming
-
-<!-- ![Clean Start Screenshot One](./screenshot-1.png "Clean Start Screenshot One")
-![Clean Start Screenshot Two](./screenshot-2.png "Clean Start Screenshot Two")
-![Clean Start Screenshot Three](./screenshot-3.png "Clean Start Screenshot Three")
-![Clean Start Screenshot Four](./screenshot-4.png "Clean Start Screenshot Four")
-![Clean Start Screenshot Five](./screenshot-5.png "Clean Start Screenshot Five")
-![Clean Start Screenshot Six](./screenshot-6.png "Clean Start Screenshot Six") -->
 
 ## Uses
 
