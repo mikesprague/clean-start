@@ -15,5 +15,6 @@ export const getWeatherIcon = (icon) => {
     thunderstorm: 'cloud-showers-heavy',
     tornado: 'wind',
   };
+
   return iconMap[icon];
 };

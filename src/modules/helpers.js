@@ -1,15 +1,3 @@
-import dayjs from 'dayjs';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faChrome,
-  faDev,
-  faEdge,
-  faFirefoxBrowser,
-  faGithub,
-  faHackerNews,
-  faProductHunt,
-  faRedditAlien,
-} from '@fortawesome/free-brands-svg-icons';
 import {
   faBolt,
   faCalendar,
@@ -38,8 +26,18 @@ import {
   faUser,
   faWind,
 } from '@fortawesome/free-solid-svg-icons';
-import { register } from 'register-service-worker';
-// import { resetData } from './local-storage';
+import {
+  faChrome,
+  faDev,
+  faEdge,
+  faFirefoxBrowser,
+  faGithub,
+  faHackerNews,
+  faProductHunt,
+  faRedditAlien,
+} from '@fortawesome/free-brands-svg-icons';
+import dayjs from 'dayjs';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 export const appConfig = {
   bgCacheTtl: 360, // 6 hours
@@ -82,28 +80,36 @@ export function stripHTML(originalString) {
   return originalString.replace(/(<([^>]+)>)/gi, '');
 }
 
-export function isExtension () {
+export function isExtension() {
   if (window.location.origin.includes('-extension://')) {
     return true;
   }
+
   return false;
 }
 
-export function isDev () {
-  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+export function isDev() {
+  if (
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1'
+  ) {
     return true;
   }
+
   return false;
 }
 
-export function apiUrl () {
+export function apiUrl() {
   if (isExtension()) {
     return 'https://cleanstart.page/api';
   }
 
   let urlToReturn = `${window.location.protocol}//${window.location.hostname}/api`;
 
-  if (window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1')) {
+  if (
+    window.location.hostname.includes('localhost') ||
+    window.location.hostname.includes('127.0.0.1')
+  ) {
     urlToReturn = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/api`;
   }
   // console.log(urlToReturn);
@@ -114,22 +120,6 @@ export function apiUrl () {
 export function handleError(error) {
   console.error(error);
 }
-
-// export function initServiceWorker () {
-//   register('/service-worker.js', {
-//     updated(registration) {
-//       console.log(`Updated to the latest version.\n${registration}`);
-//       // resetData();
-//       window.location.reload(true);
-//     },
-//     offline() {
-//       console.info('No internet connection found. App is currently offline.');
-//     },
-//     error(error) {
-//       console.error('Error during service worker registration:', error);
-//     },
-//   });
-// };
 
 export const initIcons = () => {
   library.add(
@@ -172,13 +162,19 @@ export const initIcons = () => {
 
 export const isCacheExpired = (lastUpdated, cacheDurationInMinutes) => {
   try {
-    const nextUpdateTime = dayjs(lastUpdated).add(cacheDurationInMinutes, 'minute');
+    const nextUpdateTime = dayjs(lastUpdated).add(
+      cacheDurationInMinutes,
+      'minute',
+    );
+
     if (dayjs().isAfter(nextUpdateTime)) {
       return true;
     }
   } catch (error) {
     handleError(error);
+
     return true;
   }
+
   return false;
 };
