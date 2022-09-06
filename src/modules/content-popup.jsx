@@ -110,7 +110,7 @@ export const handleProductHunt = (apiData) => {
         </a>
         <br />
         <small>
-          <FontAwesomeIcon icon="calendar" fixedWidth /> {post.published}
+          <FontAwesomeIcon icon="calendar" fixedWidth /> {post.pubDate}
         </small>
       </li>
     );
