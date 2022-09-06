@@ -49,3 +49,5 @@ export const TitleAndLinks = () => {
     </section>
   );
 };
+
+export default TitleAndLinks;

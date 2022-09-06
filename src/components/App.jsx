@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { lazy } from 'react';
 
 import { initIcons } from '../modules/helpers';
 
-import { BackgroundImage } from './BackgroundImage';
-import { Clock } from './Clock';
-import { ContentPopup } from './ContentPopup';
-import { Quote } from './Quote';
-import { TitleAndLinks } from './TitleAndLinks';
-import { Weather } from './Weather';
+const BackgroundImage = lazy(() => import('./BackgroundImage'));
+const Clock = lazy(() => import('./Clock'));
+const ContentPopup = lazy(() => import('./ContentPopup'));
+const Quote = lazy(() => import('./Quote'));
+const TitleAndLinks = lazy(() => import('./TitleAndLinks'));
+const Weather = lazy(() => import('./Weather'));
 
 import './App.scss';
 
@@ -43,3 +43,5 @@ export const App = () => (
     </div>
   </>
 );
+
+export default App;

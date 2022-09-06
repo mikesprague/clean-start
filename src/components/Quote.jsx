@@ -80,3 +80,5 @@ export const Quote = () => {
     </div>
   );
 };
+
+export default Quote;

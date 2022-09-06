@@ -274,3 +274,5 @@ ContentPopup.displayName = 'ContentPopup';
 ContentPopup.propTypes = {
   type: PropTypes.string.isRequired,
 };
+
+export default ContentPopup;
