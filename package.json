@@ -18,6 +18,8 @@
     "postbuild": "rm ./src/index.html",
     "postbuild:extension": "rm ./build/_headers ./src/index.html && npm run zip",
     "preview": "vite preview",
+    "prestart": "npm run prebuild",
+    "poststart": "npm run postbuild",
     "start": "cross-env NODE_ENV=development wrangler pages dev -- vite serve",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --color",
