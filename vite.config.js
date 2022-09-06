@@ -10,6 +10,7 @@ export default defineConfig({
   build: {
     // Relative to the root
     outDir: '../build',
+    sourcemap: 'inline',
   },
   publicDir: '../public',
   base: './',
