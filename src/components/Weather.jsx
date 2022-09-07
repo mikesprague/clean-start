@@ -157,7 +157,7 @@ export const Weather = () => {
           }
         >
           <a
-            href="https://openweathermap/api/"
+            href="https://openweathermap.org/api/"
             target="_blank"
             rel="noopener noreferrer"
           >
