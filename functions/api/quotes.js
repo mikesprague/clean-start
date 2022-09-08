@@ -1,4 +1,21 @@
 export const onRequestGet = async (context) => {
+  const CACHE_NAME = 'quotes';
+  const { request } = context;
+
+  const cache = await caches.open(CACHE_NAME);
+
+  const cachedData = await cache.match(request);
+
+  if (cachedData) {
+    console.log('🚀 using cached data!');
+
+    const returnData = await cachedData.json();
+
+    return new Response(JSON.stringify(returnData), cachedData);
+  }
+
+  console.log('😢 no cache, fetching new data');
+
   const { url } = context.request;
 
   const urlParams = new URL(url).searchParams;
@@ -43,11 +60,16 @@ export const onRequestGet = async (context) => {
       });
     });
 
-    return new Response(JSON.stringify(quotesData), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'max-age=1800, s-maxage=1800',
-      },
-    });
+  const response = new Response(JSON.stringify(quotesData), {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'max-age=1800, s-maxage=1800',
+    },
+  });
+
+  // cache data;
+  context.waitUntil(cache.put(request, response.clone()));
+
+  return response;
 };
