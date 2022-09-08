@@ -47,10 +47,10 @@ export const getOpenWeatherMapIcon = ({ id, main, description, icon }) => {
     }
     case 5: {
       // rain
-      if (description.includes('light')) {
-        returnIcon = icon.endsWith('d') ? 'cloud-sun-rain' : 'cloud-moon-rain';
-        break;
-      }
+      // if (description.includes('light')) {
+      //   returnIcon = icon.endsWith('d') ? 'cloud-sun-rain' : 'cloud-moon-rain';
+      //   break;
+      // }
 
       if (description.includes('heavy')) {
         returnIcon = 'cloud-showers-heavy';
