@@ -78,7 +78,7 @@ export const onRequestGet = async (context) => {
     weather: weatherData.weather,
   });
 
-  const response = new Response(JSON.stringify(returnData), {
+  const response = new Response(returnData, {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
