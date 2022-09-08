@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid';
 
 import { apiUrl, isCacheExpired } from '../modules/helpers';
 import { clearData } from '../modules/local-storage';
-import { getWeatherIcon } from '../modules/weather';
+import { getOpenWeatherMapIcon } from '../modules/weather';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 import './Weather.scss';
@@ -97,8 +97,8 @@ export const Weather = () => {
               <FontAwesomeIcon
                 icon={
                   weatherData && weatherData.data
-                    ? getWeatherIcon(
-                        weatherData.data.weather.current.weather[0].icon,
+                    ? getOpenWeatherMapIcon(
+                        weatherData.data.weather.current.weather[0],
                       )
                     : 'hourglass-half'
                 }
@@ -143,7 +143,7 @@ export const Weather = () => {
                   {dayjs.unix(hour.dt).format('ha')}
                   <br />
                   <FontAwesomeIcon
-                    icon={getWeatherIcon(hour.weather[0].icon)}
+                    icon={getOpenWeatherMapIcon(hour.weather[0])}
                     fixedWidth
                   />
                   {` ${Math.round(hour.temp)}`}&deg;
