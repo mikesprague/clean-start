@@ -16,6 +16,6 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
-  "permissions": ["geolocation", "unlimitedStorage"],
+  "permissions": ["unlimitedStorage"],
   "host_permissions": ["https://cleanstart.page/api/*"]
 }
