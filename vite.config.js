@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable node/no-unpublished-import */
 import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -19,7 +21,11 @@ export default defineConfig({
   },
   plugins: [
     VitePWA({
+      strategies: 'generateSW',
       injectRegister: 'auto',
+      registerType: 'prompt',
+      filename: 'service-worker.js',
+      manifestFilename: 'cleanstart.webmanifest',
       workbox: {
         navigateFallbackDenylist: [/^\/api/, /^chrome-extension:\S+/],
         clientsClaim: true,
@@ -27,7 +33,7 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
       },
       devOptions: {
-        enabled: false,
+        enabled: true,
       },
       includeAssets: [
         './images/new-tab-icon-32.png',
