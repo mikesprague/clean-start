@@ -1,6 +1,6 @@
 {
   "name": "clean-start",
-  "version": "0.34.4",
+  "version": "0.34.5",
   "description": "Open source new tab extension",
   "private": true,
   "type": "module",
@@ -13,7 +13,7 @@
     "build": "vite build",
     "clean": "rm -rf ./build",
     "dev": "vite serve",
-    "postbuild:extension": "rm ./build/_headers ./src/index.html ./build/*.map && npm run zip",
+    "postbuild:extension": "rm ./build/_headers ./build/_redirects ./src/index.html ./build/*.map && npm run zip",
     "postbuild": "rm ./src/index.html",
     "poststart": "npm run postbuild",
     "prebuild:extension": "npm run clean && cp ./src/extension.html ./src/index.html",
