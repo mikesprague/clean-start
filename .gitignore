@@ -134,4 +134,10 @@ lambda
 
 *.pem
 
-.vercel
+# CloudFlare/Wrangler CLI stuff
+
+.dev.vars
+
+# Vite PWA plugin stuff
+
+dev-dist/
