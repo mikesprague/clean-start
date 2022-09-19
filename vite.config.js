@@ -7,18 +7,14 @@ import { version } from './package.json';
 
 export default defineConfig({
   root: 'src',
-  // mode: 'development',
   build: {
-    // Relative to the root
     outDir: '../build',
     sourcemap: 'inline',
   },
   publicDir: '../public',
   base: './',
   outDir: './',
-  server: {
-    strictPort: true,
-  },
+  appType: 'custom',
   plugins: [
     VitePWA({
       strategies: 'generateSW',
