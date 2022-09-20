@@ -73,6 +73,28 @@ export default defineConfig({
             type: 'image/png',
             sizes: '128x128',
           },
+          {
+            src: '/images/new-tab-icon-192.png',
+            type: 'image/png',
+            sizes: '192x192',
+            purpose: 'any',
+          },
+          {
+            src: '/images/new-tab-icon-192.png',
+            type: 'image/png',
+            sizes: '192x192',
+            purpose: 'maskable',
+          },
+          {
+            src: '/images/new-tab-icon-256.png',
+            type: 'image/png',
+            sizes: '256x256',
+          },
+          {
+            src: '/images/new-tab-icon-512.png',
+            type: 'image/png',
+            sizes: '512x512',
+          },
         ],
         homepage_url: 'https://cleanstart.page/',
         scope: '/',
@@ -83,7 +105,6 @@ export default defineConfig({
       },
     }),
     react({
-      // Use React plugin in all *.jsx and *.tsx files
       include: '**/*.{jsx,tsx}',
     }),
   ],
