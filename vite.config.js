@@ -23,7 +23,7 @@ export default defineConfig({
       filename: 'service-worker.js',
       manifestFilename: 'cleanstart.webmanifest',
       workbox: {
-        navigateFallbackDenylist: [/^\/api/, /^chrome-extension:\S+/],
+        navigateFallbackDenylist: [/^\/api/, /^chrome-extension:\/\/.*/],
         clientsClaim: true,
         skipWaiting: true,
         cleanupOutdatedCaches: true,
