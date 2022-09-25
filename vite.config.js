@@ -98,6 +98,7 @@ export default defineConfig({
         ],
         homepage_url: 'https://cleanstart.page/',
         scope: '/',
+	id: '/',
         start_url: '/',
         display: 'standalone',
         background_color: '#121212',
