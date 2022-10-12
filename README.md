@@ -2,6 +2,8 @@
 
 Open source new tab extension
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=268856900)
+
 ## About
 
 - Layout/design based on what I liked from the Momentum browser extension
@@ -76,7 +78,7 @@ OPEN_WEATHERMAP_API_KEY="xxxxxx"
 
 ## Uses
 
-- PWA Hosting and Serveless Functions for API - [CloudFlare Pages](https://pages.cloudflare.com/)
+- PWA Hosting and Serverless Functions for API - [CloudFlare Pages](https://pages.cloudflare.com/)
 - Builds - [Vite](https://vitejs.dev/)
 - JavaScript Library - [React](https://reactjs.org/)
 - Icons - [FontAwesome](https://fontawesome.com/)
