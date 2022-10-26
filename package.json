@@ -60,7 +60,7 @@
     "@babel/preset-env": "7.19.4",
     "@fullhuman/postcss-purgecss": "5.0.0",
     "@tailwindcss/typography": "0.5.7",
-    "@vitejs/plugin-react": "2.1.0",
+    "@vitejs/plugin-react": "2.2.0",
     "autoprefixer": "10.4.12",
     "cross-env": "7.0.3",
     "cssnano": "5.1.13",
