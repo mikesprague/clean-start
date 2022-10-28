@@ -9,6 +9,7 @@ Open source new tab extension
 - Layout/design based on what I liked from the Momentum browser extension
 - Date and time with greeting
 - Current temp/conditions (from [OpenWeatherMap](https://openweathermap.org/api))
+  - uses location data from network the incoming request is made on (location is sometimes unavailable or inaccurate)
 - Random quote (from [Quotes on Design API](https://quotesondesign.com/api/))
 - Random background image (from [Unsplash API](https://unsplash.com/developers/))
 - Top posts from some useful sites
@@ -76,13 +77,15 @@ UNSPLASH_SECRET_KEY="xxxxxx"
 OPEN_WEATHERMAP_API_KEY="xxxxxx"
 ```
 
+NOTE: for GH Codespaces development, you will need to set the env vars as Actions Secrets in the settings for your forked repo
+
 ## Uses
 
 - PWA Hosting and Serverless Functions for API - [CloudFlare Pages](https://pages.cloudflare.com/)
 - Builds - [Vite](https://vitejs.dev/)
 - JavaScript Library - [React](https://reactjs.org/)
 - Icons - [FontAwesome](https://fontawesome.com/)
-- Font ([Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab))
+- Font [Roboto Slab via Google Fonts](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab)
 - Tooltips and content popups - [tippy.js](https://github.com/atomiks/tippyjs)
 - Date/time lib - [dayjs](https://github.com/iamkun/dayjs)
 - CSS framework - [Tailwind CSS](https://tailwindcss.com/)
