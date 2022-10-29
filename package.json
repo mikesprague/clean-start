@@ -20,7 +20,7 @@
     "prebuild": "npm run clean && cp ./src/pwa.html ./src/index.html",
     "prestart": "npm run prebuild",
     "preview": "vite preview",
-    "start": "cross-env NODE_ENV=development wrangler pages dev -- vite serve",
+    "start": "cross-env NODE_ENV=development wrangler --compatibility-date=2022-10-31 pages dev -- vite serve",
     "test": "echo \"Error: no test specified\" && exit 1",
     "zip": "cd build && zip -r clean-start-extension.zip ./"
   },
