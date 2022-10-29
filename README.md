@@ -10,7 +10,7 @@ Open source new tab extension
 - Date and time with greeting
 - Current temp/conditions (from [OpenWeatherMap](https://openweathermap.org/api))
   - uses location data from network the incoming request is made on (location is sometimes unavailable or inaccurate)
-- Random quote (from [Quotes on Design API](https://quotesondesign.com/api/))
+- Random quote (quotes provided by [ZenQuotes API](https://zenquotes.io/))
 - Random background image (from [Unsplash API](https://unsplash.com/developers/))
 - Top posts from some useful sites
   - [GitHub Trending Repositories](https://www.github.com/trending/)
