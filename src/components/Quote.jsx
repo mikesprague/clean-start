@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import dompurify from 'dompurify';
@@ -26,7 +27,7 @@ export const Quote = () => {
 
     if (allQuotesData && allQuotesData.lastUpdated) {
       const nextUpdateTime = dayjs(allQuotesData.lastUpdated).add(
-        360,
+        120,
         'minute',
       );
 
@@ -66,17 +67,19 @@ export const Quote = () => {
 
   return (
     <div className="quote-container">
+      <Tippy content="Quotes provided by ZenQuotes API" placement="bottom">
+      <p className={quoteData ? 'px-4 visible' : 'px-4 invisible'}>
       <a
-        href={quoteData ? quoteData.quoteLink : ''}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <p className={quoteData ? 'px-4 visible' : 'px-4 invisible'}>
-          {quoteData ? quoteData.quoteExcerpt : ''}
-          <br />
-          <em>&mdash; {quoteData ? quoteData.quoteAuthor : ''}</em>
-        </p>
-      </a>
+          href="https://zenquotes.io/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+        {quoteData ? quoteData.quoteExcerpt : ''}
+        <br />
+        <em>&mdash; {quoteData ? quoteData.quoteAuthor : ''}</em>
+        </a>
+      </p>
+      </Tippy>
     </div>
   );
 };

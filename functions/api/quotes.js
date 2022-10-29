@@ -31,26 +31,26 @@ export const onRequestGet = async (context) => {
 
   const normalizeQuoteData = (apiData) => {
     const returnData = apiData.map((quoteData) => {
-      const { content, excerpt, link: quoteLink, title } = quoteData || null;
-      const { rendered: quoteExcerpt } = excerpt;
-      const { rendered: quoteHtml } = content;
-      const { rendered: quoteAuthor } = title;
+      const quoteExcerpt = quoteData.q;
+      const quoteHtml = quoteData.h;
+      const quoteAuthor = quoteData.a;
 
       return {
         quoteExcerpt,
         quoteHtml,
         quoteAuthor,
-        quoteLink,
       };
     });
 
     return returnData;
   };
 
-  const quotesData = await fetch(
-    'https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand',
-  )
-    .then(async (response) => normalizeQuoteData(await response.json()))
+  const quotesData = await fetch('https://zenquotes.io/api/quotes/')
+    .then(async (response) => {
+      const returnData = await response.json();
+
+      return normalizeQuoteData(returnData);
+    })
     .catch((error) => {
       console.error(error);
 
@@ -64,7 +64,7 @@ export const onRequestGet = async (context) => {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'max-age=1800, s-maxage=1800',
+      'Cache-Control': 'max-age=3600, s-maxage=3600',
     },
   });
 
