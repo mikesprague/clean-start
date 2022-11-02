@@ -65,23 +65,23 @@ export const Quote = () => {
     return () => {};
   }, [allQuotesData]);
 
-  return (
+  return quoteData ? (
     <div className="quote-container">
       <Tippy content="Quotes provided by ZenQuotes API" placement="bottom">
-      <p className={quoteData ? 'px-4 visible' : 'px-4 invisible'}>
+      <p className='px-4 visible'>
       <a
           href="https://zenquotes.io/"
           target="_blank"
           rel="noopener noreferrer"
         >
-        {quoteData ? quoteData.quoteExcerpt : ''}
+        {quoteData.quoteExcerpt}
         <br />
-        <em>&mdash; {quoteData ? quoteData.quoteAuthor : ''}</em>
+        <em>&mdash; {quoteData.quoteAuthor}</em>
         </a>
       </p>
       </Tippy>
     </div>
-  );
+  ) : '';
 };
 
 export default Quote;
