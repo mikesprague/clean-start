@@ -81,7 +81,7 @@
     "postcss-cli": "10.0.0",
     "prettier": "2.7.1",
     "prettier-eslint": "15.0.1",
-    "sass": "1.56.0",
+    "sass": "1.56.1",
     "stylelint": "14.14.1",
     "stylelint-config-prettier": "9.0.3",
     "stylelint-config-prettier-scss": "0.0.1",
