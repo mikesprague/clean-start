@@ -1,5 +1,3 @@
-import cheerio from 'cheerio';
-
 export const onRequestGet = async (context) => {
   const CACHE_NAME = 'github-trending-repos';
   const { request } = context;
