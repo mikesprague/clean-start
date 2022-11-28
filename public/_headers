@@ -12,5 +12,18 @@
   Access-Control-Allow-Origin: https://cleanstart.page
   Vary: Origin
 
+/*.js
+  Content-Type: text/javascript; charset=utf-8
+
+/*.css
+  Content-Type: text/css; charset=utf-8
+
+/assets/*.js
+  Content-Type: text/javascript; charset=utf-8
+
+/assets/*.css
+  Content-Type: text/css; charset=utf-8
+
 /api/*
   Cache-Control: max-age=300, s-maxage=300;
+
