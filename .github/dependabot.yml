@@ -6,4 +6,9 @@ updates:
       interval: "daily"
       time: "10:00"
       timezone: "America/New_York"
-    target-branch: "main"
+    target-branch: "dev"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+
