@@ -64,6 +64,7 @@
     "autoprefixer": "10.4.13",
     "cross-env": "7.0.3",
     "cssnano": "5.1.14",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "8.28.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.5.0",
@@ -89,10 +90,10 @@
     "stylelint-config-standard-scss": "6.1.0",
     "stylelint-prettier": "2.0.0",
     "tailwindcss": "3.2.4",
-    "wrangler": "2.5.0",
     "vite": "3.2.4",
     "vite-plugin-html": "3.2.0",
-    "vite-plugin-pwa": "0.13.3"
+    "vite-plugin-pwa": "0.13.3",
+    "wrangler": "2.5.0"
   },
   "babel": {
     "presets": [
@@ -189,5 +190,10 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "all"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
