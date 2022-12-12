@@ -2,7 +2,7 @@
 /* eslint-disable node/no-unpublished-import */
 import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
 import { version } from './package.json';
 
 export default defineConfig({
