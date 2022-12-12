@@ -1,6 +1,6 @@
 {
   "name": "clean-start",
-  "version": "0.36.11",
+  "version": "0.36.12",
   "description": "Open source new tab extension",
   "private": true,
   "type": "module",
