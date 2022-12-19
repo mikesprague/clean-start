@@ -65,7 +65,7 @@
     "cross-env": "7.0.3",
     "cssnano": "5.1.14",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "8.29.0",
+    "eslint": "8.30.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-stylelint": "17.1.0",
