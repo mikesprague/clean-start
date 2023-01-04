@@ -12,7 +12,7 @@ export default defineConfig({
     sourcemap: 'inline',
   },
   publicDir: '../public',
-  base: './',
+  base: '',
   outDir: './',
   appType: 'spa',
   plugins: [
