@@ -59,7 +59,7 @@
     "@babel/eslint-plugin": "7.19.1",
     "@babel/preset-env": "7.20.2",
     "@fullhuman/postcss-purgecss": "5.0.0",
-    "@tailwindcss/typography": "0.5.8",
+    "@tailwindcss/typography": "0.5.9",
     "@vitejs/plugin-react-swc": "3.0.1",
     "autoprefixer": "10.4.13",
     "cross-env": "7.0.3",
