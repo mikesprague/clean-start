@@ -80,7 +80,7 @@
     "eslint-plugin-security": "1.7.1",
     "postcss": "8.4.21",
     "postcss-cli": "10.1.0",
-    "prettier": "2.8.6",
+    "prettier": "2.8.7",
     "prettier-eslint": "15.0.1",
     "sass": "1.60.0",
     "stylelint": "14.16.1",
