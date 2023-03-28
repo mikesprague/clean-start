@@ -92,7 +92,7 @@
     "tailwindcss": "3.2.7",
     "vite": "4.2.1",
     "vite-plugin-html": "3.2.0",
-    "vite-plugin-pwa": "0.14.6",
+    "vite-plugin-pwa": "0.14.7",
     "wrangler": "2.13.0"
   },
   "babel": {
