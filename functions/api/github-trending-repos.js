@@ -30,7 +30,7 @@ export const onRequestGet = async (context) => {
   }
 
   const postsData = await fetch(
-    'https://mikesprague.github.io/api/github-trending-repos.json',
+    'https://mikesprague.github.io/api/github-trending-repos/',
   )
     .then(async (response) => {
       const returnData = await response.json();
