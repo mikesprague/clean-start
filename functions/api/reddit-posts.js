@@ -1,3 +1,5 @@
+import { version } from '../../package.json';
+
 export const onRequestGet = async (context) => {
   const CACHE_NAME = 'reddit-posts';
   const { request } = context;
@@ -31,6 +33,9 @@ export const onRequestGet = async (context) => {
 
   const redditPosts = await fetch(
     'https://www.reddit.com/r/popular.json?limit=10',
+    {
+      headers: { 'User-Agent': `Clean-Start-Extension/${version}` },
+    },
   )
     .then(async (response) => {
       const data = await response.json();
