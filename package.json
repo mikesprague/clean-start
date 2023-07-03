@@ -45,7 +45,7 @@
     "@tippyjs/react": "4.2.6",
     "axios": "1.4.0",
     "cheerio": "1.0.0-rc.12",
-    "dayjs": "1.11.8",
+    "dayjs": "1.11.9",
     "dompurify": "3.0.4",
     "he": "1.2.0",
     "nanoid": "4.0.2",
