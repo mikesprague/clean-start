@@ -57,7 +57,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "7.22.9",
     "@babel/eslint-plugin": "7.22.5",
-    "@babel/preset-env": "7.22.7",
+    "@babel/preset-env": "7.22.9",
     "@fullhuman/postcss-purgecss": "5.0.0",
     "@tailwindcss/typography": "0.5.9",
     "@vitejs/plugin-react-swc": "3.3.2",
