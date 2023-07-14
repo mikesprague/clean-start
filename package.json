@@ -78,7 +78,7 @@
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-security": "1.7.1",
-    "postcss": "8.4.25",
+    "postcss": "8.4.26",
     "postcss-cli": "10.1.0",
     "prettier": "3.0.0",
     "prettier-eslint": "15.0.1",
