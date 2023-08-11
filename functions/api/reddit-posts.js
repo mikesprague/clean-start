@@ -32,7 +32,7 @@ export const onRequestGet = async (context) => {
   }
 
   const redditPosts = await fetch(
-    'https://www.reddit.com/r/popular.json?limit=10',
+    'https://www.reddit.com/top/.json?count=10',
     {
       headers: { 'User-Agent': `Clean-Start-Extension/${version}` },
     },
