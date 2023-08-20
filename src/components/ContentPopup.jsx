@@ -42,7 +42,7 @@ export const ContentPopup = ({ type }) => {
           });
         };
 
-        if (data && data.lastUpdated) {
+        if (data && data.length && data.lastUpdated) {
           const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
 
           if (dayjs().isAfter(nextUpdateTime)) {
@@ -72,7 +72,7 @@ export const ContentPopup = ({ type }) => {
           });
         };
 
-        if (data && data.lastUpdated) {
+        if (data && data.length && data.lastUpdated) {
           const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
 
           if (dayjs().isAfter(nextUpdateTime)) {
@@ -104,7 +104,7 @@ export const ContentPopup = ({ type }) => {
           });
         };
 
-        if (data && data.lastUpdated) {
+        if (data && data.length && data.lastUpdated) {
           const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
 
           if (dayjs().isAfter(nextUpdateTime)) {
@@ -162,7 +162,7 @@ export const ContentPopup = ({ type }) => {
           });
         };
 
-        if (data && data.lastUpdated) {
+        if (data && data.length && data.lastUpdated) {
           const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
 
           if (dayjs().isAfter(nextUpdateTime)) {
@@ -185,7 +185,7 @@ export const ContentPopup = ({ type }) => {
   useEffect(() => {
     let markup = null;
 
-    if (data && data.data) {
+    if (data && data.data && data.data.length) {
       switch (type) {
         case 'dev-to':
           markup = handleDevTo(data.data);
@@ -240,7 +240,7 @@ export const ContentPopup = ({ type }) => {
             </small>
           </h5>
         </li>
-        {postsMarkup}
+        {postsMarkup ?? ''}
       </ul>
     );
     const markup = buildPopup();
