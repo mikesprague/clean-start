@@ -3,16 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import useLocalStorageState from 'use-local-storage-state';
 
 import { apiUrl } from '../modules/helpers';
-import { useLocalStorage } from '../hooks/useLocalStorage';
 
 import './BackgroundImage.scss';
 
 export const BackgroundImage = () => {
-  const [allBgImagesData, setAllBgImagesData] = useLocalStorage(
+  const [allBgImagesData, setAllBgImagesData] = useLocalStorageState(
     'bgImagesData',
-    null,
+    {
+      defaultValue: null,
+    },
   );
 
   useEffect(() => {
@@ -44,7 +46,9 @@ export const BackgroundImage = () => {
   }, [allBgImagesData, setAllBgImagesData]);
 
   const [bgImage, setBgImage] = useState(null);
-  const [bgImageNum, setBgImageNum] = useLocalStorage('bgImageNum', 0);
+  const [bgImageNum, setBgImageNum] = useLocalStorageState('bgImageNum', {
+    defaultValue: 0,
+  });
 
   useEffect(() => {
     if (allBgImagesData && allBgImagesData.data) {

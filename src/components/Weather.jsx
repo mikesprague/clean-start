@@ -4,16 +4,18 @@ import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { nanoid } from 'nanoid';
+import useLocalStorageState from 'use-local-storage-state';
 
 import { apiUrl, isCacheExpired } from '../modules/helpers';
 import { clearData } from '../modules/local-storage';
 import { getOpenWeatherMapIcon } from '../modules/weather';
-import { useLocalStorage } from '../hooks/useLocalStorage';
 
 import './Weather.scss';
 
 export const Weather = () => {
-  const [weatherData, setWeatherData] = useLocalStorage('weatherData', null);
+  const [weatherData, setWeatherData] = useLocalStorageState('weatherData', {
+    defaultValue: null,
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

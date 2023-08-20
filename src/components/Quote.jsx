@@ -4,14 +4,16 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import dompurify from 'dompurify';
 import he from 'he';
+import useLocalStorageState from 'use-local-storage-state';
 
 import { apiUrl, stripHTML } from '../modules/helpers';
-import { useLocalStorage } from '../hooks/useLocalStorage';
 
 import './Quote.scss';
 
 export const Quote = () => {
-  const [allQuotesData, setAllQuotesData] = useLocalStorage('quoteData', null);
+  const [allQuotesData, setAllQuotesData] = useLocalStorageState('quoteData', {
+    defaultValue: null,
+  });
 
   useEffect(() => {
     const loadQuoteData = async () => {

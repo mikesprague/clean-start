@@ -5,6 +5,7 @@ import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { nanoid } from 'nanoid';
+import useLocalStorageState from 'use-local-storage-state';
 
 import {
   getPopupInfo,
@@ -15,12 +16,13 @@ import {
   handleReddit,
 } from '../modules/content-popup';
 import { apiUrl } from '../modules/helpers';
-import { useLocalStorage } from '../hooks/useLocalStorage';
 
 import './ContentPopup.scss';
 
 export const ContentPopup = ({ type }) => {
-  const [data, setData] = useLocalStorage(`${type}Data`, null);
+  const [data, setData] = useLocalStorageState(`${type}Data`, {
+    defaultValue: null,
+  });
 
   useEffect(() => {
     switch (type) {
@@ -248,7 +250,7 @@ export const ContentPopup = ({ type }) => {
     setFullMarkup(markup);
 
     // return () => {};
-  }, [type, postsMarkup]);
+  }, [postsMarkup, type]);
 
   return (
     <Tippy
