@@ -5,9 +5,18 @@ import './Clock.scss';
 
 export const Clock = () => {
   const [dateTime, setDateTime] = useState(dayjs());
+  const [dateTimeFormat, setDateTimeFormat] = useState('24');
 
   const updateDateTime = () => {
     setDateTime(dayjs());
+  };
+
+  const clickHandler = () => {
+    if (dateTimeFormat === '12') {
+      setDateTimeFormat('24');
+    } else {
+      setDateTimeFormat('12');
+    }
   };
 
   useEffect(() => {
@@ -16,9 +25,10 @@ export const Clock = () => {
     return () => clearInterval(clockInterval);
   }, []);
 
-  const timeFormatted = () => dayjs(dateTime).format('HH:mm');
+  const timeFormatted = () =>
+    dayjs(dateTime).format(dateTimeFormat === '12' ? 'h:mma' : 'HH:mm');
 
-  const dateFormatted = () => dayjs(dateTime).format('dddd, MMMM D');
+  const dateFormatted = () => dayjs(dateTime).format('dddd, MMMM D YYYY');
 
   const greeting = () => {
     const currentHour = dayjs(dateTime).hour();
@@ -39,7 +49,9 @@ export const Clock = () => {
 
   return (
     <div className="clock-container">
-      <h2 className="time-container">{timeFormatted()}</h2>
+      <h2 className="time-container" onClick={clickHandler}>
+        {timeFormatted()}
+      </h2>
       <h3 className="date-container">{dateFormatted()}</h3>
       <h4 className="greeting-container">{greeting()}</h4>
     </div>
