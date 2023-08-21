@@ -11,4 +11,29 @@ updates:
       prefix: "chore"
       prefix-development: "chore"
       include: "scope"
+    groups:
+      fontawesome:
+        patterns:
+          - "@fortawesome*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "prop-types"
+      tippy-js:
+        patterns:
+          - "tippy.js"
+          - "@tippyjs*"
+      babel:
+        patterns:
+          - "@babel*"
+      tailwindcss:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss*"
+      vite:
+        patterns:
+          - "vite"
+          - "@vitejs*"
+          - "vite-*"
 
