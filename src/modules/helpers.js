@@ -1,3 +1,14 @@
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faChrome,
+  faDev,
+  faEdge,
+  faFirefoxBrowser,
+  faGithub,
+  faHackerNews,
+  faProductHunt,
+  faRedditAlien,
+} from '@fortawesome/free-brands-svg-icons';
 import {
   faBolt,
   faCalendar,
@@ -28,18 +39,7 @@ import {
   faUser,
   faWind,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  faChrome,
-  faDev,
-  faEdge,
-  faFirefoxBrowser,
-  faGithub,
-  faHackerNews,
-  faProductHunt,
-  faRedditAlien,
-} from '@fortawesome/free-brands-svg-icons';
 import dayjs from 'dayjs';
-import { library } from '@fortawesome/fontawesome-svg-core';
 
 export const appConfig = {
   bgCacheTtl: 360, // 6 hours
@@ -159,7 +159,7 @@ export const initIcons = () => {
     faChrome,
     faDev,
     faEdge,
-    faFirefoxBrowser,
+    faFirefoxBrowser
   );
 };
 
@@ -167,7 +167,7 @@ export const isCacheExpired = (lastUpdated, cacheDurationInMinutes) => {
   try {
     const nextUpdateTime = dayjs(lastUpdated).add(
       cacheDurationInMinutes,
-      'minute',
+      'minute'
     );
 
     if (dayjs().isAfter(nextUpdateTime)) {

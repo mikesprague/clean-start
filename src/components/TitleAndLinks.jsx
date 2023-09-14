@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
+import React, { useEffect, useState } from 'react';
 
 import { version } from '../../package.json';
 

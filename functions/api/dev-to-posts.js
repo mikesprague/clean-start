@@ -49,7 +49,7 @@ export const onRequestGet = async (context) => {
           title: $(elem).find('title').contents().toString(),
           link: $(elem).find('guid').contents().toString(),
           pubDate: dayjs(
-            $(elem).find('pubDate').contents().toString(),
+            $(elem).find('pubDate').contents().toString()
           ).toISOString(),
           author: $(elem).find('dc\\:creator').contents().toString(),
         });
@@ -69,7 +69,7 @@ export const onRequestGet = async (context) => {
         {
           status: 500,
           headers: { 'Content-Type': 'application/json' },
-        },
+        }
       );
     });
 

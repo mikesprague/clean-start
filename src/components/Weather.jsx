@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { nanoid } from 'nanoid';
+import React, { useEffect, useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 
 import { apiUrl, isCacheExpired } from '../modules/helpers';
@@ -35,7 +35,7 @@ export const Weather = () => {
       setIsLoading(false);
     };
 
-    if (weatherData && weatherData.lastUpdated) {
+    if (weatherData?.lastUpdated) {
       if (isCacheExpired(weatherData.lastUpdated, 10)) {
         clearData('weatherData');
         getWeatherData();
@@ -82,14 +82,12 @@ export const Weather = () => {
       </div>
       <span className={isLoading ? 'invisible' : 'visible'}>
         <h4 className="weather-location">
-          {weatherData && weatherData.data
-            ? weatherData.data.location.locationName
-            : ''}
+          {weatherData?.data ? weatherData.data.location.locationName : ''}
         </h4>
         <div className="icon-and-temp">
           <Tippy
             content={
-              weatherData && weatherData.data && weatherData.data.weather
+              weatherData?.data?.weather
                 ? weatherData.data.weather.current.weather[0].description
                 : ''
             }
@@ -98,9 +96,9 @@ export const Weather = () => {
             <span>
               <FontAwesomeIcon
                 icon={
-                  weatherData && weatherData.data
+                  weatherData?.data
                     ? getOpenWeatherMapIcon(
-                        weatherData.data.weather.current.weather[0],
+                        weatherData.data.weather.current.weather[0]
                       )
                     : 'hourglass-half'
                 }
@@ -108,9 +106,9 @@ export const Weather = () => {
                 className="weather-icon"
               />
               <strong className="weather-temp">
-                {weatherData && weatherData.data
+                {weatherData?.data
                   ? ` ${Math.round(
-                      weatherData.data.weather.current.temp,
+                      weatherData.data.weather.current.temp
                     )}${String.fromCharCode(176)}`
                   : ' -- '}
               </strong>
@@ -118,23 +116,22 @@ export const Weather = () => {
           </Tippy>
           <div className="feels-like-temp">
             {/* Math.round(weatherData.weather.currently.temperature) !== Math.round(weatherData.weather.currently.apparentTemperature) */}
-            {weatherData && weatherData.data
+            {weatherData?.data
               ? `Feels ${Math.round(
-                  weatherData.data.weather.current.feels_like,
+                  weatherData.data.weather.current.feels_like
                 )}${String.fromCharCode(176)}`
               : ''}
           </div>
         </div>
         <ul className="flex hourly-forecast">
-          {weatherData &&
-            weatherData.data &&
+          {weatherData?.data &&
             hourlyData &&
             hourlyData.map((hour) => (
               <Tippy
                 content={
                   hour
                     ? `${hour.weather[0].description} (Feels ${Math.round(
-                        hour.feels_like,
+                        hour.feels_like
                       )}${String.fromCharCode(176)})`
                     : ''
                 }

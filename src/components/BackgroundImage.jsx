@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import React, { Fragment, useEffect, useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 
 import { apiUrl } from '../modules/helpers';
@@ -14,7 +14,7 @@ export const BackgroundImage = () => {
     'bgImagesData',
     {
       defaultValue: null,
-    },
+    }
   );
 
   useEffect(() => {
@@ -29,10 +29,10 @@ export const BackgroundImage = () => {
       });
     };
 
-    if (allBgImagesData && allBgImagesData.lastUpdated) {
+    if (allBgImagesData?.lastUpdated) {
       const nextUpdateTime = dayjs(allBgImagesData.lastUpdated).add(
         360,
-        'minute',
+        'minute'
       );
 
       if (dayjs().isAfter(nextUpdateTime)) {
@@ -51,7 +51,7 @@ export const BackgroundImage = () => {
   });
 
   useEffect(() => {
-    if (allBgImagesData && allBgImagesData.data) {
+    if (allBgImagesData?.data) {
       const currentImage = allBgImagesData.data[bgImageNum];
       const prepareImageMetaData = () => {
         const linkSuffix =
@@ -130,14 +130,11 @@ export const BackgroundImage = () => {
       <div className="bg-metadata">
         <Tippy content="View full quality image on Unsplash" placement="right">
           <a
-            href={`${bgImage && bgImage.imageLink}${
-              bgImage && bgImage.linkSuffix
-            }`}
+            href={`${bgImage?.imageLink}${bgImage?.linkSuffix}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon="image" fixedWidth />{' '}
-            {bgImage && bgImage.title}
+            <FontAwesomeIcon icon="image" fixedWidth /> {bgImage?.title}
           </a>
         </Tippy>
         <br />
@@ -146,20 +143,17 @@ export const BackgroundImage = () => {
           placement="right"
         >
           <a
-            href={`${bgImage && bgImage.userLink}${
-              bgImage && bgImage.linkSuffix
-            }`}
+            href={`${bgImage?.userLink}${bgImage?.linkSuffix}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon="user" fixedWidth />{' '}
-            {bgImage && bgImage.userName}
+            <FontAwesomeIcon icon="user" fixedWidth /> {bgImage?.userName}
           </a>
         </Tippy>
         {' via '}
         <Tippy content="Visit Unsplash" placement="right">
           <a
-            href={`https://unsplash.com/${bgImage && bgImage.linkSuffix}`}
+            href={`https://unsplash.com/${bgImage?.linkSuffix}`}
             target="_blank"
             rel="noopener noreferrer"
           >

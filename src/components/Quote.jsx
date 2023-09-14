@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import dompurify from 'dompurify';
 import he from 'he';
+import React, { useEffect, useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 
 import { apiUrl, stripHTML } from '../modules/helpers';
@@ -27,10 +27,10 @@ export const Quote = () => {
       });
     };
 
-    if (allQuotesData && allQuotesData.lastUpdated) {
+    if (allQuotesData?.lastUpdated) {
       const nextUpdateTime = dayjs(allQuotesData.lastUpdated).add(
         120,
-        'minute',
+        'minute'
       );
 
       if (dayjs().isAfter(nextUpdateTime)) {
@@ -46,19 +46,19 @@ export const Quote = () => {
   const [quoteData, setQuoteData] = useState(null);
 
   useEffect(() => {
-    if (allQuotesData && allQuotesData.data) {
+    if (allQuotesData?.data) {
       const randomNumber = Math.floor(
-        Math.random() * (allQuotesData.data.length - 1),
+        Math.random() * (allQuotesData.data.length - 1)
       );
       let quote = allQuotesData.data[randomNumber];
 
       quote = {
         ...quote,
         quoteAuthor: stripHTML(
-          he.decode(dompurify.sanitize(quote.quoteAuthor)),
+          he.decode(dompurify.sanitize(quote.quoteAuthor))
         ),
         quoteExcerpt: stripHTML(
-          he.decode(dompurify.sanitize(quote.quoteExcerpt)),
+          he.decode(dompurify.sanitize(quote.quoteExcerpt))
         ),
       };
       setQuoteData(quote);
@@ -70,20 +70,22 @@ export const Quote = () => {
   return quoteData ? (
     <div className="quote-container">
       <Tippy content="Quotes provided by ZenQuotes API" placement="bottom">
-      <p className='px-4 visible'>
-      <a
-          href="https://zenquotes.io/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        {quoteData.quoteExcerpt}
-        <br />
-        <em>&mdash; {quoteData.quoteAuthor}</em>
-        </a>
-      </p>
+        <p className="px-4 visible">
+          <a
+            href="https://zenquotes.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {quoteData.quoteExcerpt}
+            <br />
+            <em>&mdash; {quoteData.quoteAuthor}</em>
+          </a>
+        </p>
       </Tippy>
     </div>
-  ) : '';
+  ) : (
+    ''
+  );
 };
 
 export default Quote;

@@ -55,7 +55,7 @@ export const onRequestGet = async (context) => {
           // console.log(link);
           const title = $(elem).find('title').text().trim();
           const pubDate = dayjs(
-            $(elem).find('pubDate').text().trim(),
+            $(elem).find('pubDate').text().trim()
           ).toISOString();
 
           returnData.push({
@@ -79,7 +79,7 @@ export const onRequestGet = async (context) => {
         {
           status: 500,
           headers: { 'Content-Type': 'application/json' },
-        },
+        }
       );
     });
 

@@ -31,12 +31,9 @@ export const onRequestGet = async (context) => {
     });
   }
 
-  const redditPosts = await fetch(
-    'https://www.reddit.com/top/.json?count=10',
-    {
-      headers: { 'User-Agent': `Clean-Start-Extension/${version}` },
-    },
-  )
+  const redditPosts = await fetch('https://www.reddit.com/top/.json?count=10', {
+    headers: { 'User-Agent': `Clean-Start-Extension/${version}` },
+  })
     .then(async (response) => {
       const data = await response.json();
       const { children } = data.data;

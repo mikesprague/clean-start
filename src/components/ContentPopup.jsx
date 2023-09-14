@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 
 import {
@@ -44,7 +44,7 @@ export const ContentPopup = ({ type }) => {
           });
         };
 
-        if (data && data.length && data.lastUpdated) {
+        if (data?.lastUpdated) {
           const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
 
           if (dayjs().isAfter(nextUpdateTime)) {
@@ -58,7 +58,7 @@ export const ContentPopup = ({ type }) => {
       }
       case 'github': {
         const getTrendingRepos = async (
-          dataUrl = `${apiUrl()}/github-trending-repos`,
+          dataUrl = `${apiUrl()}/github-trending-repos`
         ) => {
           const returnData = [];
 
@@ -74,7 +74,7 @@ export const ContentPopup = ({ type }) => {
           });
         };
 
-        if (data && data.length && data.lastUpdated) {
+        if (data?.lastUpdated) {
           const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
 
           if (dayjs().isAfter(nextUpdateTime)) {
@@ -88,7 +88,7 @@ export const ContentPopup = ({ type }) => {
       }
       case 'hacker-news': {
         const getHackerNewsPosts = async (
-          hackerNewsUrl = `${apiUrl()}/hacker-news-posts`,
+          hackerNewsUrl = `${apiUrl()}/hacker-news-posts`
         ) => {
           const hackerNewsData = await axios
             .get(hackerNewsUrl)
@@ -106,7 +106,7 @@ export const ContentPopup = ({ type }) => {
           });
         };
 
-        if (data && data.length && data.lastUpdated) {
+        if (data?.lastUpdated) {
           const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
 
           if (dayjs().isAfter(nextUpdateTime)) {
@@ -120,7 +120,7 @@ export const ContentPopup = ({ type }) => {
       }
       case 'product-hunt': {
         const getProductHuntPosts = async (
-          productHuntRssUrl = `${apiUrl()}/product-hunt-posts`,
+          productHuntRssUrl = `${apiUrl()}/product-hunt-posts`
         ) => {
           const productHuntData = await axios
             .get(productHuntRssUrl)
@@ -138,7 +138,7 @@ export const ContentPopup = ({ type }) => {
           });
         };
 
-        if (data && data.lastUpdated) {
+        if (data?.lastUpdated) {
           const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
 
           if (dayjs().isAfter(nextUpdateTime)) {
@@ -152,7 +152,7 @@ export const ContentPopup = ({ type }) => {
       }
       case 'reddit': {
         const getRedditPosts = async (
-          redditPostsApiUrl = `${apiUrl()}/reddit-posts`,
+          redditPostsApiUrl = `${apiUrl()}/reddit-posts`
         ) => {
           const returnData = await axios
             .get(redditPostsApiUrl)
@@ -164,7 +164,7 @@ export const ContentPopup = ({ type }) => {
           });
         };
 
-        if (data && data.length && data.lastUpdated) {
+        if (data?.lastUpdated) {
           const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
 
           if (dayjs().isAfter(nextUpdateTime)) {
@@ -187,7 +187,7 @@ export const ContentPopup = ({ type }) => {
   useEffect(() => {
     let markup = null;
 
-    if (data && data.data && data.data.length) {
+    if (data?.data?.length) {
       switch (type) {
         case 'dev-to':
           markup = handleDevTo(data.data);

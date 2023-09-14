@@ -39,7 +39,7 @@ export const onRequestGet = async (context) => {
         'User-Agent': 'Clean Start Extension',
         'Response-Type': 'application/rss+xml',
       },
-    },
+    }
   )
     .then(async (response) => {
       const data = await response.text();
@@ -52,7 +52,7 @@ export const onRequestGet = async (context) => {
           title: $(elem).find('title').contents().toString().trim(),
           link: $(elem).find('link').attr('href').toString().trim(),
           pubDate: dayjs(
-            $(elem).find('published').contents().toString().trim(),
+            $(elem).find('published').contents().toString().trim()
           ).toISOString(),
           author: $(elem).find('author').contents().text().trim(),
         });
@@ -72,7 +72,7 @@ export const onRequestGet = async (context) => {
         {
           status: 500,
           headers: { 'Content-Type': 'application/json' },
-        },
+        }
       );
     });
 
