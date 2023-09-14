@@ -1,6 +1,6 @@
 {
   "name": "clean-start",
-  "version": "0.38.0",
+  "version": "0.38.1",
   "description": "Open source new tab extension",
   "private": true,
   "type": "module",
@@ -80,17 +80,10 @@
     "wrangler": "3.8.0"
   },
   "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
+    "presets": ["@babel/preset-env", "@babel/preset-react"]
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
