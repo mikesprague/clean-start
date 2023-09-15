@@ -59,7 +59,7 @@
   "devDependencies": {
     "@babel/preset-env": "7.22.15",
     "@babel/preset-react": "7.22.15",
-    "@biomejs/biome": "1.1.2",
+    "@biomejs/biome": "1.2.0",
     "@fullhuman/postcss-purgecss": "5.0.0",
     "@tailwindcss/typography": "0.5.10",
     "@vitejs/plugin-react-swc": "3.3.2",
