@@ -1,8 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable n/no-unpublished-import */
-import { VitePWA } from 'vite-plugin-pwa';
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+import { defineConfig } from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
 import { version } from './package.json';
 
 export default defineConfig({
