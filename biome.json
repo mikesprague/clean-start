@@ -26,6 +26,9 @@
       },
       "style": {
         "useBlockStatements": "error"
+      },
+      "correctness": {
+        "all": true
       }
     }
   },
@@ -33,7 +36,7 @@
     "enabled": true,
     "formatWithErrors": true,
     "indentStyle": "space",
-    "indentSize": 2,
+    "indentWidth": 2,
     "lineWidth": 80
   },
   "javascript": {
