@@ -187,7 +187,7 @@ export const ContentPopup = ({ type }) => {
   useEffect(() => {
     let markup = null;
 
-    if (data?.data?.length) {
+    if (data?.data?.length && data?.data[0] !== null) {
       switch (type) {
         case 'dev-to':
           markup = handleDevTo(data.data);
