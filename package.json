@@ -57,7 +57,7 @@
     "use-local-storage-state": "19.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.6.2",
+    "@biomejs/biome": "1.6.3",
     "@fullhuman/postcss-purgecss": "5.0.0",
     "@tailwindcss/typography": "0.5.10",
     "@vitejs/plugin-react-swc": "3.6.0",
