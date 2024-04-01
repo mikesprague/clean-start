@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.3",
-    "@fullhuman/postcss-purgecss": "5.0.0",
+    "@fullhuman/postcss-purgecss": "6.0.0",
     "@tailwindcss/typography": "0.5.12",
     "@vitejs/plugin-react-swc": "3.6.0",
     "autoprefixer": "10.4.19",
