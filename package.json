@@ -60,7 +60,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.7.1",
     "@fullhuman/postcss-purgecss": "6.0.0",
-    "@tailwindcss/typography": "0.5.12",
+    "@tailwindcss/typography": "0.5.13",
     "@vitejs/plugin-react-swc": "3.6.0",
     "autoprefixer": "10.4.19",
     "concurrently": "8.2.2",
