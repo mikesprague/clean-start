@@ -23,7 +23,7 @@ export const onRequestGet = async (context) => {
   const healthcheck = urlParams.get('healthcheck');
   let lat = urlParams.get('lat') || cf.latitude;
   let lng = urlParams.get('lng') || cf.longitude;
-  // const units = urlParams.get('units') || 'imperial';
+  const units = urlParams.get('units') || 'imperial';
 
   lat = Number.parseFloat(lat).toFixed(5).toString();
   lng = Number.parseFloat(lng).toFixed(5).toString();
@@ -39,7 +39,7 @@ export const onRequestGet = async (context) => {
 
   const { OPEN_WEATHERMAP_API_KEY } = context.env;
 
-  const weatherApiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&appid=${OPEN_WEATHERMAP_API_KEY}`;
+  const weatherApiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&units=${units}&appid=${OPEN_WEATHERMAP_API_KEY}`;
 
   const locationData = {
     location: {
