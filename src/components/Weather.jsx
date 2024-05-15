@@ -2,9 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import { atom, useAtom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import { nanoid } from 'nanoid';
-import React, { useEffect, useState } from 'react';
-import useLocalStorageState from 'use-local-storage-state';
+import { useEffect } from 'react';
 
 import { apiUrl, isCacheExpired } from '../modules/helpers';
 import { clearData } from '../modules/local-storage';
@@ -12,19 +13,22 @@ import { getOpenWeatherMapIcon } from '../modules/weather';
 
 import './Weather.scss';
 
+const weatherDataAtom = atomWithStorage('weatherData', null);
+const isLoadingAtom = atom(false);
+const hourlyDataAtom = atom(null);
+
 export const Weather = () => {
-  const [weatherData, setWeatherData] = useLocalStorageState('weatherData', {
-    defaultValue: null,
-  });
-  const [isLoading, setIsLoading] = useState(false);
+  const [weatherData, setWeatherData] = useAtom(weatherDataAtom);
+  const [isLoading, setIsLoading] = useAtom(isLoadingAtom);
+  const [hourlyData, setHourlyData] = useAtom(hourlyDataAtom);
 
   useEffect(() => {
     const getWeatherData = async () => {
       setIsLoading(true);
-      const weatherApiurl = `${apiUrl()}/location-and-weather`;
+      const weatherApiUrl = `${apiUrl()}/location-and-weather`;
 
       const weatherApiData = await axios
-        .get(weatherApiurl)
+        .get(weatherApiUrl)
         .then((response) => response.data);
 
       setWeatherData({
@@ -46,9 +50,7 @@ export const Weather = () => {
     }
 
     // return() => {};
-  }, [weatherData, setWeatherData]);
-
-  const [hourlyData, setHourlyData] = useState(null);
+  }, [setIsLoading, setWeatherData, weatherData]);
 
   useEffect(() => {
     if (weatherData) {
@@ -65,7 +67,7 @@ export const Weather = () => {
       });
       setHourlyData(hourly);
     }
-  }, [weatherData]);
+  }, [setHourlyData, weatherData]);
 
   return (
     <div className="weather-container">
