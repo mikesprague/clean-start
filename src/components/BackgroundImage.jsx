@@ -2,20 +2,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
-import React, { Fragment, useEffect, useState } from 'react';
-import useLocalStorageState from 'use-local-storage-state';
+import { atom, useAtom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
+import React, { useEffect } from 'react';
 
 import { apiUrl } from '../modules/helpers';
 
 import './BackgroundImage.scss';
 
+const allImagesDataAtom = atomWithStorage('bgImagesData', null);
+const bgImageNumAtom = atom(0);
+const bgImageAtom = atom(null);
+const imageUrlAtom = atom('');
+const imageThumbUrlAtom = atom('');
+
 export const BackgroundImage = () => {
-  const [allBgImagesData, setAllBgImagesData] = useLocalStorageState(
-    'bgImagesData',
-    {
-      defaultValue: null,
-    }
-  );
+  const [allBgImagesData, setAllBgImagesData] = useAtom(allImagesDataAtom);
+  const [bgImageNum, setBgImageNum] = useAtom(bgImageNumAtom);
+  const [bgImage, setBgImage] = useAtom(bgImageAtom);
+  const [imageUrl, setImageUrl] = useAtom(imageUrlAtom);
+  const [imageThumbUrl, setImageThumbUrl] = useAtom(imageThumbUrlAtom);
 
   useEffect(() => {
     const loadBgImageData = async () => {
@@ -44,11 +50,6 @@ export const BackgroundImage = () => {
 
     return () => {};
   }, [allBgImagesData, setAllBgImagesData]);
-
-  const [bgImage, setBgImage] = useState(null);
-  const [bgImageNum, setBgImageNum] = useLocalStorageState('bgImageNum', {
-    defaultValue: 0,
-  });
 
   useEffect(() => {
     if (allBgImagesData?.data) {
@@ -95,10 +96,7 @@ export const BackgroundImage = () => {
     }
 
     // return () => {};
-  }, [allBgImagesData, bgImageNum]);
-
-  const [imageUrl, setImageUrl] = useState('');
-  const [imageThumbUrl, setImageThumbUrl] = useState('');
+  }, [allBgImagesData, bgImageNum, setBgImage, setImageUrl, setImageThumbUrl]);
 
   useEffect(() => {
     const updateBg = () => {
