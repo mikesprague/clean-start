@@ -2,10 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import { atom, useAtom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import useLocalStorageState from 'use-local-storage-state';
+import React, { useEffect } from 'react';
 
 import {
   getPopupInfo,
@@ -19,14 +20,27 @@ import { apiUrl } from '../modules/helpers';
 
 import './ContentPopup.scss';
 
+const hackerNewsDataAtom = atomWithStorage('hackerNewsData', null);
+const devToDataAtom = atomWithStorage('devToData', null);
+const productHuntDataAtom = atomWithStorage('productHuntData', null);
+const redditDataAtom = atomWithStorage('redditData', null);
+const githubDataAtom = atomWithStorage('githubData', null);
+const postsMarkupAtom = atom(null);
+const fullMarkupAtom = atom(null);
+
 export const ContentPopup = ({ type }) => {
-  const [data, setData] = useLocalStorageState(`${type}Data`, {
-    defaultValue: null,
-  });
+  const [hackerNewsData, setHackerNewsData] = useAtom(hackerNewsDataAtom);
+  const [devToData, setDevToData] = useAtom(devToDataAtom);
+  const [productHuntData, setProductHuntData] = useAtom(productHuntDataAtom);
+  const [redditData, setRedditData] = useAtom(redditDataAtom);
+  const [githubData, setGithubData] = useAtom(githubDataAtom);
+
+  const [postsMarkup, setPostsMarkup] = useAtom(postsMarkupAtom);
+  const [fullMarkup, setFullMarkup] = useAtom(fullMarkupAtom);
 
   useEffect(() => {
     switch (type) {
-      case 'dev-to': {
+      case 'devTo': {
         const getDevToPosts = async (devToUrl = `${apiUrl()}/dev-to-posts`) => {
           const devToData = await axios
             .get(devToUrl)
@@ -38,14 +52,14 @@ export const ContentPopup = ({ type }) => {
             returnData.push(devToData[i]);
           }
 
-          setData({
+          setDevToData({
             lastUpdated: dayjs().toString(),
             data: returnData,
           });
         };
 
-        if (data?.lastUpdated) {
-          const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
+        if (devToData?.lastUpdated) {
+          const nextUpdateTime = dayjs(devToData.lastUpdated).add(60, 'minute');
 
           if (dayjs().isAfter(nextUpdateTime)) {
             getDevToPosts();
@@ -68,14 +82,17 @@ export const ContentPopup = ({ type }) => {
               returnData.push(response.data[i]);
             }
           });
-          setData({
+          setGithubData({
             lastUpdated: dayjs().toString(),
             data: returnData,
           });
         };
 
-        if (data?.lastUpdated) {
-          const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
+        if (githubData?.lastUpdated) {
+          const nextUpdateTime = dayjs(githubData.lastUpdated).add(
+            60,
+            'minute'
+          );
 
           if (dayjs().isAfter(nextUpdateTime)) {
             getTrendingRepos();
@@ -86,7 +103,7 @@ export const ContentPopup = ({ type }) => {
 
         break;
       }
-      case 'hacker-news': {
+      case 'hackerNews': {
         const getHackerNewsPosts = async (
           hackerNewsUrl = `${apiUrl()}/hacker-news-posts`
         ) => {
@@ -100,14 +117,17 @@ export const ContentPopup = ({ type }) => {
             returnData.push(hackerNewsData[i]);
           }
 
-          setData({
+          setHackerNewsData({
             lastUpdated: dayjs().toString(),
             data: returnData,
           });
         };
 
-        if (data?.lastUpdated) {
-          const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
+        if (hackerNewsData?.lastUpdated) {
+          const nextUpdateTime = dayjs(hackerNewsData.lastUpdated).add(
+            60,
+            'minute'
+          );
 
           if (dayjs().isAfter(nextUpdateTime)) {
             getHackerNewsPosts();
@@ -118,7 +138,7 @@ export const ContentPopup = ({ type }) => {
 
         break;
       }
-      case 'product-hunt': {
+      case 'productHunt': {
         const getProductHuntPosts = async (
           productHuntRssUrl = `${apiUrl()}/product-hunt-posts`
         ) => {
@@ -132,14 +152,17 @@ export const ContentPopup = ({ type }) => {
             returnData.push(productHuntData[i]);
           }
 
-          setData({
+          setProductHuntData({
             lastUpdated: dayjs().toString(),
             data: returnData,
           });
         };
 
-        if (data?.lastUpdated) {
-          const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
+        if (productHuntData?.lastUpdated) {
+          const nextUpdateTime = dayjs(productHuntData.lastUpdated).add(
+            60,
+            'minute'
+          );
 
           if (dayjs().isAfter(nextUpdateTime)) {
             getProductHuntPosts();
@@ -158,14 +181,17 @@ export const ContentPopup = ({ type }) => {
             .get(redditPostsApiUrl)
             .then((response) => response.data);
 
-          setData({
+          setRedditData({
             lastUpdated: dayjs().toString(),
             data: returnData,
           });
         };
 
-        if (data?.lastUpdated) {
-          const nextUpdateTime = dayjs(data.lastUpdated).add(60, 'minute');
+        if (redditData?.lastUpdated) {
+          const nextUpdateTime = dayjs(redditData.lastUpdated).add(
+            60,
+            'minute'
+          );
 
           if (dayjs().isAfter(nextUpdateTime)) {
             getRedditPosts();
@@ -180,43 +206,60 @@ export const ContentPopup = ({ type }) => {
         break;
       }
     }
-  }, [data, setData, type]);
+  }, [
+    devToData,
+    githubData,
+    hackerNewsData,
+    productHuntData,
+    redditData,
+    setDevToData,
+    setGithubData,
+    setHackerNewsData,
+    setProductHuntData,
+    setRedditData,
+    type,
+  ]);
 
-  const [postsMarkup, setPostsMarkup] = useState(null);
+  useEffect(
+    () => {
+      let markup = null;
 
-  useEffect(() => {
-    let markup = null;
-
-    if (data?.data?.length && data?.data[0] !== null) {
       switch (type) {
-        case 'dev-to':
-          markup = handleDevTo(data.data);
+        case 'devTo':
+          markup = handleDevTo(devToData.data);
           setPostsMarkup(markup);
           break;
         case 'github':
-          markup = handleGitHub(data.data);
+          markup = handleGitHub(githubData.data);
           setPostsMarkup(markup);
           break;
-        case 'hacker-news':
-          markup = handleHackerNews(data.data);
+        case 'hackerNews':
+          markup = handleHackerNews(hackerNewsData.data);
           setPostsMarkup(markup);
           break;
-        case 'product-hunt':
-          markup = handleProductHunt(data.data);
+        case 'productHunt':
+          markup = handleProductHunt(productHuntData.data);
           setPostsMarkup(markup);
           break;
         case 'reddit':
-          markup = handleReddit(data.data);
+          markup = handleReddit(redditData.data);
           setPostsMarkup(markup);
           break;
         default:
           break;
       }
-    }
+    },
     // return () => {};
-  }, [type, data]);
-
-  const [fullMarkup, setFullMarkup] = useState(null);
+    [
+      devToData,
+      githubData,
+      hackerNewsData,
+      productHuntData,
+      redditData,
+      setPostsMarkup,
+      type,
+    ]
+  );
 
   useEffect(() => {
     const buildPopup = () => (
@@ -250,7 +293,7 @@ export const ContentPopup = ({ type }) => {
     setFullMarkup(markup);
 
     // return () => {};
-  }, [postsMarkup, type]);
+  }, [postsMarkup, setFullMarkup, type]);
 
   return (
     <Tippy
