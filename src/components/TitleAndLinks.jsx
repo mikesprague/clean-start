@@ -1,19 +1,22 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
-import React, { useEffect, useState } from 'react';
+import { atom, useAtom } from 'jotai';
+import React, { useEffect } from 'react';
 
 import { version } from '../../package.json';
 
 import './TitleAndLinks.scss';
 
+const isExtensionAtom = atom(true);
+
 export const TitleAndLinks = () => {
-  const [isExtension, setIsExtension] = useState(true);
+  const [isExtension, setIsExtension] = useAtom(isExtensionAtom);
 
   useEffect(() => {
     setIsExtension(window.location.origin.includes('-extension://'));
 
     return () => {};
-  }, []);
+  }, [setIsExtension]);
 
   const installLinks = (
     <h2 className="install-links">
