@@ -1,11 +1,16 @@
 import dayjs from 'dayjs';
-import React, { useEffect, useState } from 'react';
+import { atom } from 'jotai';
+import React, { useEffect } from 'react';
 
 import './Clock.scss';
+import { useAtom } from '../../node_modules/jotai/react';
+
+const dateTimeAtom = atom(dayjs());
+const dateTimeFormatAtom = atom('24');
 
 export const Clock = () => {
-  const [dateTime, setDateTime] = useState(dayjs());
-  const [dateTimeFormat, setDateTimeFormat] = useState('24');
+  const [dateTime, setDateTime] = useAtom(dateTimeAtom);
+  const [dateTimeFormat, setDateTimeFormat] = useAtom(dateTimeFormatAtom);
 
   const updateDateTime = () => {
     setDateTime(dayjs());
@@ -23,7 +28,7 @@ export const Clock = () => {
     const clockInterval = setInterval(updateDateTime, 1000);
 
     return () => clearInterval(clockInterval);
-  }, []);
+  }, [updateDateTime]);
 
   const timeFormatted = () =>
     dayjs(dateTime).format(dateTimeFormat === '12' ? 'h:mma' : 'HH:mm');
