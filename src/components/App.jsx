@@ -35,9 +35,9 @@ export const App = () => (
       </div>
       <div className="w-1/2 text-right">
         <ContentPopup type="github" />
-        <ContentPopup type="dev-to" />
-        <ContentPopup type="hacker-news" />
-        <ContentPopup type="product-hunt" />
+        <ContentPopup type="devTo" />
+        <ContentPopup type="hackerNews" />
+        <ContentPopup type="productHunt" />
         <ContentPopup type="reddit" />
       </div>
     </div>
