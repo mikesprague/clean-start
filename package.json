@@ -50,6 +50,7 @@
     "dayjs": "1.11.11",
     "dompurify": "3.1.3",
     "he": "1.2.0",
+    "jotai": "2.8.0",
     "nanoid": "5.0.7",
     "prop-types": "15.8.1",
     "react": "18.3.1",
@@ -80,11 +81,7 @@
     "wrangler": "3.56.0"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
