@@ -3,17 +3,20 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import dompurify from 'dompurify';
 import he from 'he';
-import React, { useEffect, useState } from 'react';
-import useLocalStorageState from 'use-local-storage-state';
+import { atom, useAtom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
+import React, { useEffect } from 'react';
 
 import { apiUrl, stripHTML } from '../modules/helpers';
 
 import './Quote.scss';
 
+const allQuotesDataAtom = atomWithStorage('quoteData', null);
+const quoteDataAtom = atom(null);
+
 export const Quote = () => {
-  const [allQuotesData, setAllQuotesData] = useLocalStorageState('quoteData', {
-    defaultValue: null,
-  });
+  const [allQuotesData, setAllQuotesData] = useAtom(allQuotesDataAtom);
+  const [quoteData, setQuoteData] = useAtom(quoteDataAtom);
 
   useEffect(() => {
     const loadQuoteData = async () => {
@@ -43,8 +46,6 @@ export const Quote = () => {
     return () => {};
   }, [allQuotesData, setAllQuotesData]);
 
-  const [quoteData, setQuoteData] = useState(null);
-
   useEffect(() => {
     if (allQuotesData?.data) {
       const randomNumber = Math.floor(
@@ -65,7 +66,7 @@ export const Quote = () => {
     }
 
     return () => {};
-  }, [allQuotesData]);
+  }, [allQuotesData, setQuoteData]);
 
   return quoteData ? (
     <div className="quote-container">
