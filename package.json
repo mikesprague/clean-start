@@ -1,12 +1,12 @@
 {
   "name": "clean-start",
-  "version": "0.39.0",
+  "version": "0.39.1",
   "description": "Open source new tab extension",
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">= 18.x",
-    "npm": ">= 8.x"
+    "node": ">= 20.x",
+    "npm": ">= 10.x"
   },
   "scripts": {
     "build:extension": "cross-env BUILD_TYPE=extension vite build",
@@ -81,7 +81,11 @@
     "wrangler": "3.56.0"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -94,7 +98,7 @@
     }
   },
   "volta": {
-    "node": "22.1.0",
-    "npm": "10.7.0"
+    "node": "22.2.0",
+    "npm": "10.8.0"
   }
 }
