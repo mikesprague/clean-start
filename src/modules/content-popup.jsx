@@ -4,7 +4,7 @@ import React from 'react';
 
 export const getPopupInfo = (type) => {
   const infoMap = {
-    'dev-to': {
+    devTo: {
       endpoint: '/dev-to-posts',
       icon: 'dev',
       siteName: 'Dev.to',
@@ -20,7 +20,7 @@ export const getPopupInfo = (type) => {
       url: 'https://github.com',
       pageLink: 'https://github.com/trending?spoken_language_code=en',
     },
-    'hacker-news': {
+    hackerNews: {
       endpoint: '/hacker-news-posts',
       icon: 'hacker-news',
       siteName: 'Hacker News',
@@ -28,7 +28,7 @@ export const getPopupInfo = (type) => {
       url: 'https://news.ycombinator.com',
       pageLink: 'https://news.ycombinator.com',
     },
-    'product-hunt': {
+    productHunt: {
       endpoint: '/product-hunt-posts',
       icon: 'product-hunt',
       siteName: 'Product Hunt',

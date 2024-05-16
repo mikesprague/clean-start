@@ -226,22 +226,37 @@ export const ContentPopup = ({ type }) => {
 
       switch (type) {
         case 'devTo':
+          if (!devToData) {
+            return;
+          }
           markup = handleDevTo(devToData.data);
           setPostsMarkup(markup);
           break;
         case 'github':
+          if (!githubData) {
+            return;
+          }
           markup = handleGitHub(githubData.data);
           setPostsMarkup(markup);
           break;
         case 'hackerNews':
+          if (!hackerNewsData) {
+            return;
+          }
           markup = handleHackerNews(hackerNewsData.data);
           setPostsMarkup(markup);
           break;
         case 'productHunt':
+          if (!productHuntData) {
+            return;
+          }
           markup = handleProductHunt(productHuntData.data);
           setPostsMarkup(markup);
           break;
         case 'reddit':
+          if (!redditData) {
+            return;
+          }
           markup = handleReddit(redditData.data);
           setPostsMarkup(markup);
           break;
