@@ -6,7 +6,7 @@ import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import {
   getPopupInfo,
@@ -26,7 +26,16 @@ const productHuntDataAtom = atomWithStorage('productHuntData', null);
 const redditDataAtom = atomWithStorage('redditData', null);
 const githubDataAtom = atomWithStorage('githubData', null);
 const postsMarkupAtom = atom(null);
-const fullMarkupAtom = atom(null);
+const devToMarkupAtom = atom(null);
+const githubMarkupAtom = atom(null);
+const hackerNewsMarkupAtom = atom(null);
+const productHuntMarkupAtom = atom(null);
+const redditMarkupAtom = atom(null);
+const githubPostsMarkupAtom = atom(null);
+const devToPostsMarkupAtom = atom(null);
+const hackerNewsPostsMarkupAtom = atom(null);
+const productHuntPostsMarkupAtom = atom(null);
+const redditPostsMarkupAtom = atom(null);
 
 export const ContentPopup = ({ type }) => {
   const [hackerNewsData, setHackerNewsData] = useAtom(hackerNewsDataAtom);
@@ -35,8 +44,27 @@ export const ContentPopup = ({ type }) => {
   const [redditData, setRedditData] = useAtom(redditDataAtom);
   const [githubData, setGithubData] = useAtom(githubDataAtom);
 
-  const [postsMarkup, setPostsMarkup] = useAtom(postsMarkupAtom);
-  const [fullMarkup, setFullMarkup] = useAtom(fullMarkupAtom);
+  const [githubPostsMarkup, setGithubPostsMarkup] = useAtom(
+    githubPostsMarkupAtom
+  );
+  const [devToPostsMarkup, setDevToPostsMarkup] = useAtom(devToPostsMarkupAtom);
+  const [hackerNewsPostsMarkup, setHackerNewsPostsMarkup] = useAtom(
+    hackerNewsPostsMarkupAtom
+  );
+  const [productHuntPostsMarkup, setProductHuntPostsMarkup] = useAtom(
+    productHuntPostsMarkupAtom
+  );
+  const [redditPostsMarkup, setRedditPostsMarkup] = useAtom(
+    redditPostsMarkupAtom
+  );
+
+  const [githubMarkup, setGithubMarkup] = useAtom(githubMarkupAtom);
+  const [devToMarkup, setDevToMarkup] = useAtom(devToMarkupAtom);
+  const [hackerNewsMarkup, setHackerNewsMarkup] = useAtom(hackerNewsMarkupAtom);
+  const [productHuntMarkup, setProductHuntMarkup] = useAtom(
+    productHuntMarkupAtom
+  );
+  const [redditMarkup, setRedditMarkup] = useAtom(redditMarkupAtom);
 
   useEffect(() => {
     switch (type) {
@@ -230,35 +258,35 @@ export const ContentPopup = ({ type }) => {
             return;
           }
           markup = handleDevTo(devToData.data);
-          setPostsMarkup(markup);
+          setDevToPostsMarkup(markup);
           break;
         case 'github':
           if (!githubData) {
             return;
           }
           markup = handleGitHub(githubData.data);
-          setPostsMarkup(markup);
+          setGithubPostsMarkup(markup);
           break;
         case 'hackerNews':
           if (!hackerNewsData) {
             return;
           }
           markup = handleHackerNews(hackerNewsData.data);
-          setPostsMarkup(markup);
+          setHackerNewsPostsMarkup(markup);
           break;
         case 'productHunt':
           if (!productHuntData) {
             return;
           }
           markup = handleProductHunt(productHuntData.data);
-          setPostsMarkup(markup);
+          setProductHuntPostsMarkup(markup);
           break;
         case 'reddit':
           if (!redditData) {
             return;
           }
           markup = handleReddit(redditData.data);
-          setPostsMarkup(markup);
+          setRedditPostsMarkup(markup);
           break;
         default:
           break;
@@ -271,7 +299,11 @@ export const ContentPopup = ({ type }) => {
       hackerNewsData,
       productHuntData,
       redditData,
-      setPostsMarkup,
+      setDevToPostsMarkup,
+      setGithubPostsMarkup,
+      setHackerNewsPostsMarkup,
+      setProductHuntPostsMarkup,
+      setRedditPostsMarkup,
       type,
     ]
   );
@@ -300,22 +332,74 @@ export const ContentPopup = ({ type }) => {
             </small>
           </h5>
         </li>
-        {postsMarkup ?? ''}
+        {type === 'devTo' && devToPostsMarkup
+          ? devToPostsMarkup
+          : type === 'github' && githubPostsMarkup
+            ? githubPostsMarkup
+            : type === 'hackerNews' && hackerNewsPostsMarkup
+              ? hackerNewsPostsMarkup
+              : type === 'productHunt' && productHuntPostsMarkup
+                ? productHuntPostsMarkup
+                : type === 'reddit' && redditPostsMarkup
+                  ? redditPostsMarkup
+                  : ''}
       </ul>
     );
+
     const markup = buildPopup();
-
-    setFullMarkup(markup);
-
-    // return () => {};
-  }, [postsMarkup, setFullMarkup, type]);
+    console.log(markup);
+    // console.log(fullMarkup);
+    switch (type) {
+      case 'devTo':
+        setDevToMarkup(markup);
+        break;
+      case 'github':
+        setGithubMarkup(markup);
+        break;
+      case 'hackerNews':
+        setHackerNewsMarkup(markup);
+        break;
+      case 'productHunt':
+        setProductHuntMarkup(markup);
+        break;
+      case 'reddit':
+        setRedditMarkup(markup);
+        break;
+      default:
+        break;
+    }
+  }, [
+    devToPostsMarkup,
+    githubPostsMarkup,
+    hackerNewsPostsMarkup,
+    productHuntPostsMarkup,
+    redditPostsMarkup,
+    setDevToMarkup,
+    setGithubMarkup,
+    setHackerNewsMarkup,
+    setProductHuntMarkup,
+    setRedditMarkup,
+    type,
+  ]);
 
   return (
     <Tippy
       interactive={true}
       maxWidth="none"
       trigger="click"
-      content={fullMarkup}
+      content={
+        type === 'devTo'
+          ? devToMarkup
+          : type === 'github'
+            ? githubMarkup
+            : type === 'hackerNews'
+              ? hackerNewsMarkup
+              : type === 'productHunt'
+                ? productHuntMarkup
+                : type === 'reddit'
+                  ? redditMarkup
+                  : ''
+      }
     >
       <Tippy placement="left" content={getPopupInfo(type).title}>
         <div className={`${type}-popup inline-block`}>
