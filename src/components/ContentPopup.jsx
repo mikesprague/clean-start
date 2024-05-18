@@ -347,7 +347,6 @@ export const ContentPopup = ({ type }) => {
     );
 
     const markup = buildPopup();
-    console.log(markup);
     // console.log(fullMarkup);
     switch (type) {
       case 'devTo':
