@@ -11,7 +11,7 @@ import { apiUrl } from '../modules/helpers';
 import './BackgroundImage.scss';
 
 const allImagesDataAtom = atomWithStorage('bgImagesData', null);
-const bgImageNumAtom = atom(0);
+const bgImageNumAtom = atomWithStorage(0);
 const bgImageAtom = atom(null);
 const imageUrlAtom = atom('');
 const imageThumbUrlAtom = atom('');
