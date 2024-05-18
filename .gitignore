@@ -141,3 +141,4 @@ lambda
 # Vite PWA plugin stuff
 
 dev-dist/
+.wrangler
