@@ -101,11 +101,14 @@ export const onRequestGet = async (context) => {
 
   const returnData = normalizeImageData(imageData);
 
+  // 6 hours in seconds
+  const maxAge = 60 * 60 * 6; // 21600
+
   const response = new Response(JSON.stringify(returnData), {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'max-age=900, s-maxage=900',
+      'Cache-Control': `max-age=${maxAge}, s-maxage=${maxAge}`,
     },
   });
 
