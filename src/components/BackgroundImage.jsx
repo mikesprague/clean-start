@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import React, { useEffect } from 'react';
@@ -9,6 +11,11 @@ import React, { useEffect } from 'react';
 import { apiUrl } from '../modules/helpers';
 
 import './BackgroundImage.scss';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+dayjs.tz.setDefault('America/New_York');
 
 const allImagesDataAtom = atomWithStorage('bgImagesData', null);
 const bgImageNumAtom = atomWithStorage('bgImageNum', 0);
@@ -30,7 +37,7 @@ export const BackgroundImage = () => {
         .then((response) => response.data);
 
       setAllBgImagesData({
-        lastUpdated: dayjs().toString(),
+        lastUpdated: dayjs().tz('America/New_York'),
         data: bgImagesData,
       });
     };
@@ -41,7 +48,7 @@ export const BackgroundImage = () => {
         'minute'
       );
 
-      if (dayjs().isAfter(nextUpdateTime)) {
+      if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
         loadBgImageData();
       }
     } else {

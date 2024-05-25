@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { nanoid } from 'nanoid';
@@ -12,6 +14,11 @@ import { clearData } from '../modules/local-storage';
 import { getOpenWeatherMapIcon } from '../modules/weather';
 
 import './Weather.scss';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+dayjs.tz.setDefault('America/New_York');
 
 const weatherDataAtom = atomWithStorage('weatherData', null);
 const isLoadingAtom = atom(false);
@@ -32,7 +39,7 @@ export const Weather = () => {
         .then((response) => response.data);
 
       setWeatherData({
-        lastUpdated: dayjs().toString(),
+        lastUpdated: dayjs().tz('America/New_York'),
         data: weatherApiData,
       });
 
@@ -55,7 +62,7 @@ export const Weather = () => {
   useEffect(() => {
     if (weatherData) {
       const hourly = [];
-      const startHour = dayjs().format('m') > 30 ? 1 : 0;
+      const startHour = dayjs().tz('America/New_York').format('m') > 30 ? 1 : 0;
       const numHoursToShow = 4;
 
       weatherData.data.weather.hourly.forEach((hourData, index) => {

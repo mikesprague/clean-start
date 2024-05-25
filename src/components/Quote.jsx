@@ -1,6 +1,8 @@
 import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 import dompurify from 'dompurify';
 import he from 'he';
 import { atom, useAtom } from 'jotai';
@@ -10,6 +12,11 @@ import React, { useEffect } from 'react';
 import { apiUrl, stripHTML } from '../modules/helpers';
 
 import './Quote.scss';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+dayjs.tz.setDefault('America/New_York');
 
 const allQuotesDataAtom = atomWithStorage('quoteData', null);
 const quoteDataAtom = atom(null);
@@ -25,7 +32,7 @@ export const Quote = () => {
         .then((response) => response.data);
 
       setAllQuotesData({
-        lastUpdated: dayjs().toString(),
+        lastUpdated: dayjs().tz('America/New_York'),
         data: designQuoteData,
       });
     };
@@ -36,7 +43,7 @@ export const Quote = () => {
         'minute'
       );
 
-      if (dayjs().isAfter(nextUpdateTime)) {
+      if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
         loadQuoteData();
       }
     } else {

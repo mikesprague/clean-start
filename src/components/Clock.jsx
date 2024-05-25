@@ -1,11 +1,18 @@
 import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 import { atom } from 'jotai';
 import React, { useEffect } from 'react';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+dayjs.tz.setDefault('America/New_York');
 
 import './Clock.scss';
 import { useAtom } from '../../node_modules/jotai/react';
 
-const dateTimeAtom = atom(dayjs());
+const dateTimeAtom = atom(dayjs().tz('America/New_York'));
 const dateTimeFormatAtom = atom('24');
 
 export const Clock = () => {
@@ -13,7 +20,7 @@ export const Clock = () => {
   const [dateTimeFormat, setDateTimeFormat] = useAtom(dateTimeFormatAtom);
 
   const updateDateTime = () => {
-    setDateTime(dayjs());
+    setDateTime(dayjs().tz('America/New_York'));
   };
 
   const clickHandler = () => {

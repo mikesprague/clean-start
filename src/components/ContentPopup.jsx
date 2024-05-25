@@ -2,11 +2,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import {
   getPopupInfo,
@@ -20,12 +22,16 @@ import { apiUrl } from '../modules/helpers';
 
 import './ContentPopup.scss';
 
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+dayjs.tz.setDefault('America/New_York');
+
 const hackerNewsDataAtom = atomWithStorage('hackerNewsData', null);
 const devToDataAtom = atomWithStorage('devToData', null);
 const productHuntDataAtom = atomWithStorage('productHuntData', null);
 const redditDataAtom = atomWithStorage('redditData', null);
 const githubDataAtom = atomWithStorage('githubData', null);
-const postsMarkupAtom = atom(null);
 const devToMarkupAtom = atom(null);
 const githubMarkupAtom = atom(null);
 const hackerNewsMarkupAtom = atom(null);
@@ -81,15 +87,17 @@ export const ContentPopup = ({ type }) => {
           }
 
           setDevToData({
-            lastUpdated: dayjs().toString(),
+            lastUpdated: dayjs().tz('America/New_York'),
             data: returnData,
           });
         };
 
         if (devToData?.lastUpdated) {
-          const nextUpdateTime = dayjs(devToData.lastUpdated).add(60, 'minute');
+          const nextUpdateTime = dayjs(devToData.lastUpdated)
+            .tz('America/New_York')
+            .add(60, 'minute');
 
-          if (dayjs().isAfter(nextUpdateTime)) {
+          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
             getDevToPosts();
           }
         } else {
@@ -111,18 +119,17 @@ export const ContentPopup = ({ type }) => {
             }
           });
           setGithubData({
-            lastUpdated: dayjs().toString(),
+            lastUpdated: dayjs().tz('America/New_York'),
             data: returnData,
           });
         };
 
         if (githubData?.lastUpdated) {
-          const nextUpdateTime = dayjs(githubData.lastUpdated).add(
-            60,
-            'minute'
-          );
+          const nextUpdateTime = dayjs(githubData.lastUpdated)
+            .tz('America/New_York')
+            .add(60, 'minute');
 
-          if (dayjs().isAfter(nextUpdateTime)) {
+          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
             getTrendingRepos();
           }
         } else {
@@ -146,18 +153,17 @@ export const ContentPopup = ({ type }) => {
           }
 
           setHackerNewsData({
-            lastUpdated: dayjs().toString(),
+            lastUpdated: dayjs().tz('America/New_York'),
             data: returnData,
           });
         };
 
         if (hackerNewsData?.lastUpdated) {
-          const nextUpdateTime = dayjs(hackerNewsData.lastUpdated).add(
-            60,
-            'minute'
-          );
+          const nextUpdateTime = dayjs(hackerNewsData.lastUpdated)
+            .tz('America/New_York')
+            .add(60, 'minute');
 
-          if (dayjs().isAfter(nextUpdateTime)) {
+          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
             getHackerNewsPosts();
           }
         } else {
@@ -181,18 +187,17 @@ export const ContentPopup = ({ type }) => {
           }
 
           setProductHuntData({
-            lastUpdated: dayjs().toString(),
+            lastUpdated: dayjs().tz('America/New_York'),
             data: returnData,
           });
         };
 
         if (productHuntData?.lastUpdated) {
-          const nextUpdateTime = dayjs(productHuntData.lastUpdated).add(
-            60,
-            'minute'
-          );
+          const nextUpdateTime = dayjs(productHuntData.lastUpdated)
+            .tz('America/New_York')
+            .add(60, 'minute');
 
-          if (dayjs().isAfter(nextUpdateTime)) {
+          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
             getProductHuntPosts();
           }
         } else {
@@ -210,18 +215,17 @@ export const ContentPopup = ({ type }) => {
             .then((response) => response.data);
 
           setRedditData({
-            lastUpdated: dayjs().toString(),
+            lastUpdated: dayjs().tz('America/New_York'),
             data: returnData,
           });
         };
 
         if (redditData?.lastUpdated) {
-          const nextUpdateTime = dayjs(redditData.lastUpdated).add(
-            60,
-            'minute'
-          );
+          const nextUpdateTime = dayjs(redditData.lastUpdated)
+            .tz('America/New_York')
+            .add(60, 'minute');
 
-          if (dayjs().isAfter(nextUpdateTime)) {
+          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
             getRedditPosts();
           }
         } else {
