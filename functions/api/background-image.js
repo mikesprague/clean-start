@@ -101,8 +101,7 @@ export const onRequestGet = async (context) => {
 
   const returnData = normalizeImageData(imageData);
 
-  // 6 hours in seconds
-  const maxAge = 60 * 60 * 6; // 21600
+  const maxAge = 60 * 60 * 6; // 21600 (6 hours)
 
   const response = new Response(JSON.stringify(returnData), {
     status: 200,
