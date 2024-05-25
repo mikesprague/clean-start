@@ -40,6 +40,13 @@ import {
   faWind,
 } from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+dayjs.tz.setDefault('America/New_York');
 
 export const appConfig = {
   bgCacheTtl: 360, // 6 hours
@@ -170,7 +177,7 @@ export const isCacheExpired = (lastUpdated, cacheDurationInMinutes) => {
       'minute'
     );
 
-    if (dayjs().isAfter(nextUpdateTime)) {
+    if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
       return true;
     }
   } catch (error) {
