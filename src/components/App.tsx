@@ -16,7 +16,13 @@ initIcons();
 
 export const App = () => (
   <>
-    <MantineProvider defaultColorScheme="auto">
+    <MantineProvider
+      defaultColorScheme="auto"
+      theme={{
+        fontFamily:
+          "'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+      }}
+    >
       <Stack w="100%" h="100vh" gap="md">
         <Group align="start" ta="start" w="100%" grow>
           <Box p="xs">
