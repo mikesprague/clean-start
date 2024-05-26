@@ -1,8 +1,9 @@
+import { Box, Container, Group, MantineProvider, Stack } from '@mantine/core';
 import React, { lazy } from 'react';
 
 import { initIcons } from '../modules/helpers';
 
-import './App.scss';
+import '@mantine/core/styles.css';
 
 const BackgroundImage = lazy(() => import('./BackgroundImage'));
 const Clock = lazy(() => import('./Clock'));
@@ -15,32 +16,38 @@ initIcons();
 
 export const App = () => (
   <>
-    <div className="header">
-      <div className="w-1/2">
-        <TitleAndLinks />
-      </div>
-      <div className="w-1/2">
-        <Weather />
-      </div>
-    </div>
-    <div className="content">
-      <div className="flex-auto w-full">
-        <Clock />
-        <Quote />
-      </div>
-    </div>
-    <div className="footer">
-      <div className="w-1/2">
-        <BackgroundImage />
-      </div>
-      <div className="w-1/2 text-right">
-        <ContentPopup contentType="github" />
-        <ContentPopup contentType="devTo" />
-        <ContentPopup contentType="hackerNews" />
-        <ContentPopup contentType="productHunt" />
-        <ContentPopup contentType="reddit" />
-      </div>
-    </div>
+    <MantineProvider defaultColorScheme="auto">
+      <Stack w="100%" h="100vh" gap="md">
+        <Group align="start" ta="start" w="100%" grow>
+          <Box p="xs">
+            <TitleAndLinks />
+          </Box>
+          <Box p="xs" ta="right" style={{ justifyContent: 'right' }}>
+            <Weather />
+          </Box>
+        </Group>
+        <Group justify="center" h="100%" align="normal">
+          <Container fluid>
+            <Clock />
+            <Quote />
+          </Container>
+        </Group>
+        <Group justify="center" align="end">
+          <Container size="xl">
+            <BackgroundImage />
+          </Container>
+          <Container size="xl">
+            <Group gap="sm">
+              <ContentPopup contentType="github" />
+              <ContentPopup contentType="devTo" />
+              <ContentPopup contentType="hackerNews" />
+              <ContentPopup contentType="productHunt" />
+              <ContentPopup contentType="reddit" />
+            </Group>
+          </Container>
+        </Group>
+      </Stack>
+    </MantineProvider>
   </>
 );
 
