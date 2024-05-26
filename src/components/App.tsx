@@ -1,15 +1,15 @@
-import React, { lazy } from "react";
+import React, { lazy } from 'react';
 
-import { initIcons } from "../modules/helpers";
+import { initIcons } from '../modules/helpers';
 
-import "./App.scss";
+import './App.scss';
 
-const BackgroundImage = lazy(() => import("./BackgroundImage"));
-const Clock = lazy(() => import("./Clock"));
-const ContentPopup = lazy(() => import("./ContentPopup"));
-const Quote = lazy(() => import("./Quote"));
-const TitleAndLinks = lazy(() => import("./TitleAndLinks"));
-const Weather = lazy(() => import("./Weather"));
+const BackgroundImage = lazy(() => import('./BackgroundImage'));
+const Clock = lazy(() => import('./Clock'));
+const ContentPopup = lazy(() => import('./ContentPopup'));
+const Quote = lazy(() => import('./Quote'));
+const TitleAndLinks = lazy(() => import('./TitleAndLinks'));
+const Weather = lazy(() => import('./Weather'));
 
 initIcons();
 

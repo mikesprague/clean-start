@@ -1,8 +1,3 @@
-const autoprefixer = require('autoprefixer');
-const tailwindcss = require('tailwindcss');
-const cssnano = require('cssnano');
-const purgecss = require('@fullhuman/postcss-purgecss');
-
 const cssWhitelistClassArray = [
   /tippy/,
   /odd/,
@@ -30,14 +25,13 @@ module.exports = {
     cssnano: {
       preset: 'default',
     },
-    'postcss-purgecss': {
+    '@fullhuman/postcss-purgecss': {
       content: [
-        './src/index.html',
-        './src/index.jsx',
-        './src/components/*.jsx',
-        './src/modules/*.jsx',
-        './src/modules/*.js',
+        './src/*.{html,tsx}',
+        './src/components/*.{js,ts,jsx,tsx}',
+        './src/modules/*.{js,ts,jsx,tsx}',
       ],
+      blocklist: ['node_modules'],
       fontFace: false,
       safelist: cssWhitelistClassArray,
     },

@@ -151,7 +151,8 @@ export const handleHackerNews = (apiData) => {
   return markup;
 };
 
-export const handleDevTo = (apiData) => {
+// return jsx markup
+export const handleDevTo = (apiData): React.FC => {
   let idx = 0;
   const markup = apiData.map((post) => {
     const listItemMarkup = (
@@ -198,7 +199,7 @@ export const handleGitHub = (apiData) => {
     } = repo;
     const styles = languageStyle
       ? { backgroundColor: languageStyle.replace('background-color: ', '') }
-      : '';
+      : {};
     // console.log(styles);
     const languageMarkup = languageName ? (
       <>

@@ -1,6 +1,11 @@
 {
   "compilerOptions": {
-    "types": ["node", "react"],
+    "types": [
+      "node",
+      "react",
+      "vite-plugin-pwa/info.d.ts",
+      "vite-plugin-pwa/client.d.ts"
+    ],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

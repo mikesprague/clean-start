@@ -2,7 +2,7 @@ import { registerSW } from 'virtual:pwa-register';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import App from './components/App';
+import { App } from './components/App';
 
 import 'tippy.js/dist/tippy.css';
 import './index.scss';

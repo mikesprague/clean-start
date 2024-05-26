@@ -1,10 +1,8 @@
 module.exports = {
   content: [
-    './src/**/*.html',
-    './src/index.jsx',
-    './src/components/**/*.jsx',
-    './src/modules/**/*.js',
-    './src/modules/**/*.jx',
+    './src/*.{html,tsx}',
+    './src/components/*.{js,ts,jsx,tsx}',
+    './src/modules/*.{js,ts,jsx,tsx}',
   ],
   mode: 'jit',
   theme: {

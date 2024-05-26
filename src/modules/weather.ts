@@ -1,4 +1,5 @@
-export const getWeatherIcon = (icon, id = null, description = null) => {
+// export const getWeatherIcon = (icon, id = null, description = null) => {
+export const getWeatherIcon = (icon) => {
   const iconMap = {
     '01d': 'sun', // clear day
     '01n': 'moon', // clear night
@@ -30,9 +31,10 @@ export const getWeatherIcon = (icon, id = null, description = null) => {
 
 // expects object from weather array as shown: https://openweathermap.org/current#current_JSON
 // using weather/icons codes from: https://openweathermap.org/weather-conditions
-export const getOpenWeatherMapIcon = ({ id, main, description, icon }) => {
+// export const getOpenWeatherMapIcon = ({ id, main, description, icon }) => {
+export const getOpenWeatherMapIcon = ({ id, description, icon }) => {
   // console.log(id, main, description, icon);
-  let returnIcon;
+  let returnIcon: string;
 
   switch (Number(String(id).charAt(0))) {
     case 2: {
