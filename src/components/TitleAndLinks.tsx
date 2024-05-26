@@ -46,7 +46,7 @@ export const TitleAndLinks = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Text component="span" fw={300} mb="xs" size="md">
+          <Text component="span" fw={300} size="sm">
           Open Source New Tab Extension
           </Text>
         </Anchor>

@@ -139,7 +139,7 @@ export const Weather = () => {
             }
             position="left"
           >
-            <Text component="span" fw="bold" size="2.5rem">
+            <Text component="span" fw="bolder" size="2.25rem">
               <FontAwesomeIcon
                 icon={
                   weatherData?.data?.weather?.current
@@ -202,7 +202,7 @@ export const Weather = () => {
             href="https://openweathermap.org/api/"
             target="_blank"
             rel="noopener noreferrer"
-            size="sm"
+            size="xs"
           >
             Powered by OpenWeatherMap
           </Anchor>
