@@ -33,7 +33,7 @@ export const TitleAndLinks = () => {
 
   return (
     <>
-      <Title order={1} fw={600} m={0} size="h2">
+      <Title order={1} fw={600} m={0} size="h3">
         Clean Start
         <Text component="span" fw={200} ml="xs" size="xs">
           v{version}

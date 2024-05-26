@@ -127,7 +127,7 @@ export const Weather = () => {
         loading weather
       </Box>
       <Box hidden={isLoading}>
-        <Title order={3} size="h2">
+        <Title order={3} size="h3">
           {weatherData?.data ? weatherData.data?.location?.locationName : ''}
         </Title>
         <Box>
@@ -139,7 +139,7 @@ export const Weather = () => {
             }
             position="left"
           >
-            <Text component="span" fw="bold" size="3rem">
+            <Text component="span" fw="bold" size="2.5rem">
               <FontAwesomeIcon
                 icon={
                   weatherData?.data?.weather?.current
@@ -167,7 +167,7 @@ export const Weather = () => {
               : ''}
           </Text>
         </Box>
-        <Group ta="right" justify="end">
+        <Group ta="right" justify="end" gap="xs">
           {weatherData?.data &&
             hourlyData &&
             hourlyData.map((hour) => (
@@ -195,9 +195,10 @@ export const Weather = () => {
               </Box>
             ))}
         </Group>
-        <Box hidden={!(weatherData && hourlyData)} mt="xs">
+        <Box hidden={!(weatherData && hourlyData)}>
           <Anchor
             c="white"
+            fw="lighter"
             href="https://openweathermap.org/api/"
             target="_blank"
             rel="noopener noreferrer"
