@@ -38,19 +38,19 @@ export const App = () => (
             <Quote />
           </Container>
         </Group>
-        <Group justify="center" align="end">
-          <Container size="xl">
+        <Group align="end" ta="start" w="100%" grow>
+          <Box p="xs">
             <BackgroundImage />
-          </Container>
-          <Container size="xl">
-            <Group gap="sm">
+          </Box>
+          <Box p="xs" ta="right" style={{ justifyContent: 'right' }}>
+            <Group gap="sm" align="end" justify="end">
               <ContentPopup contentType="github" />
               <ContentPopup contentType="devTo" />
               <ContentPopup contentType="hackerNews" />
               <ContentPopup contentType="productHunt" />
               <ContentPopup contentType="reddit" />
             </Group>
-          </Container>
+          </Box>
         </Group>
       </Stack>
     </MantineProvider>
