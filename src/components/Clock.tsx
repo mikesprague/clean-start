@@ -1,10 +1,9 @@
+import { Container, Text } from '@mantine/core';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import { atom, useAtom } from 'jotai';
-import React, { useEffect } from 'react';
-
-import './Clock.scss';
+import React, { useCallback, useEffect, useMemo } from 'react';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -17,17 +16,17 @@ export const Clock = () => {
   const [dateTime, setDateTime] = useAtom(dateTimeAtom);
   const [dateTimeFormat, setDateTimeFormat] = useAtom(dateTimeFormatAtom);
 
-  const updateDateTime = () => {
+  const updateDateTime = useCallback(() => {
     setDateTime(dayjs().tz('America/New_York'));
-  };
+  }, [setDateTime]);
 
-  const clickHandler = () => {
+  const clickHandler = useCallback(() => {
     if (dateTimeFormat === '12') {
       setDateTimeFormat('24');
     } else {
       setDateTimeFormat('12');
     }
-  };
+  }, [dateTimeFormat, setDateTimeFormat]);
 
   useEffect(() => {
     const clockInterval = setInterval(updateDateTime, 1000);
@@ -35,12 +34,17 @@ export const Clock = () => {
     return () => clearInterval(clockInterval);
   }, [updateDateTime]);
 
-  const timeFormatted = () =>
-    dayjs(dateTime).format(dateTimeFormat === '12' ? 'h:mma' : 'HH:mm');
+  const timeFormatted = useMemo(
+    () => dayjs(dateTime).format(dateTimeFormat === '12' ? 'h:mma' : 'HH:mm'),
+    [dateTime, dateTimeFormat]
+  );
 
-  const dateFormatted = () => dayjs(dateTime).format('dddd, MMMM D YYYY');
+  const dateFormatted = useMemo(
+    () => dayjs(dateTime).format('dddd, MMMM D YYYY'),
+    [dateTime]
+  );
 
-  const greeting = () => {
+  const greeting = useMemo(() => {
     const currentHour = dayjs(dateTime).hour();
     let timeOfDayString = 'morning';
 
@@ -55,18 +59,25 @@ export const Clock = () => {
     const currentGreeting = `Good ${timeOfDayString}`;
 
     return currentGreeting;
-  };
+  }, [dateTime]);
 
   return (
-    <div className="clock-container">
-      <h2 className="time-container">
-        <button onClick={clickHandler} onKeyPress={clickHandler} type="button">
-          {timeFormatted()}
-        </button>
-      </h2>
-      <h3 className="date-container">{dateFormatted()}</h3>
-      <h4 className="greeting-container">{greeting()}</h4>
-    </div>
+    <Container fluid style={{ cursor: 'default' }} ta="center">
+      <Text fw={800} onClick={clickHandler} size="9rem" ta="center">
+        {timeFormatted}
+      </Text>
+      <Text
+        fw="bold"
+        lts="0.025em"
+        mt="sm"
+        size="1.875rem"
+        ta="center"
+        tt="uppercase"
+      >
+        {dateFormatted}
+      </Text>
+      <Text fw={600} mt="xl" size="5rem" ta="center">{greeting}</Text>
+    </Container>
   );
 };
 
