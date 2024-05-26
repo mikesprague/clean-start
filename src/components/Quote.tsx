@@ -1,4 +1,4 @@
-import Tippy from '@tippyjs/react';
+import { Anchor, Container, Text, Tooltip } from '@mantine/core';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
@@ -80,21 +80,23 @@ export const Quote = () => {
   }, [allQuotesData, setQuoteData]);
 
   return quoteData ? (
-    <div className="quote-container">
-      <Tippy content="Quotes provided by ZenQuotes API" placement="bottom">
-        <p className="px-4 visible">
-          <a
+    <Container fluid mt="xl">
+      <Tooltip label="Quotes provided by ZenQuotes API" position="bottom">
+        <Text lh={1.5} size="1.125rem" ta="center">
+          <Anchor
+            c="white"
             href="https://zenquotes.io/"
+            ta="center"
             target="_blank"
             rel="noopener noreferrer"
           >
             {quoteData.quoteExcerpt}
             <br />
             <em>&mdash; {quoteData.quoteAuthor}</em>
-          </a>
-        </p>
-      </Tippy>
-    </div>
+          </Anchor>
+        </Text>
+      </Tooltip>
+    </Container>
   ) : (
     ''
   );
