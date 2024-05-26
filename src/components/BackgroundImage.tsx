@@ -1,20 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react';
+import { ActionIcon, Anchor, Box, Group, Tooltip } from '@mantine/core';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { apiUrl } from '../modules/helpers';
 
-import './BackgroundImage.scss';
-
 dayjs.extend(utc);
 dayjs.extend(timezone);
-
 dayjs.tz.setDefault('America/New_York');
 
 // type for finalImageData
@@ -129,58 +126,79 @@ export const BackgroundImage = () => {
     document.body.style.backgroundSize = 'cover, cover';
   }, [imageUrl, imageThumbUrl]);
 
-  const clickHandler = (event: any) => {
-    event.preventDefault();
-    const nextBgImageNum = bgImageNum + 1 >= 5 ? 0 : bgImageNum + 1;
+  const clickHandler = useCallback(
+    (event: any) => {
+      event.preventDefault();
+      const nextBgImageNum = bgImageNum + 1 >= 5 ? 0 : bgImageNum + 1;
 
-    setBgImageNum(nextBgImageNum);
-  };
+      setBgImageNum(nextBgImageNum);
+    },
+    [bgImageNum, setBgImageNum]
+  );
 
   return (
     <>
-      <Tippy content="Change background image" placement="right">
-        <button
-          type="button"
-          className={bgImage ? 'rotate-bg visible' : 'rotate-bg invisible'}
+      <Group>
+        <ActionIcon
+          aria-label="Change background image"
+          c="white"
+          hidden={!bgImage}
           onClick={clickHandler}
+          variant="transparent"
         >
-          <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth />
-        </button>
-      </Tippy>
-      <div className="bg-metadata">
-        <Tippy content="View full quality image on Unsplash" placement="right">
-          <a
-            href={`${bgImage?.imageLink}${bgImage?.linkSuffix}`}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Tooltip label="Change background image" position="right" withArrow>
+            <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth />
+          </Tooltip>
+        </ActionIcon>
+        <Box lh={1.2}>
+          <Tooltip
+            label="View full quality image on Unsplash"
+            position="right"
+            withArrow
           >
-            <FontAwesomeIcon icon="image" fixedWidth /> {bgImage?.title}
-          </a>
-        </Tippy>
-        <br />
-        <Tippy
-          content="Visit photographer's page on Unsplash"
-          placement="right"
-        >
-          <a
-            href={`${bgImage?.userLink}${bgImage?.linkSuffix}`}
-            target="_blank"
-            rel="noopener noreferrer"
+            <Anchor
+              c="white"
+              fw={200}
+              href={`${bgImage?.imageLink}${bgImage?.linkSuffix}`}
+              size="sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon="image" fixedWidth /> {bgImage?.title}
+            </Anchor>
+          </Tooltip>
+          <br />
+          <Tooltip
+            label="Visit photographer's page on Unsplash"
+            position="right"
+            withArrow
           >
-            <FontAwesomeIcon icon="user" fixedWidth /> {bgImage?.userName}
-          </a>
-        </Tippy>
-        {' via '}
-        <Tippy content="Visit Unsplash" placement="right">
-          <a
-            href={`https://unsplash.com/${bgImage?.linkSuffix}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Unsplash
-          </a>
-        </Tippy>
-      </div>
+            <Anchor
+              c="white"
+              fw={200}
+              href={`${bgImage?.userLink}${bgImage?.linkSuffix}`}
+              size="sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon="user" fixedWidth /> {bgImage?.userName}
+            </Anchor>
+          </Tooltip>
+          {' via '}
+          <Tooltip label="Visit Unsplash" position="right" withArrow>
+            <Anchor
+              c="white"
+              fw={200}
+              href={`https://unsplash.com/${bgImage?.linkSuffix}`}
+              size="sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Unsplash
+            </Anchor>
+          </Tooltip>
+        </Box>
+      </Group>
     </>
   );
 };
