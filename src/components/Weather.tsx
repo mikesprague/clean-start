@@ -1,6 +1,6 @@
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react';
+import { Anchor, Box, Group, Text, Title, Tooltip } from '@mantine/core';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
@@ -14,11 +14,8 @@ import { apiUrl, isCacheExpired } from '../modules/helpers';
 import { clearData } from '../modules/local-storage';
 import { getOpenWeatherMapIcon } from '../modules/weather';
 
-import './Weather.scss';
-
 dayjs.extend(utc);
 dayjs.extend(timezone);
-
 dayjs.tz.setDefault('America/New_York');
 
 interface HourlyWeatherData {
@@ -117,32 +114,32 @@ export const Weather = () => {
   }, [setHourlyData, weatherData]);
 
   return weatherData?.data ? (
-    <div className="weather-container">
-      <div className={isLoading ? 'block text-right mt-4' : 'hidden'}>
+    <Box style={{ cursor: 'default' }} ta="right">
+      <Box hidden={!isLoading}>
         <FontAwesomeIcon
           icon="spinner"
           size="2x"
           fixedWidth
           pulse
-          className="mr-8"
+          style={{ marginRight: '0.5rem' }}
         />
         <br />
         loading weather
-      </div>
-      <span className={isLoading ? 'invisible' : 'visible'}>
-        <h4 className="weather-location">
+      </Box>
+      <Box hidden={isLoading}>
+        <Title order={3} size="h2">
           {weatherData?.data ? weatherData.data?.location?.locationName : ''}
-        </h4>
-        <div className="icon-and-temp">
-          <Tippy
-            content={
+        </Title>
+        <Box>
+          <Tooltip
+            label={
               weatherData?.data?.weather
                 ? weatherData.data?.weather?.current?.weather[0].description
                 : ''
             }
-            placement="left"
+            position="left"
           >
-            <span>
+            <Text component="span" fw="bold" size="3rem">
               <FontAwesomeIcon
                 icon={
                   weatherData?.data?.weather?.current
@@ -152,68 +149,65 @@ export const Weather = () => {
                     : ('hourglass-half' as IconProp)
                 }
                 fixedWidth
-                className="weather-icon"
+                style={{ fontWeight: 'bolder' }}
               />
-              <strong className="weather-temp">
-                {weatherData?.data?.weather?.current
-                  ? ` ${Math.round(
-                      weatherData.data?.weather?.current?.temp
-                    )}${String.fromCharCode(176)}`
-                  : ' -- '}
-              </strong>
-            </span>
-          </Tippy>
-          <div className="feels-like-temp">
+              {weatherData?.data?.weather?.current
+                ? ` ${Math.round(
+                    weatherData.data?.weather?.current?.temp
+                  )}${String.fromCharCode(176)}`
+                : ' -- '}
+            </Text>
+          </Tooltip>
+          <Text fw="normal" mt="-.25rem" size="md">
             {/* Math.round(weatherData.weather.currently.temperature) !== Math.round(weatherData.weather.currently.apparentTemperature) */}
             {weatherData?.data?.weather?.current
               ? `Feels ${Math.round(
                   weatherData.data.weather.current.feels_like
                 )}${String.fromCharCode(176)}`
               : ''}
-          </div>
-        </div>
-        <ul className="flex hourly-forecast">
+          </Text>
+        </Box>
+        <Group ta="right" justify="end">
           {weatherData?.data &&
             hourlyData &&
             hourlyData.map((hour) => (
-              <Tippy
-                content={
-                  hour
-                    ? `${hour.weather[0].description} (Feels ${Math.round(
-                        hour.feels_like
-                      )}${String.fromCharCode(176)})`
-                    : ''
-                }
-                placement="left"
-                key={nanoid(8)}
-              >
-                <li key={nanoid(8)} className="w-1/4">
-                  {dayjs.unix(hour.dt).format('ha')}
-                  <br />
-                  <FontAwesomeIcon
-                    icon={getOpenWeatherMapIcon(hour.weather[0]) as IconProp}
-                    fixedWidth
-                  />
-                  {` ${Math.round(hour.temp)}`}&deg;
-                </li>
-              </Tippy>
+              <Box key={nanoid(8)}>
+                <Tooltip
+                  label={
+                    hour
+                      ? `${hour.weather[0].description} (Feels ${Math.round(
+                          hour.feels_like
+                        )}${String.fromCharCode(176)})`
+                      : ''
+                  }
+                  position="left"
+                >
+                  <Text size="sm">
+                    {dayjs.unix(hour.dt).format('ha')}
+                    <br />
+                    <FontAwesomeIcon
+                      icon={getOpenWeatherMapIcon(hour.weather[0]) as IconProp}
+                      fixedWidth
+                    />
+                    {` ${Math.round(hour.temp)}`}&deg;
+                  </Text>
+                </Tooltip>
+              </Box>
             ))}
-        </ul>
-        <div
-          className={
-            weatherData && hourlyData ? 'powered-by' : 'powered-by hidden'
-          }
-        >
-          <a
+        </Group>
+        <Box hidden={!(weatherData && hourlyData)} mt="xs">
+          <Anchor
+            c="white"
             href="https://openweathermap.org/api/"
             target="_blank"
             rel="noopener noreferrer"
+            size="sm"
           >
             Powered by OpenWeatherMap
-          </a>
-        </div>
-      </span>
-    </div>
+          </Anchor>
+        </Box>
+      </Box>
+    </Box>
   ) : null;
 };
 
