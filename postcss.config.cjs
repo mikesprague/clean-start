@@ -1,13 +1,3 @@
-const cssWhitelistClassArray = [
-  /tippy/,
-  /odd/,
-  /repo-language-color/,
-  /fa-rotate-270/,
-  /w-1\/2/,
-  /w-1\/4/,
-  /w-full/,
-];
-
 module.exports = {
   plugins: {
     'postcss-preset-mantine': {},
@@ -21,19 +11,8 @@ module.exports = {
       },
     },
     autoprefixer: {},
-    tailwindcss: {},
     cssnano: {
       preset: 'default',
-    },
-    '@fullhuman/postcss-purgecss': {
-      content: [
-        './src/*.{html,tsx}',
-        './src/components/*.{js,ts,jsx,tsx}',
-        './src/modules/*.{js,ts,jsx,tsx}',
-      ],
-      blocklist: ['node_modules'],
-      fontFace: false,
-      safelist: cssWhitelistClassArray,
     },
   },
 };
