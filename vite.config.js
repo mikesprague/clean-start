@@ -1,6 +1,8 @@
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import tsconfigPaths from 'vite-tsconfig-paths';
+
 import { version } from './package.json';
 
 export default defineConfig({
@@ -14,6 +16,10 @@ export default defineConfig({
   outDir: './',
   appType: 'spa',
   plugins: [
+    react({
+      include: '**/*.{jsx,tsx}',
+    }),
+    tsconfigPaths(),
     VitePWA({
       strategies: 'generateSW',
       injectRegister: 'auto',
@@ -102,9 +108,6 @@ export default defineConfig({
         background_color: '#121212',
         theme_color: '#121212',
       },
-    }),
-    react({
-      include: '**/*.{jsx,tsx}',
     }),
   ],
 });

@@ -1,27 +1,42 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react';
-import axios from 'axios';
-import dayjs from 'dayjs';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
-import { atom, useAtom } from 'jotai';
-import { atomWithStorage } from 'jotai/utils';
-import React, { useEffect } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Tippy from "@tippyjs/react";
+import axios from "axios";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import { atom, useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
+import React, { useEffect } from "react";
 
-import { apiUrl } from '../modules/helpers';
+import { apiUrl } from "../modules/helpers";
 
-import './BackgroundImage.scss';
+import "./BackgroundImage.scss";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-dayjs.tz.setDefault('America/New_York');
+dayjs.tz.setDefault("America/New_York");
 
-const allImagesDataAtom = atomWithStorage('bgImagesData', null);
-const bgImageNumAtom = atomWithStorage('bgImageNum', 0);
-const bgImageAtom = atom(null);
-const imageUrlAtom = atom('');
-const imageThumbUrlAtom = atom('');
+// type for finalImageData
+interface ImageData {
+  name?: string | undefined;
+  title: string | undefined;
+  imageLink: string | undefined;
+  imageUrl: string | undefined;
+  imageThumbUrl: string | undefined;
+  userLink: string | undefined;
+  userName: string | undefined;
+  linkSuffix: string | undefined;
+}
+
+const allImagesDataAtom = atomWithStorage("bgImagesData", {
+  lastUpdated: dayjs().tz("America/New_York"),
+  data: [] as ImageData[],
+});
+const bgImageNumAtom = atomWithStorage("bgImageNum", 0);
+const bgImageAtom = atom({} as ImageData);
+const imageUrlAtom = atom("");
+const imageThumbUrlAtom = atom("");
 
 export const BackgroundImage = () => {
   const [allBgImagesData, setAllBgImagesData] = useAtom(allImagesDataAtom);
@@ -32,12 +47,12 @@ export const BackgroundImage = () => {
 
   useEffect(() => {
     const loadBgImageData = async () => {
-      const bgImagesData = await axios
+      const bgImagesData: ImageData[] = await axios
         .get(`${apiUrl()}/background-image`)
         .then((response) => response.data);
 
       setAllBgImagesData({
-        lastUpdated: dayjs().tz('America/New_York'),
+        lastUpdated: dayjs().tz("America/New_York"),
         data: bgImagesData,
       });
     };
@@ -45,10 +60,10 @@ export const BackgroundImage = () => {
     if (allBgImagesData?.lastUpdated) {
       const nextUpdateTime = dayjs(allBgImagesData.lastUpdated).add(
         360,
-        'minute'
+        "minute",
       );
 
-      if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
+      if (dayjs().tz("America/New_York").isAfter(nextUpdateTime)) {
         loadBgImageData();
       }
     } else {
@@ -63,13 +78,13 @@ export const BackgroundImage = () => {
       const currentImage = allBgImagesData.data[bgImageNum];
       const prepareImageMetaData = () => {
         const linkSuffix =
-          '?utm_source=Clean%20Start%20-%20Open%20Source%20New%20Tab%20Extension&utm_medium=referral';
+          "?utm_source=Clean%20Start%20-%20Open%20Source%20New%20Tab%20Extension&utm_medium=referral";
         const {
           title,
           name,
           imageLink,
-          imageUrl,
-          imageThumbUrl,
+          imageUrl: imgUrl,
+          imageThumbUrl: imgThumbUrl,
           userLink,
           userName,
         } = currentImage || null;
@@ -82,13 +97,14 @@ export const BackgroundImage = () => {
             return name;
           }
 
-          return 'No description available';
+          return "No description available";
         };
-        const finalImageData = {
+
+        const finalImageData: ImageData = {
           title: getImageTitle(),
           imageLink,
-          imageUrl,
-          imageThumbUrl,
+          imageUrl: imgUrl,
+          imageThumbUrl: imgThumbUrl,
           userLink,
           userName,
           linkSuffix,
@@ -108,13 +124,13 @@ export const BackgroundImage = () => {
   useEffect(() => {
     const updateBg = () => {
       document.body.style.background = `linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('${imageUrl}') no-repeat fixed center center, linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('${imageThumbUrl}') no-repeat fixed center center`;
-      document.body.style.backgroundSize = 'cover, cover';
+      document.body.style.backgroundSize = "cover, cover";
     };
 
     updateBg();
   }, [imageUrl, imageThumbUrl]);
 
-  const clickHandler = (event) => {
+  const clickHandler = (event: any) => {
     event.preventDefault();
     const nextBgImageNum = bgImageNum + 1 >= 5 ? 0 : bgImageNum + 1;
 
@@ -126,7 +142,7 @@ export const BackgroundImage = () => {
       <Tippy content="Change background image" placement="right">
         <button
           type="button"
-          className={bgImage ? 'rotate-bg visible' : 'rotate-bg invisible'}
+          className={bgImage ? "rotate-bg visible" : "rotate-bg invisible"}
           onClick={clickHandler}
         >
           <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth />
@@ -155,7 +171,7 @@ export const BackgroundImage = () => {
             <FontAwesomeIcon icon="user" fixedWidth /> {bgImage?.userName}
           </a>
         </Tippy>
-        {' via '}
+        {" via "}
         <Tippy content="Visit Unsplash" placement="right">
           <a
             href={`https://unsplash.com/${bgImage?.linkSuffix}`}

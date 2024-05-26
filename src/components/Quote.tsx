@@ -1,25 +1,33 @@
-import Tippy from '@tippyjs/react';
-import axios from 'axios';
-import dayjs from 'dayjs';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
-import dompurify from 'dompurify';
-import he from 'he';
-import { atom, useAtom } from 'jotai';
-import { atomWithStorage } from 'jotai/utils';
-import React, { useEffect } from 'react';
+import Tippy from "@tippyjs/react";
+import axios from "axios";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import dompurify from "dompurify";
+import he from "he";
+import { atom, useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
+import React, { useEffect } from "react";
 
-import { apiUrl, stripHTML } from '../modules/helpers';
+import { apiUrl, stripHTML } from "../modules/helpers";
 
-import './Quote.scss';
+import "./Quote.scss";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-dayjs.tz.setDefault('America/New_York');
+dayjs.tz.setDefault("America/New_York");
 
-const allQuotesDataAtom = atomWithStorage('quoteData', null);
-const quoteDataAtom = atom(null);
+interface QuoteData {
+  quoteAuthor: string;
+  quoteExcerpt: string;
+}
+
+const allQuotesDataAtom = atomWithStorage("quoteData", {
+  lastUpdated: dayjs().tz("America/New_York"),
+  data: [] as QuoteData[],
+});
+const quoteDataAtom = atom({} as QuoteData);
 
 export const Quote = () => {
   const [allQuotesData, setAllQuotesData] = useAtom(allQuotesDataAtom);
@@ -27,12 +35,12 @@ export const Quote = () => {
 
   useEffect(() => {
     const loadQuoteData = async () => {
-      const designQuoteData = await axios
+      const designQuoteData: QuoteData[] = await axios
         .get(`${apiUrl()}/quotes`)
         .then((response) => response.data);
 
       setAllQuotesData({
-        lastUpdated: dayjs().tz('America/New_York'),
+        lastUpdated: dayjs().tz("America/New_York"),
         data: designQuoteData,
       });
     };
@@ -40,39 +48,35 @@ export const Quote = () => {
     if (allQuotesData?.lastUpdated) {
       const nextUpdateTime = dayjs(allQuotesData.lastUpdated).add(
         120,
-        'minute'
+        "minute",
       );
 
-      if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
+      if (dayjs().tz("America/New_York").isAfter(nextUpdateTime)) {
         loadQuoteData();
       }
     } else {
       loadQuoteData();
     }
-
-    return () => {};
   }, [allQuotesData, setAllQuotesData]);
 
   useEffect(() => {
     if (allQuotesData?.data) {
       const randomNumber = Math.floor(
-        Math.random() * (allQuotesData.data.length - 1)
+        Math.random() * (allQuotesData.data.length - 1),
       );
       let quote = allQuotesData.data[randomNumber];
 
       quote = {
         ...quote,
         quoteAuthor: stripHTML(
-          he.decode(dompurify.sanitize(quote.quoteAuthor))
+          he.decode(dompurify.sanitize(quote.quoteAuthor)),
         ),
         quoteExcerpt: stripHTML(
-          he.decode(dompurify.sanitize(quote.quoteExcerpt))
+          he.decode(dompurify.sanitize(quote.quoteExcerpt)),
         ),
       };
       setQuoteData(quote);
     }
-
-    return () => {};
   }, [allQuotesData, setQuoteData]);
 
   return quoteData ? (
@@ -92,7 +96,7 @@ export const Quote = () => {
       </Tippy>
     </div>
   ) : (
-    ''
+    ""
   );
 };
 

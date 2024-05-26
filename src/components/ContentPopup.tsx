@@ -1,14 +1,15 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react';
-import axios from 'axios';
-import dayjs from 'dayjs';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
-import { atom, useAtom } from 'jotai';
-import { atomWithStorage } from 'jotai/utils';
-import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { IconName } from "@fortawesome/fontawesome-svg-core";
+import Tippy from "@tippyjs/react";
+import axios from "axios";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import PropTypes from "prop-types";
+import utc from "dayjs/plugin/utc";
+import { atom, useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
+import { nanoid } from "nanoid";
+import React, { useEffect } from "react";
 
 import {
   getPopupInfo,
@@ -17,21 +18,36 @@ import {
   handleHackerNews,
   handleProductHunt,
   handleReddit,
-} from '../modules/content-popup';
-import { apiUrl } from '../modules/helpers';
+} from "../modules/content-popup";
+import { apiUrl } from "../modules/helpers";
 
-import './ContentPopup.scss';
+import "./ContentPopup.scss";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-dayjs.tz.setDefault('America/New_York');
+dayjs.tz.setDefault("America/New_York");
 
-const hackerNewsDataAtom = atomWithStorage('hackerNewsData', null);
-const devToDataAtom = atomWithStorage('devToData', null);
-const productHuntDataAtom = atomWithStorage('productHuntData', null);
-const redditDataAtom = atomWithStorage('redditData', null);
-const githubDataAtom = atomWithStorage('githubData', null);
+const hackerNewsDataAtom = atomWithStorage("hackerNewsData", {
+  lastUpdated: dayjs().tz("America/New_York"),
+  data: [] as any,
+});
+const devToDataAtom = atomWithStorage("devToData", {
+  lastUpdated: dayjs().tz("America/New_York"),
+  data: [] as any,
+});
+const productHuntDataAtom = atomWithStorage("productHuntData", {
+  lastUpdated: dayjs().tz("America/New_York"),
+  data: [] as any,
+});
+const redditDataAtom = atomWithStorage("redditData", {
+  lastUpdated: dayjs().tz("America/New_York"),
+  data: [] as any,
+});
+const githubDataAtom = atomWithStorage("githubData", {
+  lastUpdated: dayjs().tz("America/New_York"),
+  data: [] as any,
+});
 const devToMarkupAtom = atom(null);
 const githubMarkupAtom = atom(null);
 const hackerNewsMarkupAtom = atom(null);
@@ -43,7 +59,11 @@ const hackerNewsPostsMarkupAtom = atom(null);
 const productHuntPostsMarkupAtom = atom(null);
 const redditPostsMarkupAtom = atom(null);
 
-export const ContentPopup = ({ type }) => {
+interface ContentPopupProps {
+  contentType: string;
+}
+
+export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
   const [hackerNewsData, setHackerNewsData] = useAtom(hackerNewsDataAtom);
   const [devToData, setDevToData] = useAtom(devToDataAtom);
   const [productHuntData, setProductHuntData] = useAtom(productHuntDataAtom);
@@ -51,53 +71,53 @@ export const ContentPopup = ({ type }) => {
   const [githubData, setGithubData] = useAtom(githubDataAtom);
 
   const [githubPostsMarkup, setGithubPostsMarkup] = useAtom(
-    githubPostsMarkupAtom
+    githubPostsMarkupAtom,
   );
   const [devToPostsMarkup, setDevToPostsMarkup] = useAtom(devToPostsMarkupAtom);
   const [hackerNewsPostsMarkup, setHackerNewsPostsMarkup] = useAtom(
-    hackerNewsPostsMarkupAtom
+    hackerNewsPostsMarkupAtom,
   );
   const [productHuntPostsMarkup, setProductHuntPostsMarkup] = useAtom(
-    productHuntPostsMarkupAtom
+    productHuntPostsMarkupAtom,
   );
   const [redditPostsMarkup, setRedditPostsMarkup] = useAtom(
-    redditPostsMarkupAtom
+    redditPostsMarkupAtom,
   );
 
   const [githubMarkup, setGithubMarkup] = useAtom(githubMarkupAtom);
   const [devToMarkup, setDevToMarkup] = useAtom(devToMarkupAtom);
   const [hackerNewsMarkup, setHackerNewsMarkup] = useAtom(hackerNewsMarkupAtom);
   const [productHuntMarkup, setProductHuntMarkup] = useAtom(
-    productHuntMarkupAtom
+    productHuntMarkupAtom,
   );
   const [redditMarkup, setRedditMarkup] = useAtom(redditMarkupAtom);
 
   useEffect(() => {
-    switch (type) {
-      case 'devTo': {
+    switch (contentType as string) {
+      case "devTo": {
         const getDevToPosts = async (devToUrl = `${apiUrl()}/dev-to-posts`) => {
-          const devToData = await axios
+          const tempData = await axios
             .get(devToUrl)
             .then((response) => response.data);
           const returnData = [];
           // limit to 10 items
 
           for (let i = 0; i < 10; i += 1) {
-            returnData.push(devToData[i]);
+            returnData.push(tempData[i]);
           }
 
           setDevToData({
-            lastUpdated: dayjs().tz('America/New_York'),
+            lastUpdated: dayjs().tz("America/New_York"),
             data: returnData,
           });
         };
 
         if (devToData?.lastUpdated) {
           const nextUpdateTime = dayjs(devToData.lastUpdated)
-            .tz('America/New_York')
-            .add(60, 'minute');
+            .tz("America/New_York")
+            .add(60, "minute");
 
-          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
+          if (dayjs().tz("America/New_York").isAfter(nextUpdateTime)) {
             getDevToPosts();
           }
         } else {
@@ -106,11 +126,11 @@ export const ContentPopup = ({ type }) => {
 
         break;
       }
-      case 'github': {
+      case "github": {
         const getTrendingRepos = async (
-          dataUrl = `${apiUrl()}/github-trending-repos`
+          dataUrl = `${apiUrl()}/github-trending-repos`,
         ) => {
-          const returnData = [];
+          const returnData = [] as any[];
 
           await axios.get(dataUrl).then((response) => {
             // limit to 10 items
@@ -119,17 +139,17 @@ export const ContentPopup = ({ type }) => {
             }
           });
           setGithubData({
-            lastUpdated: dayjs().tz('America/New_York'),
+            lastUpdated: dayjs().tz("America/New_York"),
             data: returnData,
           });
         };
 
         if (githubData?.lastUpdated) {
           const nextUpdateTime = dayjs(githubData.lastUpdated)
-            .tz('America/New_York')
-            .add(60, 'minute');
+            .tz("America/New_York")
+            .add(60, "minute");
 
-          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
+          if (dayjs().tz("America/New_York").isAfter(nextUpdateTime)) {
             getTrendingRepos();
           }
         } else {
@@ -138,32 +158,32 @@ export const ContentPopup = ({ type }) => {
 
         break;
       }
-      case 'hackerNews': {
+      case "hackerNews": {
         const getHackerNewsPosts = async (
-          hackerNewsUrl = `${apiUrl()}/hacker-news-posts`
+          hackerNewsUrl = `${apiUrl()}/hacker-news-posts`,
         ) => {
-          const hackerNewsData = await axios
+          const tempData = await axios
             .get(hackerNewsUrl)
             .then((response) => response.data);
           const returnData = [];
           // limit to 10 items
 
           for (let i = 0; i < 10; i += 1) {
-            returnData.push(hackerNewsData[i]);
+            returnData.push(tempData[i]);
           }
 
           setHackerNewsData({
-            lastUpdated: dayjs().tz('America/New_York'),
+            lastUpdated: dayjs().tz("America/New_York"),
             data: returnData,
           });
         };
 
         if (hackerNewsData?.lastUpdated) {
           const nextUpdateTime = dayjs(hackerNewsData.lastUpdated)
-            .tz('America/New_York')
-            .add(60, 'minute');
+            .tz("America/New_York")
+            .add(60, "minute");
 
-          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
+          if (dayjs().tz("America/New_York").isAfter(nextUpdateTime)) {
             getHackerNewsPosts();
           }
         } else {
@@ -172,32 +192,32 @@ export const ContentPopup = ({ type }) => {
 
         break;
       }
-      case 'productHunt': {
+      case "productHunt": {
         const getProductHuntPosts = async (
-          productHuntRssUrl = `${apiUrl()}/product-hunt-posts`
+          productHuntRssUrl = `${apiUrl()}/product-hunt-posts`,
         ) => {
-          const productHuntData = await axios
+          const tempData = await axios
             .get(productHuntRssUrl)
             .then((response) => response.data);
           const returnData = [];
           // limit to 10 items
 
           for (let i = 0; i < 10; i += 1) {
-            returnData.push(productHuntData[i]);
+            returnData.push(tempData[i]);
           }
 
           setProductHuntData({
-            lastUpdated: dayjs().tz('America/New_York'),
+            lastUpdated: dayjs().tz("America/New_York"),
             data: returnData,
           });
         };
 
         if (productHuntData?.lastUpdated) {
           const nextUpdateTime = dayjs(productHuntData.lastUpdated)
-            .tz('America/New_York')
-            .add(60, 'minute');
+            .tz("America/New_York")
+            .add(60, "minute");
 
-          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
+          if (dayjs().tz("America/New_York").isAfter(nextUpdateTime)) {
             getProductHuntPosts();
           }
         } else {
@@ -206,26 +226,26 @@ export const ContentPopup = ({ type }) => {
 
         break;
       }
-      case 'reddit': {
+      case "reddit": {
         const getRedditPosts = async (
-          redditPostsApiUrl = `${apiUrl()}/reddit-posts`
+          redditPostsApiUrl = `${apiUrl()}/reddit-posts`,
         ) => {
           const returnData = await axios
             .get(redditPostsApiUrl)
             .then((response) => response.data);
 
           setRedditData({
-            lastUpdated: dayjs().tz('America/New_York'),
+            lastUpdated: dayjs().tz("America/New_York"),
             data: returnData,
           });
         };
 
         if (redditData?.lastUpdated) {
           const nextUpdateTime = dayjs(redditData.lastUpdated)
-            .tz('America/New_York')
-            .add(60, 'minute');
+            .tz("America/New_York")
+            .add(60, "minute");
 
-          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
+          if (dayjs().tz("America/New_York").isAfter(nextUpdateTime)) {
             getRedditPosts();
           }
         } else {
@@ -249,43 +269,43 @@ export const ContentPopup = ({ type }) => {
     setHackerNewsData,
     setProductHuntData,
     setRedditData,
-    type,
+    contentType,
   ]);
 
   useEffect(
     () => {
       let markup = null;
 
-      switch (type) {
-        case 'devTo':
+      switch (contentType) {
+        case "devTo":
           if (!devToData) {
             return;
           }
           markup = handleDevTo(devToData.data);
           setDevToPostsMarkup(markup);
           break;
-        case 'github':
+        case "github":
           if (!githubData) {
             return;
           }
           markup = handleGitHub(githubData.data);
           setGithubPostsMarkup(markup);
           break;
-        case 'hackerNews':
+        case "hackerNews":
           if (!hackerNewsData) {
             return;
           }
           markup = handleHackerNews(hackerNewsData.data);
           setHackerNewsPostsMarkup(markup);
           break;
-        case 'productHunt':
+        case "productHunt":
           if (!productHuntData) {
             return;
           }
           markup = handleProductHunt(productHuntData.data);
           setProductHuntPostsMarkup(markup);
           break;
-        case 'reddit':
+        case "reddit":
           if (!redditData) {
             return;
           }
@@ -308,8 +328,8 @@ export const ContentPopup = ({ type }) => {
       setHackerNewsPostsMarkup,
       setProductHuntPostsMarkup,
       setRedditPostsMarkup,
-      type,
-    ]
+      contentType,
+    ],
   );
 
   useEffect(() => {
@@ -318,54 +338,59 @@ export const ContentPopup = ({ type }) => {
         <li key={nanoid(8)} className="list-group-item list-group-item-heading">
           <h5 className="text-xl font-medium">
             <FontAwesomeIcon
-              icon={['fab', `${getPopupInfo(type).icon}`]}
+              icon={
+                [
+                  "fab",
+                  `${getPopupInfo(contentType).icon}`,
+                ] as unknown as IconName
+              }
               fixedWidth
-            />{' '}
-            {getPopupInfo(type).title}
+            />{" "}
+            {getPopupInfo(contentType).title}
             &nbsp;&nbsp;
             <small className="font-thin">
               <a
-                href={getPopupInfo(type).pageLink}
-                title={`View on ${getPopupInfo(type).title}`}
+                href={getPopupInfo(contentType).pageLink}
+                title={`View on ${getPopupInfo(contentType).title}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon="external-link-alt" fixedWidth /> View on{' '}
-                {getPopupInfo(type).siteName}
+                <FontAwesomeIcon icon="external-link-alt" fixedWidth /> View on{" "}
+                {getPopupInfo(contentType).siteName}
               </a>
             </small>
           </h5>
         </li>
-        {type === 'devTo' && devToPostsMarkup
+        {contentType === "devTo" && devToPostsMarkup
           ? devToPostsMarkup
-          : type === 'github' && githubPostsMarkup
+          : contentType === "github" && githubPostsMarkup
             ? githubPostsMarkup
-            : type === 'hackerNews' && hackerNewsPostsMarkup
+            : contentType === "hackerNews" && hackerNewsPostsMarkup
               ? hackerNewsPostsMarkup
-              : type === 'productHunt' && productHuntPostsMarkup
+              : contentType === "productHunt" && productHuntPostsMarkup
                 ? productHuntPostsMarkup
-                : type === 'reddit' && redditPostsMarkup
+                : contentType === "reddit" && redditPostsMarkup
                   ? redditPostsMarkup
-                  : ''}
+                  : ""}
       </ul>
     );
 
-    const markup = buildPopup();
+    const markup: any = buildPopup();
     // console.log(fullMarkup);
-    switch (type) {
-      case 'devTo':
+    switch (contentType) {
+      case "devTo":
         setDevToMarkup(markup);
         break;
-      case 'github':
+      case "github":
         setGithubMarkup(markup);
         break;
-      case 'hackerNews':
+      case "hackerNews":
         setHackerNewsMarkup(markup);
         break;
-      case 'productHunt':
+      case "productHunt":
         setProductHuntMarkup(markup);
         break;
-      case 'reddit':
+      case "reddit":
         setRedditMarkup(markup);
         break;
       default:
@@ -382,32 +407,37 @@ export const ContentPopup = ({ type }) => {
     setHackerNewsMarkup,
     setProductHuntMarkup,
     setRedditMarkup,
-    type,
+    contentType,
   ]);
 
   return (
     <Tippy
-      interactive={true}
+      interactive
       maxWidth="none"
       trigger="click"
       content={
-        type === 'devTo'
+        contentType === "devTo"
           ? devToMarkup
-          : type === 'github'
+          : contentType === "github"
             ? githubMarkup
-            : type === 'hackerNews'
+            : contentType === "hackerNews"
               ? hackerNewsMarkup
-              : type === 'productHunt'
+              : contentType === "productHunt"
                 ? productHuntMarkup
-                : type === 'reddit'
+                : contentType === "reddit"
                   ? redditMarkup
-                  : ''
+                  : ""
       }
     >
-      <Tippy placement="left" content={getPopupInfo(type).title}>
-        <div className={`${type}-popup inline-block`}>
+      <Tippy placement="left" content={getPopupInfo(contentType).title}>
+        <div className={`${contentType}-popup inline-block`}>
           <FontAwesomeIcon
-            icon={['fab', `${getPopupInfo(type).icon}`]}
+            icon={
+              [
+                "fab",
+                `${getPopupInfo(contentType).icon}`,
+              ] as unknown as IconName
+            }
             className="content-popup-icon"
             fixedWidth
           />
@@ -417,9 +447,9 @@ export const ContentPopup = ({ type }) => {
   );
 };
 
-ContentPopup.displayName = 'ContentPopup';
+ContentPopup.displayName = "ContentPopup";
 ContentPopup.propTypes = {
-  type: PropTypes.string.isRequired,
+  contentType: PropTypes.string.isRequired,
 };
 
 export default ContentPopup;

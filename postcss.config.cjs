@@ -1,3 +1,8 @@
+const autoprefixer = require('autoprefixer');
+const tailwindcss = require('tailwindcss');
+const cssnano = require('cssnano');
+const purgecss = require('@fullhuman/postcss-purgecss');
+
 const cssWhitelistClassArray = [
   /tippy/,
   /odd/,
@@ -9,13 +14,23 @@ const cssWhitelistClassArray = [
 ];
 
 module.exports = {
-  plugins: [
-    require('autoprefixer'),
-    require('tailwindcss'),
-    require('cssnano')({
+  plugins: {
+    'postcss-preset-mantine': {},
+    'postcss-simple-vars': {
+      variables: {
+        'mantine-breakpoint-xs': '36em',
+        'mantine-breakpoint-sm': '48em',
+        'mantine-breakpoint-md': '62em',
+        'mantine-breakpoint-lg': '75em',
+        'mantine-breakpoint-xl': '88em',
+      },
+    },
+    autoprefixer: {},
+    tailwindcss: {},
+    cssnano: {
       preset: 'default',
-    }),
-    require('@fullhuman/postcss-purgecss')({
+    },
+    'postcss-purgecss': {
       content: [
         './src/index.html',
         './src/index.jsx',
@@ -25,6 +40,6 @@ module.exports = {
       ],
       fontFace: false,
       safelist: cssWhitelistClassArray,
-    }),
-  ],
+    },
+  },
 };
