@@ -11,11 +11,8 @@ import React, { useEffect } from 'react';
 
 import { apiUrl, stripHTML } from '../modules/helpers';
 
-import './Quote.scss';
-
 dayjs.extend(utc);
 dayjs.extend(timezone);
-
 dayjs.tz.setDefault('America/New_York');
 
 interface QuoteData {
