@@ -200,7 +200,7 @@ export const Weather = () => {
         <Box hidden={!(weatherData && hourlyData)}>
           <Anchor
             c="white"
-            fw="lighter"
+            fw={200}
             href="https://openweathermap.org/api/"
             target="_blank"
             rel="noopener noreferrer"
