@@ -429,7 +429,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
     <>
       <Popover closeOnEscape closeOnClickOutside shadow="md" width="fit-content" withArrow>
         <Popover.Target>
-          <Tooltip position="left" label={getPopupInfo(contentType).title}>
+          <Tooltip position="left" label={getPopupInfo(contentType).title} withArrow>
             <ActionIcon
               color="white"
               className={`${contentType}-popup`}

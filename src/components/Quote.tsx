@@ -78,7 +78,7 @@ export const Quote = () => {
 
   return quoteData ? (
     <Container fluid mt="xl">
-      <Tooltip label="Quotes provided by ZenQuotes API" position="bottom">
+      <Tooltip label="Quotes provided by ZenQuotes API" position="bottom" withArrow>
         <Text lh={1.5} size="1.125rem" ta="center">
           <Anchor
             c="white"

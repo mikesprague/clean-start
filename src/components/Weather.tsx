@@ -138,6 +138,7 @@ export const Weather = () => {
                 : ''
             }
             position="left"
+            withArrow
           >
             <Text component="span" fw="bolder" size="2.25rem">
               <FontAwesomeIcon
@@ -181,6 +182,7 @@ export const Weather = () => {
                       : ''
                   }
                   position="left"
+                  withArrow
                 >
                   <Text size="sm">
                     {dayjs.unix(hour.dt).format('ha')}
