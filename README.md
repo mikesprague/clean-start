@@ -19,6 +19,18 @@ Open source new tab extension
   - [Product Hunt Top Posts](https://producthunt.com/)
   - [Reddit Popular Posts](https://www.reddit.com/r/popular)
 
+### Uses
+
+- [React](https://reactjs.org/) - JavaScript Framework
+- [Mantine](https://mantine.dev/) - Component Library for React
+- [Jotai](https://jotai.org/) - State Management Library for React
+- [Vite](https://vitejs.dev/) - Build Tool
+- [FontAwesome](https://fontawesome.com/) - Icons
+- [Axios](https://github.com/axios/axios/) - HTTP Client
+- [dayjs](https://github.com/iamkun/dayjs) - Date Library
+- [Roboto Slab via Google Fonts](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab) - Font
+- [CloudFlare Pages](https://pages.cloudflare.com/) - Hosting and Serverless Functions for API
+
 ## Demo
 
 Demo available as a progressive web app (PWA):
@@ -79,23 +91,11 @@ OPEN_WEATHERMAP_API_KEY="xxxxxx"
 
 NOTE: for GH Codespaces development, you will need to set the env vars as Actions Secrets in the settings for your forked repo
 
-## Uses
-
-- PWA Hosting and Serverless Functions for API - [CloudFlare Pages](https://pages.cloudflare.com/)
-- Builds - [Vite](https://vitejs.dev/)
-- JavaScript Library - [React](https://reactjs.org/)
-- Icons - [FontAwesome](https://fontawesome.com/)
-- Font [Roboto Slab via Google Fonts](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab)
-- Tooltips and content popups - [tippy.js](https://github.com/atomiks/tippyjs)
-- Date/time lib - [dayjs](https://github.com/iamkun/dayjs)
-- CSS framework - [Tailwind CSS](https://tailwindcss.com/)
-- HTTP lib/client - [axios](https://github.com/axios/axios/)
-
 ## License
 
 MIT License
 
-Copyright (c) 2022 Michael Sprague
+Copyright (c) 2024 Michael Sprague
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
