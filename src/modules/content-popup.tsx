@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Anchor, Box, Group, List, Text } from '@mantine/core';
 import { nanoid } from 'nanoid';
-import React from 'react';
+import type React from 'react';
 
 export const getPopupInfo = (type) => {
   const infoMap = {
@@ -53,38 +54,49 @@ export const handleReddit = (apiData) => {
   let idx = 0;
   const markup = apiData.map((post) => {
     const listItemMarkup = (
-      <li
+      <List.Item
         key={nanoid(8)}
-        className={`list-group-item list-group-item-action text-white ${
-          idx % 2 === 0 ? ' odd' : ''
-        }`}
+        bg={
+          idx % 2 === 0
+            ? 'var(--mantine-color-dark-9)'
+            : 'var(--mantine-color-black)'
+        }
+        c="white"
+        display="flex"
+        p="xs"
       >
-        <a
+        <Anchor
+          c="white"
           href={`${getPopupInfo('reddit').url}${post.permalink}`}
+          size="sm"
           target="_blank"
           rel="noopener noreferrer"
         >
           <strong>{post.title}</strong>
-        </a>
+        </Anchor>
         <br />
-        <small>
-          <a
-            href={`${getPopupInfo('reddit').url}${post.subreddit}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            /r/{post.subreddit}
-          </a>
-          &nbsp;&nbsp;
-          <a
-            href={`${getPopupInfo('reddit').url}${post.author}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon="user" fixedWidth /> {post.author}
-          </a>
-        </small>
-      </li>
+        <Anchor
+          c="white"
+          fw={300}
+          href={`${getPopupInfo('reddit').url}${post.subreddit}`}
+          size="xs"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          /r/{post.subreddit}
+        </Anchor>
+        &nbsp;&nbsp;
+        <Anchor
+          c="white"
+          fw={300}
+          href={`${getPopupInfo('reddit').url}${post.author}`}
+          size="xs"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FontAwesomeIcon icon="user" fixedWidth /> {post.author}
+        </Anchor>
+      </List.Item>
     );
 
     idx += 1;
@@ -99,20 +111,31 @@ export const handleProductHunt = (apiData) => {
   let idx = 0;
   const markup = apiData.map((post) => {
     const listItemMarkup = (
-      <li
+      <List.Item
         key={nanoid(8)}
-        className={`list-group-item list-group-item-action text-white ${
-          idx % 2 === 0 ? ' odd' : ''
-        }`}
+        bg={
+          idx % 2 === 0
+            ? 'var(--mantine-color-dark-9)'
+            : 'var(--mantine-color-black)'
+        }
+        c="white"
+        display="flex"
+        p="xs"
       >
-        <a href={`${post.link}`} target="_blank" rel="noopener noreferrer">
+        <Anchor
+          c="white"
+          href={`${post.link}`}
+          size="sm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <strong>{post.title}</strong>
-        </a>
+        </Anchor>
         <br />
-        <small>
+        <Text fw={300} size="xs">
           <FontAwesomeIcon icon="calendar" fixedWidth /> {post.pubDate}
-        </small>
-      </li>
+        </Text>
+      </List.Item>
     );
 
     idx += 1;
@@ -127,20 +150,31 @@ export const handleHackerNews = (apiData) => {
   let idx = 0;
   const markup = apiData.map((post) => {
     const listItemMarkup = (
-      <li
+      <List.Item
         key={nanoid(8)}
-        className={`list-group-item list-group-item-action text-white ${
-          idx % 2 === 0 ? ' odd' : ''
-        }`}
+        bg={
+          idx % 2 === 0
+            ? 'var(--mantine-color-dark-9)'
+            : 'var(--mantine-color-black)'
+        }
+        c="white"
+        display="flex"
+        p="xs"
       >
-        <a href={`${post.link}`} target="_blank" rel="noopener noreferrer">
+        <Anchor
+          c="white"
+          href={`${post.link}`}
+          size="sm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <strong>{post.title}</strong>
-        </a>
+        </Anchor>
         <br />
-        <small>
+        <Text fw={300} size="xs">
           <FontAwesomeIcon icon="calendar" fixedWidth /> {post.pubDate}
-        </small>
-      </li>
+        </Text>
+      </List.Item>
     );
 
     idx += 1;
@@ -156,22 +190,33 @@ export const handleDevTo = (apiData): React.FC => {
   let idx = 0;
   const markup = apiData.map((post) => {
     const listItemMarkup = (
-      <li
+      <List.Item
         key={nanoid(8)}
-        className={`list-group-item list-group-item-action text-white ${
-          idx % 2 === 0 ? ' odd' : ''
-        }`}
+        bg={
+          idx % 2 === 0
+            ? 'var(--mantine-color-dark-9)'
+            : 'var(--mantine-color-black)'
+        }
+        c="white"
+        display="flex"
+        p="xs"
       >
-        <a href={`${post.link}`} target="_blank" rel="noopener noreferrer">
+        <Anchor
+          c="white"
+          href={`${post.link}`}
+          size="sm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <strong>{post.title}</strong>
-        </a>
+        </Anchor>
         <br />
-        <small>
+        <Text fw={300} size="xs">
           <FontAwesomeIcon icon="user" fixedWidth /> {post.author}
           <br />
           <FontAwesomeIcon icon="calendar" fixedWidth /> {post.pubDate}
-        </small>
-      </li>
+        </Text>
+      </List.Item>
     );
 
     idx += 1;
@@ -198,62 +243,88 @@ export const handleGitHub = (apiData) => {
       link,
     } = repo;
     const styles = languageStyle
-      ? { backgroundColor: languageStyle.replace('background-color: ', '') }
-      : {};
+      ? {
+          backgroundColor: languageStyle.replace('background-color: ', ''),
+          borderRadius: '50%',
+          verticalAlign: 'middle',
+        }
+      : {
+          borderRadius: '50%',
+          verticalAlign: 'middle',
+        };
     // console.log(styles);
     const languageMarkup = languageName ? (
       <>
-        <span className="repo-language-color" style={styles} />
-        {languageName} &nbsp;&nbsp;
+        <Text c="white" fw={300} size="xs">
+          <Box
+            display="inline-block"
+            h=".75rem"
+            mr=".25rem"
+            style={styles}
+            w=".75rem"
+          />
+          {languageName}
+        </Text>{' '}
       </>
     ) : (
       ''
     );
     const starsMarkup = stars.trim().length ? (
       <>
-        <a href={starsLink} target="_blank" rel="noopener noreferrer">
+        <Anchor
+          c="white"
+          fw={300}
+          href={starsLink}
+          size="xs"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FontAwesomeIcon icon="star" />
           {repo.stars}
-        </a>{' '}
-        &nbsp;&nbsp;
+        </Anchor>{' '}
       </>
     ) : (
       ''
     );
     const forksMarkup = forks.trim().length ? (
-      <a href={forksLink}>
-        <FontAwesomeIcon icon="share-alt" rotate={270} /> {repo.forks}
-      </a>
+      <Anchor c="white" fw={300} href={forksLink} size="xs">
+        <FontAwesomeIcon icon="share-alt" rotate={270} /> {repo.forks}{''}
+      </Anchor>
     ) : (
       ''
     );
     const listItemMarkup = (
-      <li
+      <List.Item
         key={nanoid(8)}
-        className={`list-group-item list-group-item-action ${
-          idx % 2 === 0 ? 'odd' : ''
-        } text-white`}
+        bg={
+          idx % 2 === 0
+            ? 'var(--mantine-color-dark-9)'
+            : 'var(--mantine-color-black)'
+        }
+        c="white"
+        display="flex"
+        p="xs"
       >
-        <a href={link} target="_blank" rel="noopener noreferrer">
-          <strong>{title}</strong>
-        </a>
+        <Anchor
+          c="white"
+          href={link}
+          size="sm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {title}
+        </Anchor>
         <br />
-        {description}
-        <div className="flex">
-          <div className="w-1/2 text-left">
-            <small>
-              {languageMarkup}
-              {starsMarkup}
-              {forksMarkup}
-            </small>
-          </div>
-          <div className="w-1/2 text-right">
-            <small>
-              <FontAwesomeIcon icon="star" /> {starsToday}
-            </small>
-          </div>
-        </div>
-      </li>
+        <Text fw={300} size="sm">{description}</Text>
+        <Group gap="xs" grow={false}>
+          {languageMarkup}
+          {starsMarkup}
+          {forksMarkup}
+          <Text c="white" fw={300} size="xs" ta="right">
+            <FontAwesomeIcon icon="star" /> {starsToday}
+          </Text>
+        </Group>
+      </List.Item>
     );
 
     idx += 1;

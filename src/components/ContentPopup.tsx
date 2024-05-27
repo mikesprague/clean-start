@@ -1,6 +1,14 @@
 import type { IconName } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react';
+import {
+  ActionIcon,
+  Anchor,
+  List,
+  Popover,
+  ScrollArea,
+  Text,
+  Tooltip,
+} from '@mantine/core';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
@@ -20,8 +28,6 @@ import {
   handleReddit,
 } from '../modules/content-popup';
 import { apiUrl } from '../modules/helpers';
-
-import './ContentPopup.scss';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -333,45 +339,55 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
 
   useEffect(() => {
     const buildPopup = () => (
-      <ul className="list-group posts-container">
-        <li key={nanoid(8)} className="list-group-item list-group-item-heading">
-          <h5 className="text-xl font-medium">
-            <FontAwesomeIcon
-              icon={
-                [
-                  'fab',
-                  `${getPopupInfo(contentType).icon}`,
-                ] as unknown as IconName
-              }
-              fixedWidth
-            />{' '}
-            {getPopupInfo(contentType).title}
-            &nbsp;&nbsp;
-            <small className="font-thin">
-              <a
+      <ScrollArea>
+        <List listStyleType="none" m={0} p={0} mah="85vh" maw="48rem">
+          <List.Item
+            key={nanoid(8)}
+            bg="var(--mantine-color-black)"
+            c="white"
+            display="flex"
+            mb={0}
+            p="sm"
+          >
+            <Text fw={500} size="1.25rem">
+              <FontAwesomeIcon
+                icon={
+                  [
+                    'fab',
+                    `${getPopupInfo(contentType).icon}`,
+                  ] as unknown as IconName
+                }
+                fixedWidth
+              />{' '}
+              {getPopupInfo(contentType).title}
+              &nbsp;&nbsp;
+              <Anchor
+                c="white"
+                fw={300}
                 href={getPopupInfo(contentType).pageLink}
-                title={`View on ${getPopupInfo(contentType).title}`}
-                target="_blank"
                 rel="noopener noreferrer"
+                size="sm"
+                target="_blank"
+                title={`View on ${getPopupInfo(contentType).title}`}
               >
                 <FontAwesomeIcon icon="external-link-alt" fixedWidth /> View on{' '}
                 {getPopupInfo(contentType).siteName}
-              </a>
-            </small>
-          </h5>
-        </li>
-        {contentType === 'devTo' && devToPostsMarkup
-          ? devToPostsMarkup
-          : contentType === 'github' && githubPostsMarkup
-            ? githubPostsMarkup
-            : contentType === 'hackerNews' && hackerNewsPostsMarkup
-              ? hackerNewsPostsMarkup
-              : contentType === 'productHunt' && productHuntPostsMarkup
-                ? productHuntPostsMarkup
-                : contentType === 'reddit' && redditPostsMarkup
-                  ? redditPostsMarkup
-                  : ''}
-      </ul>
+              </Anchor>
+            </Text>
+          </List.Item>
+          {contentType === 'devTo' && devToPostsMarkup
+            ? devToPostsMarkup
+            : contentType === 'github' && githubPostsMarkup
+              ? githubPostsMarkup
+              : contentType === 'hackerNews' && hackerNewsPostsMarkup
+                ? hackerNewsPostsMarkup
+                : contentType === 'productHunt' && productHuntPostsMarkup
+                  ? productHuntPostsMarkup
+                  : contentType === 'reddit' && redditPostsMarkup
+                    ? redditPostsMarkup
+                    : ''}
+        </List>
+      </ScrollArea>
     );
 
     const markup: any = buildPopup();
@@ -410,39 +426,45 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
   ]);
 
   return (
-    <Tippy
-      interactive
-      maxWidth="none"
-      trigger="click"
-      content={
-        contentType === 'devTo'
-          ? devToMarkup
-          : contentType === 'github'
-            ? githubMarkup
-            : contentType === 'hackerNews'
-              ? hackerNewsMarkup
-              : contentType === 'productHunt'
-                ? productHuntMarkup
-                : contentType === 'reddit'
-                  ? redditMarkup
-                  : ''
-      }
-    >
-      <Tippy placement="left" content={getPopupInfo(contentType).title}>
-        <div className={`${contentType}-popup inline-block`}>
-          <FontAwesomeIcon
-            icon={
-              [
-                'fab',
-                `${getPopupInfo(contentType).icon}`,
-              ] as unknown as IconName
-            }
-            className="content-popup-icon"
-            fixedWidth
-          />
-        </div>
-      </Tippy>
-    </Tippy>
+    <>
+      <Popover closeOnEscape closeOnClickOutside shadow="md" width="fit-content" withArrow>
+        <Popover.Target>
+          <Tooltip position="left" label={getPopupInfo(contentType).title}>
+            <ActionIcon
+              color="white"
+              className={`${contentType}-popup`}
+              size="xl"
+              variant="transparent"
+            >
+              <FontAwesomeIcon
+                icon={
+                  [
+                    'fab',
+                    `${getPopupInfo(contentType).icon}`,
+                  ] as unknown as IconName
+                }
+                className="content-popup-icon"
+                fixedWidth
+                fontSize="2.25rem"
+              />
+            </ActionIcon>
+          </Tooltip>
+        </Popover.Target>
+        <Popover.Dropdown p="xs">
+          {contentType === 'devTo'
+            ? devToMarkup
+            : contentType === 'github'
+              ? githubMarkup
+              : contentType === 'hackerNews'
+                ? hackerNewsMarkup
+                : contentType === 'productHunt'
+                  ? productHuntMarkup
+                  : contentType === 'reddit'
+                    ? redditMarkup
+                    : ''}
+        </Popover.Dropdown>
+      </Popover>
+    </>
   );
 };
 
