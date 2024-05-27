@@ -104,7 +104,7 @@ export const handleReddit = (apiData) => {
     return listItemMarkup;
   });
 
-  return markup;
+  return markup || [];
 };
 
 export const handleProductHunt = (apiData) => {
@@ -143,7 +143,7 @@ export const handleProductHunt = (apiData) => {
     return listItemMarkup;
   });
 
-  return markup;
+  return markup || [];
 };
 
 export const handleHackerNews = (apiData) => {
@@ -182,7 +182,7 @@ export const handleHackerNews = (apiData) => {
     return listItemMarkup;
   });
 
-  return markup;
+  return markup || [];
 };
 
 // return jsx markup
@@ -224,7 +224,7 @@ export const handleDevTo = (apiData): React.FC => {
     return listItemMarkup;
   });
 
-  return markup;
+  return markup || [];
 };
 
 export const handleGitHub = (apiData) => {
@@ -332,5 +332,5 @@ export const handleGitHub = (apiData) => {
     return listItemMarkup;
   });
 
-  return reposMarkup;
+  return reposMarkup || [];
 };
