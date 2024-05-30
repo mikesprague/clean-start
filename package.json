@@ -98,7 +98,11 @@
     "wrangler": "3.57.2"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -112,6 +116,6 @@
   },
   "volta": {
     "node": "22.2.0",
-    "npm": "10.8.0"
+    "npm": "10.8.1"
   }
 }
