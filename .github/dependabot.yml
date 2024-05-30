@@ -14,23 +14,26 @@ updates:
     groups:
       fontawesome:
         patterns:
-          - "@fortawesome*"
+          - "@fortawesome/*"
       react:
         patterns:
           - "react"
           - "react-dom"
           - "prop-types"
-      tippy-js:
+      mantine:
         patterns:
-          - "tippy.js"
-          - "@tippyjs*"
-      babel:
+          - "@mantine/*"
+      eslint:
         patterns:
-          - "@babel*"
-      tailwindcss:
+          - "eslint"
+          - "eslint-*"
+      postcss:
         patterns:
-          - "tailwindcss"
-          - "@tailwindcss*"
+          - "postcss"
+          - "postcss-*"
+      types:
+        patterns:
+          - "@types/*"
       vite:
         patterns:
           - "vite"
