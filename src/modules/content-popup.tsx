@@ -255,7 +255,7 @@ export const handleGitHub = (apiData) => {
     // console.log(styles);
     const languageMarkup = languageName ? (
       <>
-        <Text c="white" fw={300} size="xs">
+        <Text key={nanoid(8)} c="white" fw={300} size="xs">
           <Box
             display="inline-block"
             h=".75rem"
@@ -272,6 +272,7 @@ export const handleGitHub = (apiData) => {
     const starsMarkup = stars.trim().length ? (
       <>
         <Anchor
+          key={nanoid(8)}
           c="white"
           fw={300}
           href={starsLink}
@@ -287,7 +288,7 @@ export const handleGitHub = (apiData) => {
       ''
     );
     const forksMarkup = forks.trim().length ? (
-      <Anchor c="white" fw={300} href={forksLink} size="xs">
+      <Anchor key={nanoid(8)} c="white" fw={300} href={forksLink} size="xs">
         <FontAwesomeIcon icon="share-alt" rotate={270} /> {repo.forks}{''}
       </Anchor>
     ) : (
