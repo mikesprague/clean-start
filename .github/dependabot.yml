@@ -23,10 +23,10 @@ updates:
       mantine:
         patterns:
           - "@mantine/*"
-      eslint:
-        patterns:
-          - "eslint"
-          - "eslint-*"
+      # eslint:
+      #   patterns:
+      #     - "eslint"
+      #     - "eslint-*"
       postcss:
         patterns:
           - "postcss"
@@ -39,4 +39,3 @@ updates:
           - "vite"
           - "@vitejs*"
           - "vite-*"
-
