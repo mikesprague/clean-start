@@ -91,9 +91,9 @@
     "prettier": "3.3.3",
     "prop-types": "15.8.1",
     "typescript": "5.5.4",
-    "vite": "5.3.4",
+    "vite": "5.3.5",
     "vite-plugin-html": "3.2.2",
-    "vite-plugin-pwa": "0.20.0",
+    "vite-plugin-pwa": "0.20.1",
     "vite-tsconfig-paths": "4.3.2",
     "wrangler": "3.66.0"
   },
