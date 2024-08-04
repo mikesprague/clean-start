@@ -20,7 +20,7 @@
     "postbuild": "rm ./src/index.html",
     "poststart": "npm run postbuild",
     "prebuild:extension": "npm run clean && cp ./src/extension.html ./src/index.html",
-    "prebuild": "npm run clean && npm install && cp ./src/pwa.html ./src/index.html",
+    "prebuild": "npm run clean && npm install --force && cp ./src/pwa.html ./src/index.html",
     "prestart": "npm run prebuild",
     "prettier": "prettier --check \"**/*.{ts,tsx}\"",
     "preview": "vite preview",
