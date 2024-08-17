@@ -127,7 +127,7 @@ export const BackgroundImage = () => {
   }, [imageUrl, imageThumbUrl]);
 
   const clickHandler = useCallback(
-    (event: any) => {
+    (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
       const nextBgImageNum = bgImageNum + 1 >= 5 ? 0 : bgImageNum + 1;
 
