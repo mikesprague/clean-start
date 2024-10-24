@@ -95,7 +95,7 @@
     "vite-plugin-html": "3.2.2",
     "vite-plugin-pwa": "0.20.5",
     "vite-tsconfig-paths": "5.0.1",
-    "wrangler": "3.82.0"
+    "wrangler": "3.83.0"
   },
   "browserslist": {
     "production": [
