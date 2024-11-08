@@ -75,7 +75,7 @@
     "concurrently": "9.1.0",
     "cross-env": "7.0.3",
     "cssnano": "7.0.6",
-    "cz-git": "1.10.1",
+    "cz-git": "1.11.0",
     "eslint": "8.57.1",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "18.0.0",
