@@ -54,7 +54,7 @@
     "axios": "1.7.7",
     "cheerio": "1.0.0",
     "dayjs": "1.11.13",
-    "dompurify": "3.2.0",
+    "dompurify": "3.2.1",
     "he": "1.2.0",
     "jotai": "2.10.3",
     "nanoid": "5.0.8",
@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@types/dompurify": "3.0.5",
+    "@types/dompurify": "3.2.0",
     "@types/he": "1.2.3",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
