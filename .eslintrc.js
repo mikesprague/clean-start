@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   extends: ['mantine'],
   parserOptions: {
     project: './tsconfig.json',
@@ -6,6 +6,6 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'import/extensions': 'off',
-    "@typescript-eslint/quotes": "off",
+    '@typescript-eslint/quotes': 'off',
   },
 };
