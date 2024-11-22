@@ -10,6 +10,7 @@ export default defineConfig({
   build: {
     outDir: '../build',
     sourcemap: 'inline',
+    chunkSizeWarningLimit: '20000',
   },
   publicDir: '../public',
   base: '',
@@ -31,6 +32,7 @@ export default defineConfig({
         clientsClaim: true,
         skipWaiting: true,
         cleanupOutdatedCaches: true,
+        maximumFileSizeToCacheInBytes: 50000000,
       },
       devOptions: {
         enabled: true,
