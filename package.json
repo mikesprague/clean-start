@@ -58,16 +58,16 @@
     "jotai": "2.10.3",
     "nanoid": "5.0.9",
     "prop-types": "15.8.1",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@eslint/js": "^9.16.0",
     "@types/dompurify": "3.2.0",
     "@types/he": "1.2.3",
-    "@types/react": "18.3.13",
-    "@types/react-dom": "18.3.1",
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.1",
     "@typescript-eslint/eslint-plugin": "8.17.0",
     "@typescript-eslint/parser": "8.17.0",
     "@vitejs/plugin-react-swc": "3.7.2",
