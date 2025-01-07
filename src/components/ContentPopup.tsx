@@ -9,7 +9,6 @@ import {
   Text,
   Tooltip,
 } from '@mantine/core';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
@@ -17,7 +16,8 @@ import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import type React from 'react';
 
 import {
   getPopupInfo,
@@ -101,9 +101,8 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
     switch (contentType as string) {
       case 'devTo': {
         const getDevToPosts = async (devToUrl = `${apiUrl()}/dev-to-posts`) => {
-          const tempData = await axios
-            .get(devToUrl)
-            .then((response) => response.data);
+          const tempData = await fetch(devToUrl)
+            .then((response) => response.json());
           const returnData = [];
           // limit to 10 items
 
@@ -137,7 +136,8 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         ) => {
           const returnData = [] as unknown[];
 
-          await axios.get(dataUrl).then((response) => {
+          await fetch(dataUrl).then(async (resp) => {
+            const response = await resp.json();
             // limit to 10 items
             for (let i = 0; i < 10; i += 1) {
               returnData.push(response.data[i]);
@@ -167,9 +167,8 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         const getHackerNewsPosts = async (
           hackerNewsUrl = `${apiUrl()}/hacker-news-posts`
         ) => {
-          const tempData = await axios
-            .get(hackerNewsUrl)
-            .then((response) => response.data);
+          const tempData = await fetch(hackerNewsUrl)
+            .then((response) => response.json());
           const returnData = [];
           // limit to 10 items
 
@@ -201,9 +200,8 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         const getProductHuntPosts = async (
           productHuntRssUrl = `${apiUrl()}/product-hunt-posts`
         ) => {
-          const tempData = await axios
-            .get(productHuntRssUrl)
-            .then((response) => response.data);
+          const tempData = await fetch(productHuntRssUrl)
+            .then((response) => response.json());
           const returnData = [];
           // limit to 10 items
 
@@ -235,9 +233,8 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         const getRedditPosts = async (
           redditPostsApiUrl = `${apiUrl()}/reddit-posts`
         ) => {
-          const returnData = await axios
-            .get(redditPostsApiUrl)
-            .then((response) => response.data);
+          const returnData = await fetch(redditPostsApiUrl)
+            .then((response) => response.json());
 
           setRedditData({
             lastUpdated: dayjs().tz('America/New_York').toISOString(),

@@ -1,14 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ActionIcon, Anchor, Box, Group, Tooltip } from '@mantine/core';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import React, { useCallback, useEffect } from 'react';
+import type React from 'react';
+import { useCallback, useEffect } from 'react';
 
-import { apiUrl } from '../modules/helpers';
+import { apiUrl } from '../modules/helpers.ts';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -44,9 +44,8 @@ export const BackgroundImage = () => {
 
   useEffect(() => {
     const loadBgImageData = async () => {
-      const bgImagesData: ImageData[] = await axios
-        .get(`${apiUrl()}/background-image`)
-        .then((response) => response.data);
+      const bgImagesData: ImageData[] = await fetch(`${apiUrl()}/background-image`)
+        .then((response) => response.json());
 
       setAllBgImagesData({
         lastUpdated: dayjs().tz('America/New_York').toISOString(),

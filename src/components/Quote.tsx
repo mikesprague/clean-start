@@ -1,5 +1,4 @@
 import { Anchor, Container, Text, Tooltip } from '@mantine/core';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
@@ -9,7 +8,7 @@ import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import React, { useEffect } from 'react';
 
-import { apiUrl, stripHTML } from '../modules/helpers';
+import { apiUrl, stripHTML } from '../modules/helpers.ts';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -32,9 +31,8 @@ export const Quote = () => {
 
   useEffect(() => {
     const loadQuoteData = async () => {
-      const designQuoteData: QuoteData[] = await axios
-        .get(`${apiUrl()}/quotes`)
-        .then((response) => response.data);
+      const designQuoteData: QuoteData[] = await fetch(`${apiUrl()}/quotes`)
+        .then((response) => response.json())
 
       setAllQuotesData({
         lastUpdated: dayjs().tz('America/New_York').toISOString(),

@@ -1,7 +1,6 @@
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Anchor, Box, Group, Text, Title, Tooltip } from '@mantine/core';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
@@ -10,9 +9,9 @@ import { atomWithStorage } from 'jotai/utils';
 import { nanoid } from 'nanoid';
 import { useEffect } from 'react';
 
-import { apiUrl, isCacheExpired } from '../modules/helpers';
-import { clearData } from '../modules/local-storage';
-import { getOpenWeatherMapIcon } from '../modules/weather';
+import { apiUrl, isCacheExpired } from '../modules/helpers.ts';
+import { clearData } from '../modules/local-storage.ts';
+import { getOpenWeatherMapIcon } from '../modules/weather.ts';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -68,9 +67,8 @@ export const Weather = () => {
       setIsLoading(true);
       const weatherApiUrl = `${apiUrl()}/location-and-weather`;
 
-      const weatherApiData: WeatherApiData = await axios
-        .get(weatherApiUrl)
-        .then((response) => response.data);
+      const weatherApiData: WeatherApiData = await fetch(weatherApiUrl)
+        .then((response) => response.json())
 
       setWeatherData({
         lastUpdated: dayjs().tz('America/New_York').toISOString(),
