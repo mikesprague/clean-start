@@ -8,6 +8,7 @@
     ],
     "target": "ESNext",
     "useDefineForClassFields": true,
+    "allowImportingTsExtensions": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
