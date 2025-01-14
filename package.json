@@ -67,7 +67,7 @@
     "@types/he": "1.2.3",
     "@types/react": "19.0.6",
     "@types/react-dom": "19.0.3",
-    "@typescript-eslint/eslint-plugin": "8.19.1",
+    "@typescript-eslint/eslint-plugin": "8.20.0",
     "@typescript-eslint/parser": "8.19.1",
     "@vitejs/plugin-react-swc": "3.7.2",
     "autoprefixer": "10.4.20",
