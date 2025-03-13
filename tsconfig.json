@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "types": [
-      "node",
       "react",
       "vite-plugin-pwa/info.d.ts",
       "vite-plugin-pwa/client.d.ts"
