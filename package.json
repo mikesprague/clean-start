@@ -75,7 +75,7 @@
     "cross-env": "7.0.3",
     "cssnano": "7.0.6",
     "cz-git": "1.11.1",
-    "eslint": "^9.25.1",
+    "eslint": "^9.26.0",
     "eslint-config-mantine": "4.0.3",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
