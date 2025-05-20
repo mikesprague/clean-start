@@ -52,7 +52,7 @@
     "@rwh/keystrokes": "1.5.6",
     "cheerio": "1.0.0",
     "dayjs": "1.11.13",
-    "dompurify": "3.2.5",
+    "dompurify": "3.2.6",
     "he": "1.2.0",
     "jotai": "2.12.4",
     "nanoid": "5.1.5",
