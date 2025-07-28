@@ -57,8 +57,8 @@
     "jotai": "2.12.5",
     "nanoid": "5.1.5",
     "prop-types": "15.8.1",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
