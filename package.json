@@ -61,7 +61,7 @@
     "react-dom": "19.1.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.0",
+    "@biomejs/biome": "2.2.2",
     "@eslint/js": "^9.33.0",
     "@types/dompurify": "3.2.0",
     "@types/he": "1.2.3",
