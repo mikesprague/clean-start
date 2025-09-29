@@ -1,11 +1,11 @@
 {
   "name": "clean-start",
-  "version": "0.41.4",
+  "version": "0.42.0",
   "description": "Open source new tab extension",
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">= 20.x",
+    "node": ">= 22.x",
     "npm": ">= 10.x"
   },
   "scripts": {
@@ -114,7 +114,7 @@
     }
   },
   "volta": {
-    "node": "23.9.0",
-    "npm": "11.2.0"
+    "node": "24.9.0",
+    "npm": "11.6.1"
   }
 }
