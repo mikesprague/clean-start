@@ -16,8 +16,8 @@ import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
 import type React from 'react';
+import { useEffect } from 'react';
 
 import {
   getPopupInfo,
@@ -112,7 +112,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
 
           setDevToData({
             lastUpdated: dayjs().tz('America/New_York').toISOString(),
-            data: returnData,
+            data: Array.isArray(returnData) ? returnData : [],
           });
         };
 
@@ -178,7 +178,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
 
           setHackerNewsData({
             lastUpdated: dayjs().tz('America/New_York').toISOString(),
-            data: returnData,
+            data: Array.isArray(returnData) ? returnData : [],
           });
         };
 
@@ -211,7 +211,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
 
           setProductHuntData({
             lastUpdated: dayjs().tz('America/New_York').toISOString(),
-            data: returnData,
+            data: Array.isArray(returnData) ? returnData : [],
           });
         };
 
@@ -238,7 +238,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
 
           setRedditData({
             lastUpdated: dayjs().tz('America/New_York').toISOString(),
-            data: returnData,
+            data: Array.isArray(returnData) ? returnData : [],
           });
         };
 
