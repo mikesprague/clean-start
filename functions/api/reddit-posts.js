@@ -39,7 +39,7 @@ export const onRequestGet = async (context) => {
       const { children } = data.data;
       const returnData = children.map((child) => child.data);
 
-      return returnData;
+      return Array.isArray(returnData) ? returnData : [];
     })
     .catch((error) => {
       console.error(error);
