@@ -101,8 +101,9 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
     switch (contentType as string) {
       case 'devTo': {
         const getDevToPosts = async (devToUrl = `${apiUrl()}/dev-to-posts`) => {
-          const tempData = await fetch(devToUrl)
-            .then((response) => response.json());
+          const tempData = await fetch(devToUrl).then((response) =>
+            response.json()
+          );
           const returnData = [];
           // limit to 10 items
 
@@ -140,9 +141,10 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
             const response = await resp.json();
             // limit to 10 items
             for (let i = 0; i < 10; i += 1) {
-              returnData.push(response.data[i]);
+              returnData.push(response[i]);
             }
           });
+
           setGithubData({
             lastUpdated: dayjs().tz('America/New_York').toISOString(),
             data: returnData,
@@ -167,8 +169,9 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         const getHackerNewsPosts = async (
           hackerNewsUrl = `${apiUrl()}/hacker-news-posts`
         ) => {
-          const tempData = await fetch(hackerNewsUrl)
-            .then((response) => response.json());
+          const tempData = await fetch(hackerNewsUrl).then((response) =>
+            response.json()
+          );
           const returnData = [];
           // limit to 10 items
 
@@ -200,8 +203,9 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         const getProductHuntPosts = async (
           productHuntRssUrl = `${apiUrl()}/product-hunt-posts`
         ) => {
-          const tempData = await fetch(productHuntRssUrl)
-            .then((response) => response.json());
+          const tempData = await fetch(productHuntRssUrl).then((response) =>
+            response.json()
+          );
           const returnData = [];
           // limit to 10 items
 
@@ -233,8 +237,9 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         const getRedditPosts = async (
           redditPostsApiUrl = `${apiUrl()}/reddit-posts`
         ) => {
-          const returnData = await fetch(redditPostsApiUrl)
-            .then((response) => response.json());
+          const returnData = await fetch(redditPostsApiUrl).then((response) =>
+            response.json()
+          );
 
           setRedditData({
             lastUpdated: dayjs().tz('America/New_York').toISOString(),
@@ -423,45 +428,53 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
   ]);
 
   return (
-    <>
-      <Popover closeOnEscape closeOnClickOutside shadow="md" width="fit-content" withArrow>
-        <Popover.Target>
-          <Tooltip position="left" label={getPopupInfo(contentType).title} withArrow>
-            <ActionIcon
-              color="white"
-              className={`${contentType}-popup`}
-              size="xl"
-              variant="transparent"
-            >
-              <FontAwesomeIcon
-                icon={
-                  [
-                    'fab',
-                    `${getPopupInfo(contentType).icon}`,
-                  ] as unknown as IconName
-                }
-                className="content-popup-icon"
-                fixedWidth
-                fontSize="2.25rem"
-              />
-            </ActionIcon>
-          </Tooltip>
-        </Popover.Target>
-        <Popover.Dropdown p="xs">
-          {contentType === 'devTo'
-            ? devToMarkup
-            : contentType === 'github'
-              ? githubMarkup
-              : contentType === 'hackerNews'
-                ? hackerNewsMarkup
-                : contentType === 'productHunt'
-                  ? productHuntMarkup
-                  : contentType === 'reddit'
-                    ? redditMarkup
-                    : ''}
-        </Popover.Dropdown>
-      </Popover>
-    </>
+    <Popover
+      closeOnEscape
+      closeOnClickOutside
+      shadow="md"
+      width="fit-content"
+      withArrow
+    >
+      <Popover.Target>
+        <Tooltip
+          position="left"
+          label={getPopupInfo(contentType).title}
+          withArrow
+        >
+          <ActionIcon
+            color="white"
+            className={`${contentType}-popup`}
+            size="xl"
+            variant="transparent"
+          >
+            <FontAwesomeIcon
+              icon={
+                [
+                  'fab',
+                  `${getPopupInfo(contentType).icon}`,
+                ] as unknown as IconName
+              }
+              className="content-popup-icon"
+              fixedWidth
+              fontSize="2.25rem"
+            />
+          </ActionIcon>
+        </Tooltip>
+      </Popover.Target>
+      <Popover.Dropdown p="xs">
+        {contentType === 'devTo'
+          ? devToMarkup
+          : contentType === 'github'
+            ? githubMarkup
+            : contentType === 'hackerNews'
+              ? hackerNewsMarkup
+              : contentType === 'productHunt'
+                ? productHuntMarkup
+                : contentType === 'reddit'
+                  ? redditMarkup
+                  : ''}
+      </Popover.Dropdown>
+    </Popover>
   );
 };
 
