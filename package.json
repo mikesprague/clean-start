@@ -69,7 +69,7 @@
     "@types/react-dom": "19.2.2",
     "@typescript-eslint/eslint-plugin": "8.46.4",
     "@typescript-eslint/parser": "8.46.4",
-    "@vitejs/plugin-react-swc": "4.2.1",
+    "@vitejs/plugin-react-swc": "4.2.2",
     "autoprefixer": "10.4.22",
     "concurrently": "9.2.1",
     "cross-env": "10.1.0",
