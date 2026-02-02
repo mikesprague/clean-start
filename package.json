@@ -70,7 +70,7 @@
     "@typescript-eslint/eslint-plugin": "8.54.0",
     "@typescript-eslint/parser": "8.54.0",
     "@vitejs/plugin-react-swc": "4.2.3",
-    "autoprefixer": "10.4.23",
+    "autoprefixer": "10.4.24",
     "concurrently": "9.2.1",
     "cross-env": "10.1.0",
     "cssnano": "7.1.2",
