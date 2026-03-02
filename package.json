@@ -5,9 +5,10 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">= 22.x",
-    "npm": ">= 10.x"
+    "node": ">= 24.x",
+    "npm": ">= 11.x"
   },
+  "packageManager": "npm@11.11.0",
   "scripts": {
     "build:extension": "cross-env BUILD_TYPE=extension tsc && vite build",
     "build": "tsc && vite build",
@@ -96,6 +97,10 @@
     "vite-tsconfig-paths": "6.1.1",
     "wrangler": "4.69.0"
   },
+  "overrides": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.2"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -114,7 +119,7 @@
     }
   },
   "volta": {
-    "node": "24.9.0",
-    "npm": "11.6.1"
+    "node": "25.7.0",
+    "npm": "11.11.0"
   }
 }
