@@ -12,6 +12,8 @@
   "scripts": {
     "build:extension": "cross-env BUILD_TYPE=extension tsc && vite build",
     "build": "tsc && vite build",
+    "changelog": "npx conventional-changelog -p conventionalcommits -n changelog.config.mjs -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "changelog:preview": "npx conventional-changelog -p conventionalcommits -n changelog.config.mjs -u --stdout -i /dev/null",
     "clean": "rm -rf ./build",
     "dev": "vite serve",
     "lint": "npm run lint:eslint",
@@ -27,6 +29,7 @@
     "start": "cross-env NODE_ENV=development concurrently 'npm run build -- --watch' 'npm run wrangler-pages-dev'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "typecheck": "tsc --noEmit",
+    "version": "npm run changelog",
     "wrangler-pages-dev": "wrangler pages dev --live-reload true --local true ./build",
     "zip": "cd build && zip -r clean-start-extension.zip ./"
   },
@@ -73,6 +76,9 @@
     "@vitejs/plugin-react-swc": "4.2.3",
     "autoprefixer": "10.4.27",
     "concurrently": "9.2.1",
+     "conventional-changelog": "7.2.0",
+    "conventional-changelog-cli": "5.0.0",
+    "conventional-changelog-conventionalcommits": "9.2.0",
     "cross-env": "10.1.0",
     "cssnano": "7.1.2",
     "cz-git": "1.12.0",
@@ -98,6 +104,7 @@
     "wrangler": "4.69.0"
   },
   "overrides": {
+    "@conventional-changelog/git-client": "^2.6.0",
     "@eslint/js": "^10.0.1",
     "eslint": "^10.0.2"
   },
