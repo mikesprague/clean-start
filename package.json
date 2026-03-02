@@ -106,7 +106,8 @@
   "overrides": {
     "@conventional-changelog/git-client": "^2.6.0",
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.0.2"
+    "eslint": "^10.0.2",
+    "serialize-javascript": "^7.0.3"
   },
   "browserslist": {
     "production": [
