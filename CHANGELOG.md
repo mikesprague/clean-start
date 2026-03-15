@@ -1,3 +1,35 @@
+## [0.43.0](https://github.com/mikesprague/clean-start/compare/v0.42.2...v0.43.0) (2026-03-15)
+
+### 🔧 Chores
+
+* **deps-dev:** bump @biomejs/biome from 2.4.4 to 2.4.5 (#1733) ([f4af7cd](https://github.com/mikesprague/clean-start/commit/f4af7cd767f80f9d85e762b9ead34787fc419fe9)), closes [#1733](https://github.com/mikesprague/clean-start/issues/1733)
+* **deps-dev:** bump @biomejs/biome from 2.4.5 to 2.4.6 (#1739) ([0c27942](https://github.com/mikesprague/clean-start/commit/0c2794230504cfd2eacf01d4a0023e6c473de824)), closes [#1739](https://github.com/mikesprague/clean-start/issues/1739)
+* **deps-dev:** bump @typescript-eslint/eslint-plugin (#1746) ([633b558](https://github.com/mikesprague/clean-start/commit/633b55865df2f1fb1ee2c7b9cc47c78d1cdeb979)), closes [#1746](https://github.com/mikesprague/clean-start/issues/1746)
+* **deps-dev:** bump @typescript-eslint/parser from 8.56.1 to 8.57.0 (#1747) ([61f5f29](https://github.com/mikesprague/clean-start/commit/61f5f29251f829fa338ade921d5c5c7568a795a8)), closes [#1747](https://github.com/mikesprague/clean-start/issues/1747)
+* **deps-dev:** bump conventional-changelog-conventionalcommits (#1738) ([0ccd6a8](https://github.com/mikesprague/clean-start/commit/0ccd6a8db8f8583e0244709c445442a887ec5ba7)), closes [#1738](https://github.com/mikesprague/clean-start/issues/1738)
+* **deps-dev:** bump cssnano from 7.1.2 to 7.1.3 (#1743) ([bcfbb11](https://github.com/mikesprague/clean-start/commit/bcfbb11008f3c5dd945f062943b9993989a676d0)), closes [#1743](https://github.com/mikesprague/clean-start/issues/1743)
+* **deps-dev:** bump postcss from 8.5.6 to 8.5.8 in the postcss group (#1734) ([f279d89](https://github.com/mikesprague/clean-start/commit/f279d89579067cf1fa6e296cbe67dc94247f50e7)), closes [#1734](https://github.com/mikesprague/clean-start/issues/1734)
+* **deps-dev:** bump typescript-eslint from 8.56.1 to 8.57.0 (#1745) ([c97e6db](https://github.com/mikesprague/clean-start/commit/c97e6db0632f6fcf39a10c19702c22787e429295)), closes [#1745](https://github.com/mikesprague/clean-start/issues/1745)
+* **deps-dev:** bump wrangler from 4.69.0 to 4.70.0 (#1735) ([daf6eec](https://github.com/mikesprague/clean-start/commit/daf6eec52a27e939e49c36be41a322289ef649e2)), closes [#1735](https://github.com/mikesprague/clean-start/issues/1735)
+* **deps-dev:** bump wrangler from 4.70.0 to 4.71.0 (#1742) ([427d0ce](https://github.com/mikesprague/clean-start/commit/427d0cefd848678f9b6fc6d0b741148f04b1f219)), closes [#1742](https://github.com/mikesprague/clean-start/issues/1742)
+* **deps-dev:** bump wrangler from 4.71.0 to 4.72.0 (#1748) ([88d209d](https://github.com/mikesprague/clean-start/commit/88d209d0e49ab7a9a453081b2d055067cc61c6c3)), closes [#1748](https://github.com/mikesprague/clean-start/issues/1748)
+* **deps-dev:** bump wrangler from 4.72.0 to 4.73.0 (#1753) ([8433b45](https://github.com/mikesprague/clean-start/commit/8433b45171dda670be130bc5a836795f36d3b605)), closes [#1753](https://github.com/mikesprague/clean-start/issues/1753)
+* **deps:** bump dayjs from 1.11.19 to 1.11.20 (#1751) ([5811620](https://github.com/mikesprague/clean-start/commit/58116207ee4e25aee8e0e8aebb6ff5e242c12421)), closes [#1751](https://github.com/mikesprague/clean-start/issues/1751)
+* **deps:** bump dompurify from 3.3.1 to 3.3.2 (#1740) ([a8424bc](https://github.com/mikesprague/clean-start/commit/a8424bcb6c52319bdd544a2de0a2cce2e6dd8241)), closes [#1740](https://github.com/mikesprague/clean-start/issues/1740)
+* **deps:** bump dompurify from 3.3.2 to 3.3.3 (#1749) ([ed8631d](https://github.com/mikesprague/clean-start/commit/ed8631da7a46045823e44c742e607632fcfe749d)), closes [#1749](https://github.com/mikesprague/clean-start/issues/1749)
+* **deps:** bump jotai from 2.18.0 to 2.18.1 (#1744) ([65e1c9a](https://github.com/mikesprague/clean-start/commit/65e1c9a2c69b24657bbcb1e3c9cf7a550b834e58)), closes [#1744](https://github.com/mikesprague/clean-start/issues/1744)
+* **deps:** bump the mantine group with 2 updates (#1737) ([1395fc7](https://github.com/mikesprague/clean-start/commit/1395fc7596cda9455b8bf53bf44df82b0e8ace09)), closes [#1737](https://github.com/mikesprague/clean-start/issues/1737)
+* **manifest:** bump extension version ([5420916](https://github.com/mikesprague/clean-start/commit/54209166f7ee8922deb27c10382897cdf3c93ba6))
+
+### 🏗️ Build System
+
+* **changelog:** update config ([46a8ae3](https://github.com/mikesprague/clean-start/commit/46a8ae330d67581b0be2e75ffe8666ff66826d77))
+* **npmrc:** add file ([12dece8](https://github.com/mikesprague/clean-start/commit/12dece8e26b60ca785d7047d4be11cc2d10e531e))
+
+### 🛠️ Code Refactoring
+
+* vite 8/mantine 9 updates ([ea3dd6a](https://github.com/mikesprague/clean-start/commit/ea3dd6a50e93b4c7735020780304d5b4d45bb776))
+
 ## [0.42.2](https://github.com/mikesprague/clean-start/compare/v0.42.1...v0.42.2) (2026-03-02)
 
 ### 🔧 Chores
