@@ -1,7 +1,6 @@
-import react from '@vitejs/plugin-react-swc';
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 import { version } from './package.json';
 
@@ -10,17 +9,18 @@ export default defineConfig({
   build: {
     outDir: '../build',
     sourcemap: 'inline',
-    chunkSizeWarningLimit: '20000',
   },
   publicDir: '../public',
   base: '',
   outDir: './',
   appType: 'spa',
+  resolve: {
+    tsconfigPaths: true,
+  },
   plugins: [
     react({
       include: '**/*.{jsx,tsx}',
     }),
-    tsconfigPaths(),
     VitePWA({
       strategies: 'generateSW',
       injectRegister: 'auto',
