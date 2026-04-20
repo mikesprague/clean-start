@@ -99,7 +99,7 @@
     "vite": "8.0.9",
     "vite-plugin-html": "3.2.2",
     "vite-plugin-pwa": "1.2.0",
-    "wrangler": "4.83.0"
+    "wrangler": "4.84.0"
   },
   "overrides": {
     "@conventional-changelog/git-client": "^2.7.0",
