@@ -59,7 +59,7 @@
     "dompurify": "3.4.1",
     "he": "1.2.0",
     "jotai": "2.19.1",
-    "nanoid": "5.1.9",
+    "nanoid": "5.1.11",
     "prop-types": "15.8.1",
     "react": "19.2.5",
     "react-dom": "19.2.5"
