@@ -98,7 +98,7 @@
     "typescript-eslint": "^8.59.2",
     "vite": "8.0.10",
     "vite-plugin-html": "3.2.2",
-    "vite-plugin-pwa": "1.2.0",
+    "vite-plugin-pwa": "1.3.0",
     "wrangler": "4.87.0"
   },
   "overrides": {
