@@ -80,7 +80,7 @@
     "conventional-changelog-conventionalcommits": "9.3.1",
     "cross-env": "10.1.0",
     "cssnano": "8.0.1",
-    "cz-git": "1.13.0",
+    "cz-git": "1.13.1",
     "eslint": "10.3.0",
     "eslint-config-mantine": "4.0.3",
     "eslint-plugin-import": "2.32.0",
