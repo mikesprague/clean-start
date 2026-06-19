@@ -62,21 +62,23 @@ export const Clock = () => {
   }, [dateTime]);
 
   return (
-    <Container fluid style={{ cursor: 'default' }} ta="center">
-      <Text fw={800} onClick={clickHandler} size="9rem" ta="center">
+    <Container fluid style={{ cursor: 'default' }} ta='center'>
+      <Text fw={800} onClick={clickHandler} size='9rem' ta='center'>
         {timeFormatted}
       </Text>
       <Text
-        fw="bold"
-        lts="0.025em"
-        mt="sm"
-        size="1.875rem"
-        ta="center"
-        tt="uppercase"
+        fw='bold'
+        lts='0.025em'
+        mt='sm'
+        size='1.875rem'
+        ta='center'
+        tt='uppercase'
       >
         {dateFormatted}
       </Text>
-      <Text fw={600} mt="xl" size="5rem" ta="center">{greeting}</Text>
+      <Text fw={600} mt='xl' size='5rem' ta='center'>
+        {greeting}
+      </Text>
     </Container>
   );
 };

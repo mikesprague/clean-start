@@ -31,8 +31,9 @@ export const Quote = () => {
 
   useEffect(() => {
     const loadQuoteData = async () => {
-      const designQuoteData: QuoteData[] = await fetch(`${apiUrl()}/quotes`)
-        .then((response) => response.json())
+      const designQuoteData: QuoteData[] = await fetch(
+        `${apiUrl()}/quotes`
+      ).then((response) => response.json());
 
       setAllQuotesData({
         lastUpdated: dayjs().tz('America/New_York').toISOString(),
@@ -75,15 +76,19 @@ export const Quote = () => {
   }, [allQuotesData, setQuoteData]);
 
   return quoteData ? (
-    <Container fluid mt="xl">
-      <Tooltip label="Quotes provided by ZenQuotes API" position="bottom" withArrow>
-        <Text lh={1.5} size="1.125rem" ta="center">
+    <Container fluid mt='xl'>
+      <Tooltip
+        label='Quotes provided by ZenQuotes API'
+        position='bottom'
+        withArrow
+      >
+        <Text lh={1.5} size='1.125rem' ta='center'>
           <Anchor
-            c="white"
-            href="https://zenquotes.io/"
-            ta="center"
-            target="_blank"
-            rel="noopener noreferrer"
+            c='white'
+            href='https://zenquotes.io/'
+            ta='center'
+            target='_blank'
+            rel='noopener noreferrer'
           >
             {quoteData.quoteExcerpt}
             <br />

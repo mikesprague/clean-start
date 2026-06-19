@@ -61,40 +61,40 @@ export const handleReddit = (apiData) => {
             ? 'var(--mantine-color-dark-9)'
             : 'var(--mantine-color-black)'
         }
-        c="white"
-        display="flex"
-        p="xs"
+        c='white'
+        display='flex'
+        p='xs'
       >
         <Anchor
-          c="white"
+          c='white'
           href={`${getPopupInfo('reddit').url}${post.permalink}`}
-          size="sm"
-          target="_blank"
-          rel="noopener noreferrer"
+          size='sm'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           <strong>{post.title}</strong>
         </Anchor>
         <br />
         <Anchor
-          c="white"
+          c='white'
           fw={300}
           href={`${getPopupInfo('reddit').url}${post.subreddit}`}
-          size="xs"
-          target="_blank"
-          rel="noopener noreferrer"
+          size='xs'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           /r/{post.subreddit}
         </Anchor>
         &nbsp;&nbsp;
         <Anchor
-          c="white"
+          c='white'
           fw={300}
           href={`${getPopupInfo('reddit').url}${post.author}`}
-          size="xs"
-          target="_blank"
-          rel="noopener noreferrer"
+          size='xs'
+          target='_blank'
+          rel='noopener noreferrer'
         >
-          <FontAwesomeIcon icon="user" fixedWidth /> {post.author}
+          <FontAwesomeIcon icon='user' fixedWidth /> {post.author}
         </Anchor>
       </List.Item>
     );
@@ -118,22 +118,22 @@ export const handleProductHunt = (apiData) => {
             ? 'var(--mantine-color-dark-9)'
             : 'var(--mantine-color-black)'
         }
-        c="white"
-        display="flex"
-        p="xs"
+        c='white'
+        display='flex'
+        p='xs'
       >
         <Anchor
-          c="white"
+          c='white'
           href={`${post.link}`}
-          size="sm"
-          target="_blank"
-          rel="noopener noreferrer"
+          size='sm'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           <strong>{post.title}</strong>
         </Anchor>
         <br />
-        <Text fw={300} size="xs">
-          <FontAwesomeIcon icon="calendar" fixedWidth /> {post.pubDate}
+        <Text fw={300} size='xs'>
+          <FontAwesomeIcon icon='calendar' fixedWidth /> {post.pubDate}
         </Text>
       </List.Item>
     );
@@ -157,22 +157,22 @@ export const handleHackerNews = (apiData) => {
             ? 'var(--mantine-color-dark-9)'
             : 'var(--mantine-color-black)'
         }
-        c="white"
-        display="flex"
-        p="xs"
+        c='white'
+        display='flex'
+        p='xs'
       >
         <Anchor
-          c="white"
+          c='white'
           href={`${post.link}`}
-          size="sm"
-          target="_blank"
-          rel="noopener noreferrer"
+          size='sm'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           <strong>{post.title}</strong>
         </Anchor>
         <br />
-        <Text fw={300} size="xs">
-          <FontAwesomeIcon icon="calendar" fixedWidth /> {post.pubDate}
+        <Text fw={300} size='xs'>
+          <FontAwesomeIcon icon='calendar' fixedWidth /> {post.pubDate}
         </Text>
       </List.Item>
     );
@@ -197,24 +197,24 @@ export const handleDevTo = (apiData): React.FC => {
             ? 'var(--mantine-color-dark-9)'
             : 'var(--mantine-color-black)'
         }
-        c="white"
-        display="flex"
-        p="xs"
+        c='white'
+        display='flex'
+        p='xs'
       >
         <Anchor
-          c="white"
+          c='white'
           href={`${post.link}`}
-          size="sm"
-          target="_blank"
-          rel="noopener noreferrer"
+          size='sm'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           <strong>{post.title}</strong>
         </Anchor>
         <br />
-        <Text fw={300} size="xs">
-          <FontAwesomeIcon icon="user" fixedWidth /> {post.author}
+        <Text fw={300} size='xs'>
+          <FontAwesomeIcon icon='user' fixedWidth /> {post.author}
           <br />
-          <FontAwesomeIcon icon="calendar" fixedWidth /> {post.pubDate}
+          <FontAwesomeIcon icon='calendar' fixedWidth /> {post.pubDate}
         </Text>
       </List.Item>
     );
@@ -255,13 +255,13 @@ export const handleGitHub = (apiData) => {
     // console.log(styles);
     const languageMarkup = languageName ? (
       <>
-        <Text key={nanoid(8)} c="white" fw={300} size="xs">
+        <Text key={nanoid(8)} c='white' fw={300} size='xs'>
           <Box
-            display="inline-block"
-            h=".75rem"
-            mr=".25rem"
+            display='inline-block'
+            h='.75rem'
+            mr='.25rem'
             style={styles}
-            w=".75rem"
+            w='.75rem'
           />
           {languageName}
         </Text>{' '}
@@ -273,14 +273,14 @@ export const handleGitHub = (apiData) => {
       <>
         <Anchor
           key={nanoid(8)}
-          c="white"
+          c='white'
           fw={300}
           href={starsLink}
-          size="xs"
-          target="_blank"
-          rel="noopener noreferrer"
+          size='xs'
+          target='_blank'
+          rel='noopener noreferrer'
         >
-          <FontAwesomeIcon icon="star" />
+          <FontAwesomeIcon icon='star' />
           {repo.stars}
         </Anchor>{' '}
       </>
@@ -288,8 +288,9 @@ export const handleGitHub = (apiData) => {
       ''
     );
     const forksMarkup = forks.trim().length ? (
-      <Anchor key={nanoid(8)} c="white" fw={300} href={forksLink} size="xs">
-        <FontAwesomeIcon icon="share-alt" rotate={270} /> {repo.forks}{''}
+      <Anchor key={nanoid(8)} c='white' fw={300} href={forksLink} size='xs'>
+        <FontAwesomeIcon icon='share-alt' rotate={270} /> {repo.forks}
+        {''}
       </Anchor>
     ) : (
       ''
@@ -302,27 +303,29 @@ export const handleGitHub = (apiData) => {
             ? 'var(--mantine-color-dark-9)'
             : 'var(--mantine-color-black)'
         }
-        c="white"
-        display="flex"
-        p="xs"
+        c='white'
+        display='flex'
+        p='xs'
       >
         <Anchor
-          c="white"
+          c='white'
           href={link}
-          size="sm"
-          target="_blank"
-          rel="noopener noreferrer"
+          size='sm'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           {title}
         </Anchor>
         <br />
-        <Text fw={300} size="sm">{description}</Text>
-        <Group gap="xs" grow={false}>
+        <Text fw={300} size='sm'>
+          {description}
+        </Text>
+        <Group gap='xs' grow={false}>
           {languageMarkup}
           {starsMarkup}
           {forksMarkup}
-          <Text c="white" fw={300} size="xs" ta="right">
-            <FontAwesomeIcon icon="star" /> {starsToday}
+          <Text c='white' fw={300} size='xs' ta='right'>
+            <FontAwesomeIcon icon='star' /> {starsToday}
           </Text>
         </Group>
       </List.Item>

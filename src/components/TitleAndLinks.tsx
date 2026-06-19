@@ -17,15 +17,15 @@ export const TitleAndLinks = () => {
   }, [setIsExtension]);
 
   const installLinks = (
-    <Title mt="xs" order={2}>
-      <Tooltip label="Install via Chrome Store" position="right" withArrow>
+    <Title mt='xs' order={2}>
+      <Tooltip label='Install via Chrome Store' position='right' withArrow>
         <Anchor
-          c="white"
-          href="https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol"
-          target="_blank"
-          rel="noopener noreferrer"
+          c='white'
+          href='https://chrome.google.com/webstore/detail/mmnlbcjgkfloemcbbjhklbblhbcjhmol'
+          target='_blank'
+          rel='noopener noreferrer'
         >
-          <FontAwesomeIcon icon={['fab', 'chrome']} fixedWidth size="2x" />
+          <FontAwesomeIcon icon={['fab', 'chrome']} fixedWidth size='2x' />
         </Anchor>
       </Tooltip>
     </Title>
@@ -33,21 +33,25 @@ export const TitleAndLinks = () => {
 
   return (
     <>
-      <Title order={1} fw={600} m={0} size="h3">
+      <Title order={1} fw={600} m={0} size='h3'>
         Clean Start
-        <Text component="span" fw={200} ml="xs" size="xs">
+        <Text component='span' fw={200} ml='xs' size='xs'>
           v{version}
         </Text>
       </Title>
-      <Tooltip label="Source code available on GitHub" position="right" withArrow>
+      <Tooltip
+        label='Source code available on GitHub'
+        position='right'
+        withArrow
+      >
         <Anchor
-          c="white"
-          href="https://github.com/mikesprague/clean-start"
-          target="_blank"
-          rel="noopener noreferrer"
+          c='white'
+          href='https://github.com/mikesprague/clean-start'
+          target='_blank'
+          rel='noopener noreferrer'
         >
-          <Text component="span" fw={300} size="sm">
-          Open Source New Tab Extension
+          <Text component='span' fw={300} size='sm'>
+            Open Source New Tab Extension
           </Text>
         </Anchor>
       </Tooltip>

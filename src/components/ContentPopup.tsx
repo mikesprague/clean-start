@@ -342,16 +342,16 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
   useEffect(() => {
     const buildPopup = () => (
       <ScrollArea>
-        <List listStyleType="none" m={0} p={0} mah="85vh" maw="48rem">
+        <List listStyleType='none' m={0} p={0} mah='85vh' maw='48rem'>
           <List.Item
             key={nanoid(8)}
-            bg="var(--mantine-color-black)"
-            c="white"
-            display="flex"
+            bg='var(--mantine-color-black)'
+            c='white'
+            display='flex'
             mb={0}
-            p="sm"
+            p='sm'
           >
-            <Text fw={500} size="1.25rem">
+            <Text fw={500} size='1.25rem'>
               <FontAwesomeIcon
                 icon={
                   [
@@ -364,15 +364,15 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
               {getPopupInfo(contentType).title}
               &nbsp;&nbsp;
               <Anchor
-                c="white"
+                c='white'
                 fw={300}
                 href={getPopupInfo(contentType).pageLink}
-                rel="noopener noreferrer"
-                size="sm"
-                target="_blank"
+                rel='noopener noreferrer'
+                size='sm'
+                target='_blank'
                 title={`View on ${getPopupInfo(contentType).title}`}
               >
-                <FontAwesomeIcon icon="external-link-alt" fixedWidth /> View on{' '}
+                <FontAwesomeIcon icon='external-link-alt' fixedWidth /> View on{' '}
                 {getPopupInfo(contentType).siteName}
               </Anchor>
             </Text>
@@ -431,21 +431,21 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
     <Popover
       closeOnEscape
       closeOnClickOutside
-      shadow="md"
-      width="fit-content"
+      shadow='md'
+      width='fit-content'
       withArrow
     >
       <Popover.Target>
         <Tooltip
-          position="left"
+          position='left'
           label={getPopupInfo(contentType).title}
           withArrow
         >
           <ActionIcon
-            color="white"
+            color='white'
             className={`${contentType}-popup`}
-            size="xl"
-            variant="transparent"
+            size='xl'
+            variant='transparent'
           >
             <FontAwesomeIcon
               icon={
@@ -454,14 +454,14 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
                   `${getPopupInfo(contentType).icon}`,
                 ] as unknown as IconName
               }
-              className="content-popup-icon"
+              className='content-popup-icon'
               fixedWidth
-              fontSize="2.25rem"
+              fontSize='2.25rem'
             />
           </ActionIcon>
         </Tooltip>
       </Popover.Target>
-      <Popover.Dropdown p="xs">
+      <Popover.Dropdown p='xs'>
         {contentType === 'devTo'
           ? devToMarkup
           : contentType === 'github'

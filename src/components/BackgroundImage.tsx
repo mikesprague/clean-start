@@ -44,8 +44,9 @@ export const BackgroundImage = () => {
 
   useEffect(() => {
     const loadBgImageData = async () => {
-      const bgImagesData: ImageData[] = await fetch(`${apiUrl()}/background-image`)
-        .then((response) => response.json());
+      const bgImagesData: ImageData[] = await fetch(
+        `${apiUrl()}/background-image`
+      ).then((response) => response.json());
 
       setAllBgImagesData({
         lastUpdated: dayjs().tz('America/New_York').toISOString(),
@@ -139,59 +140,59 @@ export const BackgroundImage = () => {
     <>
       <Group>
         <ActionIcon
-          aria-label="Change background image"
-          c="white"
+          aria-label='Change background image'
+          c='white'
           hidden={!bgImage}
           onClick={clickHandler}
-          variant="transparent"
+          variant='transparent'
         >
-          <Tooltip label="Change background image" position="right" withArrow>
-            <FontAwesomeIcon icon="sync-alt" size="2x" fixedWidth />
+          <Tooltip label='Change background image' position='right' withArrow>
+            <FontAwesomeIcon icon='sync-alt' size='2x' fixedWidth />
           </Tooltip>
         </ActionIcon>
         <Box lh={1.2}>
           <Tooltip
-            label="View full quality image on Unsplash"
-            position="right"
+            label='View full quality image on Unsplash'
+            position='right'
             withArrow
           >
             <Anchor
-              c="white"
+              c='white'
               fw={200}
               href={`${bgImage?.imageLink}${bgImage?.linkSuffix}`}
-              size="sm"
-              target="_blank"
-              rel="noopener noreferrer"
+              size='sm'
+              target='_blank'
+              rel='noopener noreferrer'
             >
-              <FontAwesomeIcon icon="image" fixedWidth /> {bgImage?.title}
+              <FontAwesomeIcon icon='image' fixedWidth /> {bgImage?.title}
             </Anchor>
           </Tooltip>
           <br />
           <Tooltip
             label="Visit photographer's page on Unsplash"
-            position="right"
+            position='right'
             withArrow
           >
             <Anchor
-              c="white"
+              c='white'
               fw={200}
               href={`${bgImage?.userLink}${bgImage?.linkSuffix}`}
-              size="sm"
-              target="_blank"
-              rel="noopener noreferrer"
+              size='sm'
+              target='_blank'
+              rel='noopener noreferrer'
             >
-              <FontAwesomeIcon icon="user" fixedWidth /> {bgImage?.userName}
+              <FontAwesomeIcon icon='user' fixedWidth /> {bgImage?.userName}
             </Anchor>
           </Tooltip>
           {' via '}
-          <Tooltip label="Visit Unsplash" position="right" withArrow>
+          <Tooltip label='Visit Unsplash' position='right' withArrow>
             <Anchor
-              c="white"
+              c='white'
               fw={200}
               href={`https://unsplash.com/${bgImage?.linkSuffix}`}
-              size="sm"
-              target="_blank"
-              rel="noopener noreferrer"
+              size='sm'
+              target='_blank'
+              rel='noopener noreferrer'
             >
               Unsplash
             </Anchor>

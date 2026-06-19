@@ -67,8 +67,9 @@ export const Weather = () => {
       setIsLoading(true);
       const weatherApiUrl = `${apiUrl()}/location-and-weather`;
 
-      const weatherApiData: WeatherApiData = await fetch(weatherApiUrl)
-        .then((response) => response.json())
+      const weatherApiData: WeatherApiData = await fetch(weatherApiUrl).then(
+        (response) => response.json()
+      );
 
       setWeatherData({
         lastUpdated: dayjs().tz('America/New_York').toISOString(),
@@ -112,11 +113,11 @@ export const Weather = () => {
   }, [setHourlyData, weatherData]);
 
   return weatherData?.data ? (
-    <Box style={{ cursor: 'default' }} ta="right">
+    <Box style={{ cursor: 'default' }} ta='right'>
       <Box hidden={!isLoading}>
         <FontAwesomeIcon
-          icon="spinner"
-          size="2x"
+          icon='spinner'
+          size='2x'
           fixedWidth
           pulse
           style={{ marginRight: '0.5rem' }}
@@ -125,7 +126,7 @@ export const Weather = () => {
         loading weather
       </Box>
       <Box hidden={isLoading}>
-        <Title order={3} size="h3">
+        <Title order={3} size='h3'>
           {weatherData?.data ? weatherData.data?.location?.locationName : ''}
         </Title>
         <Box>
@@ -135,10 +136,10 @@ export const Weather = () => {
                 ? weatherData.data?.weather?.current?.weather[0].description
                 : ''
             }
-            position="left"
+            position='left'
             withArrow
           >
-            <Text component="span" fw="bolder" size="2.25rem">
+            <Text component='span' fw='bolder' size='2.25rem'>
               <FontAwesomeIcon
                 icon={
                   weatherData?.data?.weather?.current
@@ -157,7 +158,7 @@ export const Weather = () => {
                 : ' -- '}
             </Text>
           </Tooltip>
-          <Text fw="normal" mt="-.25rem" size="md">
+          <Text fw='normal' mt='-.25rem' size='md'>
             {/* Math.round(weatherData.weather.currently.temperature) !== Math.round(weatherData.weather.currently.apparentTemperature) */}
             {weatherData?.data?.weather?.current
               ? `Feels ${Math.round(
@@ -166,7 +167,7 @@ export const Weather = () => {
               : ''}
           </Text>
         </Box>
-        <Group ta="right" justify="end" gap="xs">
+        <Group ta='right' justify='end' gap='xs'>
           {weatherData?.data &&
             hourlyData &&
             hourlyData.map((hour) => (
@@ -179,10 +180,10 @@ export const Weather = () => {
                         )}${String.fromCharCode(176)})`
                       : ''
                   }
-                  position="left"
+                  position='left'
                   withArrow
                 >
-                  <Text size="sm">
+                  <Text size='sm'>
                     {dayjs.unix(hour.dt).format('ha')}
                     <br />
                     <FontAwesomeIcon
@@ -197,12 +198,12 @@ export const Weather = () => {
         </Group>
         <Box hidden={!(weatherData && hourlyData)}>
           <Anchor
-            c="white"
+            c='white'
             fw={200}
-            href="https://openweathermap.org/api/"
-            target="_blank"
-            rel="noopener noreferrer"
-            size="xs"
+            href='https://openweathermap.org/api/'
+            target='_blank'
+            rel='noopener noreferrer'
+            size='xs'
           >
             Powered by OpenWeatherMap
           </Anchor>
