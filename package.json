@@ -88,7 +88,7 @@
     "eslint-plugin-react-hooks": "7.1.1",
     "globals": "17.6.0",
     "oxfmt": "0.55.0",
-    "oxlint": "1.70.0",
+    "oxlint": "1.71.0",
     "postcss": "8.5.15",
     "postcss-cli": "11.0.1",
     "postcss-preset-mantine": "1.18.0",
