@@ -1,9 +1,8 @@
+import '@mantine/core/styles.css';
 import { Box, Container, Group, MantineProvider, Stack } from '@mantine/core';
-import React, { lazy } from 'react';
+import { lazy } from 'react';
 
 import { initIcons } from '../modules/helpers';
-
-import '@mantine/core/styles.css';
 
 const BackgroundImage = lazy(() => import('./BackgroundImage'));
 const Clock = lazy(() => import('./Clock'));
