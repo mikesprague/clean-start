@@ -1,3 +1,17 @@
+## [0.45.0](https://github.com/mikesprague/clean-start/compare/v0.44.0...v0.45.0) (2026-06-29)
+
+### 🏗️ Build System
+
+* **typescript:** add vite/client types to config ([ba2b53e](https://github.com/mikesprague/clean-start/commit/ba2b53e2ca22d4e9056a4f870fd17179b919b775))
+
+### 🎨 Style
+
+* **App:** clean up imports ([f5a062f](https://github.com/mikesprague/clean-start/commit/f5a062f3334e266fef413d1c076c246283e4d686))
+
+### 🔧 Chores
+
+* **deps-dev:** clean up deps ([99a0401](https://github.com/mikesprague/clean-start/commit/99a040130616ee822393f91c87cea075063cbdf3))
+
 ## [0.44.0](https://github.com/mikesprague/clean-start/compare/v0.43.0...v0.44.0) (2026-06-29)
 
 ### 🏗️ Build System
