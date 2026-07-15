@@ -70,7 +70,7 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.3",
-    "autoprefixer": "10.5.2",
+    "autoprefixer": "10.5.3",
     "concurrently": "10.0.3",
     "conventional-changelog": "8.1.0",
     "conventional-changelog-conventionalcommits": "10.2.1",
