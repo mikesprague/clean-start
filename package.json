@@ -80,7 +80,7 @@
     "globals": "17.8.0",
     "oxfmt": "0.61.0",
     "oxlint": "1.76.0",
-    "postcss": "8.5.24",
+    "postcss": "8.5.25",
     "postcss-cli": "11.0.1",
     "postcss-preset-mantine": "1.18.0",
     "postcss-simple-vars": "7.0.1",
