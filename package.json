@@ -79,7 +79,7 @@
     "cz-git": "1.13.2",
     "globals": "17.11.0",
     "oxfmt": "0.64.0",
-    "oxlint": "1.78.0",
+    "oxlint": "1.79.0",
     "postcss": "8.5.26",
     "postcss-cli": "11.0.1",
     "postcss-preset-mantine": "1.18.0",
