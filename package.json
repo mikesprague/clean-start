@@ -76,7 +76,7 @@
     "conventional-changelog-conventionalcommits": "10.4.0",
     "cross-env": "10.1.0",
     "cssnano": "8.0.8",
-    "cz-git": "1.13.2",
+    "cz-git": "1.14.0",
     "globals": "17.11.0",
     "oxfmt": "0.64.0",
     "oxlint": "1.79.0",
