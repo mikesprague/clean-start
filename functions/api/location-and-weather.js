@@ -1,21 +1,6 @@
 export const onRequestGet = async (context) => {
   const CACHE_NAME = 'location-and-weather';
   const { request } = context;
-
-  const cache = await caches.open(CACHE_NAME);
-
-  const cachedData = await cache.match(request);
-
-  if (cachedData) {
-    console.log('🚀 using cached data!');
-
-    const returnData = await cachedData.json();
-
-    return new Response(JSON.stringify(returnData), cachedData);
-  }
-
-  console.log('😢 no cache, fetching new data');
-
   const { cf, url } = context.request;
 
   const urlParams = new URL(url).searchParams;
@@ -36,6 +21,24 @@ export const onRequestGet = async (context) => {
       headers: { 'Content-Type': 'application/json' },
     });
   }
+
+  const cache = await caches.open(CACHE_NAME);
+
+  const cacheLat = Number.parseFloat(lat).toFixed(2).toString();
+  const cacheLng = Number.parseFloat(lng).toFixed(2).toString();
+  const cacheKey = `location-and-weather:${cacheLat},${cacheLng}:${units}`;
+
+  const cachedData = await cache.match(cacheKey);
+
+  if (cachedData) {
+    console.log('🚀 using cached data!');
+
+    const returnData = await cachedData.json();
+
+    return new Response(JSON.stringify(returnData), cachedData);
+  }
+
+  console.log('😢 no cache, fetching new data');
 
   const { OPEN_WEATHERMAP_API_KEY } = context.env;
 
@@ -82,12 +85,12 @@ export const onRequestGet = async (context) => {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'max-age=600, s-maxage=600',
+      'Cache-Control': 'private, max-age=600',
     },
   });
 
   // cache data;
-  context.waitUntil(cache.put(request, response.clone()));
+  context.waitUntil(cache.put(cacheKey, response.clone()));
 
   return response;
 };
