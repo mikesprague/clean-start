@@ -1,3 +1,10 @@
+## [0.46.1](https://github.com/mikesprague/clean-start/compare/v0.46.0...v0.46.1) (2026-09-09)
+
+### 🔧 Chores
+
+* **deps/deps-dev:** bump several ([3d4464e](https://github.com/mikesprague/clean-start/commit/3d4464e05cc8db24fd261f30380d18069aa07680))
+* **manifest:** bump version ([b8bac3c](https://github.com/mikesprague/clean-start/commit/b8bac3cacc45ad6fe415b3b4ebefabdc22b71b0a))
+
 ## [0.46.0](https://github.com/mikesprague/clean-start/compare/v0.44.0...v0.46.0) (2026-09-09)
 
 ### 🔧 Chores
