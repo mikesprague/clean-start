@@ -20,356 +20,93 @@ import type React from 'react';
 import { useEffect } from 'react';
 
 import {
+  CONTENT_TYPE_KEYS,
+  CONTENT_TYPES,
   getPopupInfo,
-  handleDevTo,
   handleGitHub,
-  handleHackerNews,
-  handleProductHunt,
   handleReddit,
+  renderListItems,
 } from '../modules/content-popup';
-import { appConfig, apiUrl, handleError } from '../modules/helpers';
+import { apiUrl, handleError } from '../modules/helpers';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault('America/New_York');
 
-const hackerNewsDataAtom = atomWithStorage(appConfig.hackerNewsDataKey, {
-  lastUpdated: '',
-  data: [] as unknown[],
-});
-const devToDataAtom = atomWithStorage(appConfig.devToDataKey, {
-  lastUpdated: '',
-  data: [] as unknown[],
-});
-const productHuntDataAtom = atomWithStorage(appConfig.productHuntDataKey, {
-  lastUpdated: '',
-  data: [] as unknown[],
-});
-const redditDataAtom = atomWithStorage(appConfig.redditDataKey, {
-  lastUpdated: '',
-  data: [] as unknown[],
-});
-const githubDataAtom = atomWithStorage(appConfig.githubDataKey, {
-  lastUpdated: '',
-  data: [] as unknown[],
-});
-const devToMarkupAtom = atom('');
-const githubMarkupAtom = atom('');
-const hackerNewsMarkupAtom = atom('');
-const productHuntMarkupAtom = atom('');
-const redditMarkupAtom = atom('');
-const githubPostsMarkupAtom = atom('');
-const devToPostsMarkupAtom = atom('');
-const hackerNewsPostsMarkupAtom = atom('');
-const productHuntPostsMarkupAtom = atom('');
-const redditPostsMarkupAtom = atom('');
+const dataAtoms = Object.fromEntries(
+  CONTENT_TYPE_KEYS.map((type) => [
+    type,
+    atomWithStorage(CONTENT_TYPES[type].dataKey, {
+      lastUpdated: '',
+      data: [] as unknown[],
+    }),
+  ])
+);
+const postsMarkupAtoms = Object.fromEntries(
+  CONTENT_TYPE_KEYS.map((type) => [type, atom('' as React.ReactNode)])
+);
+const markupAtoms = Object.fromEntries(
+  CONTENT_TYPE_KEYS.map((type) => [type, atom('' as React.ReactNode)])
+);
 
 interface ContentPopupProps {
   contentType: string;
 }
 
 export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
-  const [hackerNewsData, setHackerNewsData] = useAtom(hackerNewsDataAtom);
-  const [devToData, setDevToData] = useAtom(devToDataAtom);
-  const [productHuntData, setProductHuntData] = useAtom(productHuntDataAtom);
-  const [redditData, setRedditData] = useAtom(redditDataAtom);
-  const [githubData, setGithubData] = useAtom(githubDataAtom);
-
-  const [githubPostsMarkup, setGithubPostsMarkup] = useAtom(
-    githubPostsMarkupAtom
-  );
-  const [devToPostsMarkup, setDevToPostsMarkup] = useAtom(devToPostsMarkupAtom);
-  const [hackerNewsPostsMarkup, setHackerNewsPostsMarkup] = useAtom(
-    hackerNewsPostsMarkupAtom
-  );
-  const [productHuntPostsMarkup, setProductHuntPostsMarkup] = useAtom(
-    productHuntPostsMarkupAtom
-  );
-  const [redditPostsMarkup, setRedditPostsMarkup] = useAtom(
-    redditPostsMarkupAtom
-  );
-
-  const [githubMarkup, setGithubMarkup] = useAtom(githubMarkupAtom);
-  const [devToMarkup, setDevToMarkup] = useAtom(devToMarkupAtom);
-  const [hackerNewsMarkup, setHackerNewsMarkup] = useAtom(hackerNewsMarkupAtom);
-  const [productHuntMarkup, setProductHuntMarkup] = useAtom(
-    productHuntMarkupAtom
-  );
-  const [redditMarkup, setRedditMarkup] = useAtom(redditMarkupAtom);
+  const cfg = getPopupInfo(contentType);
+  const [data, setData] = useAtom(dataAtoms[contentType]);
+  const [postsMarkup, setPostsMarkup] = useAtom(postsMarkupAtoms[contentType]);
+  const [markup, setMarkup] = useAtom(markupAtoms[contentType]);
 
   useEffect(() => {
-    switch (contentType as string) {
-      case 'devTo': {
-        const getDevToPosts = async (devToUrl = `${apiUrl()}/dev-to-posts`) => {
-          try {
-            const response = await fetch(devToUrl);
-            if (!response.ok) {
-              throw new Error(
-                `HTTP ${response.status}: ${response.statusText}`
-              );
-            }
-            const tempData = await response.json();
-            const returnData = (Array.isArray(tempData) ? tempData : []).slice(
-              0,
-              10
-            );
-
-            setDevToData({
-              lastUpdated: dayjs().tz('America/New_York').toISOString(),
-              data: returnData,
-            });
-          } catch (error) {
-            handleError(error);
-          }
-        };
-
-        if (devToData?.lastUpdated) {
-          const nextUpdateTime = dayjs(devToData.lastUpdated)
-            .tz('America/New_York')
-            .add(appConfig.devToCacheTtl, 'minute');
-
-          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
-            getDevToPosts();
-          }
-        } else {
-          getDevToPosts();
+    const fetchContentData = async (dataUrl = `${apiUrl()}${cfg.endpoint}`) => {
+      try {
+        const response = await fetch(dataUrl);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
+        const tempData = await response.json();
+        const returnData = (Array.isArray(tempData) ? tempData : []).slice(
+          0,
+          10
+        );
 
-        break;
+        setData({
+          lastUpdated: dayjs().tz('America/New_York').toISOString(),
+          data: returnData,
+        });
+      } catch (error) {
+        handleError(error);
       }
-      case 'github': {
-        const getTrendingRepos = async (
-          dataUrl = `${apiUrl()}/github-trending-repos`
-        ) => {
-          try {
-            const response = await fetch(dataUrl);
-            if (!response.ok) {
-              throw new Error(
-                `HTTP ${response.status}: ${response.statusText}`
-              );
-            }
-            const tempData = await response.json();
-            const returnData = (Array.isArray(tempData) ? tempData : []).slice(
-              0,
-              10
-            );
+    };
 
-            setGithubData({
-              lastUpdated: dayjs().tz('America/New_York').toISOString(),
-              data: returnData,
-            });
-          } catch (error) {
-            handleError(error);
-          }
-        };
+    if (data?.lastUpdated) {
+      const nextUpdateTime = dayjs(data.lastUpdated)
+        .tz('America/New_York')
+        .add(cfg.cacheTtl, 'minute');
 
-        if (githubData?.lastUpdated) {
-          const nextUpdateTime = dayjs(githubData.lastUpdated)
-            .tz('America/New_York')
-            .add(appConfig.githubCacheTtl, 'minute');
-
-          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
-            getTrendingRepos();
-          }
-        } else {
-          getTrendingRepos();
-        }
-
-        break;
+      if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
+        fetchContentData();
       }
-      case 'hackerNews': {
-        const getHackerNewsPosts = async (
-          hackerNewsUrl = `${apiUrl()}/hacker-news-posts`
-        ) => {
-          try {
-            const response = await fetch(hackerNewsUrl);
-            if (!response.ok) {
-              throw new Error(
-                `HTTP ${response.status}: ${response.statusText}`
-              );
-            }
-            const tempData = await response.json();
-            const returnData = (Array.isArray(tempData) ? tempData : []).slice(
-              0,
-              10
-            );
-
-            setHackerNewsData({
-              lastUpdated: dayjs().tz('America/New_York').toISOString(),
-              data: returnData,
-            });
-          } catch (error) {
-            handleError(error);
-          }
-        };
-
-        if (hackerNewsData?.lastUpdated) {
-          const nextUpdateTime = dayjs(hackerNewsData.lastUpdated)
-            .tz('America/New_York')
-            .add(appConfig.hackerNewsCacheTtl, 'minute');
-
-          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
-            getHackerNewsPosts();
-          }
-        } else {
-          getHackerNewsPosts();
-        }
-
-        break;
-      }
-      case 'productHunt': {
-        const getProductHuntPosts = async (
-          productHuntRssUrl = `${apiUrl()}/product-hunt-posts`
-        ) => {
-          try {
-            const response = await fetch(productHuntRssUrl);
-            if (!response.ok) {
-              throw new Error(
-                `HTTP ${response.status}: ${response.statusText}`
-              );
-            }
-            const tempData = await response.json();
-            const returnData = (Array.isArray(tempData) ? tempData : []).slice(
-              0,
-              10
-            );
-
-            setProductHuntData({
-              lastUpdated: dayjs().tz('America/New_York').toISOString(),
-              data: returnData,
-            });
-          } catch (error) {
-            handleError(error);
-          }
-        };
-
-        if (productHuntData?.lastUpdated) {
-          const nextUpdateTime = dayjs(productHuntData.lastUpdated)
-            .tz('America/New_York')
-            .add(appConfig.productHuntCacheTtl, 'minute');
-
-          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
-            getProductHuntPosts();
-          }
-        } else {
-          getProductHuntPosts();
-        }
-
-        break;
-      }
-      case 'reddit': {
-        const getRedditPosts = async (
-          redditPostsApiUrl = `${apiUrl()}/reddit-posts`
-        ) => {
-          try {
-            const response = await fetch(redditPostsApiUrl);
-            if (!response.ok) {
-              throw new Error(
-                `HTTP ${response.status}: ${response.statusText}`
-              );
-            }
-            const returnData = (await response.json()) as unknown[];
-
-            setRedditData({
-              lastUpdated: dayjs().tz('America/New_York').toISOString(),
-              data: Array.isArray(returnData) ? returnData.slice(0, 10) : [],
-            });
-          } catch (error) {
-            handleError(error);
-          }
-        };
-
-        if (redditData?.lastUpdated) {
-          const nextUpdateTime = dayjs(redditData.lastUpdated)
-            .tz('America/New_York')
-            .add(appConfig.redditCacheTtl, 'minute');
-
-          if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
-            getRedditPosts();
-          }
-        } else {
-          getRedditPosts();
-        }
-
-        break;
-      }
-      default: {
-        break;
-      }
+    } else {
+      fetchContentData();
     }
-  }, [
-    devToData,
-    githubData,
-    hackerNewsData,
-    productHuntData,
-    redditData,
-    setDevToData,
-    setGithubData,
-    setHackerNewsData,
-    setProductHuntData,
-    setRedditData,
-    contentType,
-  ]);
+  }, [contentType, cfg, data, setData]);
 
-  useEffect(
-    () => {
-      let markup: any;
+  useEffect(() => {
+    if (!data) {
+      return;
+    }
 
-      switch (contentType) {
-        case 'devTo':
-          if (!devToData) {
-            return;
-          }
-          markup = handleDevTo(devToData.data);
-          setDevToPostsMarkup(markup);
-          break;
-        case 'github':
-          if (!githubData) {
-            return;
-          }
-          markup = handleGitHub(githubData.data);
-          setGithubPostsMarkup(markup);
-          break;
-        case 'hackerNews':
-          if (!hackerNewsData) {
-            return;
-          }
-          markup = handleHackerNews(hackerNewsData.data);
-          setHackerNewsPostsMarkup(markup);
-          break;
-        case 'productHunt':
-          if (!productHuntData) {
-            return;
-          }
-          markup = handleProductHunt(productHuntData.data);
-          setProductHuntPostsMarkup(markup);
-          break;
-        case 'reddit':
-          if (!redditData) {
-            return;
-          }
-          markup = handleReddit(redditData.data);
-          setRedditPostsMarkup(markup);
-          break;
-        default:
-          break;
-      }
-    },
-    // return () => {};
-    [
-      devToData,
-      githubData,
-      hackerNewsData,
-      productHuntData,
-      redditData,
-      setDevToPostsMarkup,
-      setGithubPostsMarkup,
-      setHackerNewsPostsMarkup,
-      setProductHuntPostsMarkup,
-      setRedditPostsMarkup,
-      contentType,
-    ]
-  );
+    setPostsMarkup(
+      contentType === 'reddit'
+        ? handleReddit(data.data)
+        : contentType === 'github'
+          ? handleGitHub(data.data)
+          : renderListItems(data.data, contentType)
+    );
+  }, [contentType, data, setPostsMarkup]);
 
   useEffect(() => {
     const buildPopup = () => (
@@ -385,79 +122,32 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
           >
             <Text fw={500} size='1.25rem'>
               <FontAwesomeIcon
-                icon={
-                  [
-                    'fab',
-                    `${getPopupInfo(contentType).icon}`,
-                  ] as unknown as IconName
-                }
+                icon={['fab', `${cfg.icon}`] as unknown as IconName}
                 fixedWidth
               />{' '}
-              {getPopupInfo(contentType).title}
+              {cfg.title}
               &nbsp;&nbsp;
               <Anchor
                 c='white'
                 fw={300}
-                href={getPopupInfo(contentType).pageLink}
+                href={cfg.pageLink}
                 rel='noopener noreferrer'
                 size='sm'
                 target='_blank'
-                title={`View on ${getPopupInfo(contentType).title}`}
+                title={`View on ${cfg.title}`}
               >
                 <FontAwesomeIcon icon='external-link-alt' fixedWidth /> View on{' '}
-                {getPopupInfo(contentType).siteName}
+                {cfg.siteName}
               </Anchor>
             </Text>
           </List.Item>
-          {contentType === 'devTo' && devToPostsMarkup
-            ? devToPostsMarkup
-            : contentType === 'github' && githubPostsMarkup
-              ? githubPostsMarkup
-              : contentType === 'hackerNews' && hackerNewsPostsMarkup
-                ? hackerNewsPostsMarkup
-                : contentType === 'productHunt' && productHuntPostsMarkup
-                  ? productHuntPostsMarkup
-                  : contentType === 'reddit' && redditPostsMarkup
-                    ? redditPostsMarkup
-                    : ''}
+          {postsMarkup}
         </List>
       </ScrollArea>
     );
 
-    const markup: any = buildPopup();
-    // console.log(fullMarkup);
-    switch (contentType) {
-      case 'devTo':
-        setDevToMarkup(markup);
-        break;
-      case 'github':
-        setGithubMarkup(markup);
-        break;
-      case 'hackerNews':
-        setHackerNewsMarkup(markup);
-        break;
-      case 'productHunt':
-        setProductHuntMarkup(markup);
-        break;
-      case 'reddit':
-        setRedditMarkup(markup);
-        break;
-      default:
-        break;
-    }
-  }, [
-    devToPostsMarkup,
-    githubPostsMarkup,
-    hackerNewsPostsMarkup,
-    productHuntPostsMarkup,
-    redditPostsMarkup,
-    setDevToMarkup,
-    setGithubMarkup,
-    setHackerNewsMarkup,
-    setProductHuntMarkup,
-    setRedditMarkup,
-    contentType,
-  ]);
+    setMarkup(buildPopup());
+  }, [contentType, cfg, postsMarkup, setMarkup]);
 
   return (
     <Popover
@@ -468,11 +158,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
       withArrow
     >
       <Popover.Target>
-        <Tooltip
-          position='left'
-          label={getPopupInfo(contentType).title}
-          withArrow
-        >
+        <Tooltip label={cfg.title} position='left' withArrow>
           <ActionIcon
             color='white'
             className={`${contentType}-popup`}
@@ -480,12 +166,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
             variant='transparent'
           >
             <FontAwesomeIcon
-              icon={
-                [
-                  'fab',
-                  `${getPopupInfo(contentType).icon}`,
-                ] as unknown as IconName
-              }
+              icon={['fab', `${cfg.icon}`] as unknown as IconName}
               className='content-popup-icon'
               fixedWidth
               fontSize='2.25rem'
@@ -493,19 +174,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
           </ActionIcon>
         </Tooltip>
       </Popover.Target>
-      <Popover.Dropdown p='xs'>
-        {contentType === 'devTo'
-          ? devToMarkup
-          : contentType === 'github'
-            ? githubMarkup
-            : contentType === 'hackerNews'
-              ? hackerNewsMarkup
-              : contentType === 'productHunt'
-                ? productHuntMarkup
-                : contentType === 'reddit'
-                  ? redditMarkup
-                  : ''}
-      </Popover.Dropdown>
+      <Popover.Dropdown p='xs'>{markup}</Popover.Dropdown>
     </Popover>
   );
 };

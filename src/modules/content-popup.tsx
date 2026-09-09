@@ -2,52 +2,66 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Anchor, Box, Group, List, Text } from '@mantine/core';
 import { nanoid } from 'nanoid';
 
-export const getPopupInfo = (type) => {
-  const infoMap = {
-    devTo: {
-      endpoint: '/dev-to-posts',
-      icon: 'dev',
-      siteName: 'Dev.to',
-      title: 'Dev.to Recent Posts',
-      url: 'https://dev.to',
-      pageLink: 'https://dev.to',
-    },
-    github: {
-      endpoint: '/github-trending-repos',
-      icon: 'github',
-      siteName: 'GitHub',
-      title: 'GitHub Trending Repositories',
-      url: 'https://github.com',
-      pageLink: 'https://github.com/trending?spoken_language_code=en',
-    },
-    hackerNews: {
-      endpoint: '/hacker-news-posts',
-      icon: 'hacker-news',
-      siteName: 'Hacker News',
-      title: 'Hacker News Top Posts',
-      url: 'https://news.ycombinator.com',
-      pageLink: 'https://news.ycombinator.com',
-    },
-    productHunt: {
-      endpoint: '/product-hunt-posts',
-      icon: 'product-hunt',
-      siteName: 'Product Hunt',
-      title: 'Product Hunt Top Posts',
-      url: 'https://www.producthunt.com',
-      pageLink: 'https://www.producthunt.com',
-    },
-    reddit: {
-      endpoint: '/reddit-posts',
-      icon: 'reddit-alien',
-      siteName: 'Reddit',
-      title: 'Reddit Popular Posts',
-      url: 'https://www.reddit.com',
-      pageLink: 'https://www.reddit.com/r/popular',
-    },
-  };
+import { appConfig } from './helpers.ts';
 
-  return infoMap[type];
+export const CONTENT_TYPES = {
+  devTo: {
+    endpoint: '/dev-to-posts',
+    icon: 'dev',
+    siteName: 'Dev.to',
+    title: 'Dev.to Recent Posts',
+    url: 'https://dev.to',
+    pageLink: 'https://dev.to',
+    dataKey: appConfig.devToDataKey,
+    cacheTtl: appConfig.devToCacheTtl,
+  },
+  github: {
+    endpoint: '/github-trending-repos',
+    icon: 'github',
+    siteName: 'GitHub',
+    title: 'GitHub Trending Repositories',
+    url: 'https://github.com',
+    pageLink: 'https://github.com/trending?spoken_language_code=en',
+    dataKey: appConfig.githubDataKey,
+    cacheTtl: appConfig.githubCacheTtl,
+  },
+  hackerNews: {
+    endpoint: '/hacker-news-posts',
+    icon: 'hacker-news',
+    siteName: 'Hacker News',
+    title: 'Hacker News Top Posts',
+    url: 'https://news.ycombinator.com',
+    pageLink: 'https://news.ycombinator.com',
+    dataKey: appConfig.hackerNewsDataKey,
+    cacheTtl: appConfig.hackerNewsCacheTtl,
+  },
+  productHunt: {
+    endpoint: '/product-hunt-posts',
+    icon: 'product-hunt',
+    siteName: 'Product Hunt',
+    title: 'Product Hunt Top Posts',
+    url: 'https://www.producthunt.com',
+    pageLink: 'https://www.producthunt.com',
+    dataKey: appConfig.productHuntDataKey,
+    cacheTtl: appConfig.productHuntCacheTtl,
+  },
+  reddit: {
+    endpoint: '/reddit-posts',
+    icon: 'reddit-alien',
+    siteName: 'Reddit',
+    title: 'Reddit Popular Posts',
+    url: 'https://www.reddit.com',
+    pageLink: 'https://www.reddit.com/r/popular',
+    dataKey: appConfig.redditDataKey,
+    cacheTtl: appConfig.redditCacheTtl,
+  },
 };
+
+export const CONTENT_TYPE_KEYS = Object.keys(CONTENT_TYPES) as Array<
+  keyof typeof CONTENT_TYPES
+>;
+
+export const getPopupInfo = (type) => CONTENT_TYPES[type];
 
 export const handleReddit = (apiData) => {
   const items = Array.isArray(apiData) ? apiData.filter(Boolean) : [];
@@ -107,47 +121,19 @@ export const handleReddit = (apiData) => {
   return markup || [];
 };
 
-export const handleProductHunt = (apiData) => {
-  const items = Array.isArray(apiData) ? apiData.filter(Boolean) : [];
-  let idx = 0;
-  const markup = items.map((post) => {
-    const listItemMarkup = (
-      <List.Item
-        key={nanoid(8)}
-        bg={
-          idx % 2 === 0
-            ? 'var(--mantine-color-dark-9)'
-            : 'var(--mantine-color-black)'
-        }
-        c='white'
-        display='flex'
-        p='xs'
-      >
-        <Anchor
-          c='white'
-          href={`${post.link}`}
-          size='sm'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <strong>{post.title}</strong>
-        </Anchor>
-        <br />
-        <Text fw={300} size='xs'>
-          <FontAwesomeIcon icon='calendar' fixedWidth /> {post.pubDate}
-        </Text>
-      </List.Item>
-    );
-
-    idx += 1;
-
-    return listItemMarkup;
-  });
-
-  return markup || [];
+const RSS_FIELDS = {
+  productHunt: { titleKey: 'title', linkKey: 'link', pubDateKey: 'pubDate' },
+  hackerNews: { titleKey: 'title', linkKey: 'link', pubDateKey: 'pubDate' },
+  devTo: {
+    titleKey: 'title',
+    linkKey: 'link',
+    pubDateKey: 'pubDate',
+    authorKey: 'author',
+  },
 };
 
-export const handleHackerNews = (apiData) => {
+export const renderListItems = (apiData, type) => {
+  const fields = RSS_FIELDS[type];
   const items = Array.isArray(apiData) ? apiData.filter(Boolean) : [];
   let idx = 0;
   const markup = items.map((post) => {
@@ -165,59 +151,24 @@ export const handleHackerNews = (apiData) => {
       >
         <Anchor
           c='white'
-          href={`${post.link}`}
+          href={`${post[fields.linkKey]}`}
           size='sm'
           target='_blank'
           rel='noopener noreferrer'
         >
-          <strong>{post.title}</strong>
+          <strong>{post[fields.titleKey]}</strong>
         </Anchor>
         <br />
         <Text fw={300} size='xs'>
-          <FontAwesomeIcon icon='calendar' fixedWidth /> {post.pubDate}
-        </Text>
-      </List.Item>
-    );
-
-    idx += 1;
-
-    return listItemMarkup;
-  });
-
-  return markup || [];
-};
-
-// return jsx markup
-export const handleDevTo = (apiData) => {
-  const items = Array.isArray(apiData) ? apiData.filter(Boolean) : [];
-  let idx = 0;
-  const markup = items.map((post) => {
-    const listItemMarkup = (
-      <List.Item
-        key={nanoid(8)}
-        bg={
-          idx % 2 === 0
-            ? 'var(--mantine-color-dark-9)'
-            : 'var(--mantine-color-black)'
-        }
-        c='white'
-        display='flex'
-        p='xs'
-      >
-        <Anchor
-          c='white'
-          href={`${post.link}`}
-          size='sm'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <strong>{post.title}</strong>
-        </Anchor>
-        <br />
-        <Text fw={300} size='xs'>
-          <FontAwesomeIcon icon='user' fixedWidth /> {post.author}
-          <br />
-          <FontAwesomeIcon icon='calendar' fixedWidth /> {post.pubDate}
+          {fields.authorKey ? (
+            <>
+              <FontAwesomeIcon icon='user' fixedWidth />{' '}
+              {post[fields.authorKey]}
+              <br />
+            </>
+          ) : null}
+          <FontAwesomeIcon icon='calendar' fixedWidth />{' '}
+          {post[fields.pubDateKey]}
         </Text>
       </List.Item>
     );
