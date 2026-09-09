@@ -1,3 +1,5 @@
+import { upstreamErrorResponse } from './_lib.js';
+
 export const onRequestGet = async (context) => {
   const CACHE_NAME = 'location-and-weather';
   const { request } = context;
@@ -61,20 +63,14 @@ export const onRequestGet = async (context) => {
   const weatherData = await fetch(weatherApiUrl)
     .then(async (response) => {
       const weather = await response.json();
-      const returnData = {
-        weather,
-      };
 
-      return returnData;
+      return { weather };
     })
-    .catch((error) => {
-      console.error(error);
+    .catch(() => null);
 
-      return new Response(JSON.stringify(error), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    });
+  if (!weatherData) {
+    return upstreamErrorResponse();
+  }
 
   const returnData = JSON.stringify({
     location: locationData.location,

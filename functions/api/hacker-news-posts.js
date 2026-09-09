@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio';
 import dayjs from 'dayjs';
+import { jsonResponse, upstreamErrorResponse } from './_lib.js';
 
 export const onRequestGet = async (context) => {
   const CACHE_NAME = 'hacker-news-posts';
@@ -68,29 +69,14 @@ export const onRequestGet = async (context) => {
 
       return returnData;
     })
-    .catch((error) => {
-      console.error(error);
+    .catch(() => null);
 
-      return new Response(
-        JSON.stringify({
-          message: error.message,
-          stack: error.stack,
-        }),
-        {
-          status: 500,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-    });
+  if (postsData == null) {
+    return upstreamErrorResponse();
+  }
 
   // console.log(postsData);
-  const response = new Response(JSON.stringify(postsData), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'max-age=3600, s-maxage=3600',
-    },
-  });
+  const response = jsonResponse(postsData, { maxAge: 3600 });
 
   // cache data;
   context.waitUntil(cache.put(request, response.clone()));

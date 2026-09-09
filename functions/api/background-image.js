@@ -1,3 +1,5 @@
+import { jsonResponse, upstreamErrorResponse } from './_lib.js';
+
 export const onRequestGet = async (context) => {
   const CACHE_NAME = 'background-images';
   const { request } = context;
@@ -84,32 +86,19 @@ export const onRequestGet = async (context) => {
     return returnData;
   };
 
-  const imageData = await fetch(unsplashApiurl)
-    .then(async (response) => {
-      const json = await response.json();
+  const data = await fetch(unsplashApiurl)
+    .then(async (response) => response.json())
+    .catch(() => null);
 
-      return json;
-    })
-    .catch((error) => {
-      console.error(error);
+  if (data == null) {
+    return upstreamErrorResponse();
+  }
 
-      return new Response(JSON.stringify(error), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    });
-
-  const returnData = normalizeImageData(imageData);
+  const normalized = normalizeImageData(data);
 
   const maxAge = 60 * 60 * 6; // 21600 (6 hours)
 
-  const response = new Response(JSON.stringify(returnData), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': `max-age=${maxAge}, s-maxage=${maxAge}`,
-    },
-  });
+  const response = jsonResponse(normalized, { maxAge });
 
   // cache data;
   context.waitUntil(cache.put(request, response.clone()));

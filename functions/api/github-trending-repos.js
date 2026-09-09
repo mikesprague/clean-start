@@ -1,3 +1,5 @@
+import { jsonResponse, upstreamErrorResponse } from './_lib.js';
+
 export const onRequestGet = async (context) => {
   const CACHE_NAME = 'github-trending-repos';
   const { request } = context;
@@ -29,30 +31,19 @@ export const onRequestGet = async (context) => {
     });
   }
 
-  const postsData = await fetch(
+  const data = await fetch(
     'https://mikesprague.github.io/api/github-trending-repos/'
   )
-    .then(async (response) => {
-      const returnData = await response.json();
+    .then(async (response) => response.json())
+    .catch(() => null);
 
-      return returnData.data;
-    })
-    .catch((error) => {
-      console.error(error);
+  if (data == null) {
+    return upstreamErrorResponse();
+  }
 
-      return new Response(JSON.stringify(error), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    });
+  const normalized = data.data;
 
-  const response = new Response(JSON.stringify(postsData), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'max-age=3600, s-maxage=3600',
-    },
-  });
+  const response = jsonResponse(normalized, { maxAge: 3600 });
 
   // cache data;
   context.waitUntil(cache.put(request, response.clone()));

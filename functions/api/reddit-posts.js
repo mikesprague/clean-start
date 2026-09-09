@@ -1,4 +1,5 @@
 import { version } from '../../package.json';
+import { jsonResponse, upstreamErrorResponse } from './_lib.js';
 
 export const onRequestGet = async (context) => {
   const CACHE_NAME = 'reddit-posts';
@@ -41,22 +42,13 @@ export const onRequestGet = async (context) => {
 
       return Array.isArray(returnData) ? returnData : [];
     })
-    .catch((error) => {
-      console.error(error);
+    .catch(() => null);
 
-      return new Response(JSON.stringify(error), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    });
+  if (redditPosts == null) {
+    return upstreamErrorResponse();
+  }
 
-  const response = new Response(JSON.stringify(redditPosts), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'max-age=3600, s-maxage=3600',
-    },
-  });
+  const response = jsonResponse(redditPosts, { maxAge: 3600 });
 
   // cache data;
   context.waitUntil(cache.put(request, response.clone()));

@@ -1,3 +1,5 @@
+import { jsonResponse, upstreamErrorResponse } from './_lib.js';
+
 export const onRequestGet = async (context) => {
   const CACHE_NAME = 'quotes';
   const { request } = context;
@@ -45,28 +47,17 @@ export const onRequestGet = async (context) => {
     return returnData;
   };
 
-  const quotesData = await fetch('https://zenquotes.io/api/quotes/')
-    .then(async (response) => {
-      const returnData = await response.json();
+  const data = await fetch('https://zenquotes.io/api/quotes/')
+    .then(async (response) => response.json())
+    .catch(() => null);
 
-      return normalizeQuoteData(returnData);
-    })
-    .catch((error) => {
-      console.error(error);
+  if (data == null) {
+    return upstreamErrorResponse();
+  }
 
-      return new Response(JSON.stringify(error), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    });
+  const normalized = normalizeQuoteData(data);
 
-  const response = new Response(JSON.stringify(quotesData), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'max-age=3600, s-maxage=3600',
-    },
-  });
+  const response = jsonResponse(normalized, { maxAge: 3600 });
 
   // cache data;
   context.waitUntil(cache.put(request, response.clone()));
