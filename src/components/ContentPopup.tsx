@@ -27,7 +27,7 @@ import {
   handleProductHunt,
   handleReddit,
 } from '../modules/content-popup';
-import { apiUrl } from '../modules/helpers';
+import { apiUrl, handleError } from '../modules/helpers';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -101,20 +101,26 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
     switch (contentType as string) {
       case 'devTo': {
         const getDevToPosts = async (devToUrl = `${apiUrl()}/dev-to-posts`) => {
-          const tempData = await fetch(devToUrl).then((response) =>
-            response.json()
-          );
-          const returnData = [];
-          // limit to 10 items
+          try {
+            const response = await fetch(devToUrl);
+            if (!response.ok) {
+              throw new Error(
+                `HTTP ${response.status}: ${response.statusText}`
+              );
+            }
+            const tempData = await response.json();
+            const returnData = (Array.isArray(tempData) ? tempData : []).slice(
+              0,
+              10
+            );
 
-          for (let i = 0; i < 10; i += 1) {
-            returnData.push(tempData[i]);
+            setDevToData({
+              lastUpdated: dayjs().tz('America/New_York').toISOString(),
+              data: returnData,
+            });
+          } catch (error) {
+            handleError(error);
           }
-
-          setDevToData({
-            lastUpdated: dayjs().tz('America/New_York').toISOString(),
-            data: Array.isArray(returnData) ? returnData : [],
-          });
         };
 
         if (devToData?.lastUpdated) {
@@ -135,20 +141,26 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         const getTrendingRepos = async (
           dataUrl = `${apiUrl()}/github-trending-repos`
         ) => {
-          const returnData = [] as unknown[];
-
-          await fetch(dataUrl).then(async (resp) => {
-            const response = await resp.json();
-            // limit to 10 items
-            for (let i = 0; i < 10; i += 1) {
-              returnData.push(response[i]);
+          try {
+            const response = await fetch(dataUrl);
+            if (!response.ok) {
+              throw new Error(
+                `HTTP ${response.status}: ${response.statusText}`
+              );
             }
-          });
+            const tempData = await response.json();
+            const returnData = (Array.isArray(tempData) ? tempData : []).slice(
+              0,
+              10
+            );
 
-          setGithubData({
-            lastUpdated: dayjs().tz('America/New_York').toISOString(),
-            data: returnData,
-          });
+            setGithubData({
+              lastUpdated: dayjs().tz('America/New_York').toISOString(),
+              data: returnData,
+            });
+          } catch (error) {
+            handleError(error);
+          }
         };
 
         if (githubData?.lastUpdated) {
@@ -169,20 +181,26 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         const getHackerNewsPosts = async (
           hackerNewsUrl = `${apiUrl()}/hacker-news-posts`
         ) => {
-          const tempData = await fetch(hackerNewsUrl).then((response) =>
-            response.json()
-          );
-          const returnData = [];
-          // limit to 10 items
+          try {
+            const response = await fetch(hackerNewsUrl);
+            if (!response.ok) {
+              throw new Error(
+                `HTTP ${response.status}: ${response.statusText}`
+              );
+            }
+            const tempData = await response.json();
+            const returnData = (Array.isArray(tempData) ? tempData : []).slice(
+              0,
+              10
+            );
 
-          for (let i = 0; i < 10; i += 1) {
-            returnData.push(tempData[i]);
+            setHackerNewsData({
+              lastUpdated: dayjs().tz('America/New_York').toISOString(),
+              data: returnData,
+            });
+          } catch (error) {
+            handleError(error);
           }
-
-          setHackerNewsData({
-            lastUpdated: dayjs().tz('America/New_York').toISOString(),
-            data: Array.isArray(returnData) ? returnData : [],
-          });
         };
 
         if (hackerNewsData?.lastUpdated) {
@@ -203,20 +221,26 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         const getProductHuntPosts = async (
           productHuntRssUrl = `${apiUrl()}/product-hunt-posts`
         ) => {
-          const tempData = await fetch(productHuntRssUrl).then((response) =>
-            response.json()
-          );
-          const returnData = [];
-          // limit to 10 items
+          try {
+            const response = await fetch(productHuntRssUrl);
+            if (!response.ok) {
+              throw new Error(
+                `HTTP ${response.status}: ${response.statusText}`
+              );
+            }
+            const tempData = await response.json();
+            const returnData = (Array.isArray(tempData) ? tempData : []).slice(
+              0,
+              10
+            );
 
-          for (let i = 0; i < 10; i += 1) {
-            returnData.push(tempData[i]);
+            setProductHuntData({
+              lastUpdated: dayjs().tz('America/New_York').toISOString(),
+              data: returnData,
+            });
+          } catch (error) {
+            handleError(error);
           }
-
-          setProductHuntData({
-            lastUpdated: dayjs().tz('America/New_York').toISOString(),
-            data: Array.isArray(returnData) ? returnData : [],
-          });
         };
 
         if (productHuntData?.lastUpdated) {
@@ -237,14 +261,22 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         const getRedditPosts = async (
           redditPostsApiUrl = `${apiUrl()}/reddit-posts`
         ) => {
-          const returnData = await fetch(redditPostsApiUrl).then((response) =>
-            response.json()
-          );
+          try {
+            const response = await fetch(redditPostsApiUrl);
+            if (!response.ok) {
+              throw new Error(
+                `HTTP ${response.status}: ${response.statusText}`
+              );
+            }
+            const returnData = (await response.json()) as unknown[];
 
-          setRedditData({
-            lastUpdated: dayjs().tz('America/New_York').toISOString(),
-            data: Array.isArray(returnData) ? returnData : [],
-          });
+            setRedditData({
+              lastUpdated: dayjs().tz('America/New_York').toISOString(),
+              data: Array.isArray(returnData) ? returnData.slice(0, 10) : [],
+            });
+          } catch (error) {
+            handleError(error);
+          }
         };
 
         if (redditData?.lastUpdated) {

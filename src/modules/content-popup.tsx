@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Anchor, Box, Group, List, Text } from '@mantine/core';
 import { nanoid } from 'nanoid';
-import type React from 'react';
 
 export const getPopupInfo = (type) => {
   const infoMap = {
@@ -51,8 +50,9 @@ export const getPopupInfo = (type) => {
 };
 
 export const handleReddit = (apiData) => {
+  const items = Array.isArray(apiData) ? apiData.filter(Boolean) : [];
   let idx = 0;
-  const markup = apiData.map((post) => {
+  const markup = items.map((post) => {
     const listItemMarkup = (
       <List.Item
         key={nanoid(8)}
@@ -108,8 +108,9 @@ export const handleReddit = (apiData) => {
 };
 
 export const handleProductHunt = (apiData) => {
+  const items = Array.isArray(apiData) ? apiData.filter(Boolean) : [];
   let idx = 0;
-  const markup = apiData.map((post) => {
+  const markup = items.map((post) => {
     const listItemMarkup = (
       <List.Item
         key={nanoid(8)}
@@ -147,8 +148,9 @@ export const handleProductHunt = (apiData) => {
 };
 
 export const handleHackerNews = (apiData) => {
+  const items = Array.isArray(apiData) ? apiData.filter(Boolean) : [];
   let idx = 0;
-  const markup = apiData.map((post) => {
+  const markup = items.map((post) => {
     const listItemMarkup = (
       <List.Item
         key={nanoid(8)}
@@ -186,9 +188,10 @@ export const handleHackerNews = (apiData) => {
 };
 
 // return jsx markup
-export const handleDevTo = (apiData): React.FC => {
+export const handleDevTo = (apiData) => {
+  const items = Array.isArray(apiData) ? apiData.filter(Boolean) : [];
   let idx = 0;
-  const markup = apiData.map((post) => {
+  const markup = items.map((post) => {
     const listItemMarkup = (
       <List.Item
         key={nanoid(8)}
@@ -228,8 +231,9 @@ export const handleDevTo = (apiData): React.FC => {
 };
 
 export const handleGitHub = (apiData) => {
+  const items = Array.isArray(apiData) ? apiData.filter(Boolean) : [];
   let idx = 0;
-  const reposMarkup = apiData.map((repo) => {
+  const reposMarkup = items.map((repo) => {
     const {
       title,
       description,
@@ -269,7 +273,7 @@ export const handleGitHub = (apiData) => {
     ) : (
       ''
     );
-    const starsMarkup = stars.trim().length ? (
+    const starsMarkup = (stars ?? '').trim().length ? (
       <>
         <Anchor
           key={nanoid(8)}
@@ -287,7 +291,7 @@ export const handleGitHub = (apiData) => {
     ) : (
       ''
     );
-    const forksMarkup = forks.trim().length ? (
+    const forksMarkup = (forks ?? '').trim().length ? (
       <Anchor key={nanoid(8)} c='white' fw={300} href={forksLink} size='xs'>
         <FontAwesomeIcon icon='share-alt' rotate={270} /> {repo.forks}
         {''}

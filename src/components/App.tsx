@@ -3,6 +3,7 @@ import { Box, Container, Group, MantineProvider, Stack } from '@mantine/core';
 import { lazy } from 'react';
 
 import { initIcons } from '../modules/helpers';
+import ErrorBoundary from './ErrorBoundary';
 
 const BackgroundImage = lazy(() => import('./BackgroundImage'));
 const Clock = lazy(() => import('./Clock'));
@@ -42,13 +43,15 @@ export const App = () => (
             <BackgroundImage />
           </Box>
           <Box p='xs' ta='right' style={{ justifyContent: 'right' }}>
-            <Group gap='sm' align='end' justify='end'>
-              <ContentPopup contentType='github' />
-              <ContentPopup contentType='devTo' />
-              <ContentPopup contentType='hackerNews' />
-              <ContentPopup contentType='productHunt' />
-              <ContentPopup contentType='reddit' />
-            </Group>
+            <ErrorBoundary>
+              <Group gap='sm' align='end' justify='end'>
+                <ContentPopup contentType='github' />
+                <ContentPopup contentType='devTo' />
+                <ContentPopup contentType='hackerNews' />
+                <ContentPopup contentType='productHunt' />
+                <ContentPopup contentType='reddit' />
+              </Group>
+            </ErrorBoundary>
           </Box>
         </Group>
       </Stack>
