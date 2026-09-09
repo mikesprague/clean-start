@@ -8,7 +8,7 @@ import { atomWithStorage } from 'jotai/utils';
 import type React from 'react';
 import { useCallback, useEffect } from 'react';
 
-import { apiUrl } from '../modules/helpers.ts';
+import { appConfig, apiUrl } from '../modules/helpers.ts';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -26,11 +26,11 @@ interface ImageData {
   linkSuffix: string | undefined;
 }
 
-const allImagesDataAtom = atomWithStorage('bgImagesData', {
+const allImagesDataAtom = atomWithStorage(appConfig.bgDataKey, {
   lastUpdated: '',
   data: [] as ImageData[],
 });
-const bgImageNumAtom = atomWithStorage('bgImageNum', 0);
+const bgImageNumAtom = atomWithStorage(appConfig.bgImageNumKey, 0);
 const bgImageAtom = atom({} as ImageData);
 const imageUrlAtom = atom('');
 const imageThumbUrlAtom = atom('');
@@ -56,7 +56,7 @@ export const BackgroundImage = () => {
 
     if (allBgImagesData?.lastUpdated) {
       const nextUpdateTime = dayjs(allBgImagesData.lastUpdated).add(
-        360,
+        appConfig.bgCacheTtl,
         'minute'
       );
 

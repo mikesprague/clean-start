@@ -8,7 +8,7 @@ import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import React, { useEffect } from 'react';
 
-import { apiUrl, stripHTML } from '../modules/helpers.ts';
+import { appConfig, apiUrl, stripHTML } from '../modules/helpers.ts';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -19,7 +19,7 @@ interface QuoteData {
   quoteExcerpt: string;
 }
 
-const allQuotesDataAtom = atomWithStorage('quoteData', {
+const allQuotesDataAtom = atomWithStorage(appConfig.quoteDataKey, {
   lastUpdated: '',
   data: [] as QuoteData[],
 });
@@ -43,7 +43,7 @@ export const Quote = () => {
 
     if (allQuotesData?.lastUpdated) {
       const nextUpdateTime = dayjs(allQuotesData.lastUpdated).add(
-        120,
+        appConfig.quoteCacheTtl,
         'minute'
       );
 

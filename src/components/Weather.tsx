@@ -9,7 +9,7 @@ import { atomWithStorage } from 'jotai/utils';
 import { nanoid } from 'nanoid';
 import { useEffect } from 'react';
 
-import { apiUrl, isCacheExpired } from '../modules/helpers.ts';
+import { appConfig, apiUrl, isCacheExpired } from '../modules/helpers.ts';
 import { clearData } from '../modules/local-storage.ts';
 import { getOpenWeatherMapIcon } from '../modules/weather.ts';
 
@@ -49,7 +49,7 @@ interface WeatherData {
   data: WeatherApiData;
 }
 
-const weatherDataAtom = atomWithStorage('weatherData', {
+const weatherDataAtom = atomWithStorage(appConfig.weatherDataKey, {
   lastUpdated: '',
   data: {} as WeatherApiData,
 } as WeatherData);
@@ -80,7 +80,7 @@ export const Weather = () => {
     };
 
     if (weatherData?.lastUpdated) {
-      if (isCacheExpired(weatherData.lastUpdated, 10)) {
+      if (isCacheExpired(weatherData.lastUpdated, appConfig.weatherCacheTtl)) {
         clearData('weatherData');
         getWeatherData();
       }

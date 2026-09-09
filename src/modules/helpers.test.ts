@@ -1,6 +1,11 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { apiUrl, isCacheExpired, stripHTML } from '../modules/helpers.ts';
+import {
+  appConfig,
+  apiUrl,
+  isCacheExpired,
+  stripHTML,
+} from '../modules/helpers.ts';
 
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -51,5 +56,30 @@ describe('apiUrl', () => {
     });
 
     expect(apiUrl()).toBe('https://cleanstart.page/api');
+  });
+});
+
+describe('appConfig consistency', () => {
+  it('uses the exact localStorage keys the components persist under', () => {
+    expect(appConfig.bgDataKey).toBe('bgImagesData');
+    expect(appConfig.bgImageNumKey).toBe('bgImageNum');
+    expect(appConfig.devToDataKey).toBe('devToData');
+    expect(appConfig.githubDataKey).toBe('githubData');
+    expect(appConfig.hackerNewsDataKey).toBe('hackerNewsData');
+    expect(appConfig.productHuntDataKey).toBe('productHuntData');
+    expect(appConfig.quoteDataKey).toBe('quoteData');
+    expect(appConfig.redditDataKey).toBe('redditData');
+    expect(appConfig.weatherDataKey).toBe('weatherData');
+  });
+
+  it('uses the exact ttl values the components previously hardcoded', () => {
+    expect(appConfig.bgCacheTtl).toBe(360);
+    expect(appConfig.devToCacheTtl).toBe(60);
+    expect(appConfig.githubCacheTtl).toBe(60);
+    expect(appConfig.hackerNewsCacheTtl).toBe(60);
+    expect(appConfig.productHuntCacheTtl).toBe(60);
+    expect(appConfig.quoteCacheTtl).toBe(120);
+    expect(appConfig.redditCacheTtl).toBe(60);
+    expect(appConfig.weatherCacheTtl).toBe(10);
   });
 });

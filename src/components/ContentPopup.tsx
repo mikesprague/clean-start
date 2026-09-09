@@ -27,29 +27,29 @@ import {
   handleProductHunt,
   handleReddit,
 } from '../modules/content-popup';
-import { apiUrl, handleError } from '../modules/helpers';
+import { appConfig, apiUrl, handleError } from '../modules/helpers';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault('America/New_York');
 
-const hackerNewsDataAtom = atomWithStorage('hackerNewsData', {
+const hackerNewsDataAtom = atomWithStorage(appConfig.hackerNewsDataKey, {
   lastUpdated: '',
   data: [] as unknown[],
 });
-const devToDataAtom = atomWithStorage('devToData', {
+const devToDataAtom = atomWithStorage(appConfig.devToDataKey, {
   lastUpdated: '',
   data: [] as unknown[],
 });
-const productHuntDataAtom = atomWithStorage('productHuntData', {
+const productHuntDataAtom = atomWithStorage(appConfig.productHuntDataKey, {
   lastUpdated: '',
   data: [] as unknown[],
 });
-const redditDataAtom = atomWithStorage('redditData', {
+const redditDataAtom = atomWithStorage(appConfig.redditDataKey, {
   lastUpdated: '',
   data: [] as unknown[],
 });
-const githubDataAtom = atomWithStorage('githubData', {
+const githubDataAtom = atomWithStorage(appConfig.githubDataKey, {
   lastUpdated: '',
   data: [] as unknown[],
 });
@@ -126,7 +126,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         if (devToData?.lastUpdated) {
           const nextUpdateTime = dayjs(devToData.lastUpdated)
             .tz('America/New_York')
-            .add(60, 'minute');
+            .add(appConfig.devToCacheTtl, 'minute');
 
           if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
             getDevToPosts();
@@ -166,7 +166,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         if (githubData?.lastUpdated) {
           const nextUpdateTime = dayjs(githubData.lastUpdated)
             .tz('America/New_York')
-            .add(60, 'minute');
+            .add(appConfig.githubCacheTtl, 'minute');
 
           if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
             getTrendingRepos();
@@ -206,7 +206,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         if (hackerNewsData?.lastUpdated) {
           const nextUpdateTime = dayjs(hackerNewsData.lastUpdated)
             .tz('America/New_York')
-            .add(60, 'minute');
+            .add(appConfig.hackerNewsCacheTtl, 'minute');
 
           if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
             getHackerNewsPosts();
@@ -246,7 +246,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         if (productHuntData?.lastUpdated) {
           const nextUpdateTime = dayjs(productHuntData.lastUpdated)
             .tz('America/New_York')
-            .add(60, 'minute');
+            .add(appConfig.productHuntCacheTtl, 'minute');
 
           if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
             getProductHuntPosts();
@@ -282,7 +282,7 @@ export const ContentPopup: React.FC<ContentPopupProps> = ({ contentType }) => {
         if (redditData?.lastUpdated) {
           const nextUpdateTime = dayjs(redditData.lastUpdated)
             .tz('America/New_York')
-            .add(60, 'minute');
+            .add(appConfig.redditCacheTtl, 'minute');
 
           if (dayjs().tz('America/New_York').isAfter(nextUpdateTime)) {
             getRedditPosts();
