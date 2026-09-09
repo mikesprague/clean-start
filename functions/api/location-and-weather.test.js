@@ -60,7 +60,9 @@ describe('location-and-weather cache key', () => {
   it('scopes the cache key to the rounded location and units', async () => {
     await onRequestGet(makeContext('40.7128', '-74.0060'));
 
-    expect(matchKeys[0]).toEqual('location-and-weather:40.71,-74.01:imperial');
-    expect(putKeys[0]).toEqual('location-and-weather:40.71,-74.01:imperial');
+    const expectedKey =
+      'https://cleanstart.page/api/location-and-weather?lat=40.71&lng=-74.01&units=imperial';
+    expect(matchKeys[0]).toEqual(expectedKey);
+    expect(putKeys[0]).toEqual(expectedKey);
   });
 });

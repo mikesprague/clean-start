@@ -8,4 +8,10 @@ export const jsonResponse = (data, { status = 200, maxAge = 3600 } = {}) =>
   });
 
 export const upstreamErrorResponse = () =>
-  jsonResponse({ error: 'upstream service unavailable' }, { status: 502 });
+  new Response(JSON.stringify({ error: 'upstream service unavailable' }), {
+    status: 502,
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store',
+    },
+  });

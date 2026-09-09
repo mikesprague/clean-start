@@ -28,9 +28,13 @@ export const onRequestGet = async (context) => {
 
   const cacheLat = Number.parseFloat(lat).toFixed(2).toString();
   const cacheLng = Number.parseFloat(lng).toFixed(2).toString();
-  const cacheKey = `location-and-weather:${cacheLat},${cacheLng}:${units}`;
+  const cacheKey = new URL(url);
+  cacheKey.searchParams.set('lat', cacheLat);
+  cacheKey.searchParams.set('lng', cacheLng);
+  cacheKey.searchParams.set('units', units);
+  const cacheKeyUrl = cacheKey.toString();
 
-  const cachedData = await cache.match(cacheKey);
+  const cachedData = await cache.match(cacheKeyUrl);
 
   if (cachedData) {
     console.log('🚀 using cached data!');
@@ -86,7 +90,7 @@ export const onRequestGet = async (context) => {
   });
 
   // cache data;
-  context.waitUntil(cache.put(cacheKey, response.clone()));
+  context.waitUntil(cache.put(cacheKeyUrl, response.clone()));
 
   return response;
 };
