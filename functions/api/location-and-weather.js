@@ -1,4 +1,10 @@
-import { upstreamErrorResponse } from './_lib.js';
+import {
+  upstreamErrorResponse,
+  isHealthcheck,
+  healthcheckResponse,
+  respondFromCache,
+  cacheResponse,
+} from './_lib.js';
 
 export const onRequestGet = async (context) => {
   const CACHE_NAME = 'location-and-weather';
@@ -7,7 +13,6 @@ export const onRequestGet = async (context) => {
 
   const urlParams = new URL(url).searchParams;
 
-  const healthcheck = urlParams.get('healthcheck');
   let lat = urlParams.get('lat') || cf.latitude;
   let lng = urlParams.get('lng') || cf.longitude;
   const units = urlParams.get('units') || 'imperial';
@@ -17,14 +22,9 @@ export const onRequestGet = async (context) => {
 
   const { city, country, region, regionCode } = cf;
 
-  if (healthcheck) {
-    return new Response(JSON.stringify('API is up and running'), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+  if (isHealthcheck(url)) {
+    return healthcheckResponse();
   }
-
-  const cache = await caches.open(CACHE_NAME);
 
   const cacheLat = Number.parseFloat(lat).toFixed(2).toString();
   const cacheLng = Number.parseFloat(lng).toFixed(2).toString();
@@ -34,17 +34,10 @@ export const onRequestGet = async (context) => {
   cacheKey.searchParams.set('units', units);
   const cacheKeyUrl = cacheKey.toString();
 
-  const cachedData = await cache.match(cacheKeyUrl);
-
-  if (cachedData) {
-    console.log('🚀 using cached data!');
-
-    const returnData = await cachedData.json();
-
-    return new Response(JSON.stringify(returnData), cachedData);
+  const cachedResponse = await respondFromCache(CACHE_NAME, cacheKeyUrl);
+  if (cachedResponse) {
+    return cachedResponse;
   }
-
-  console.log('😢 no cache, fetching new data');
 
   const { OPEN_WEATHERMAP_API_KEY } = context.env;
 
@@ -89,8 +82,7 @@ export const onRequestGet = async (context) => {
     },
   });
 
-  // cache data;
-  context.waitUntil(cache.put(cacheKeyUrl, response.clone()));
+  cacheResponse(context, CACHE_NAME, cacheKeyUrl, response);
 
   return response;
 };

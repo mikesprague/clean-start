@@ -1,33 +1,24 @@
-import { jsonResponse, upstreamErrorResponse } from './_lib.js';
+import {
+  jsonResponse,
+  upstreamErrorResponse,
+  isHealthcheck,
+  healthcheckResponse,
+  respondFromCache,
+  cacheResponse,
+} from './_lib.js';
 
 export const onRequestGet = async (context) => {
   const CACHE_NAME = 'background-images';
   const { request } = context;
+  const { url } = request;
 
-  const cache = await caches.open(CACHE_NAME);
-
-  const cachedData = await cache.match(request);
-
-  if (cachedData) {
-    console.log('🚀 using cached data!');
-
-    const returnData = await cachedData.json();
-
-    return new Response(JSON.stringify(returnData), cachedData);
+  if (isHealthcheck(url)) {
+    return healthcheckResponse();
   }
 
-  console.log('😢 no cache, fetching new data');
-
-  const { url } = context.request;
-
-  const urlParams = new URL(url).searchParams;
-  const healthcheck = urlParams.get('healthcheck');
-
-  if (healthcheck) {
-    return new Response(JSON.stringify('API is up and running'), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+  const cachedResponse = await respondFromCache(CACHE_NAME, request);
+  if (cachedResponse) {
+    return cachedResponse;
   }
 
   const { UNSPLASH_ACCESS_KEY } = context.env;
@@ -100,8 +91,7 @@ export const onRequestGet = async (context) => {
 
   const response = jsonResponse(normalized, { maxAge });
 
-  // cache data;
-  context.waitUntil(cache.put(request, response.clone()));
+  cacheResponse(context, CACHE_NAME, request, response);
 
   return response;
 };
