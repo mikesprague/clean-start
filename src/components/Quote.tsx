@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import dompurify from 'dompurify';
-import he from 'he';
+import * as he from 'he';
 import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import React, { useEffect } from 'react';
