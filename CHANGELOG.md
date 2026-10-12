@@ -2,6 +2,12 @@
 
 ### 🔧 Chores
 
+* **deps/deps/dev/overrides:** bump several ([52a0397](https://github.com/mikesprague/clean-start/commit/52a03970462fe478dbd20c7473f0b23e018ca1a9))
+
+## [0.46.2](https://github.com/mikesprague/clean-start/compare/v0.46.1...v0.46.2) (2026-10-12)
+
+### 🔧 Chores
+
 * **deps/deps/dev/overrides:** bump several ([fe65143](https://github.com/mikesprague/clean-start/commit/fe65143b36cd81c1e4993178f397e389f2a373b3))
 
 ## [0.46.1](https://github.com/mikesprague/clean-start/compare/v0.46.0...v0.46.1) (2026-09-09)
