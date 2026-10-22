@@ -82,7 +82,7 @@
     "jsdom": "30.1.3",
     "oxfmt": "0.73.0",
     "oxlint": "1.88.0",
-    "postcss": "8.5.30",
+    "postcss": "8.5.31",
     "postcss-cli": "12.0.0",
     "postcss-preset-mantine": "1.18.0",
     "postcss-simple-vars": "7.0.1",
