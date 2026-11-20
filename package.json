@@ -53,7 +53,7 @@
     "@fortawesome/react-fontawesome": "3.5.0",
     "@mantine/core": "9.8.1",
     "@mantine/hooks": "9.8.1",
-    "@rwh/keystrokes": "1.5.6",
+    "@rwh/keystrokes": "1.6.0",
     "cheerio": "1.2.0",
     "dayjs": "1.11.23",
     "dompurify": "3.4.18",
