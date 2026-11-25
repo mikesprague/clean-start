@@ -56,7 +56,7 @@
     "@rwh/keystrokes": "1.6.0",
     "cheerio": "1.2.0",
     "dayjs": "1.11.23",
-    "dompurify": "3.4.18",
+    "dompurify": "3.5.0",
     "he": "2.0.0",
     "jotai": "3.0.2",
     "nanoid": "6.0.2",
